@@ -139,16 +139,9 @@
 
 	<?php } ?>
 </section>
-<section class="search_result" >
-	<div class="container">
-
-		<div id="details_content">
-
-		</div>
-</section>
 
 
-
+<div class="modal modal-main" id="myModal"></div>
 
 <section class="quick-searches"  >
 	<div class="container">
@@ -186,15 +179,16 @@
 										<div class="det-with-price">
 											<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
 											<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
+
 										</div>
 
 										<div class="add-btn-div">
 											<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
 												if ($value['check_add_ons'] == 1) { ?>
-													<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+													<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
 													<div class="add-btn home-add">
 														<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-<!--														<span class="cust">--><?php //echo $this->lang->line('customizable') ?><!--</span>-->
+														<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
 													</div>
 												<?php } else { ?>
 													<div class="add-btn home-add">
@@ -331,7 +325,7 @@
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">Image preview</h4>
+				<h4 class="modal-title item_name" id="myModalLabel">Image preview</h4>
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
 			</div>
@@ -342,9 +336,14 @@
 						<div class="thumbnail coupon">
 
 							<img id="image1" src="" alt="Lights" style="width:100%">
+							<div class="det-with-price">
 
+								<!--										<strong>--><?php //echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?><!--</strong>-->
+							</div>
 
 						</div>
+
+
 					</div>
 					<div class="col-md-4">
 						<div class="thumbnail coupon">
@@ -365,10 +364,23 @@
 
 
 				</div>
+				<div class="det-with-price">
+					<p class="home-menu-details item_details"></p>
+					<strong class="item_price"></strong>
 
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") { ?>
+
+
+
+
+					<button type="button" id="btn_add" class="btn btn-default btn_add">Add </button><br>
+
+
+
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -484,7 +496,34 @@ function image_show(entity_id){
 			$('#image1').attr('src', base_url+'uploads/'+json[0].image);
 			$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
 			$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+			$('.item_name').html(json[0].name)
+			$('.item_details').html(json[0].menu_detail)
+			$('.item_price').html('৳ '+json[0].price)
+
 			$('.imagemodaltwo').modal('show');
+
+			var btn_id=('addtocart-'+entity_id);
+
+			var check_add_on=json[0].check_add_ons;
+
+			if (check_add_on == 0){
+				$('.customize').addClass('d-none');
+
+				$("#btn_add").click(function(){
+					checkCartRestaurant(entity_id,104,'',btn_id);
+					$('#quotes-main-loader').hide();
+					$('.imagemodaltwo').modal('hide');
+				});
+			}else{
+				$('.item_price').html('Customize')
+				$("#btn_add").click(function(){
+					checkCartRestaurant(entity_id,104,'addons',btn_id);
+					$('#quotes-main-loader').hide();
+					$('.imagemodaltwo').modal('hide');
+				});
+
+			}
+
 
 			//console.log(json[0].image)
 
@@ -494,43 +533,6 @@ function image_show(entity_id){
 	});
 
 }
-$(document).on('ready', function() {
-
-
-
-
-	$(".hover").on("click", function() {
-
-		var entity_id=$(this).data('id');
-
-		var base_url=$('#base_url').val();
-
-		//	alert(entity_id)
-
-		$.ajax({
-			url: base_url + "restaurant/find_all_image",
-			type: 'post',
-			data: {entity_id: entity_id},
-			success: function(response){
-
-				var json=JSON.parse(response)
-				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
-				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
-				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
-				$('.imagemodaltwo').modal('show');
-
-				//console.log(json[0].image)
-
-
-
-			}
-		});
-
-	});
-
-
-
-});
 
 
 

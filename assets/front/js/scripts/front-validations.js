@@ -403,6 +403,14 @@ function customMenu(entity_id,restaurant_id,item_id){
       $('#myModal').html(response);
       $('#myModal').modal('show');
       $('#quotes-main-loader').hide();
+		$.ajax({
+			url:  BASEURL+'home/get_cart_item_no',
+			type: 'POST',
+			success: function(n) {
+				$('.cart_count').html(parseInt(n));
+
+			}
+		})
     },
     error: function(XMLHttpRequest, textStatus, errorThrown) {
       alert(errorThrown);
@@ -1604,12 +1612,23 @@ function AddAddonsToCart(menu_id,item_id){
           $('.'+item_id).html(ADDED);
           $('.'+item_id).removeClass('add');
           $('.'+item_id).addClass('added');
+
+			$.ajax({
+				url:  BASEURL+'home/get_cart_item_no',
+				type: 'POST',
+				success: function(n) {
+					$('.cart_count').html(parseInt(n));
+
+				}
+			})
         },
         error: function(XMLHttpRequest, textStatus, errorThrown) {           
           alert(errorThrown);
         }
         });
     }
+
+
 }
 
 function addReview(restaurant_id){

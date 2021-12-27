@@ -197,7 +197,7 @@ if (!empty($menu_arr)) {
 											<?php if ($restaurant_details[$value['name']]) {
 												foreach ($restaurant_details[$value['name']] as $key => $mvalue) { ?>
 													<div class="home-menu-card " >
-														<div class="home-menu-image hover " data-id="<?php echo ($mvalue['entity_id']) ?>">
+														<div class="home-menu-image hover " data-id="<?php echo ($mvalue['entity_id']) ?>" >
 															<img src="<?php echo ($mvalue['image']) ? (image_url . $mvalue['image']) : (default_img); ?>" <?php echo strtolower($add); ?> addtocart-<?php echo $mvalue['entity_id']; ?>" id="addtocart-<?php echo $mvalue['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>?>
 														</div>
 														<div class="home-menu-des">
@@ -518,20 +518,25 @@ if (!empty($menu_arr)) {
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
 			<div class="modal-header">
-				<h4 class="modal-title" id="myModalLabel">Image preview</h4>
+				<h4 class="modal-title item_name" id="myModalLabel">Image preview</h4>
 				<button type="button" class="close" data-dismiss="modal"><span aria-hidden="true">&times;</span><span class="sr-only">Close</span></button>
 
 			</div>
 			<div class="modal-body">
 
-						<div class="row">
+			<div class="row">
 							<div class="col-md-4">
 								<div class="thumbnail coupon">
 
 									<img id="image1" src="" alt="Lights" style="width:100%">
+									<div class="det-with-price">
 
+<!--										<strong>--><?php //echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?><!--</strong>-->
+									</div>
 
 								</div>
+
+
 							</div>
 							<div class="col-md-4">
 								<div class="thumbnail coupon">
@@ -552,10 +557,23 @@ if (!empty($menu_arr)) {
 
 
 						</div>
+				<div class="det-with-price">
+					<p class="home-menu-details item_details"></p>
+					<strong class="item_price"></strong>
 
+				</div>
 			</div>
 			<div class="modal-footer">
-				<button type="button" class="btn btn-default" data-dismiss="modal">Close</button>
+				<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") { ?>
+
+
+
+
+					<button type="button" id="btn_add" class="btn btn-default btn_add">Add </button><br>
+
+
+
+			<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -841,9 +859,12 @@ if (!empty($menu_arr)) {
 </script>
 
 <script>
+
+
 	$(".hover").on("click", function() {
 
 		var entity_id=$(this).data('id');
+		var res_id=$(this).data('res_id');
 
 		var base_url=$('#base_url').val();
 
@@ -859,7 +880,34 @@ if (!empty($menu_arr)) {
 				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
 				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
 				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+				$('.item_name').html(json[0].name)
+				$('.item_details').html(json[0].menu_detail)
+				 $('.item_price').html('৳ '+json[0].price)
+
 				$('.imagemodaltwo').modal('show');
+
+				var btn_id=('addtocart-'+entity_id);
+
+				var check_add_on=json[0].check_add_ons;
+
+				if (check_add_on == 0){
+					$('.customize').addClass('d-none');
+
+					$("#btn_add").click(function(){
+						checkCartRestaurant(entity_id,104,'',btn_id);
+						$('#quotes-main-loader').hide();
+						$('.imagemodaltwo').modal('hide');
+					});
+				}else{
+					$('.item_price').html('Customize')
+					$("#btn_add").click(function(){
+						checkCartRestaurant(entity_id,104,'addons',btn_id);
+						$('#quotes-main-loader').hide();
+						$('.imagemodaltwo').modal('hide');
+					});
+
+				}
+
 
 				//console.log(json[0].image)
 

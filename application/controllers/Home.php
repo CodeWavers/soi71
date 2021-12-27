@@ -46,6 +46,16 @@ class Home extends CI_Controller {
 			$this->session->set_userdata(array('package_id' => ''));
 
 
+		$menu_arr = array();
+		if (!empty($data['cart_details']['cart_items'])) {
+			foreach ($data['cart_details']['cart_items'] as $key => $value) {
+				$menu_arr[] = array(
+					'menu_id' => $value['menu_id'],
+					'quantity' => $value['quantity'],
+				);
+			}
+		}
+		$data['menu_arr'] = $menu_arr;
 
 		$data['restaurants'] = array_values($restaurants);
 		if (!empty($data['restaurants'])) {

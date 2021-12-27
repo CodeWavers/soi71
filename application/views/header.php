@@ -224,9 +224,18 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 						</nav>
 					</div>
 				</div>
+
 			</header>
 		<?php }?>
 
+		<div class="search_result d-none " >
+			<div class="container">
+
+				<div class="details_content">
+
+				</div>
+			</div>
+		</div>
 
 
 	<script>
@@ -254,15 +263,23 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 					data : {'restaurant_id':104,'searchDish':searchDish},
 					beforeSend: function(){
 						$('#quotes-main-loader').show();
-						$('.hero').addClass('d-none');
-						$('.quick-searches').hide();
-						$('.restaurant-app').hide();
-						$('.driver-app').hide();
-						$('.cp').addClass('d-none');
+
 					},
 					success: function(response) {
-						$('#details_content').html(response);
-						$('#quotes-main-loader').hide();
+						$('.search_result').removeClass('d-none')
+						$('.details_content').html(response);
+					//	$('#quotes-main-loader').hide();
+
+							$('section').hide();
+
+							$('.hero').addClass('d-none');
+							// $('.quick-searches').hide();
+							// $('.restaurant-app').hide();
+							// $('.driver-app').hide();
+							// $('.cp').addClass('d-none');
+
+
+
 					},
 					error: function(XMLHttpRequest, textStatus, errorThrown) {
 						alert(errorThrown);
