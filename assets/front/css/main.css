@@ -1442,6 +1442,10 @@ body.fixed {
 	content: "\e902";
 }
 
+.section_opacaity{
+	background: rgba(252, 253, 253, 0.84);
+}
+
 .quick-searches {
 	padding: 50px 0 25px;
 	z-index: -1000;
@@ -2173,6 +2177,10 @@ body.fixed {
 	box-shadow: #0c0c0c;
 	border-top-left-radius: 30px;
 	border-top-right-radius: 30px;
+
+}
+.manu-icon ul li a i{
+	font-family: 'FontAwesome';
 }
 .manu-icon>ul>li:hover > a,
 .manu-icon>ul>li.current > a {
@@ -2380,6 +2388,7 @@ body.fixed {
 
 .order-food-banner {
 	background-image: url(../images/recipe-banner.png);
+
 }
 
 .restaurant-detail-banner {
@@ -2388,10 +2397,12 @@ body.fixed {
 
 .event-booking-banner {
 	background-image: url(../images/recipe-banner.png);
+	background: rgba(252, 253, 253, 0.84);
 }
 
 .booking-detail-banner {
 	background-image: url(../images/recipe-banner.png);
+
 }
 
 .recipe-banner {
@@ -2861,6 +2872,7 @@ body.fixed {
 
 .inner-pages-section.rest-detail-section {
 	padding-top: 0px;
+	background: rgba(252, 253, 253, 0.84);
 }
 
 .rest-detail {
@@ -5705,6 +5717,10 @@ body.fixed {
 .contact-us-wrapper .widgets p {
 	padding: 0 15px;
 }
+.contact-us-wrapper {
+	background: rgba(252, 253, 253, 0.84);
+}
+
 
 .ul-disc {
 	list-style-type: disc;

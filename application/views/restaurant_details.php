@@ -16,7 +16,7 @@ if (!empty($menu_arr)) {
 	</div>
 </section>
 
-<section class="inner-pages-section rest-detail-section">
+<section class="inner-pages-section rest-detail-section ">
 	<div class="rest-detail-main">
 		<div class="container">
 			<div class="row">
@@ -759,8 +759,12 @@ if (!empty($menu_arr)) {
 <script src="<?php echo base_url(); ?>assets/front/js/bootstrap-tagsinput.js"></script>
 
 <!-- for review/rating and menu -->
+
+
+
 <script type="text/javascript">
 	$(function() {
+
 		// Check Radio-box
 		$(".rating input:radio").filter('[value=3]').prop('checked', true);
 		$('.rating input').click(function () {
@@ -788,24 +792,13 @@ if (!empty($menu_arr)) {
 			e.preventDefault();
 		});
 
+
+
 	});
 </script>
 
 
-<script type="text/javascript">
-	$(document).on('ready', function() {
 
-		var count = '<?php echo count($cart_details['cart_items']); ?>';
-		$('.cart_count').html(count);
-
-		$(window).keydown(function(event){
-			if(event.keyCode == 13) {
-				event.preventDefault();
-				return false;
-			}
-		});
-	});
-</script>
 
 <script>
 	$("#pop").on("click", function() {
@@ -917,6 +910,8 @@ if (!empty($menu_arr)) {
 		});
 
 	});
+
+;
 
 </script>
 

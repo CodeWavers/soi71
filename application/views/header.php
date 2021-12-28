@@ -73,10 +73,10 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 				</div>
 			</form>
 			<ul>
-				<li class="<?php echo ($current_page == 'HomePage') ? 'current' : ''?>"><a href="<?php echo base_url()?>"><i class="iicon-icon-01"></i></a><span>Home</span></li>
-				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <i class="iicon-icon-02"></i></a><span>Menu</span></li>
-				<li class="footer_search"><a> <i class="iicon-icon-01"></i></a><span>Search</span></li>
-				<li class="<?php echo ($current_page == 'Cart') ? 'current' : ''?>"><a href="<?php echo base_url() . 'cart'; ?>"> <i class="iicon-icon-02"></i><span class="manu_span cart_count " id="cart_count" ><?php echo $count; ?></span></a><span>Cart</span></li>
+				<li class="<?php echo ($current_page == 'HomePage') ? 'current' : ''?>"><a href="<?php echo base_url()?>"><span class="fas fa-home"></span></a><span>Home</span></li>
+				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-bars"></span></a><span>Menu</span></li>
+				<li class="footer_search"><a> <span class="fas fa-search"></span></a><span>Search</span></li>
+				<li   class="<?php echo ($current_page == 'Cart') ? 'current' : ''?>"><a href="<?php echo base_url() . 'cart'; ?>"> <span class="fas fa-shopping-cart"></span><span class="manu_span cart_count " id="cart_count" ><?php echo $count; ?></span></a><span>Cart</span></li>
 
 			</ul>
 		</div>

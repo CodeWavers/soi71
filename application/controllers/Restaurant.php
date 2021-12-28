@@ -271,7 +271,14 @@ class Restaurant extends CI_Controller {
 	}
 	// event booking page
 	public function event_booking()
+
 	{
+
+
+		$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+
+		redirect(base_url('restaurant/event-booking-detail/'.$slug));
+
         $data['page_title'] = $this->lang->line('book_event').' | '.$this->lang->line('site_title');
 		$data['current_page'] = 'EventBooking';
 		$page = 0; 
@@ -382,7 +389,7 @@ class Restaurant extends CI_Controller {
 			}
 		}
 		$data['menu_arr'] = $menu_arr;
-		$this->load->view('search_menu_details',$data);
+		$this->load->view('head_search_menu_details',$data);
 	}
 
 	public function getSearchDish(){
