@@ -1443,25 +1443,25 @@ body.fixed {
 }
 
 .section_opacaity{
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97)
 }
 
 .quick-searches {
 	padding: 50px 0 25px;
 	z-index: -1000;
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97);
 }
 .search_result {
 	padding: 50px 0 25px;
 	z-index: -1000;
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97);
 }
 
 .cp {
 	padding: 50px 0 25px;
 	z-index: 10000;
 	margin-top: -200px;
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97);
 }
 
 .quick-searches-slider .quick-searches-box {
@@ -2392,33 +2392,33 @@ body.fixed {
 }
 
 .restaurant-detail-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl1.jpg);
 }
 
 .event-booking-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl3.jpg);
 	background: rgba(252, 253, 253, 0.84);
 }
 
 .booking-detail-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl3.jpg);
 
 }
 
 .recipe-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl1.jpg);
 }
 
 .track-order-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl1.jpg);
 }
 
 .recipe-detail-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl1.jpg);
 }
 
 .cart-banner {
-	background-image: url(../images/recipe-banner.png);
+	background-image: url(../images/sl1.jpg);
 }
 
 .inner-pages-form {
@@ -2872,7 +2872,7 @@ body.fixed {
 
 .inner-pages-section.rest-detail-section {
 	padding-top: 0px;
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97);
 }
 
 .rest-detail {
@@ -5718,7 +5718,7 @@ body.fixed {
 	padding: 0 15px;
 }
 .contact-us-wrapper {
-	background: rgba(252, 253, 253, 0.84);
+	background: rgba(252, 253, 253, 0.97);
 }
 
 

@@ -1,7 +1,7 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
 <?php $this->load->view('header'); ?>
 
-<section class="content-area user-page">
+<section class="content-area user-page quick-searches">
     <div class="container-fluid">
         <div class="row">
             <div class="col-md-6 user-form">

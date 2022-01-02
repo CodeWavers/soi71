@@ -7,7 +7,7 @@
         </div>
     </div>
 </section>
-<section class="page-wrapper contact-us-wrapper">
+<section class=" quick-searches">
     <div class="container">
         <div class="row">
             <div class="col-md-12">

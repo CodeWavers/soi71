@@ -12,11 +12,10 @@
   <component name="ChangeListManager">
     <list default="true" id="e4a9fec2-04c0-4f92-b8a1-2c1a9b997a96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/about_us.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/about_us.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/registration.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/fonts/eatance.svg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/fonts/eatance.svg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -92,7 +91,9 @@
       <workItem from="1640497067800" duration="552000" />
       <workItem from="1640505674347" duration="13382000" />
       <workItem from="1640580542713" duration="21089000" />
-      <workItem from="1640667450276" duration="3326000" />
+      <workItem from="1640667450276" duration="3460000" />
+      <workItem from="1640683890541" duration="1227000" />
+      <workItem from="1641123079510" duration="1588000" />
     </task>
     <servers />
   </component>
@@ -140,10 +141,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="534" y="146" width="585" height="582" key="find.popup/0.0.1366.728/1366.-313.1920.1040@0.0.1366.728" timestamp="1640584981989" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1640671190298">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1641124317191">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1920.1040@0.0.1366.728" timestamp="1640671190298" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1920.1040@0.0.1366.728" timestamp="1641124317191" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1640417241804" />
   </component>
 </project>
