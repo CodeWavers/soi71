@@ -51,14 +51,7 @@
 
 
 <section class="hero ">
-	<div class="container" style="padding-top: 8rem">
 
-		<div class="your-doorstep" >
-			<h1 style="color: whitesmoke">Flavors from Thailand</h1>
-			<p style="color: whitesmoke"> Order now through Soi 71 Express Delivery</p>
-
-		</div>
-	</div>
 
 <!--	--><?php //if (!empty($coupons)) { ?>
 <!---->
@@ -105,12 +98,7 @@
 	<?php if (!empty($coupons)) { ?>
 
 		<div class="container " style="" id="hahha">
-			<div class="heading-title">
-				<h2 style="color: whitesmoke"><?php echo $this->lang->line('latest_coupons'); ?></h2>
-				<div class="slider-arrow">
-					<div id="customNav2" class="arrow"></div>
-				</div>
-			</div>
+
 
 
 
@@ -144,7 +132,7 @@
 <div class="modal modal-main" id="myModal"></div>
 
 <section class="quick-searches"  >
-	<div class="container">
+	<div class="container" style="margin-top: 200px">
 		<div class="heading-title">
 			<h2>Popular Items</h2>
 			<div class="slider-arrow">
