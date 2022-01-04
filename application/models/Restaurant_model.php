@@ -725,4 +725,18 @@ class Restaurant_model extends CI_Model {
         $this->db->where('restaurant_id',$restaurant_id);
         return $this->db->get('review')->num_rows();
     }
+
+    public function getTiming($slug){
+
+    	$this->db->select('timings');
+    	$this->db->from('restaurant');
+    	$this->db->where('restaurant_slug',$slug);
+    	return $this->db->get()->result_array();
+	}
+	public function delivery_area(){
+    	$this->db->select('name,delivery_charge');
+    	$this->db->from('delivery_area');
+    	$this->db->where('status',1);
+    	return $this->db->get()->result();
+	}
 }

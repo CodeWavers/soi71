@@ -308,7 +308,10 @@
 			} ?>
 		</div>
 	</div>
+
 </section>
+
+
 <div class="modal fade imagemodaltwo" id="exampleModalCenter" tabindex="-1" role="dialog" aria-labelledby="exampleModalCenterTitle" >
 	<div class="modal-dialog modal-dialog-centered">
 		<div class="modal-content">
@@ -375,6 +378,137 @@
 </div>
 
 <input type="hidden" id="base_url" value="<?php echo base_url()?>">
+<section class="secondary_footer">
+
+	<?php
+	$business_timings =unserialize(json_decode($timings));
+
+	//echo $business_timings;exit();
+//	foreach (@$business_timings as $key=> $data1) {
+//		echo $key, " : ";
+//		echo $data1, "\n";
+//	}
+
+	?>
+<div class="row col-*">
+
+<div class="col-sm-12 col-md-6 col-lg-6 ">
+	<div class=" text-center" style="width: 100%;">
+		<div class="card-body">
+			<h5 class="card-title s-title">Opening Hours</h5><hr>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Saturday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['saturday']['open']; ?> to <?php echo @$business_timings['saturday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Sunday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['sunday']['open']; ?> to <?php echo @$business_timings['sunday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Monday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['monday']['open']; ?> to <?php echo @$business_timings['monday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Tuesday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['tuesday']['open']; ?> to <?php echo @$business_timings['tuesday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Wednesday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['wednesday']['open']; ?> to <?php echo @$business_timings['wednesday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Thursday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['thursday']['open']; ?> to <?php echo @$business_timings['thursday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day">Friday</p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $business_timings['friday']['open']; ?> to <?php echo @$business_timings['friday']['close']; ?></p>
+
+				</div>
+
+
+			</div>
+
+
+		</div>
+	</div>
+</div>
+
+<div class="col-sm-12 col-md-6 col-lg-6 ">
+	<div class=" text-center" style="width: 100%;">
+		<div class="card-body">
+			<h5 class="card-title s-title">Delivery Areas</h5><hr>
+
+			<?php foreach ($delivery_area as $da) {?>
+			<div class="row col-* " >
+				<div class="col-6 secodary_footer_day" >
+					<p class="card-text s-day"><?php echo $da->name?></p>
+				</div>
+				<div class="col-6 secodary_footer_time">
+					<p class="card-text s-time"><?php echo $da->delivery_charge?></p>
+
+				</div>
+
+
+			</div>
+
+			<?php } ?>
+
+
+
+		</div>
+	</div>
+</div>
+
+</div>
+</section>
 
 <!--<section class="restaurant-app quick-searches "  >-->
 <!--	<div class="container">-->

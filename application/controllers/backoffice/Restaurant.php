@@ -335,6 +335,9 @@ class Restaurant extends CI_Controller {
         $data['edit_records'] = $this->restaurant_model->getEditDetail('restaurant',$entity_id);
         $data['admin'] = $this->restaurant_model->getAdmins();
         $data['currencies'] = $this->common_model->getCountriesCurrency();
+
+       // echo '<pre>';print_r($data);exit();
+
         $this->load->view(ADMIN_URL.'/restaurant_add',$data);
     }
     // call for ajax data

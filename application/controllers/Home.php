@@ -24,6 +24,7 @@ class Home extends CI_Controller {
 
 //		set_cookie('cart_restaurant', 104);
 		$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+		$entity_id=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->entity_id;
 		$data['current_page'] = 'HomePage';
 		$data['page_title'] = $this->lang->line('home_page'). ' | ' . $this->lang->line('site_title');
 		$this->session->set_userdata('previous_url', current_url());
@@ -64,8 +65,15 @@ class Home extends CI_Controller {
 				$data['restaurants'][$key]['ratings'] = $ratings;
 			}
 		}
+		$timings=$this->restaurant_model->getTiming($slug);
 		$data['categories'] = $this->home_model->getAllCategories();
 		$data['coupons'] = $this->home_model->getAllCoupons();
+		$data['timings'] = json_encode($timings[0]['timings']);
+		$data['delivery_area'] =$this->restaurant_model->delivery_area();
+
+
+	//	echo '<pre>';print_r($data['delivery_area']);exit();
+
 		$this->load->view('home_page',$data);
 	}
 
