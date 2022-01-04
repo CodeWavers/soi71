@@ -1551,12 +1551,17 @@ body.fixed {
 	border-radius: 10px;
 }
 
+.mapouter{
+	padding: 0 ;
+	box-shadow: 1px 1px 5px 1px var(--main-color);
+}
+
 .coupon{
 	position: relative;
 	padding: 0 ;
 	border-radius: 10px;
 	box-shadow: 1px 1px 10px 1px var(--main-color);
-	font-family:'Norican';
+	font-family:'Open Sans';
 	text-transform: none;
 	overflow: hidden;
 	margin: 10px;
@@ -1633,7 +1638,7 @@ body.fixed {
 	padding: 0;
 	border-radius: 10px;
 	box-shadow: 1px 1px 10px 1px var(--main-color);
-	font-family:'Century Gothic';
+	font-family:'Open Sans';
 	text-transform: none;
 
 }
