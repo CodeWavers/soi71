@@ -217,9 +217,19 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 										<a href="<?php echo base_url() . 'home/login'; ?>" class="btn"><?php echo $this->lang->line('sign_in') ?></a>
 									</div>
 								<?php }?>
+
+								<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
+
+								<?php if ($closed){ ?>
+
+									<div class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'Closed Now':$this->lang->line('open'); ?></div>
+
+								<?php }?>
+
 								<div class="mobile-icon">
 									<button class="" id="nav-icon2"></button>
 								</div>
+
 							</div>
 						</nav>
 					</div>
