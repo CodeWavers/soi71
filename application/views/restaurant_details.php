@@ -194,6 +194,12 @@ if (!empty($menu_arr)) {
 									$popular_count = 0;
 									if (!empty($restaurant_details['categories'])) {
 										foreach ($restaurant_details['categories'] as $key => $value) { ?>
+
+
+											<div class="detail-list-title w-100" >
+												<h3  id="category-<?php echo $value['category_id']; ?>"><?php echo $value['name']; ?></h3>
+											</div><hr>
+
 											<?php if ($restaurant_details[$value['name']]) {
 												foreach ($restaurant_details[$value['name']] as $key => $mvalue) { ?>
 													<div class="home-menu-card " >

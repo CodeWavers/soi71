@@ -80,7 +80,7 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 
 			</ul>
 		</div>
-			<header class="header-area">
+			<header class="header-area fixed-header">
 				<div class="container">
 					<div class="header-inner">
 						<div class="logo">

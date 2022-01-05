@@ -137,7 +137,7 @@ class Restaurant extends CI_Controller {
 				$data['restaurant_details']['restaurant'][0]['ratings'] = $ratings;
 			}
 			$this->session->set_userdata(array('package_id' => ''));
-		} 
+		}
 		$cart_details = get_cookie('cart_details');
 		$cart_restaurant = get_cookie('cart_restaurant');
 		$data['cart_details'] = $this->getCartItems($cart_details,$cart_restaurant);

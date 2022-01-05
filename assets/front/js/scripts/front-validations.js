@@ -485,8 +485,8 @@ function menuSearch(category_id){
     $('.check-menu').prop("checked", false);
     $('#checkbox-option-'+category_id+'').prop("checked", true);
     $('html, body').animate({
-          scrollTop: $('#category-'+category_id+'').offset().top
-      }, 2000);
+          scrollTop: $('#category-'+category_id+'').offset().top -190
+	}, 3000);
   }
 }
 // autocomplete function
