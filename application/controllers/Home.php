@@ -35,6 +35,36 @@ class Home extends CI_Controller {
 		$data['restaurant_details'] = array();
 
 
+			$items = $this->restaurant_model->popular_items();
+
+			$item_all=array_count_values(array_column($items, 'item_id'));
+
+				$a=array_column($items, 'item_id');
+
+
+		arsort($item_all);
+//
+
+			foreach($item_all as $x => $x_value) {
+
+				$menu_data=$this->db->select('*')->from('restaurant_menu_item')->where('entity_id',$x)->get()->result_array();
+
+
+				$popular_items[]=array(
+
+					'menu_items' =>$menu_data
+
+				);
+			}
+
+		$main_data=array_slice($popular_items, 0, 4);
+
+
+
+
+
+
+
 			$content_id = $this->restaurant_model->getContentID($slug);
 			$data['restaurant_details'] = $this->restaurant_model->getRestaurantDetail($content_id->content_id);
 			$data['categories_count'] = count($data['restaurant_details']['categories']);
@@ -70,9 +100,11 @@ class Home extends CI_Controller {
 		$data['coupons'] = $this->home_model->getAllCoupons();
 		$data['timings'] = json_encode($timings[0]['timings']);
 		$data['delivery_area'] =$this->restaurant_model->delivery_area();
+		$data['popular_data'] = $main_data;
 
-
-	//	echo '<pre>';print_r($data['delivery_area']);exit();
+//		echo '<pre>';print_r($main_data);
+//		print_r($main_data[0]['menu_items'][0]->entity_id);
+//		exit();
 
 		$this->load->view('home_page',$data);
 	}

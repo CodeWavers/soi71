@@ -739,4 +739,56 @@ class Restaurant_model extends CI_Model {
     	$this->db->where('status',1);
     	return $this->db->get()->result();
 	}
+
+	public function popular_items()
+	{
+		$order_details = $this->db->select('*')->from('order_detail')->get()->result();
+	//	echo '<pre>';print_r($order_details);exit();
+
+		foreach ($order_details as $order) {
+
+			$order->item =  unserialize($order->item_detail);
+
+		}
+
+		$ordered_items = array();
+
+		foreach ($order_details as $order) {
+
+
+
+			$i = 0;
+			foreach ($order->item as $val) {
+
+
+				$ordered_items[] = $val;
+			}
+		}
+
+		$item_ids = array_column($ordered_items, 'item_id');
+		array_multisort($item_ids, SORT_ASC, $ordered_items);
+
+		$items = array(array());
+
+		$items[0] = $ordered_items[0];
+
+		$j = 0;
+
+		for ($i = 1; $i < sizeof($ordered_items); $i++) {
+
+			if ($items[$j]['item_id'] ==  $ordered_items[$i]['item_id']) {
+
+				$items[$j]['qty_no'] += $ordered_items[$i]['qty_no'];
+				$items[$j]['itemTotal'] += $ordered_items[$i]['itemTotal'];
+			} else {
+				$j++;
+				$items[$j] = $ordered_items[$i];
+			}
+		}
+
+		return $items;
+	}
+
+
+
 }

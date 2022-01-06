@@ -141,21 +141,17 @@
 		</div>
 
 
+
 		<div class="home-items">
-			<?php if (!empty($restaurant_details['menu_items'])) {
-				$popular_count = 0;
-				foreach ($restaurant_details['menu_items'] as $key => $value) {
-					if ($value['popular_item'] == 1) {
-						$popular_count = $popular_count + 1;
-					}
-				}
-				if ($popular_count > 0) { ?>
-					<?php foreach ($restaurant_details['menu_items'] as $key => $value) {
-						if ($value['popular_item'] == 1) { ?>
+
+			<?php  foreach ($popular_data as $ds){ ?>
+
+					<?php foreach ($ds['menu_items'] as $key => $value) { ?>
+
 
 							<div class="home-menu-card ">
 								<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
-									<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>" >
+									<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
 
 								</div>
 								<div class="home-menu-des">
@@ -190,11 +186,14 @@
 								</div>
 							</div>
 
-						<?php }
-					}?>
 
-				<?php }?>
-			<?php }?>
+					<?php }?>
+
+
+			<?php } ?>
+
+
+
 		</div>
 
 
