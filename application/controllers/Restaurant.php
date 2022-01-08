@@ -173,7 +173,7 @@ class Restaurant extends CI_Controller {
 			);
 		}
 
-		$main_data = array_slice($popular_items, 0, 4);
+		$main_data = array_slice($popular_items, 0, 8);
 
 		//echo '<pre>';print_r($main_data);exit();
 

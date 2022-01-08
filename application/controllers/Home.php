@@ -60,7 +60,7 @@ class Home extends CI_Controller
 			);
 		}
 
-		$main_data = array_slice($popular_items, 0, 4);
+		$main_data = array_slice($popular_items, 0, 8);
 
 
 		$content_id = $this->restaurant_model->getContentID($slug);

@@ -1798,6 +1798,13 @@ body.fixed {
 	flex-direction: column-reverse;
 }
 
+.ab_btn:active{
+	transform: translateY(4px);
+}
+.ab_btn:hover{
+	background-color: var(--second-color);
+}
+
 .home-menu-details-parent{
 	display: flex;
 	justify-content: space-between;
