@@ -25,6 +25,7 @@ class Checkout extends CI_Controller {
 		$data['page_title'] = $this->lang->line('title_checkout'). ' | ' . $this->lang->line('site_title');
 		$cart_details = get_cookie('cart_details');
 		$cart_restaurant = get_cookie('cart_restaurant');
+		$data['delivery_area'] = $this->restaurant_model->delivery_area();
 		$data['cart_details'] = $this->getCartItems($cart_details,$cart_restaurant);
 		$data['currency_symbol'] = $this->common_model->getRestaurantCurrencySymbol($cart_restaurant);
 		if($this->input->post('submit_login_page') == "Login"){
@@ -88,6 +89,8 @@ class Checkout extends CI_Controller {
 			$data['page'] = "login";
 		}
 	    $this->session->set_userdata(array('checkDelivery' => 'pickup','deliveryCharge' => 0));
+
+		//echo '<pre>';print_r($data);exit();
 		$this->load->view('checkout',$data);
 	}
 	// ajax checkout page for filters
@@ -746,6 +749,17 @@ class Checkout extends CI_Controller {
         echo json_encode($arrdata);	
     }
 
+
+
+    public function delivery_charge(){
+		$area_id=$this->input->post('area_id',TRUE);
+
+		$charge= $this->restaurant_model->deliver_charge_by_area($area_id);
+
+
+
+		echo json_encode($charge);
+	}
 }
 
 ?>

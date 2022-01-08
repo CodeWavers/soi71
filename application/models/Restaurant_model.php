@@ -734,9 +734,16 @@ class Restaurant_model extends CI_Model {
     	return $this->db->get()->result_array();
 	}
 	public function delivery_area(){
-    	$this->db->select('name,delivery_charge');
+    	$this->db->select('*');
     	$this->db->from('delivery_area');
     	$this->db->where('status',1);
+    	return $this->db->get()->result();
+	}
+
+	public function deliver_charge_by_area($id){
+    	$this->db->select('delivery_charge');
+    	$this->db->from('delivery_area');
+    	$this->db->where('entity_id',$id);
     	return $this->db->get()->result();
 	}
 

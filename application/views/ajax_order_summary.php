@@ -12,15 +12,29 @@
 					</tr>
 					<tr>
 						<td><?php echo $this->lang->line('sub_total') ?></td>
-						<td><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $cart_details['cart_total_price']; ?></strong></td>
+						<td><input type="hidden" id="sub_total" value="<?php echo $cart_details['cart_total_price']; ?>">
+							<strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $cart_details['cart_total_price']; ?></strong></td>
 					</tr>
-					<?php if ($order_mode != 'pickup' && $this->session->userdata('deliveryCharge') > 0) { ?>
-						<tr>
+<!--					<tr>-->
+<!--						<td>--><?php //echo $this->lang->line('delivery_charges') ?><!--</td>-->
+<!--						--><?php //$delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; ?>
+<!--						<td><span id="delivery_charges"><strong>--><?php //echo ($delivery_charges > 0)?'+':''; ?><!-- --><?php //echo $currency_symbol->currency_symbol; ?><!-- --><?php //echo $delivery_charges; ?><!--</strong></span></td>-->
+<!--					</tr>-->
+					<?php if ($order_mode != 'pickup') { ?>
+						<tr class="dc d-none">
 							<td><?php echo $this->lang->line('delivery_charges') ?></td>
 							<?php $delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; ?>
-							<td><span id="delivery_charges"><strong><?php echo ($delivery_charges > 0)?'+':''; ?> <?php echo $currency_symbol->currency_symbol; ?> <?php echo $delivery_charges; ?></strong></span></td>
+							<td><strong><span id="delivery_charges"></span></strong></td>
 						</tr>
 					<?php } ?>
+
+<!--					--><?php //if ($order_mode != 'pickup' && $this->session->userdata('deliveryCharge') > 0) { ?>
+<!--						<tr>-->
+<!--							<td>--><?php //echo $this->lang->line('delivery_charges') ?><!--</td>-->
+<!--							--><?php //$delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; ?>
+<!--							<td><span id="delivery_charges"><strong>--><?php //echo ($delivery_charges > 0)?'+':''; ?><!-- --><?php //echo $currency_symbol->currency_symbol; ?><!-- --><?php //echo $delivery_charges; ?><!--</strong></span></td>-->
+<!--						</tr>-->
+<!--					--><?php //} ?>
 					<?php if ($this->session->userdata('coupon_applied') == "yes") {  ?>
 						<tr>
 							<td><?php echo $this->lang->line('coupon_applied') ?></td>
@@ -29,7 +43,9 @@
 						<tr>
 							<td><?php echo $this->lang->line('coupon_discount') ?></td>
 							<?php $coupon_discount = ($this->session->userdata('coupon_discount'))?$this->session->userdata('coupon_discount'):0; ?>
-							<td><strong><?php echo ($coupon_discount > 0)?'-':''; ?> <?php echo $currency_symbol->currency_symbol; ?> <?php echo $coupon_discount; ?></strong></td>
+							<td>
+								<input type="hidden" id="coupon_discount" value="<?php echo $coupon_discount ?>">
+								<strong><?php echo ($coupon_discount > 0)?'-':''; ?> <?php echo $currency_symbol->currency_symbol; ?> <?php echo $coupon_discount; ?></strong></td>
 						</tr>
 					<?php }
 					else {

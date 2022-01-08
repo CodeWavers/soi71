@@ -184,13 +184,21 @@
 													                            <div class="form-group">
 													                            	<input type="hidden" name="add_latitude" id="add_latitude">
 													                            	<input type="hidden" name="add_longitude" id="add_longitude">
-													                            	<input type="text" name="add_address_area" id="add_address_area" onFocus="geolocate('')" placeholder=" " onchange="getLatLong('<?php echo $cart_details['cart_total_price']; ?>')" class="form-control">
-													                                <label><?php echo $this->lang->line('delivery_area') ?></label>
+																					<select class="form-control" name="your_address" id="your_address" onchange="delievry_charge(this.value)" required="">
+																						<option value="">Select...</option>
+
+																						<?php foreach ($delivery_area as $ds) {?>
+																						<option value="<?php echo $ds->entity_id?>"><?php echo $ds->name?></option>
+																						<?php } ?>
+																					</select>
+																					<label><?php echo $this->lang->line('delivery_area') ?></label>
 													                            </div>
 													                            <div class="form-group">
 													                                <input type="text" name="add_address" id="add_address" class="form-control" placeholder=" ">
 													                                <label><?php echo $this->lang->line('your_location') ?></label>
 													                            </div>
+
+
 													                            <div class="form-group">
 													                                <input type="text" name="landmark" id="landmark" class="form-control" placeholder=" ">
 													                                <label><?php echo $this->lang->line('landmark') ?></label>
@@ -312,17 +320,14 @@
 												<td><?php echo $this->lang->line('sub_total') ?></td>
 												<td><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $cart_details['cart_total_price']; ?></strong></td>
 											</tr>
-											<?php /* ?><tr>
-												<td><?php echo $this->lang->line('delivery_charges') ?></td>
-												<td><span id="delivery_charges"><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; ?></strong></span></td>
-											</tr><?php */ ?>
+
 										</tbody>
 										<tfoot>
 											<tr>
 												<td><?php echo $this->lang->line('to_pay') ?></td>
 												<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges; 
 												$this->session->set_userdata(array('total_price' => $to_pay)); ?>
-												<td><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></td>
+												<td><span id="to_pay"><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></span></td>
 											</tr>
 										</tfoot>
 									</table>
@@ -411,5 +416,56 @@ $(document).ready(function(){
 		}
 	});
 });
+
+
+function delievry_charge(value) {
+
+
+
+	var base_url = "<?= base_url() ?>";
+	var csrf_test_name = $('[name="csrf_test_name"]').val();
+
+
+	$.ajax({
+		url: base_url + "checkout/delivery_charge",
+		method: 'post',
+		data: {
+			area_id: value,
+			csrf_test_name: csrf_test_name
+		},
+
+		cache: false,
+		success: function (data) {
+			let obj = jQuery.parseJSON(data);
+
+
+			var dc=parseFloat(obj[0].delivery_charge);
+
+
+
+			 var sub_total=parseFloat($('#sub_total').val());
+
+
+			 if (coupon_discount ){
+				 var coupon_discount=parseFloat($('#coupon_discount').val());
+			 }else{
+				 var coupon_discount=0;
+			 }
+
+			 if (dc > 0 ){
+			 	$('.dc').removeClass('d-none');
+				 $('#delivery_charges').html('৳ '+dc);
+			 }
+
+			//console.log()
+
+			 var to_pay=(sub_total+dc)-coupon_discount;
+
+			$('#to_pay').html('৳ '+to_pay);
+		}
+	})
+
+
+}
 </script>
 <?php $this->load->view('footer'); ?>

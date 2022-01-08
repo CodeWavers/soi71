@@ -364,7 +364,7 @@ if (!empty($menu_arr)) {
 				</div>
 			</div>
 			<!-- ratings and review end -->
-			
+
 			<!-- your cart -->
 			<div class="col-sm-12 col-md-5 col-lg-4" id="your_cart">
 				<div class="your-cart-main">
