@@ -127,61 +127,57 @@ if (!empty($menu_arr)) {
 									</div>
 								</div>
 							<div class="home-items">
-							<?php if (!empty($restaurant_details['menu_items'])) {
-								$popular_count = 0;
-								foreach ($restaurant_details['menu_items'] as $key => $value) {
-									if ($value['popular_item'] == 1) {
-										$popular_count = $popular_count + 1;
-									}
-								}
-								if ($popular_count > 0) { ?>
+
+								<?php  foreach ($popular_data as $ds){ ?>
+
+									<?php foreach ($ds['menu_items'] as $key => $value) { ?>
 
 
+										<div class="home-menu-card ">
+											<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
+												<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
 
-										<?php foreach ($restaurant_details['menu_items'] as $key => $value) {
-											if ($value['popular_item'] == 1) { ?>
+											</div>
+											<div class="home-menu-des">
+												<div class="">
+													<div class="home-menu-name"><?php echo $value['name']; ?></div>
 
-													<div class="home-menu-card">
-														<div class="home-menu-image hover" data-id="<?php echo ($value['entity_id']) ?>">
-															<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>">
+												</div>
+												<div class="home-menu-details-parent">
+													<div class="det-with-price">
+														<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+														<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
-														</div>
-														<div class="home-menu-des">
-															<div class="">
-																<div class="home-menu-name"><?php echo $value['name']; ?></div>
-
-															</div>
-															<div class="home-menu-details-parent">
-																<div class="det-with-price">
-																	<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
-																	<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
-																</div>
-
-																<div class="add-btn-div">
-																	<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
-																		if ($value['check_add_ons'] == 1) { ?>
-																			<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-																			<div class="add-btn home-add">
-																				<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-																				<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
-																			</div>
-																		<?php } else { ?>
-																			<div class="add-btn home-add">
-																				<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-																				<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-																			</div>
-																		<?php }
-																	} ?>
-																</div>
-															</div>
-														</div>
 													</div>
 
-											<?php }
-										}?>
+													<div class="add-btn-div">
+														<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
+															if ($value['check_add_ons'] == 1) { ?>
+																<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+																<div class="add-btn home-add">
+																	<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+																	<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
+																</div>
+															<?php } else { ?>
+																<div class="add-btn home-add">
+																	<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+																	<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+																</div>
+															<?php }
+														} ?>
+													</div>
+												</div>
+											</div>
+										</div>
 
-								<?php }?>
-							<?php }?>
+
+									<?php }?>
+
+
+								<?php } ?>
+
+
+
 							</div>
 							<div class="heading-title">
 								<h2>Menu Items</h2>
