@@ -2332,7 +2332,7 @@ body.fixed {
 }
 
 .social-icon {
-	text-align: right;
+	text-align: center;
 }
 
 .social-icon ul {
@@ -7051,7 +7051,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin: auto;
 	}
 	.social-icon ul {
-		justify-content: center;
+		justify-content: left;
 	}
 	.best-offers,
 	.quick-searches,
