@@ -491,7 +491,7 @@
 					<p class="card-text s-day"><?php echo $da->name?></p>
 				</div>
 				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $da->delivery_charge?></p>
+					<p class="card-text s-time">৳ <?php echo $da->delivery_charge?></p>
 
 				</div>
 

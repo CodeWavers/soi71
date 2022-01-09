@@ -851,6 +851,9 @@ body.fixed {
 	text-transform: uppercase;
 	font-weight: bolder;
 	font-size: 12px;
+
+	line-height: 30px;
+
 	/*opacity: 0.8;*/
 
 
@@ -874,6 +877,7 @@ body.fixed {
 	position: relative;
 	padding: 23px 12px;
 	display: block;
+	color: rgb(17, 16, 16);
 }
 
 #magic-line {
