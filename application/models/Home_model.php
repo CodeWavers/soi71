@@ -171,4 +171,9 @@ class Home_model extends CI_Model {
     	$this->db->limit(3);
     	return $this->db->get_where('coupon',array('status'=>1))->result();
     }
+	public function getRecordMultipleWhere($table, $whereArray)
+	{
+		$this->db->where($whereArray);
+		return $this->db->get($table)->first_row();
+	}
 }

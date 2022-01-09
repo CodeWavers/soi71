@@ -752,7 +752,7 @@ body.fixed {
 	padding-top: 80px;
 }
 .non-veg::before {
-	color: #ef0404 !important;
+	color: var(--main-color) !important;
 }
 
 

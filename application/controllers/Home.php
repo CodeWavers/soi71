@@ -499,47 +499,62 @@ class Home extends CI_Controller
 	public function forgot_password()
 	{
 		if ($this->input->post('forgot_submit_page') == "Submit") {
-			$this->form_validation->set_rules('email_forgot', 'Email', 'trim|required|valid_email');
-			if ($this->form_validation->run()) {
-				$checkRecord = $this->common_model->getRowsMultipleWhere('users', array('email' => strtolower($this->input->post('email_forgot')), 'status' => 1));
-				$arr['forgot_success'] = '';
-				$arr['forgot_error'] = '';
-				if (!empty($checkRecord[0])) {
-					// confirmation link
-					if ($this->input->post('email_forgot')) {
-						$language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
-						$verificationCode = random_string('alnum', 20) . $checkRecord[0]->entity_id . random_string('alnum', 5);
-						$confirmationLink = '<a href=' . base_url() . 'user/reset/' . $verificationCode . '>here</a>';
-						$email_template = $this->db->get_where('email_template', array('email_slug' => 'forgot-password', 'language_slug' => $language_slug))->first_row();
-						$arrayData = array('FirstName' => $checkRecord[0]->first_name, 'ForgotPasswordLink' => $confirmationLink);
-						$EmailBody = generateEmailBody($email_template->message, $arrayData);
+			//$this->form_validation->set_rules('number_forgot', 'Phone Number', 'trim|required');
+			//if ($this->form_validation->run()) {
+			//$checkRecord = $this->common_model->getRowsMultipleWhere('users', array('mobile_number' => strtolower($this->input->post('number_forgot')), 'status' => 1));
+			$arr['forgot_success'] = '';
+			$arr['forgot_error'] = '';
+			//if (!empty($checkRecord[0])) {
 
-						//get System Option Data
-						$this->db->select('OptionValue');
-						$FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
+			// confirmation link
+			if ($this->input->post('number_forgot')) {
 
-						$this->db->select('OptionValue');
-						$FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
 
-						$this->load->library('email');
-						$config['charset'] = "utf-8";
-						$config['mailtype'] = "html";
-						$config['newline'] = "\r\n";
-						$this->email->initialize($config);
-						$this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
-						$this->email->to($this->input->post('email_forgot'));
-						$this->email->subject($email_template->subject);
-						$this->email->message($EmailBody);
-						$this->email->send();
-						// update verification code
-						$addata = array('email_verification_code' => $verificationCode);
-						$this->common_model->updateData('users', $addata, 'entity_id', $checkRecord[0]->entity_id);
-					}
-					$arr['forgot_success'] = $this->lang->line('forgot_success');;
+
+				$checkRecord = $this->home_model->getRecordMultipleWhere('users', array('mobile_number' => $this->input->post('number_forgot'), 'status' => 1, 'login_provider' => 1));
+
+				if (!empty($checkRecord)) {
+					$activecode = substr(md5(uniqid(mt_rand(), true)), 0, 8);
+					$password = random_string('alnum', 8);
+					$data = array('active_code' => $activecode, 'password' => md5(SALT . $password));
+					$this->common_model->updateUser('users', $data, 'mobile_number', $this->input->post('number_forgot'));
+					$arr['forgot_success'] = 'Your temporary password is: ' . $password . '<br>Use it to login and change the password from accounts setting.';
 				} else {
-					$arr['forgot_error'] = $this->lang->line('email_not_exist');
+					$arr['forgot_error'] = 'No User is registered with this phone number.';
+
 				}
+
+				// $language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
+				// $verificationCode = random_string('alnum', 20) . $checkRecord[0]->entity_id . random_string('alnum', 5);
+				// $confirmationLink = '<a href=' . base_url() . 'user/reset/' . $verificationCode . '>here</a>';
+				// $email_template = $this->db->get_where('email_template', array('email_slug' => 'forgot-password', 'language_slug' => $language_slug))->first_row();
+				// $arrayData = array('FirstName' => $checkRecord[0]->first_name, 'ForgotPasswordLink' => $confirmationLink);
+				// $EmailBody = generateEmailBody($email_template->message, $arrayData);
+
+				// //get System Option Data
+				// $this->db->select('OptionValue');
+				// $FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
+
+				// $this->db->select('OptionValue');
+				// $FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
+
+				// $this->load->library('email');
+				// $config['charset'] = "utf-8";
+				// $config['mailtype'] = "html";
+				// $config['newline'] = "\r\n";
+				// $this->email->initialize($config);
+				// $this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
+				// $this->email->to($this->input->post('email_forgot'));
+				// $this->email->subject($email_template->subject);
+				// $this->email->message($EmailBody);
+				// $this->email->send();
+				// // update verification code
+				// $addata = array('email_verification_code' => $verificationCode);
+				// $this->common_model->updateData('users', $addata, 'entity_id', $checkRecord[0]->entity_id);
 			}
+
+			//}
+			//}
 		}
 
 		echo json_encode($arr);

@@ -87,7 +87,7 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 							<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/front/images/logo.png" alt=""></a>
 						</div>
 						<nav>
-							<ul id="example-one">
+							<ul id="example-one" class="ab">
 								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
 								<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
 								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><?php echo $this->lang->line('event_booking') ?></a></li>

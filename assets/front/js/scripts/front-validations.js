@@ -55,7 +55,7 @@ $("#form_front_forgotpass").on("submit", function(event) {
         type : "POST",
         dataType :"json",
         url : BASEURL+'home/forgot_password',
-        data : {'email_forgot':$('#email_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
+        data : {'number_forgot':$('#number_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
         beforeSend: function(){
             $('#quotes-main-loader').show();
         },

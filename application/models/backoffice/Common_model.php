@@ -488,5 +488,13 @@ class Common_model extends CI_Model {
     public function getSystemOptions(){
         return $this->db->get('system_option')->result_array();
     }
+
+	//update user status after successful verification
+	public function updateUser($tableName, $data, $fieldName, $UserID)
+	{
+		$this->db->where($fieldName, $UserID);
+		$this->db->update($tableName, $data);
+	}
+
 }
 ?>

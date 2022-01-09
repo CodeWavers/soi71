@@ -915,6 +915,13 @@ if (!empty($menu_arr)) {
 
 ;
 
+
+	$('#nav-icon2').click(function () {
+
+		$('.ab').addClass('open');
+
+	})
+
 </script>
 
 
