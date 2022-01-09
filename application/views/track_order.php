@@ -13,16 +13,16 @@
 				</div>
 				<div class="col-lg-12">
 					<div class="track-order-main">
-						<div class="track-order-map">
-							<!-- <img src="<?php //echo base_url();?>assets/front/images/map.png"> -->
-							<div class="row">
-			                    <div class="col-md-12 modal_body_map">
-			                        <div class="location-map" id="location-map">
-			                            <div id="map_canvas"></div>
-			                        </div>
-			                    </div>
-			                </div>
-						</div>
+<!--						<div class="track-order-map">-->
+<!--							 <img src="--><?php ////echo base_url();?><!--assets/front/images/map.png"> -->
+<!--							<div class="row">-->
+<!--			                    <div class="col-md-12 modal_body_map">-->
+<!--			                        <div class="location-map" id="location-map">-->
+<!--			                            <div id="map_canvas"></div>-->
+<!--			                        </div>-->
+<!--			                    </div>-->
+<!--			                </div>-->
+<!--						</div>-->
 						<div class="track-order-content">
 							<div class="track-order-text">
 								<div class="track-order-head">
