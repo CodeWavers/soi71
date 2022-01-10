@@ -215,6 +215,7 @@ if (isset($_GET['scope'])) {
 									</div>
 									<a href="" class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
 								</div>
+
 							<?php } ?>
 
 							<div class="action-button">
@@ -227,6 +228,30 @@ if (isset($_GET['scope'])) {
 							</div>
 						</div>
 					</form>
+
+<!--					<form id="form_front_forgotpass" name="form_front_forgotpass" method="post" class="form-horizontal float-form mt-5">-->
+<!--						<h2 class="text-left">Enter Your Mobile Number</h2>-->
+<!--						<div class="alert alert-success display-no" id="forgot_success"></div>-->
+<!--						<div class="form-body " id="forgot_password_section">-->
+<!--							<div class="alert alert-danger display-no" id="forgot_error"></div>-->
+<!--							--><?php //if (validation_errors()) { ?>
+<!--								<div class="alert alert-danger">-->
+<!--									--><?php //echo validation_errors(); ?>
+<!--								</div>-->
+<!--							--><?php //} ?>
+<!---->
+<!--							<div id="phoneExist"></div>-->
+<!--							<div class="form-group">-->
+<!--								<input type="text" name="number_forgot" id="number_forgot" class="form-control" placeholder="">-->
+<!--								<label>Mobile Number</label>-->
+<!--							</div>-->
+<!--							<div class="action-button">-->
+<!--								<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red">--><?php //echo $this->lang->line('submit') ?><!--</button>-->
+<!--							</div>-->
+<!--						</div>-->
+<!--					</form>-->
+
+
 				</div>
 			</div>
 			<div class="col-md-6 login-bg"></div>
@@ -235,9 +260,9 @@ if (isset($_GET['scope'])) {
 </section>
 <!--/ end content-area section -->
 <!-- Modal -->
-<div class="modal std-modal" tabindex="-1" role="dialog" id="forgot-pass-modal">
-	<div class="modal-dialog modal-dialog-centered" role="document">
-		<div class="modal-content">
+<div class="modal  fade bd-example-modal-sm" tabindex="-1" role="dialog" id="forgot-pass-modal">
+	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+		<div class="modal-content" >
 			<div class="row align-items-center">
 				<div class="col-12">
 					<div class="modal-header">
@@ -255,7 +280,7 @@ if (isset($_GET['scope'])) {
 				</div>
 				<div class="col-md-7 col-sm-12">
 					<div class="modal-form">
-						<div class="alert alert-success display-no" id="forgot_success"></div>
+
 						<div id="forgot_password_section">
 							<h2 class="text-left">Enter Your Mobile Number</h2>
 							<!-- action="<?php //echo base_url().'home/forgot_password';
@@ -274,7 +299,7 @@ if (isset($_GET['scope'])) {
 										<label>Mobile Number</label>
 									</div>
 									<div class="action-button">
-										<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit" class="btn red"><?php echo $this->lang->line('submit') ?></button>
+										<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red"><?php echo $this->lang->line('submit') ?></button>
 									</div>
 							</form>
 						</div>
@@ -284,7 +309,43 @@ if (isset($_GET['scope'])) {
 		</div>
 	</div>
 </div>
+<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+	<div class="modal-dialog modal-dialog-centered" role="document">
+		<div class="modal-content">
+			<div class="modal-header">
+				<h5 class="modal-title" id="exampleModalLabel"></h5>
+				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+					<span aria-hidden="true">&times;</span>
+				</button>
+			</div>
+			<div class="modal-body">
+				<form action="" class="form-horizontal float-form">
+					<div class="alert alert-success display-no" id="forgot_success"></div>
+					<div class="form-body">
 
+						<h1>Enter Verification code</h1>
+
+						<div class="form-group">
+							<input type="text" id="verificationCode" class="form-control" placeholder="">
+							<label><?php echo $this->lang->line('otp') ?></label>
+						</div>
+						<div id="recaptcha-container"></div>
+
+						<div class="action-button">
+							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
+
+						</div>
+
+					</div>
+				</form>
+			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+		<button type="button" class="btn btn-primary">Save changes</button> -->
+			</div>
+		</div>
+	</div>
+</div>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/plugins/jquery-validation/js/jquery.validate.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/plugins/jquery-validation/js/additional-methods.min.js"></script>
 <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
@@ -292,6 +353,29 @@ if (isset($_GET['scope'])) {
 <?php if ($this->session->userdata("language_slug") == 'fr') {  ?>
 	<script type="text/javascript" src="<?php echo base_url() ?>assets/admin/pages/scripts/localization/messages_fr.js"> </script>
 <?php } ?>
+
+<script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
+
+
+
+<!-- TODO: Add SDKs for Firebase products that you want to use
+     https://firebase.google.com/docs/web/setup#config-web-app -->
+
+<script>
+	// Your web app's Firebase configuration
+	// For Firebase JS SDK v7.20.0 and later, measurementId is optional
+	var firebaseConfig = {
+		apiKey: "AIzaSyDcXe6AacheUcFHeV8jtanJT21nyS9e3kM",
+		authDomain: "soi71-62621.firebaseapp.com",
+		projectId: "soi71-62621",
+		storageBucket: "soi71-62621.appspot.com",
+		messagingSenderId: "1022686565372",
+		appId: "1:1022686565372:web:cd995980b1497401b65879",
+		measurementId: "G-7804JDEEXG"
+	};
+	// Initialize Firebase
+	firebase.initializeApp(firebaseConfig);
+</script>
 <script>
 	function checkExist(mobile_number) {
 		// var entity_id = $('#entity_id').val();
@@ -321,6 +405,121 @@ if (isset($_GET['scope'])) {
 				$('#phoneExist').show();
 				$('#phoneExist').html(errorThrown);
 			}
+		});
+	}
+	$("#form_front_forgotpass").on("submit", function(event) {
+		event.preventDefault();
+		jQuery.ajax({
+			type : "POST",
+			dataType :"json",
+			url : BASEURL+'home/forgot_password',
+			data : {'number_forgot':$('#number_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
+			beforeSend: function(){
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+
+				$('#forgot_error').hide();
+				$('#forgot_success').hide();
+				$('#quotes-main-loader').hide();
+				if (response) {
+					if (response.forgot_error != '') {
+						$('#forgot_error').html(response.forgot_error);
+						$('#forgot_success').hide();
+						$('#forgot_error').show();
+					}
+					if (response.forgot_success != '') {
+						$('#forgot_success').html(response.forgot_success);
+						$('#forgot_error').hide();
+
+						// $('#forgot_password_section').hide();
+
+						$('#exampleModal').modal('show');
+
+					}
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+	});
+	function ajaxCall(number) {
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url(); ?>home/updateuser",
+			data: 'mobile_number=' + number,
+			cache: false,
+			success: function(html) {
+				console.log('bla', html);
+				window.location.replace("<?php echo base_url(); ?>home/login");
+
+				//   if(html > 0){
+				//     $('#phoneExist').show();
+				//     $('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
+				//     $(':input[type="submit"]').prop("disabled",true);
+				//   } else {
+				//     $('#phoneExist').html("");
+				//     $('#phoneExist').hide();
+				//     $(':input[type="submit"]').prop("disabled",false);
+				//   }
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				//   $('#phoneExist').show();
+				//   $('#phoneExist').html(errorThrown);
+				alert(errorThrown);
+			}
+		});
+	}
+
+
+	window.onload = function() {
+		render();
+	};
+
+	function render() {
+		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+
+	}
+
+	function forgot_verify() {
+
+		var countrycode = "+88";
+		var number = document.getElementById('number_forgot').value;
+		var number = countrycode.concat(number);
+		//phone number authentication function of firebase
+		//it takes two parameter first one is number,,,second one is recaptcha
+		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+			//s is in lowercase
+			window.confirmationResult = confirmationResult;
+			coderesult = confirmationResult;
+			console.log(coderesult);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+		var code = document.getElementById('verificationCode').value;
+		coderesult.confirm(code).then(function(result) {
+			// alert("Successfully verified");
+			// $('#exampleModal').modal('hide')
+
+
+			$('#forgot_success').show();
+
+			// $('#forgot-pass-modal').modal('hide');
+
+
+
+			//var number = $('#number_forgot').val();
+			//
+			////alert(number)
+			//ajaxCall(number);
+			//// window.location.href = 'home';
+
+			//var user = result.user;
+			//console.log(user);
+		}).catch(function(error) {
+			alert(error.message);
 		});
 	}
 </script>

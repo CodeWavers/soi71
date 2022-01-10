@@ -49,39 +49,7 @@ $(".notification-btn").on("click", function(e){
   });
 });
 // submit forgot password form
-$("#form_front_forgotpass").on("submit", function(event) { 
-    event.preventDefault();
-    jQuery.ajax({
-        type : "POST",
-        dataType :"json",
-        url : BASEURL+'home/forgot_password',
-        data : {'number_forgot':$('#number_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
-        beforeSend: function(){
-            $('#quotes-main-loader').show();
-        },
-        success: function(response) { 
-            $('#forgot_error').hide();
-            $('#forgot_success').hide();
-             $('#quotes-main-loader').hide();
-            if (response) {
-	            if (response.forgot_error != '') { 
-	                $('#forgot_error').html(response.forgot_error);
-	                $('#forgot_success').hide();
-	                $('#forgot_error').show();
-	            }
-	            if (response.forgot_success != '') { 
-	                $('#forgot_success').html(response.forgot_success);
-	                $('#forgot_error').hide();
-	                $('#forgot_success').show();
-                  $('#forgot_password_section').hide();
-	            }
-            }
-        },
-        error: function(XMLHttpRequest, textStatus, errorThrown) {           
-            alert(errorThrown);
-        }
-    });
-});
+
 // submit forgot password form hidden
 $('#forgot-pass-modal').on('hidden.bs.modal', function (e) {
   $(this).find("input[type=number]").val('').end();

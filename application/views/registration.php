@@ -238,10 +238,10 @@ if (isset($_GET['scope'])) {
 							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" />
 
 
-							<!--<div class="form-group">-->
-							<!--    <input type="email" name="email" id="email" class="form-control" placeholder=" " >-->
-							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
-							<!--</div>-->
+<!--							<div class="form-group">-->
+<!--							    <input type="email" name="email" id="email" class="form-control" placeholder=" " >-->
+<!--							    <label>--><?php //echo $this->lang->line('email') ?><!--</label>-->
+<!--							</div>-->
 							<div class="form-group" id="number_container">
 								<input type="text" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
@@ -258,7 +258,7 @@ if (isset($_GET['scope'])) {
 							<div class="action-button" style="margin-top:10px;">
 								<a href="<?php echo base_url() . 'home/login'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('title_login') ?></a>
 								<!-- <button type="submit" name="submit_page" id="submit_page" value="Register" onclick="phoneAuth();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button> -->
-								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button>
+								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" > <?php echo $this->lang->line('sign_up') ?></button>
 
 							</div>
 							<!-- <button type="button" onclick="phoneAuth();">SendCode</button> -->
@@ -275,7 +275,7 @@ if (isset($_GET['scope'])) {
 
 <!-- modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+<div class="modal fade " id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
@@ -455,6 +455,8 @@ if (isset($_GET['scope'])) {
 			alert(error.message);
 		});
 	}
+
+
 
 	function ajaxCall(number) {
 		$.ajax({
