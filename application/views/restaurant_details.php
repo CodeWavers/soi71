@@ -73,7 +73,7 @@ if (!empty($menu_arr)) {
 					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
 						if (!empty($restaurant_details['categories'])) {?>
 							<div class="slider-checkbox-main">
-								<div class="pn-ProductNav_Wrapper">
+								<div class="pn-ProductNav_Wrapper" >
 									<button id="goPrev" class="pn-Advancer pn-Advancer_Left" type="button"><i class="iicon-icon-16"></i></button>
 									<nav id="pnProductNav" class="pn-ProductNav">
 										<div id="menus" class="pn-ProductNav_Contents">
@@ -423,7 +423,7 @@ if (!empty($menu_arr)) {
 			<!-- your cart end -->
 		</div>
 
-
+		<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-circle-up"></span></button>
 
 
 	</div>
@@ -921,7 +921,25 @@ if (!empty($menu_arr)) {
 		$('.ab').addClass('open');
 
 	})
+	var mybutton = document.getElementById("myBtn");
 
+	// When the user scrolls down 20px from the top of the document, show the button
+	window.onscroll = function() {scrollFunction()};
+
+	function scrollFunction() {
+		if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+			mybutton.style.display = "block";
+		} else {
+			mybutton.style.display = "none";
+		}
+	}
+
+	function topFunction() {
+
+		$('html, body').animate({
+			scrollTop: $('.search-dishes').offset().top -190
+		}, 3000);
+	}
 </script>
 
 

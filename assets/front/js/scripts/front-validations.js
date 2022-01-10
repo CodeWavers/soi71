@@ -484,9 +484,13 @@ function menuSearch(category_id){
   if ($('#checkbox-option-'+category_id+'').is(':checked')) {
     $('.check-menu').prop("checked", false);
     $('#checkbox-option-'+category_id+'').prop("checked", true);
+
     $('html, body').animate({
           scrollTop: $('#category-'+category_id+'').offset().top -190
-	}, 3000);
+
+
+	}, 3000)
+
   }
 }
 // autocomplete function
