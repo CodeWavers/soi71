@@ -123,7 +123,7 @@ class Restaurant extends CI_Controller {
 	// get restaurant details
 	public function restaurant_detail()
 	{	
-        $data['page_title'] = $this->lang->line('restaurant_details').' | '.$this->lang->line('site_title');
+        $data['page_title'] = 'Menu'.' | '.$this->lang->line('site_title');
 		$data['current_page'] = 'RestaurantDetails';
 		$data['restaurant_details'] = array();
 		if (!empty($this->uri->segment('3'))) {
@@ -449,7 +449,7 @@ class Restaurant extends CI_Controller {
 	}
 	// event booking detail page
 	public function event_booking_detail(){
-        $data['page_title'] = $this->lang->line('menu_details').' | '.$this->lang->line('site_title');
+        $data['page_title'] ='Event Booking'.' | '.$this->lang->line('site_title');
 		$data['current_page'] = 'EventBooking';
 		$this->session->set_userdata('previous_url', current_url());
 		$data['restaurant_details'] = array();
