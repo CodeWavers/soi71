@@ -309,7 +309,7 @@ $this->load->view(ADMIN_URL . '/header'); ?>
                                         </div>
                                     </div>
                                     <div class="form-group">
-                                        <label class="control-label col-md-3"><?php echo $this->lang->line('popular_item'); ?></label>
+                                        <label class="control-label col-md-3">Best Deals</label>
                                         <div class="col-md-1">
                                             <input type="checkbox" name="popular_item" id="popular_item" value="1" <?php echo (isset($popular_item) && $popular_item == 1) ? 'checked' : '' ?> />
                                         </div>
