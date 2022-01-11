@@ -694,7 +694,7 @@ $lang['send_us_msg'] = 'Send Us Message';
 
 //new changes
 $lang['number_already_registered'] = "User have already registered with this Phone Number!";
-$lang['copyright_footer'] = "COPYRIGHT © 2020. ALL RIGHTS RESERVED.";
+$lang['copyright_footer'] = "COPYRIGHT © 2022. ALL RIGHTS RESERVED.";
 $lang['open'] = "OPEN";
 $lang['enter_address'] = "Enter your address";
 $lang['lets_get_started'] = "Lets Get Started";
