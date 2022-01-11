@@ -101,7 +101,7 @@
 										<img src="<?php echo base_url();?>assets/front/images/avatar-man.png">
 									</div>
 									<div class="booking-option-text">
-										<span><?php echo $this->lang->line('how_many_people') ?></span>
+										<strong><?php echo $this->lang->line('how_many_people') ?></span></strong><span>
 										<span id="peepid"><strong> <?php echo (!empty($this->session->userdata('UserID')) && $this->session->userdata('is_user_login') == 1 && !empty($this->session->userdata('no_of_people')))? $this->session->userdata('no_of_people'): '1' ?> <?php echo $this->lang->line('people') ?></strong></span>
 										<!--<span id="peepid"><strong>1 <?php //echo $this->lang->line('people') ?></strong></span>-->
 									</div>
@@ -121,7 +121,7 @@
 										<img src="<?php echo base_url();?>assets/front/images/pick-date.png">
 									</div>
 									<div class="booking-date-font booking-option-text">
-										<span><?php echo $this->lang->line('pick_date') ?></span>
+										<strong><span><?php echo $this->lang->line('pick_date') ?></span></strong>
 										<div class="form-group">
 								            <input type='text' class="form-control" name="date_time" id='datetimepicker1' placeholder="<?php echo $this->lang->line('pick_date') ?>"  readonly="readonly" value = "<?php echo (!empty($this->session->userdata('UserID')) && $this->session->userdata('is_user_login') == 1 && !empty($this->session->userdata('date_time')))? $this->session->userdata('date_time'): '' ?>" >
 								        </div>
