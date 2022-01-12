@@ -809,13 +809,15 @@ if (!empty($menu_arr)) {
 	})
 
 	$(".mobile-icon  button").on("click", function(e) {
-		$("#example-one").toggleClass("open");
-		$(this).toggleClass('open');
+		 $("#example-one").toggleClass("open");
+		 $(this).toggleClass('open');
+	//	$("#example-one").fadeToggle();
 		e.stopPropagation()
 	});
-	$("#example-one").on("click", function(e) {
-		e.stopPropagation()
-	});
+
+	// $("#example-one").on("click", function(e) {
+	// 	e.stopPropagation()
+	// });
 	$(".notification-btn").on("click", function(e) {
 		$(".noti-popup").toggleClass("open");
 		e.stopPropagation()
