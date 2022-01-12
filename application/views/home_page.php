@@ -557,22 +557,25 @@
 <div class="col-sm-12 col-md-6 col-lg-6 ">
 	<div class=" text-center" style="width: 100%;">
 		<div class="card-body">
-			<h5 class="card-title s-title">Delivery Areas</h5><hr>
+			<h5 class="card-title s-title">Facebook Page</h5><hr>
+<!---->
+<!--			--><?php //foreach ($delivery_area as $da) {?>
+<!--			<div class="row col-* " >-->
+<!--				<div class="col-6 secodary_footer_day" >-->
+<!--					<p class="card-text s-day">--><?php //echo $da->name?><!--</p>-->
+<!--				</div>-->
+<!--				<div class="col-6 secodary_footer_time">-->
+<!--					<p class="card-text s-time">৳ --><?php //echo $da->delivery_charge?><!--</p>-->
+<!---->
+<!--				</div>-->
+<!---->
+<!---->
+<!--			</div>-->
+<!---->
+<!--			--><?php //} ?>
 
-			<?php foreach ($delivery_area as $da) {?>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day"><?php echo $da->name?></p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time">৳ <?php echo $da->delivery_charge?></p>
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=500&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 
-				</div>
-
-
-			</div>
-
-			<?php } ?>
 
 
 

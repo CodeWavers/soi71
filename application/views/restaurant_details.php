@@ -120,12 +120,12 @@ if (!empty($menu_arr)) {
 
 						<div id="res_detail_content">
 
-								<div class="heading-title">
-									<h2>Popular Items</h2>
-									<div class="slider-arrow">
-										<div id="customNav" class="arrow"></div>
-									</div>
+							<div class="heading-title">
+								<h2>Popular Items</h2>
+								<div class="slider-arrow">
+									<div id="customNav" class="arrow"></div>
 								</div>
+							</div>
 							<div class="home-items">
 
 								<?php  foreach ($popular_data as $ds){ ?>
@@ -134,7 +134,7 @@ if (!empty($menu_arr)) {
 
 
 										<div class="home-menu-card ">
-											<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
+											<div class="home-menu-image hover"  data-id="<?php echo ($value['entity_id']) ?>">
 												<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
 
 											</div>
@@ -526,39 +526,39 @@ if (!empty($menu_arr)) {
 			</div>
 			<div class="modal-body">
 
-			<div class="row">
-							<div class="col-md-4">
-								<div class="thumbnail coupon">
+				<div class="row">
+					<div class="col-md-4">
+						<div class="thumbnail coupon">
 
-									<img id="image1" src="" alt="Lights" style="width:100%">
-									<div class="det-with-price">
+							<img id="image1" src="" alt="Lights" style="width:100%">
+							<div class="det-with-price">
 
-<!--										<strong>--><?php //echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?><!--</strong>-->
-									</div>
-
-								</div>
-
-
+								<!--										<strong>--><?php //echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?><!--</strong>-->
 							</div>
-							<div class="col-md-4">
-								<div class="thumbnail coupon">
 
-										<img id="image2" src="" alt="Lights" style="width:100%">
+						</div>
 
 
-								</div>
-							</div>
-							<div class="col-md-4">
-								<div class="thumbnail coupon">
+					</div>
+					<div class="col-md-4">
+						<div class="thumbnail coupon">
 
-									<img id="image3" src="" alt="Lights" style="width:100%">
-
-
-								</div>
-							</div>
+							<img id="image2" src="" alt="Lights" style="width:100%">
 
 
 						</div>
+					</div>
+					<div class="col-md-4">
+						<div class="thumbnail coupon">
+
+							<img id="image3" src="" alt="Lights" style="width:100%">
+
+
+						</div>
+					</div>
+
+
+				</div>
 				<div class="det-with-price">
 					<p class="home-menu-details item_details"></p>
 					<strong class="item_price"></strong>
@@ -575,7 +575,7 @@ if (!empty($menu_arr)) {
 
 
 
-			<?php } ?>
+				<?php } ?>
 			</div>
 		</div>
 	</div>
@@ -802,10 +802,33 @@ if (!empty($menu_arr)) {
 
 
 
-<script>
-	$("#pop").on("click", function() {
+<script type="text/javascript">
+	$("#popup").on("click", function() {
 		$('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
-		$('#imagemodal').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+		$('#imagemodaltwo').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+	})
+
+	$(".mobile-icon  button").on("click", function(e) {
+		$("#example-one").toggleClass("open");
+		$(this).toggleClass('open');
+		e.stopPropagation()
+	});
+	$("#example-one").on("click", function(e) {
+		e.stopPropagation()
+	});
+	$(".notification-btn").on("click", function(e) {
+		$(".noti-popup").toggleClass("open");
+		e.stopPropagation()
+	});
+	$(".noti-popup").on("click", function(e) {
+		e.stopPropagation()
+	});
+	$(".user-menu-btn").on("click", function(e) {
+		$(".header-user-menu").toggleClass("open");
+		e.stopPropagation()
+	});
+	$(".header-user-menu").on("click", function(e) {
+		e.stopPropagation()
 	});
 </script>
 <script>
@@ -863,7 +886,7 @@ if (!empty($menu_arr)) {
 
 		var base_url=$('#base_url').val();
 
-	//	alert(entity_id)
+		//	alert(entity_id)
 
 		$.ajax({
 			url: base_url + "restaurant/find_all_image",
@@ -877,7 +900,7 @@ if (!empty($menu_arr)) {
 				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
 				$('.item_name').html(json[0].name)
 				$('.item_details').html(json[0].menu_detail)
-				 $('.item_price').html('৳ '+json[0].price)
+				$('.item_price').html('৳ '+json[0].price)
 
 				$('.imagemodaltwo').modal('show');
 
@@ -913,7 +936,7 @@ if (!empty($menu_arr)) {
 
 	});
 
-;
+	;
 
 
 	$('#nav-icon2').click(function () {

@@ -91,10 +91,10 @@ $lang['add_order'] = 'Add Order';
 
 
 //site message and lable
-$lang['site_name'] = 'DevenPort';
-$lang['dev_site_name'] = 'KAVAZO';
-$lang['site_title'] = 'KAVAZO';
-$lang['site_footer'] = 'KAVAZO';
+$lang['site_name'] = 'Soi71';
+$lang['dev_site_name'] = 'Soi71';
+$lang['site_title'] = 'Soi71';
+$lang['site_footer'] = 'Soi71';
 $lang['success_add'] = 'Successfully Added';
 $lang['success_edit'] = 'Successfully Edit';
 $lang['success_update'] = 'Successfully Updated';

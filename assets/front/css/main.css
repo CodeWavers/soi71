@@ -1483,6 +1483,7 @@ body.fixed {
 	padding: 25px 0 25px;
 	z-index: -1000;
 	background: #0b2e13;
+	/*background: var(--main-color);*/
 
 }
 
@@ -2136,7 +2137,7 @@ body.fixed {
 
 .footer-area {
 
-	background: var(--main-color);
+	background: var(--second-color);
 	padding: 50px 0 7px;
 	/*margin-top: 10%;*/
 	/*position: fixed;*/
@@ -6878,6 +6879,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 	.footer-logo {
 		max-width: 100%;
+		text-align: center;
 	}
 	.restaurant-app-content {
 		flex-wrap: wrap;

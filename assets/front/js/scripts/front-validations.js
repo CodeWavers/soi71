@@ -387,37 +387,87 @@ function customMenu(entity_id,restaurant_id,item_id){
 }
 // search the users dishes
 function searchMenuDishes(restaurant_id) {
-  var searchDish = $('#search_dish').val();
-  var food = '';
-  var price = '';
-  if ($('input[name="filter_food"]:checked').val() == "filter_veg") {
-    food = "veg";
-  }
-  if ($('input[name="filter_food"]:checked').val() == "filter_non_veg") {
-    food = "non_veg";
-  }
-  if ($('input[name="filter_price"]:checked').val() == "filter_high_price") {
-    price = "high";
-  }
-  if ($('input[name="filter_price"]:checked').val() == "filter_low_price") {
-    price = "low";
-  }
-  jQuery.ajax({
-    type : "POST",
-    dataType :"html",
-    url : BASEURL+'restaurant/getResturantsDish',
-    data : {'restaurant_id':restaurant_id,'searchDish':searchDish,"food":food,"price":price},
-    beforeSend: function(){
-        $('#quotes-main-loader').show();
-    },
-    success: function(response) {
-      $('#details_content').html(response);
-      $('#quotes-main-loader').hide();
-    },
-    error: function(XMLHttpRequest, textStatus, errorThrown) {
-      alert(errorThrown);
-    }
-    });
+
+
+		var searchDish = $('#search_dish').val();
+		var food = '';
+		var price = '';
+		if ($('input[name="filter_food"]:checked').val() == "filter_veg") {
+			food = "veg";
+		}
+		if ($('input[name="filter_food"]:checked').val() == "filter_non_veg") {
+			food = "non_veg";
+		}
+		if ($('input[name="filter_price"]:checked').val() == "filter_high_price") {
+			price = "high";
+		}
+		if ($('input[name="filter_price"]:checked').val() == "filter_low_price") {
+			price = "low";
+		}
+		jQuery.ajax({
+			type : "POST",
+			dataType :"html",
+			url : BASEURL+'restaurant/getResturantsDish',
+			data : {'restaurant_id':restaurant_id,'searchDish':searchDish,"food":food,"price":price},
+			beforeSend: function(){
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				$('#details_content').html(response);
+				$('#quotes-main-loader').hide();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+
+
+}
+
+function searchMenuDishes_enter(restaurant_id,e) {
+
+	if(e.key === "Enter"){
+		alert("Enter was just pressed.");
+	}
+
+	return false;
+
+	if (e.keyCode==13){
+		var searchDish = $('#search_dish').val();
+		var food = '';
+		var price = '';
+		if ($('input[name="filter_food"]:checked').val() == "filter_veg") {
+			food = "veg";
+		}
+		if ($('input[name="filter_food"]:checked').val() == "filter_non_veg") {
+			food = "non_veg";
+		}
+		if ($('input[name="filter_price"]:checked').val() == "filter_high_price") {
+			price = "high";
+		}
+		if ($('input[name="filter_price"]:checked').val() == "filter_low_price") {
+			price = "low";
+		}
+		jQuery.ajax({
+			type : "POST",
+			dataType :"html",
+			url : BASEURL+'restaurant/getResturantsDish',
+			data : {'restaurant_id':restaurant_id,'searchDish':searchDish,"food":food,"price":price},
+			beforeSend: function(){
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				$('#details_content').html(response);
+				$('#quotes-main-loader').hide();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+	}
+
 }
 // get address from lat long
 function getAddress(latitude,longitude,page){
