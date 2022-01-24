@@ -130,10 +130,31 @@
 								            <input type='text' class="form-control" name="date_time" id='datetimepicker1' placeholder="<?php echo $this->lang->line('pick_date') ?>"  readonly="readonly" value = "<?php echo (!empty($this->session->userdata('UserID')) && $this->session->userdata('is_user_login') == 1 && !empty($this->session->userdata('date_time')))? $this->session->userdata('date_time'): '' ?>" >
 								        </div>
 									</div>
+
+								</div>
+
+
+
+							</div>
+							<div class="booking-option how-many-people">
+								<div class="booking-option-cont">
+									<div class="option-img">
+										<img src="<?php echo base_url();?>assets/front/images/dining-time.png">
+									</div>
+									<div class="booking-date-font booking-option-text">
+										<strong>Special Instruction</span></strong>
+										<div class="form-group">
+											<textarea class="form-control" name="special_ins" id="special_ins" rows="2" placeholder="Special Instruction..." tabindex="2"></textarea> <br>
+
+										</div>
+									</div>
+
 								</div>
 								<div class="add-cart-item">
 								</div>
 							</div>
+
+
 							<div class="continue-btn">
                                 <button type="submit" name="submit_page" id="submit_page" value="Check Availability" class="btn btn-success danger-btn"><?php echo $this->lang->line('check_avail') ?></button>
 							</div>
@@ -164,7 +185,8 @@
       		<h2><?php echo $this->lang->line('booking_available') ?></h2>
       		<?php if (!empty($this->session->userdata('UserID')) && ($this->session->userdata('is_user_login') == 1)) { ?>
       			<p><?php echo $this->lang->line('proceed_further') ?></p>
-      			<button class="btn" data-dismiss="modal" data-toggle="modal" onclick="confirmBooking()"><?php echo $this->lang->line('confirm') ?></button>
+
+				<button class="btn" data-dismiss="modal" data-toggle="modal" onclick="confirmBooking()"><?php echo $this->lang->line('confirm') ?></button>
       			<button class="btn" data-dismiss="modal" data-toggle="modal"><?php echo $this->lang->line('cancel') ?></button>
       		<?php } 
       		else { ?>

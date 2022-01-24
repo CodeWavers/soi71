@@ -524,11 +524,14 @@ class Restaurant extends CI_Controller {
                 'booking_date'=>$booking_date,
                 'restaurant_id'=>$this->input->post('restaurant_id'),
                 'user_id'=>$this->input->post('user_id'),
+                'special_instruction'=>$this->input->post('special_ins'),
                 'package_id'=>$this->session->userdata('package_id'),
                 'status'=>1,
                 'created_by' => $this->input->post('user_id'),
                 'event_status'=>'pending'
-            ); 
+            );
+
+         //   echo '<pre>';print_r($add_data);exit();
             $event_id = $this->common_model->addData('event',$add_data); 
             $users = array(
                 'first_name'=>$this->session->userdata('userFirstname'),
