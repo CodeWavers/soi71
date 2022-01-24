@@ -148,6 +148,7 @@ class Restaurant extends CI_Controller {
 				$menu_arr[] = array(
 					'menu_id' => $value['menu_id'],
 					'quantity' => $value['quantity'],
+
 				);
 			}
 		}
@@ -183,6 +184,8 @@ class Restaurant extends CI_Controller {
 		$total_orders = $this->restaurant_model->getTotalOrders($this->session->userdata('UserID'),$data['restaurant_details']['restaurant'][0]['restaurant_id']);
 		$total_reviews = $this->restaurant_model->getTotalReviews($this->session->userdata('UserID'),$data['restaurant_details']['restaurant'][0]['restaurant_id']);
 		$data['remaining_reviews'] = $total_orders - $total_reviews;
+
+		//echo '<pre>';print_r($data['cart_details']);exit();
 		$this->load->view('restaurant_details',$data);
 	}
 	// get ajax restaurant details
@@ -272,6 +275,7 @@ class Restaurant extends CI_Controller {
 						$subtotal = $subtotal + $price;
 					}
 					$cartTotalPrice = ($subtotal * $value->quantity) + $cartTotalPrice;
+					$vat=$details[0]['items'][0]['vat'];
 					$cartItems[] = array(
 						'menu_id' => $details[0]['items'][0]['menu_id'],
 						'restaurant_id' => $cart_restaurant,
@@ -281,6 +285,7 @@ class Restaurant extends CI_Controller {
 						'is_veg' => $details[0]['items'][0]['is_veg'],
 						'is_deal' => $details[0]['items'][0]['is_deal'],
 						'price' => $details[0]['items'][0]['price'],
+						'vat' => ($vat * $value->quantity),
 						'offer_price' => $details[0]['items'][0]['offer_price'],
 						'subtotal' => $subtotal,
 						'totalPrice' => ($subtotal * $value->quantity),
@@ -290,9 +295,12 @@ class Restaurant extends CI_Controller {
 				}
 			}
 		}
+
+		//echo '<pre>';print_r(array_sum(array_column($cartItems,'vat')));exit();
 		$cart_details = array(
 			'cart_items' => $cartItems,
 			'cart_total_price' => $cartTotalPrice,
+			'total_vat' => array_sum(array_column($cartItems,'vat'))
 		);
 		return $cart_details;
 	}

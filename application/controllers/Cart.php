@@ -221,6 +221,7 @@ class Cart extends CI_Controller {
 						$subtotal = $subtotal + $price;
 					}
 					$cartTotalPrice = ($subtotal * $value->quantity) + $cartTotalPrice;
+					$vat=$details[0]['items'][0]['vat'];
 					$cartItems[] = array(
 						'menu_id' => $details[0]['items'][0]['menu_id'],
 						'restaurant_id' => $cart_restaurant,
@@ -230,9 +231,11 @@ class Cart extends CI_Controller {
 						'is_veg' => $details[0]['items'][0]['is_veg'],
 						'is_deal' => $details[0]['items'][0]['is_deal'],
 						'price' => $details[0]['items'][0]['price'],
+						//'vat' => $details[0]['items'][0]['vat'],
 						'offer_price' => $details[0]['items'][0]['offer_price'],
 						'subtotal' => $subtotal,
 						'totalPrice' => ($subtotal * $value->quantity),
+						'vat' => ($vat * $value->quantity),
 						'cartTotalPrice' => $cartTotalPrice,
 						'addons_category_list' => $details[0]['items'][0]['addons_category_list'],
 					);
@@ -242,6 +245,7 @@ class Cart extends CI_Controller {
 		$cart_details = array(
 			'cart_items' => $cartItems,
 			'cart_total_price' => $cartTotalPrice,
+			'total_vat' => array_sum(array_column($cartItems,'vat')),
 		);
 		return $cart_details;
 	}
@@ -280,6 +284,8 @@ class Cart extends CI_Controller {
 	public function customItemCount()
 	{
 		$cart_details = get_cookie('cart_details');
+
+		//echo "<pre>";print_r($cart_details);exit();
 		$arr_cart_details = json_decode($cart_details);
 		$cart_restaurant = get_cookie('cart_restaurant');
 		if (!empty($this->input->post('entity_id')) && !empty($this->input->post('restaurant_id'))) {

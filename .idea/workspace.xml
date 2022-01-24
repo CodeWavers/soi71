@@ -12,8 +12,12 @@
   <component name="ChangeListManager">
     <list default="true" id="e4a9fec2-04c0-4f92-b8a1-2c1a9b997a96" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/event_booking_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/event_booking_detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Restaurant_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Restaurant_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/ajax_order_summary.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_order_summary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -156,7 +160,7 @@
       <workItem from="1642172303327" duration="1377000" />
       <workItem from="1642242366576" duration="1245000" />
       <workItem from="1642514003557" duration="624000" />
-      <workItem from="1643003723476" duration="6463000" />
+      <workItem from="1643003723476" duration="14107000" />
     </task>
     <servers />
   </component>
@@ -209,10 +213,10 @@
     </state>
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728/1366.-313.1920.1040@0.0.1366.728" timestamp="1641791577928" />
     <state x="339" y="162" key="run.anything.popup/0.0.1366.728@0.0.1366.728" timestamp="1642173089294" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1643030043454">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1643040995452">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1920.1040@0.0.1366.728" timestamp="1642242380589" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1643030043454" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1643040995452" />
   </component>
 </project>

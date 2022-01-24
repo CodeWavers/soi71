@@ -387,12 +387,18 @@
 										<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $cart_details['cart_total_price']; ?></strong>
 									</td>
 								</tr>
+								<tr>
+									<td>Vat</td>
+									<td>
+										<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $total_vat=$cart_details['total_vat']; ?></strong>
+									</td>
+								</tr>
 
 								</tbody>
 								<tfoot>
 								<tr>
 									<td><?php echo $this->lang->line('to_pay') ?></td>
-									<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges;
+									<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges+$total_vat;
 									$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 									<td>
 
@@ -519,6 +525,7 @@
 
 
 				var sub_total = parseFloat($('#sub_total').val());
+				// var total_vat = parseFloat($('#total_vat').val());
 
 
 				if (coupon_discount) {
@@ -533,12 +540,12 @@
 					$('#delivery_charges_val').val(dc);
 				}
 
-				//console.log()
-
+				// console.log(total_vat)
+				//
 				var to_pay = (sub_total + dc) - coupon_discount;
 
 
-				console.log(to_pay)
+				//console.log(to_pay)
 				$('#to_pay').html('৳ ' + to_pay);
 			}
 		})

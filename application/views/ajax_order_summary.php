@@ -12,8 +12,18 @@
 					</tr>
 					<tr>
 						<td><?php echo $this->lang->line('sub_total') ?></td>
-						<td><input type="hidden" id="sub_total" value="<?php echo $cart_details['cart_total_price']; ?>">
+						<td>
+							<input type="hidden" id="sub_total" value="<?php echo $cart_details['cart_total_price']; ?>">
 							<strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $cart_details['cart_total_price']; ?></strong></td>
+					</tr>
+
+					<tr>
+						<td>Vat</td>
+						<td>
+							<input type="hidden" id="total_vat" value="<?php echo $cart_details['total_vat']; ?>">
+
+							<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $total_vat=$cart_details['total_vat']; ?></strong>
+						</td>
 					</tr>
 <!--					<tr>-->
 <!--						<td>--><?php //echo $this->lang->line('delivery_charges') ?><!--</td>-->
@@ -56,7 +66,7 @@
 				<tfoot>
 					<tr>
 						<td><?php echo $this->lang->line('to_pay') ?></td>
-						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges) - $coupon_discount;  
+						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges+$total_vat) - $coupon_discount;
 						$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 						<td><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></td>
 					</tr>
