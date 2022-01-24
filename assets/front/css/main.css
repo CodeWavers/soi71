@@ -1482,7 +1482,7 @@ body.fixed {
 .secondary_footer{
 	padding: 25px 0 25px;
 	z-index: -1000;
-	background: #0b2e13;
+	background: var(--main-color);
 	/*background: var(--main-color);*/
 
 }

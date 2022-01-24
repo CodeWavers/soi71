@@ -568,16 +568,18 @@ class Checkout extends CI_Controller {
     		$add_data = array(              
                 'user_id'=> $this->session->userdata('UserID'),
                 'restaurant_id' => $cart_restaurant,
-                'address_id' => ($this->input->post('your_address'))?$this->input->post('your_address'):'',
+             //   'address_id' => ($this->input->post('your_address'))?$this->input->post('your_address'):'',
                 'order_status' =>'placed',
                 'order_date' =>date('Y-m-d H:i:s'),
                 'subtotal'=> ($this->input->post('subtotal'))?$this->input->post('subtotal'):0,
                 'total_rate' => ($this->session->userdata('total_price'))?$this->session->userdata('total_price'):'',
                 'status'=>0,
-                'delivery_charge'=> ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):'',
+                'delivery_charge'=>  $this->input->post('dc'),
                 'extra_comment'=> ($this->input->post('extra_comment'))?$this->input->post('extra_comment'):'',
                 'payment_option'=> ($this->input->post('payment_option'))?$this->input->post('payment_option'):'',
-            ); 
+            );
+
+    				//echo '<pre>';print_r($add_data);
             if ($this->session->userdata('coupon_applied') == "yes") {
             	$add_data['coupon_id'] = ($this->session->userdata('coupon_id'))?$this->session->userdata('coupon_id'):'';
             	$add_data['coupon_type'] = ($this->session->userdata('coupon_type'))?$this->session->userdata('coupon_type'):'';

@@ -90,7 +90,7 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 							<ul id="example-one" >
 								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
 								<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
-								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><?php echo $this->lang->line('event_booking') ?></a></li>
+								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>">Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
 									foreach ($cmsPages as $key => $value) { 
 										if($value->CMSSlug == "contact-us") { ?>

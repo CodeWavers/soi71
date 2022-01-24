@@ -22,6 +22,7 @@
 <!--					</tr>-->
 					<?php if ($order_mode != 'pickup') { ?>
 						<tr class="dc d-none">
+
 							<td><?php echo $this->lang->line('delivery_charges') ?></td>
 							<?php $delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; ?>
 							<td><strong><span id="delivery_charges"></span></strong></td>
