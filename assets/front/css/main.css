@@ -847,9 +847,9 @@ body.fixed {
 	display: -ms-flexbox;
 	display: flex;
 	align-items: center;
-	font-family: "Open Sans";
+	font-family: "Century Gothic";
 	text-transform: uppercase;
-	font-weight: bolder;
+	/*font-weight: bolder;*/
 	font-size: 12px;
 
 	line-height: 30px;
