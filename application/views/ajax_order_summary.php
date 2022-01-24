@@ -68,7 +68,7 @@
 						<td><?php echo $this->lang->line('to_pay') ?></td>
 						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges+$total_vat) - $coupon_discount;
 						$this->session->set_userdata(array('total_price' => $to_pay)); ?>
-						<td><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></td>
+						<td><span id="to_pay" class="text-success"><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></span></td>
 					</tr>
 				</tfoot>
 			</table>

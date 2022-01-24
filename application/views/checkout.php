@@ -402,7 +402,7 @@
 									$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 									<td>
 
-										<span id="to_pay"><strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $to_pay; ?></strong></span>
+										<span id=""><strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $to_pay; ?></strong></span>
 									</td>
 								</tr>
 								</tfoot>
@@ -525,7 +525,7 @@
 
 
 				var sub_total = parseFloat($('#sub_total').val());
-				// var total_vat = parseFloat($('#total_vat').val());
+				 var total_vat = parseFloat($('#total_vat').val());
 
 
 				if (coupon_discount) {
@@ -542,7 +542,7 @@
 
 				// console.log(total_vat)
 				//
-				var to_pay = (sub_total + dc) - coupon_discount;
+				var to_pay = (sub_total + dc+total_vat) - coupon_discount;
 
 
 				//console.log(to_pay)
