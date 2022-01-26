@@ -24,19 +24,23 @@ if (!empty($menu_arr)) {
 					<div class="rest-detail">
 						<div class="rest-detail-img-main">
 							<div class="rest-detail-img">
-								<img src="<?php echo ($restaurant_details['restaurant'][0]['image']) ? ($restaurant_details['restaurant'][0]['image']) : (default_img); ?>">
+								<img src="<?php echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?>">
 							</div>
 						</div>
 						<div class="rest-detail-content">
-							<h2><?php echo $restaurant_details['restaurant'][0]['name']; ?> </h2>
+
 							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
 							<ul>
-								<!-- <li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li> -->
-								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'] . '-' . $restaurant_details['restaurant'][0]['timings']['close']; ?></li>
+								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
+								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
+								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
 								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
+								<li class="text-danger"><i class=""></i><strong>Takeway</strong></li>
+								<li class="text-danger"><i class=""></i><strong>Delivery</strong></li>
+								<li class="text-danger"><i class=""></i><strong>Dine In</strong></li>
 							</ul>
 							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
-							<div class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></div>
+							<a href="#" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
 						</div>
 					</div>
 				</div>
@@ -527,10 +531,10 @@ if (!empty($menu_arr)) {
 			<div class="modal-body">
 
 				<div class="row">
-					<div class="col-md-4">
+					<div class="col-md-4" id="img1">
 						<div class="thumbnail coupon">
 
-							<img id="image1" src="" alt="Lights" style="width:100%">
+							<img id="image1" src="" alt="Image" style="width:100%">
 							<div class="det-with-price">
 
 								<!--										<strong>--><?php //echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?><!--</strong>-->
@@ -540,18 +544,18 @@ if (!empty($menu_arr)) {
 
 
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 " id="img2">
 						<div class="thumbnail coupon">
 
-							<img id="image2" src="" alt="Lights" style="width:100%">
+							<img id="image2" src="" alt="Image" style="width:100%">
 
 
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4" id="img3" >
 						<div class="thumbnail coupon">
 
-							<img id="image3" src="" alt="Lights" style="width:100%">
+							<img id="image3" src="" alt="Image" style="width:100%">
 
 
 						</div>
@@ -888,6 +892,10 @@ if (!empty($menu_arr)) {
 
 		var base_url=$('#base_url').val();
 
+		var default_im="<?php echo default_img?>"
+
+
+
 		//	alert(entity_id)
 
 		$.ajax({
@@ -897,9 +905,28 @@ if (!empty($menu_arr)) {
 			success: function(response){
 
 				var json=JSON.parse(response)
-				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
-				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
-				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+
+				if (json[0].image ){
+
+					$('#image1').attr('src', base_url+'uploads/'+json[0].image);
+				}else{
+					$('#image1').attr('src', default_im);
+				}
+
+				if (json[0].image2 ){
+
+					$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
+				}else{
+					$('#image2').attr('src', default_im);
+				}
+
+				if (json[0].image3 ){
+
+					$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+				}else{
+					$('#image3').attr('src', default_im);
+				}
+
 				$('.item_name').html(json[0].name)
 				$('.item_details').html(json[0].menu_detail)
 				$('.item_price').html('৳ '+json[0].price)

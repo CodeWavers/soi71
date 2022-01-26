@@ -675,7 +675,7 @@ function image_show(entity_id){
 
 
 	var base_url=$('#base_url').val();
-
+	var default_im="<?php echo default_img?>"
 	//	alert(base_url)
 
 	$.ajax({
@@ -685,9 +685,27 @@ function image_show(entity_id){
 		success: function(response){
 
 			var json=JSON.parse(response)
-			$('#image1').attr('src', base_url+'uploads/'+json[0].image);
-			$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
-			$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+
+			if (json[0].image ){
+
+				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
+			}else{
+				$('#image1').attr('src', default_im);
+			}
+
+			if (json[0].image2 ){
+
+				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
+			}else{
+				$('#image2').attr('src', default_im);
+			}
+
+			if (json[0].image3 ){
+
+				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+			}else{
+				$('#image3').attr('src', default_im);
+			}
 			$('.item_name').html(json[0].name)
 			$('.item_details').html(json[0].menu_detail)
 			$('.item_price').html('৳ '+json[0].price)

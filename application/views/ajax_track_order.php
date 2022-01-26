@@ -37,6 +37,11 @@
 										<p><?php echo $latestOrder->user_address; ?> </p>
 									</div>
 									<div class="detail-list">
+										<i class="iicon-icon-30"></i>
+										<label>Delivery Charge</label>
+										<p><?php echo $latestOrder->delivery_charge; ?> </p>
+									</div>
+									<div class="detail-list">
 										<i class="iicon-icon-33"></i>
 										<label><?php echo $this->lang->line('cash_to_collect') ?></label>
 										<p><?php echo $latestOrder->currency_symbol; ?> <?php echo $latestOrder->total_rate; ?></p>

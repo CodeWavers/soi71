@@ -72,7 +72,7 @@
 										<div class="detail-list-text">
 											<h4><?php echo $value['name']; ?></h4>
 											<p><?php echo $value['detail']; ?></p>
-											<strong>$<?php echo $value['price']; ?></strong>
+											<strong>৳ <?php echo $value['price']; ?></strong>
 										</div>
 										<div class="add-btn">
 											<div class="addpackage btn" id="addpackage-<?php echo $value['entity_id']; ?>" onclick="AddPackage('<?php echo $value['entity_id']; ?>')"><?php echo $this->lang->line('add') ?></div>
