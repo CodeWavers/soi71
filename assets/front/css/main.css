@@ -359,6 +359,17 @@ input {
 }
 
 
+.li_bg {
+	color: white;
+	background: var(--main-color);
+}
+
+
+
+
+
+
+
 /* Basic typography style for copy text ========================================================================== */
 
 /* latin-ext */

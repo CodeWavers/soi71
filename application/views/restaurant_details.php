@@ -30,18 +30,24 @@ if (!empty($menu_arr)) {
 						<div class="rest-detail-content">
 
 							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
-							<ul>
+							<ul class="">
 								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
 								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
 								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
 								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
-								<li class="text-danger"><i class=""></i><strong>Takeway</strong></li>
-								<li class="text-danger"><i class=""></i><strong>Delivery</strong></li>
-								<li class="text-danger"><i class=""></i><strong>Dine In</strong></li>
+
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
+
 							</ul>
+
+
+
 							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 							<a href="#" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
 						</div>
+
 					</div>
 				</div>
 			</div>
@@ -53,10 +59,9 @@ if (!empty($menu_arr)) {
 				<div class="heading-title">
 					<h2><?php echo $this->lang->line('order_food_from') ?> <?php echo $restaurant_details['restaurant'][0]['name']; ?></h2>
 				</div>
-				<div class="menu_review">
-					<a href="#" class="active" id="menu_link"><button class="btn res-menu"><?php echo $this->lang->line('menu'); ?></button></a>
-					<!-- <a href="#" id="review_link"><button class="btn res-review"><?php echo $this->lang->line('review_ratings'); ?></button></a> -->
-				</div>
+<!--				<div class="menu_review">-->
+<!--					<a href="#" class="active" id="menu_link"><button class="btn res-menu">--><?php //echo $this->lang->line('menu'); ?><!--</button></a>-->
+<!--				</div>-->
 			</div>
 		</div>
 
@@ -992,6 +997,35 @@ if (!empty($menu_arr)) {
 			scrollTop: $('.search-dishes').offset().top -190
 		}, 3000);
 	}
+
+
+	$('#search_dish').keydown(function (e) {
+
+		if (e.keyCode==13){
+
+			var searchDish = this.value;
+
+			jQuery.ajax({
+				type : "POST",
+				dataType :"html",
+				url : BASEURL+'restaurant/getSearchDish',
+				data : {'restaurant_id':104,'searchDish':searchDish},
+				beforeSend: function(){
+					$('#quotes-main-loader').show();
+				},
+				success: function(response) {
+					$('#details_content').html(response);
+					$('#quotes-main-loader').hide();
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+
+		}
+
+
+	});
 </script>
 
 

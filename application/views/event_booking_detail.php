@@ -28,14 +28,16 @@
 						<div class="rest-detail-content">
 
 							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
-							<ul>
+							<ul class="tilesWrap">
 								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
 								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
 								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
 								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
-								<li class="text-danger"><i class=""></i><strong>Takeway</strong></li>
-								<li class="text-danger"><i class=""></i><strong>Delivery</strong></li>
-								<li class="text-danger"><i class=""></i><strong>Dine In</strong></li>
+
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
+
 							</ul>
 							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 							<a href="#" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
