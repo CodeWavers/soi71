@@ -7940,3 +7940,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 #myBtn:hover {
 	background-color: #555;
 }
+
+.agree_terms :hover{
+
+
+	color: #9d0600;
+}

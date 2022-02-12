@@ -161,7 +161,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="order_mode_method">
+					<div id="order_mode_method" onload="disableSubmit()">
 						<form id="checkout_form" name="checkout_form" method="post" class="form-horizontal float-form">
 							<?php if ($this->session->userdata('is_user_login') == 1 && !empty($cart_details['cart_items'])) { ?>
 								<div class="accordion" id="accordionExampleTwo">
@@ -351,10 +351,20 @@
 																	<span><?php echo $this->lang->line('cod') ?></span>
 																</label>
 															</div>
+
+
 														</div>
 													</div>
 												</div>
+
+<!--												<div class="custom-control custom-checkbox" style="font-weight: bolder">-->
+<!--													<input type="checkbox" name="terms" class="custom-control-input" id="terms"  onchange="activateButton(this)" required>-->
+<!--													<label class="custom-control-label" for="terms"><span>I Agree with <span class="agree_terms"><a  href="cms/Terms-and-Conditions.html">Terms and Conditions</a></span>,<span class="agree_terms"> <a  href="cms/Privacy-Policy.html">Privacy policy</a></span> & <span class="agree_terms"></span><span class="agree_terms"><a  href="cms/Refund-and-Return-Policy.html">Refund and Return Policy.</a></span></span> </label>-->
+<!--												</div>-->
+
 												<div class="proceed-btn">
+
+
 													<button type="submit" name="submit_order" id="submit_order"
 															value="Proceed"
 															class="btn btn-primary"><?php echo $this->lang->line('proceed') ?></button>
@@ -481,6 +491,8 @@
 <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
 <script type="text/javascript">
 	$(document).ready(function () {
+		// document.getElementById("submit_order").disabled = true;
+
 		jQuery("#payment_option").prop('required', true);
 		$('#signup_form').hide();
 		var page = '<?php echo $page; ?>';
@@ -550,6 +562,19 @@
 			}
 		})
 
+
+	}
+
+
+
+	function activateButton(element) {
+
+		if (element.checked) {
+			document.getElementById("submit_order").disabled = false;
+		}
+		else  {
+			document.getElementById("submit_order").disabled = true;
+		}
 
 	}
 </script>
