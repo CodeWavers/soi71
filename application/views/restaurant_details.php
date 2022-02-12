@@ -995,7 +995,7 @@ if (!empty($menu_arr)) {
 
 		$('html, body').animate({
 			scrollTop: $('.search-dishes').offset().top -190
-		}, 3000);
+		}, 500);
 	}
 
 

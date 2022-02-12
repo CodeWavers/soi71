@@ -507,7 +507,7 @@ function menuSearch(category_id){
           scrollTop: $('#category-'+category_id+'').offset().top -190
 
 
-	}, 3000)
+	}, 500)
 
   }
 }
