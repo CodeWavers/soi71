@@ -606,57 +606,57 @@ class Checkout extends CI_Controller {
             } 
             $order_id = $this->common_model->addData('order_master',$add_data); 
             // get user details array
-            $user_detail = array();
-            if ($this->input->post('choose_order')=='delivery') {
-	            if ($this->input->post('add_new_address') == "add_your_address" && !empty($this->input->post('your_address'))) {
-		            $address = $this->checkout_model->getAddress($this->input->post('your_address'));
-		            $user_detail = array(
-		                'first_name'=>$this->session->userdata('userFirstname'),
-		                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
-		                'address'=>($address)?$address->address:'',
-		                'landmark'=>($address)?$address->landmark:'',
-		                'zipcode'=>($address)?$address->zipcode:'',
-		                'city'=>($address)?$address->city:'',
-		                'latitude'=>($address)?$address->latitude:'',
-		                'longitude'=>($address)?$address->longitude:'',
-		            );
-	            }
-	            else if ($this->input->post('add_new_address') == "add_new_address") {
-	            	$add_address = array(
-		                'address'=> $this->input->post('add_address'),
-		                'landmark'=> $this->input->post('landmark'),
-		                'latitude'=> $this->input->post('add_latitude'),
-		                'longitude'=> $this->input->post('add_longitude'),
-		                'zipcode'=> $this->input->post('zipcode'),
-		                'city'=> $this->input->post('city'),
-		                'user_entity_id'=> $this->session->userdata('UserID')
-		            );
-		            $this->common_model->addData('user_address',$add_address);
-		            $user_detail = array(
-		                'first_name'=>$this->session->userdata('userFirstname'),
-		                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
-		                'address'=> $this->input->post('add_address'),
-		                'landmark'=> $this->input->post('landmark'),
-		                'zipcode'=> $this->input->post('zipcode'),
-		                'city'=> $this->input->post('city'),
-		                'latitude'=> $this->input->post('add_latitude'),
-		                'longitude'=> $this->input->post('add_longitude'),
-		            );
-	            }
-            }
-            else if (!empty($add_data['address_id'])) {
-            	$address = $this->checkout_model->getAddress($add_data['address_id']);
-            	$user_detail = array(
-	                'first_name'=>$this->session->userdata('userFirstname'),
-	                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
-	                'address'=>($address)?$address->address:'',
-	                'landmark'=>($address)?$address->landmark:'',
-	                'zipcode'=>($address)?$address->zipcode:'',
-	                'city'=>($address)?$address->city:'',
-	                'latitude'=>($address)?$address->latitude:'',
-	                'longitude'=>($address)?$address->longitude:'',
-	            );
-            }
+//            $user_detail = array();
+//            if ($this->input->post('choose_order')=='delivery') {
+//	            if ($this->input->post('add_new_address') == "add_your_address" && !empty($this->input->post('your_address'))) {
+//		            $address = $this->checkout_model->getAddress($this->input->post('your_address'));
+//		            $user_detail = array(
+//		                'first_name'=>$this->session->userdata('userFirstname'),
+//		                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
+//		                'address'=>($address)?$address->address:'',
+//		                'landmark'=>($address)?$address->landmark:'',
+//		                'zipcode'=>($address)?$address->zipcode:'',
+//		                'city'=>($address)?$address->city:'',
+//		                'latitude'=>($address)?$address->latitude:'',
+//		                'longitude'=>($address)?$address->longitude:'',
+//		            );
+//	            }
+//	            else if ($this->input->post('add_new_address') == "add_new_address") {
+//	            	$add_address = array(
+//		                'address'=> $this->input->post('add_address'),
+//		                'landmark'=> $this->input->post('landmark'),
+//		                'latitude'=> $this->input->post('add_latitude'),
+//		                'longitude'=> $this->input->post('add_longitude'),
+//		                'zipcode'=> $this->input->post('zipcode'),
+//		                'city'=> $this->input->post('city'),
+//		                'user_entity_id'=> $this->session->userdata('UserID')
+//		            );
+//		            $this->common_model->addData('user_address',$add_address);
+//		            $user_detail = array(
+//		                'first_name'=>$this->session->userdata('userFirstname'),
+//		                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
+//		                'address'=> $this->input->post('add_address'),
+//		                'landmark'=> $this->input->post('landmark'),
+//		                'zipcode'=> $this->input->post('zipcode'),
+//		                'city'=> $this->input->post('city'),
+//		                'latitude'=> $this->input->post('add_latitude'),
+//		                'longitude'=> $this->input->post('add_longitude'),
+//		            );
+//	            }
+//            }
+//            else if (!empty($add_data['address_id'])) {
+//            	$address = $this->checkout_model->getAddress($add_data['address_id']);
+//            	$user_detail = array(
+//	                'first_name'=>$this->session->userdata('userFirstname'),
+//	                'last_name'=>($this->session->userdata('userLastname'))?$this->session->userdata('userLastname'):'',
+//	                'address'=>($address)?$address->address:'',
+//	                'landmark'=>($address)?$address->landmark:'',
+//	                'zipcode'=>($address)?$address->zipcode:'',
+//	                'city'=>($address)?$address->city:'',
+//	                'latitude'=>($address)?$address->latitude:'',
+//	                'longitude'=>($address)?$address->longitude:'',
+//	            );
+//            }
             // get item details array
             $add_item = array();
             if (!empty($cart_details) && !empty($cart_item_details['cart_items'])) {

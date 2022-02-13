@@ -1661,7 +1661,6 @@ body.fixed {
 	box-shadow: 0px 20px 40px 0px #15151540;
 	transition: all 0.3s ease-out;
 
-
 }
 .coupon_image:hover{
 
@@ -1698,9 +1697,6 @@ body.fixed {
 .popular .title{
 	z-index: 2;
 	bottom: 0;
-
-
-
 }
 
 
@@ -2157,13 +2153,14 @@ body.fixed {
 
 .footer-area {
 
-	background: var(--second-color);
+	background: var(--main-color);
 	padding: 50px 0 7px;
 	/*margin-top: 10%;*/
 	/*position: fixed;*/
 	/*left: 0;*/
 	bottom: 0;
 	/*width: 100%;*/
+	box-shadow: 1px 1px 100px 1px var(--second-color);
 
 
 

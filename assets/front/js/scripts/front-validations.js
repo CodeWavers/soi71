@@ -1364,9 +1364,9 @@ function showAddAdress(){
     document.getElementById('add_address_content').style.display ='block';
     jQuery( "#add_address_area" ).prop('required',true);    
     jQuery( "#add_address" ).prop('required',true);    
-    jQuery( "#landmark" ).prop('required',true);    
-    jQuery( "#zipcode" ).prop('required',true);    
-    jQuery( "#city" ).prop('required',true);  
+    // jQuery( "#landmark" ).prop('required',true);
+    // jQuery( "#zipcode" ).prop('required',true);
+    // jQuery( "#city" ).prop('required',true);
     if($('#your_address_content').length){
       document.getElementById('your_address_content').style.display ='none';
     }
@@ -1399,7 +1399,7 @@ $( "#checkout_form" ).on("submit", function( event ) {
   var choose_order = $("input[name='choose_order']:checked").val();
   var add_new_address = $("input[name='add_new_address']:checked").val();
   var payment_option = $("input[name='payment_option']:checked").val(); 
-  if (((choose_order == "delivery" && ((add_new_address == "add_your_address" && $('#your_address').val() != '') || (add_new_address == "add_new_address" && $('#add_address_area').val() != '' && $('#add_address').val() != '' && $('#landmark').val() != '' && $('#zipcode').val() != '' && $('#city').val() != ''))) || choose_order == "pickup") && payment_option != '' && payment_option != undefined) 
+  if (((choose_order == "delivery" && ((add_new_address == "add_your_address" && $('#your_address').val() != '') || (add_new_address == "add_new_address" && $('#add_address_area').val() != '' && $('#add_address').val() != ''  ))) || choose_order == "pickup") && payment_option != '' && payment_option != undefined)
   {   
     jQuery.ajax({
       type : "POST",
@@ -1415,7 +1415,7 @@ $( "#checkout_form" ).on("submit", function( event ) {
               if (response.result == "success") {
                 $('#track_order').html(response.order_id);
                 $('#order-confirmation').modal('show');
-                setTimeout(location.reload.bind(location), 300000);
+              //  setTimeout(location.reload.bind(location), 300000);
               }
       },
       error: function(XMLHttpRequest, textStatus, errorThrown) {           

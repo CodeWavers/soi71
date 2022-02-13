@@ -252,6 +252,7 @@ if (isset($_GET['scope'])) {
 									<input type="password" name="password" id="password" class="form-control" placeholder=" " onkeyup="checkAllFields();">
 									<label><?php echo $this->lang->line('password') ?></label>
 								</div>
+
 							<?php } ?>
 
 							<div id="recaptcha-container"></div>

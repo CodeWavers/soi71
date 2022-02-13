@@ -161,7 +161,7 @@
 							</div>
 						</div>
 					</div>
-					<div id="order_mode_method" onload="disableSubmit()">
+					<div id="order_mode_method" >
 						<form id="checkout_form" name="checkout_form" method="post" class="form-horizontal float-form">
 							<?php if ($this->session->userdata('is_user_login') == 1 && !empty($cart_details['cart_items'])) { ?>
 								<div class="accordion" id="accordionExampleTwo">
