@@ -792,6 +792,11 @@ body.fixed {
 	background: #fff;
 	box-shadow: 0 2px 6px rgba(0, 0, 0, 0.2);
 	letter-spacing: 2px;
+	position: fixed;
+	top: 0;
+	left: 0;
+	width: 100%;
+	z-index: 999;
 
 }
 
@@ -7942,5 +7947,5 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 .agree_terms :hover{
 
 
-	color: #9d0600;
+	color:var(--main-color);
 }
