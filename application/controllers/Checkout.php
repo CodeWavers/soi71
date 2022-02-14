@@ -607,7 +607,7 @@ class Checkout extends CI_Controller {
             $order_id = $this->common_model->addData('order_master',$add_data); 
             // get user details array
 
-			$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->input->post('entity_id'))->get()->num_rows();
+			$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->session->userdata('UserID'))->get()->num_rows();
 //			$address_name=$this->db->select('*')->from('user_address')->where('enit',$this->input->post('address'))->get()->num_rows();
 //					echo '<pre>';print_r($check_user_address);exit();
 

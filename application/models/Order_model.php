@@ -72,6 +72,8 @@ class Order_model extends CI_Model {
                 $result->image = ($result->image)?image_url.$result->image:'';
             }
         }
+
+       // echo '<pre>';print_r($result);exit()
         return $result;
     }
 }

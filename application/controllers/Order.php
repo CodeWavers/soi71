@@ -21,12 +21,18 @@ class Order extends CI_Controller {
 		$order_id = ($this->uri->segment('3'))?$this->encryption->decrypt(str_replace(array('-', '_', '~'), array('+', '/', '='), $this->uri->segment('3'))):'';
 		if (!empty($order_id)) {
 			$data['latestOrder'] = $this->order_model->getLatestOrder('',$order_id);
+			$data['delivery_address'] =$this->db->select('*')->from('user_address')->where('user_entity_id',$this->session->userdata('UserID'))->get()->result();
+			;
 		}
 		else
 		{
+			$data['delivery_address'] =$this->db->select('*')->from('user_address')->where('user_entity_id',$this->session->userdata('UserID'))->get()->result();
+
 			$data['latestOrder'] = $this->order_model->getLatestOrder($this->session->userdata('UserID'));
 		}
 		$data['order_id'] = $order_id;
+
+		//echo '<pre>';print_r($data['delivery_address']);exit();
 		$this->load->view('track_order',$data);
 	}
 	// ajax track user's order

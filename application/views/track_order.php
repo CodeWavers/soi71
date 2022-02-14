@@ -37,11 +37,12 @@
 									<div class="details-id">
 										<div class="details-id-content">
 											<div class="details-id-text">
+<!--												--><?php //echo '<pre>' ;print_r($delivery_address[0]->address);?>
 												<p><?php echo ($latestOrder->driver_id) ? $latestOrder->first_name . $this->lang->line('order_msg2') : $this->lang->line('order_msg3'); ?></p>
 												<div class="detail-list">
 													<i class="iicon-icon-34"></i>
 													<label><?php echo $this->lang->line('delivery_address') ?></label>
-													<p><?php echo $latestOrder->user_address; ?> </p>
+													<p><?php echo $delivery_address[0]->address; ?> </p>
 												</div>
 
 												<div class="detail-list">
