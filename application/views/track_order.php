@@ -166,6 +166,39 @@
 </section>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGh2j6KRaaSf96cTYekgAD-IuUG0GkMVA&libraries=places"></script>
+
+
+<script type="text/javascript">
+	$("#popup").on("click", function() {
+		$('#imagepreview').attr('src', $('#imageresource').attr('src')); // here asign the image to the modal when the user click the enlarge link
+		$('#imagemodaltwo').modal('show'); // imagemodal is the id attribute assigned to the bootstrap modal, then i use the show function
+	})
+
+	$(".mobile-icon  button").on("click", function(e) {
+		$("#example-one").toggleClass("open");
+		$(this).toggleClass('open');
+		//	$("#example-one").fadeToggle();
+		e.stopPropagation()
+	});
+
+	// $("#example-one").on("click", function(e) {
+	// 	e.stopPropagation()
+	// });
+	$(".notification-btn").on("click", function(e) {
+		$(".noti-popup").toggleClass("open");
+		e.stopPropagation()
+	});
+	$(".noti-popup").on("click", function(e) {
+		e.stopPropagation()
+	});
+	$(".user-menu-btn").on("click", function(e) {
+		$(".header-user-menu").toggleClass("open");
+		e.stopPropagation()
+	});
+	$(".header-user-menu").on("click", function(e) {
+		e.stopPropagation()
+	});
+</script>
 <script type="text/javascript">
 jQuery(document).ready(function() {
     initMap();
