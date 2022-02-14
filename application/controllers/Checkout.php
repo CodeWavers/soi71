@@ -90,7 +90,7 @@ class Checkout extends CI_Controller {
 		}
 	    $this->session->set_userdata(array('checkDelivery' => 'pickup','deliveryCharge' => 0));
 
-		//echo '<pre>';print_r($data);exit();
+		//echo '<pre>';print_r($data['address']);exit();
 		$this->load->view('checkout',$data);
 	}
 	// ajax checkout page for filters
@@ -576,7 +576,7 @@ class Checkout extends CI_Controller {
     		$add_data = array(              
                 'user_id'=> $this->session->userdata('UserID'),
                 'restaurant_id' => $cart_restaurant,
-             //   'address_id' => ($this->input->post('your_address'))?$this->input->post('your_address'):'',
+                'address_id' => ($this->input->post('add_address'))?$this->input->post('add_address'):'',
                 'order_status' =>'placed',
                 'order_date' =>date('Y-m-d H:i:s'),
                 'subtotal'=> ($this->input->post('subtotal'))?$this->input->post('subtotal'):0,
@@ -606,6 +606,29 @@ class Checkout extends CI_Controller {
             } 
             $order_id = $this->common_model->addData('order_master',$add_data); 
             // get user details array
+
+			$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->input->post('entity_id'))->get()->num_rows();
+//			$address_name=$this->db->select('*')->from('user_address')->where('enit',$this->input->post('address'))->get()->num_rows();
+//					echo '<pre>';print_r($check_user_address);exit();
+
+
+
+			$add_address = array(
+				'address'=> $this->input->post('address'),
+				'landmark'=> $this->input->post('landmark'),
+				'latitude'=> $this->input->post('add_latitude'),
+				'longitude'=> $this->input->post('add_longitude'),
+				'zipcode'=> $this->input->post('zipcode'),
+				'city'=> $this->input->post('city'),
+				'user_entity_id'=> $this->session->userdata('UserID')
+			);
+			if($check_user_address > 0){
+				$this->db->where('user_entity_id',$this->session->userdata('UserID'));
+				$this->db->update('user_address',$add_address);
+			}else{
+				$this->db->insert('user_address',$add_address);
+			}
+
 //            $user_detail = array();
 //            if ($this->input->post('choose_order')=='delivery') {
 //	            if ($this->input->post('add_new_address') == "add_your_address" && !empty($this->input->post('your_address'))) {
@@ -704,7 +727,7 @@ class Checkout extends CI_Controller {
     	}
         $order_detail = array(
             'order_id'=>$order_id,
-            'user_detail' => serialize($user_detail),
+           // 'user_detail' => serialize($user_detail),
             'item_detail' => serialize($add_item),
             'restaurant_detail' => serialize($restaurant_detail),
         );

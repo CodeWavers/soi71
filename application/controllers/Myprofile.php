@@ -12,6 +12,7 @@ class Myprofile extends CI_Controller {
 		$this->load->model(ADMIN_URL.'/common_model');
 		$this->load->model('/home_model');
 		$this->load->model('/myprofile_model');
+		$this->load->model('/restaurant_model');
 	}
 	// my profile index page
 	public function index()
@@ -72,10 +73,26 @@ class Myprofile extends CI_Controller {
                 }
 
                 if(empty($data['Error'])){
+//					$this->db->set('address',$this->input->post('address'));
+//					$this->db->where('user_entity_id',$this->input->post('entity_id'));
+//					$this->db->update('user_address');
+                	$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->input->post('entity_id'))->get()->num_rows();
+//					echo '<pre>';print_r($check_user_address);exit();
+                	if($check_user_address > 0){
+						$this->db->set('address',$this->input->post('address'));
+						$this->db->where('user_entity_id',$this->input->post('entity_id'));
+						$this->db->update('user_address');
+					}else{
+                		$address=array(
+                			'user_entity_id' =>$this->input->post('entity_id'),
+                			'address' =>$this->input->post('address'),
 
-					$this->db->set('address',$this->input->post('address'));
-					$this->db->where('user_entity_id',$this->input->post('entity_id'));
-					$this->db->update('user_address');
+						);
+
+
+						$this->db->insert('user_address',$address);
+					}
+
 
 
 
@@ -136,7 +153,7 @@ class Myprofile extends CI_Controller {
 		}
 		// my addressess tab data
 		$data['users_address'] = $this->myprofile_model->getAddress($this->session->userdata('UserID'));
-
+		$data['delivery_area'] = $this->restaurant_model->delivery_area();
 			//echo '<pre>';print_r($data['profile']);exit();
 		$this->load->view('myprofile',$data);
 	}

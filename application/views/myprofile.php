@@ -625,10 +625,25 @@
                     <input type="text" name="phone_number" id="phone_number" class="form-control digits required" readonly placeholder=" " value="<?php echo $profile->mobile_number; ?>">
                     <label><?php echo $this->lang->line('phone_number') ?></label>
                 </div>
+
 				<div class="form-group">
-					<input type="text" name="address" id="address" class="form-control   "  placeholder=" " value="<?php echo $profile->address; ?>">
-					<label><?php echo $this->lang->line('address') ?></label>
+
+					<select class="form-control"
+							name="address"
+							id="address"
+							required="">
+						<option value="<?php echo $profile->address; ?>"><?php echo $profile->address; ?></option>
+
+						<?php foreach ($delivery_area as $ds) { ?>
+							<option value="<?php echo $ds->name ?>"><?php echo $ds->name ?></option>
+						<?php } ?>
+					</select>
+					<label>Address</label>
 				</div>
+<!--				<div class="form-group">-->
+<!--					<input type="text" name="address" id="address" class="form-control   "  placeholder=" " value="--><?php //echo $profile->address; ?><!--">-->
+<!--					<label>--><?php //echo $this->lang->line('address') ?><!--</label>-->
+<!--				</div>-->
                 <div class="form-group">
                     <input type="password" name="password" id="password" class="form-control" placeholder=" ">
                     <label><?php echo $this->lang->line('password') ?></label>

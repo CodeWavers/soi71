@@ -1415,6 +1415,9 @@ $( "#checkout_form" ).on("submit", function( event ) {
 				$('#quotes-main-loader').show();
 			},
 			success: function(response) {
+
+				console.log(response)
+				console.log(response.order_id)
 				$('#quotes-main-loader').hide();
 				if (response.result == "success") {
 					$('#track_order').html(response.order_id);

@@ -237,12 +237,30 @@
 																			</select>
 																			<label><?php echo $this->lang->line('delivery_area') ?></label>
 																		</div>
+																		<?php $add = $this->checkout_model->getUsersAddress($this->session->userdata('UserID'));?>
 																		<div class="form-group">
-																			<input type="text" name="add_address"
-																				   id="add_address" class="form-control"
-																				   placeholder=" ">
-																			<label><?php echo $this->lang->line('your_location') ?></label>
+																			<select class="form-control"
+																					name="add_address"
+																					id="add_address"
+																				<option value=""><?php echo $this->lang->line('select') ?></option>
+																				<?php foreach ($add as $key => $value) { ?>
+																					<option value="<?php echo $value['entity_id']; ?>"><?php echo $value['address']?></option>
+																					<input type="hidden" name="address"
+																						   id="address" class="form-control"
+																						   placeholder=" " value="<?php echo $value['address']?>">
+																				<?php } ?>
+<!--																			--><?php //foreach ($delivery_area as $da) { ?>
+<!--																				<option value="--><?php //echo $da->name ?><!--">--><?php //echo $da->name ?><!--</option>-->
+<!--																			--><?php //} ?>
+																			</select>
+																			<label><?php echo $this->lang->line('your_address') ?></label>
 																		</div>
+<!--																		<div class="form-group">-->
+<!--																			<input type="text" name="add_address"-->
+<!--																				   id="add_address" class="form-control"-->
+<!--																				   placeholder=" ">-->
+<!--																			<label>--><?php //echo $this->lang->line('your_location') ?><!--</label>-->
+<!--																		</div>-->
 
 
 																		<div class="form-group">
