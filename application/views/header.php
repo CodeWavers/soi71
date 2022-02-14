@@ -260,9 +260,9 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 
 		});
 
-		$('.head_search').keydown(function (e) {
+		$('.head_search').keyup(function (e) {
 
-			if (e.keyCode==13){
+			if (e.keyCode===13){
 
 				var searchDish = this.value;
 

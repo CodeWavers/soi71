@@ -842,7 +842,7 @@ if (!empty($menu_arr)) {
 		e.stopPropagation()
 	});
 </script>
-<script>
+<script type="text/javascript">
 	function itemWidth() {
 		// get the larger item to set the width of every item
 		var largestWidth = 0;
@@ -887,7 +887,7 @@ if (!empty($menu_arr)) {
 	}
 </script>
 
-<script>
+<script type="text/javascript">
 
 
 	$(".hover").on("click", function() {
@@ -970,7 +970,7 @@ if (!empty($menu_arr)) {
 
 	});
 
-	;
+
 
 
 	$('#nav-icon2').click(function () {
@@ -999,9 +999,9 @@ if (!empty($menu_arr)) {
 	}
 
 
-	$('#search_dish').keydown(function (e) {
+	$('#search_dish').keyup(function (e) {
 
-		if (e.keyCode==13){
+		if (e.keyCode===13){
 
 			var searchDish = this.value;
 
