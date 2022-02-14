@@ -243,7 +243,7 @@ if (isset($_GET['scope'])) {
 							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
 							<!--</div>-->
 							<div class="form-group" id="number_container">
-								<input type="text" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
+								<input type="number" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
 							</div>
 
@@ -453,7 +453,7 @@ if (isset($_GET['scope'])) {
 			var user = result.user;
 			console.log(user);
 		}).catch(function(error) {
-			alert(error.message);
+			 alert(error.message);
 		});
 	}
 

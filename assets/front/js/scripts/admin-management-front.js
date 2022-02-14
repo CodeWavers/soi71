@@ -108,7 +108,7 @@ jQuery("#form_front_registration").validate({
     },
     password: {
       required: true,
-      passwordcustome: true
+      passwordcustome: false
     }
   } ,
   errorElement : 'div',
@@ -173,7 +173,7 @@ jQuery("#form_my_profile").validate({
           }
         }
       },
-      passwordcustome:true
+      passwordcustome:false
     },
     confirm_password:{
       required:{
@@ -234,7 +234,7 @@ jQuery("#form_front_registration_checkout").validate({
     },
     password: {
       required: true,
-      passwordcustome: true
+      passwordcustome: false
     }
   } ,
   errorElement : 'div',
@@ -332,11 +332,14 @@ $.validator.addMethod("emailcustom",function(value,element)
   return this.optional(element) || /^\b[A-Z0-9._%-]+@[A-Z0-9.-]+\.[A-Z]{2,4}\b$/i.test(value);
 },"Please enter valid email address");
 
-// custom password
+//custom password
 $.validator.addMethod("passwordcustome",function(value,element)
 {
   return this.optional(element) || /^(?=.*[0-9])(?=.*[!@#$%^&*)(])(?=.*[A-Z])[a-zA-Z0-9!@#$%^&*)(]{8,}$/.test(value);
 },"Passwords must contain at least 8 characters, including uppercase, lowercase letters, symbols and numbers.");
+
+
+
 // end here
  /^[+-]?\d+$/
 // custom code for lesser than

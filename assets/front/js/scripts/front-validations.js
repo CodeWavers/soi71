@@ -827,8 +827,10 @@ function digitCheck(string) {
 }
 // form my profile validation on submit
 $( "#form_my_profile" ).on("submit", function( event ) {
-	if ($('#first_name').val() != '' && $('#email').val() != '' && isEmail($('#email').val()) && $('#phone_number').val() != '' && digitCheck($('#phone_number').val()) && (($('#password').val() != '' && customPassword($('#password').val()) && $('#confirm_password').val() != '' && $('#password').val() == $('#confirm_password').val()) || ($('#password').val() == '' && $('#confirm_password').val() == '')))
+	if ($('#first_name').val() != '' && $('#email').val() != '' && isEmail($('#email').val()) && $('#phone_number').val() != '' && digitCheck($('#phone_number').val()) && (($('#pass').val() != '' && $('#confirm_password').val() != '' && $('#password').val() == $('#confirm_password').val()) || ($('#password').val() == '' && $('#confirm_password').val() == '')))
 	{
+
+
 		var formData = new FormData($("#form_my_profile")[0]);
 		formData.append('submit_profile', 'Save');
 		jQuery.ajax({
@@ -843,7 +845,7 @@ $( "#form_my_profile" ).on("submit", function( event ) {
 			},
 			success: function(response) {
 
-				//console.log(response)
+				console.log(response)
 				 location.reload();
 				/*if (response == "success") {
 					location.reload();

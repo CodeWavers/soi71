@@ -24,8 +24,8 @@ class Myprofile extends CI_Controller {
 			$this->form_validation->set_rules('address', 'Address', 'trim|required');
 			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|callback_checkPhone');
 	        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[6]|callback_checkEmail');
-	        $this->form_validation->set_rules('password', 'New Password', 'trim|min_length[8]');
-            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|min_length[8]|matches[password]');
+	        $this->form_validation->set_rules('password', 'New Password', 'trim|required');
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
 	        if ($this->form_validation->run())
 	        {
 	        	$updateUserData = array(
