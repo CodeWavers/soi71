@@ -2,86 +2,99 @@
 defined('BASEPATH') OR exit('No direct script access allowed');
 
 class Myprofile extends CI_Controller {
-  
+
 	public function __construct() {
-		parent::__construct();      
+		parent::__construct();
         if (!$this->session->userdata('is_user_login')) {
             redirect('home');
-        }  
+        }
 		$this->load->library('form_validation');
-		$this->load->model(ADMIN_URL.'/common_model');  
-		$this->load->model('/home_model');     
-		$this->load->model('/myprofile_model');    
+		$this->load->model(ADMIN_URL.'/common_model');
+		$this->load->model('/home_model');
+		$this->load->model('/myprofile_model');
 	}
 	// my profile index page
 	public function index()
-	{	
+	{
 		$data['page_title'] = $this->lang->line('my_profile').' | '.$this->lang->line('site_title');
 		$data['current_page'] = 'MyProfile';
-		$data['selected_tab'] = ""; 
-		if($this->input->post('submit_profile') == "Save"){ 
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required'); 
-			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|callback_checkPhone'); 
-	        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[6]|callback_checkEmail'); 
+		$data['selected_tab'] = "";
+		if($this->input->post('submit_profile') == "Save"){
+			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+			$this->form_validation->set_rules('address', 'Address', 'trim|required');
+			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|callback_checkPhone');
+	        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[6]|callback_checkEmail');
 	        $this->form_validation->set_rules('password', 'New Password', 'trim|min_length[8]');
-            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|min_length[8]|matches[password]');       
+            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|min_length[8]|matches[password]');
 	        if ($this->form_validation->run())
-	        { 
-	        	$updateUserData = array(                  
+	        {
+	        	$updateUserData = array(
 					'first_name' =>$this->input->post('first_name'),
-					'last_name' =>$this->input->post('last_name'),                  
-					'mobile_number' =>$this->input->post('phone_number'),                  
-					'email' =>$this->input->post('email'),              
+					'last_name' =>$this->input->post('last_name'),
+					'mobile_number' =>$this->input->post('phone_number'),
+					'email' =>$this->input->post('email'),
 					'updated_by'=>$this->session->userdata("UserID"),
 					'updated_date'=>date('Y-m-d H:i:s')
-				);                 
+				);
+
+//	        	echo '<pre>';print_r($updateUserData);exit();
+
 				if (!empty($this->input->post('password')) && !empty($this->input->post('confirm_password'))) {
 					$newEncryptPass  = md5(SALT.$this->input->post('password'));
 					$updateUserData['password'] = $newEncryptPass;
-				}   
+				}
                 if (!empty($_FILES['image']['name']))
                 {
                     $this->load->library('upload');
                     $config['upload_path'] = './uploads/users';
-                    $config['allowed_types'] = 'gif|jpg|png|jpeg';  
-                    $config['max_size'] = '5120'; //in KB    
-                    $config['encrypt_name'] = TRUE;               
+                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
+                    $config['max_size'] = '5120'; //in KB
+                    $config['encrypt_name'] = TRUE;
                     // create directory if not exists
                     if (!@is_dir('uploads/users')) {
                       @mkdir('./uploads/users', 0777, TRUE);
                     }
-                    $this->upload->initialize($config);                  
+                    $this->upload->initialize($config);
                     if ($this->upload->do_upload('image'))
                     {
                       $img = $this->upload->data();
-                      $updateUserData['image'] = "users/".$img['file_name'];   
+                      $updateUserData['image'] = "users/".$img['file_name'];
                       if($this->input->post('uploaded_image')){
                         @unlink(FCPATH.'uploads/'.$this->input->post('uploaded_image'));
-                      }  
+                      }
                     }
                     else
                     {
                       $data['Error'] = $this->upload->display_errors();
                       $this->form_validation->set_message('upload_invalid_filetype', 'Error Message');
-                      $this->session->set_flashdata('myProfileMSGerror', $data['Error']); 
+                      $this->session->set_flashdata('myProfileMSGerror', $data['Error']);
                     }
                 }
+
                 if(empty($data['Error'])){
-					$affected_rows = $this->common_model->updateData('users',$updateUserData,'entity_id',$this->input->post('entity_id'));  
+
+					$this->db->set('address',$this->input->post('address'));
+					$this->db->where('user_entity_id',$this->input->post('entity_id'));
+					$this->db->update('user_address');
+
+
+
+
+			$affected_rows = $this->common_model->updateData('users',$updateUserData,'entity_id',$this->input->post('entity_id'));
 					if ($affected_rows) {
 						$this->session->set_userdata(
 							array(
 							  'UserID' => $this->input->post('entity_id'),
-							  'userFirstname' => $this->input->post('first_name'),                            
-							  'userLastname' => $this->input->post('last_name'),                            
-							  'userEmail' => $this->input->post('email'),                                   
-							  'userPhone' => $this->input->post('phone_number'),                                  
-							  'userImage' => $updateUserData['image']       
+							  'userFirstname' => $this->input->post('first_name'),
+							  'userLastname' => $this->input->post('last_name'),
+							  'userEmail' => $this->input->post('email'),
+							  'userPhone' => $this->input->post('phone_number'),
+							  'userImage' => $updateUserData['image']
 							)
-						);    
-					}           
-					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update')); 
-					echo 'success'; 
+						);
+					}
+					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
+					echo 'success';
                 }
 	        }
 	        else
@@ -92,7 +105,7 @@ class Myprofile extends CI_Controller {
 		}
 		$data['profile'] = $this->common_model->getSingleRow('users','entity_id',$this->session->userdata('UserID'));
 		$data['addresses'] = $this->common_model->getMultipleRows('user_address','user_entity_id',$this->session->userdata('UserID'));
-		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');  
+		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');
 		if (!empty($data['in_process_orders'])) {
 			foreach ($data['in_process_orders'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -105,10 +118,10 @@ class Myprofile extends CI_Controller {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 				$data['past_orders'][$key]['ratings'] = $ratings;
 			}
-		} 
+		}
 		// bookings tab data
-		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');  
-		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');  
+		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');
+		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');
 		if (!empty($data['upcoming_events'])) {
 			foreach ($data['upcoming_events'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -123,6 +136,8 @@ class Myprofile extends CI_Controller {
 		}
 		// my addressess tab data
 		$data['users_address'] = $this->myprofile_model->getAddress($this->session->userdata('UserID'));
+
+			//echo '<pre>';print_r($data['profile']);exit();
 		$this->load->view('myprofile',$data);
 	}
 	// get order details
@@ -136,14 +151,14 @@ class Myprofile extends CI_Controller {
 					$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 					$data['order_details'][$key]['ratings'] = $ratings;
 				}
-			} 
+			}
 		}
 		$this->load->view('ajax_order_details',$data);
 	}
 	// getAllOrders ajax call
 	public function getOrderHistory(){
 		$data['page_title'] = $this->lang->line('order_history').' | '.$this->lang->line('site_title');
-		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');  
+		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');
 		if (!empty($data['in_process_orders'])) {
 			foreach ($data['in_process_orders'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -156,7 +171,7 @@ class Myprofile extends CI_Controller {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 				$data['past_orders'][$key]['ratings'] = $ratings;
 			}
-		} 
+		}
 		$this->load->view('ajax_order_history',$data);
 	}
 	// get booking details
@@ -170,25 +185,25 @@ class Myprofile extends CI_Controller {
 					$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 					$data['booking_details'][$key]['ratings'] = $ratings;
 				}
-			} 
+			}
 		}
 		$this->load->view('ajax_booking_details',$data);
 	}
 	// edit address
 	public function getEditAddress(){
 		if (!empty($this->input->post('address_id'))) {
-			$data = $this->myprofile_model->getAddress($this->session->userdata('UserID'),$this->input->post('address_id'));  
+			$data = $this->myprofile_model->getAddress($this->session->userdata('UserID'),$this->input->post('address_id'));
 		}
 		echo json_encode($data[0]);
 	}
 	// view users bookings
 	public function view_my_bookings()
-    { 
+    {
 		$data['page_title'] = $this->lang->line('my_bookings').' | '.$this->lang->line('site_title');
-		$data['selected_tab'] = "bookings";   
+		$data['selected_tab'] = "bookings";
 		$data['profile'] = $this->common_model->getSingleRow('users','entity_id',$this->session->userdata('UserID'));
 		$data['addresses'] = $this->common_model->getMultipleRows('user_address','user_entity_id',$this->session->userdata('UserID'));
-		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');  
+		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');
 		if (!empty($data['in_process_orders'])) {
 			foreach ($data['in_process_orders'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -201,10 +216,10 @@ class Myprofile extends CI_Controller {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 				$data['past_orders'][$key]['ratings'] = $ratings;
 			}
-		} 
+		}
 		// bookings tab data
-		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');  
-		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');  
+		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');
+		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');
 		if (!empty($data['upcoming_events'])) {
 			foreach ($data['upcoming_events'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -223,12 +238,12 @@ class Myprofile extends CI_Controller {
     }
     // view users addresses
 	public function view_my_addresses()
-    { 
+    {
 		$data['page_title'] = $this->lang->line('my_addresses').' | '.$this->lang->line('site_title');
-		$data['selected_tab'] = "addresses";  
+		$data['selected_tab'] = "addresses";
 		$data['profile'] = $this->common_model->getSingleRow('users','entity_id',$this->session->userdata('UserID'));
 		$data['addresses'] = $this->common_model->getMultipleRows('user_address','user_entity_id',$this->session->userdata('UserID'));
-		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');  
+		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');
 		if (!empty($data['in_process_orders'])) {
 			foreach ($data['in_process_orders'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -241,10 +256,10 @@ class Myprofile extends CI_Controller {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
 				$data['past_orders'][$key]['ratings'] = $ratings;
 			}
-		} 
+		}
 		// bookings tab data
-		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');  
-		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');  
+		$data['upcoming_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'upcoming');
+		$data['past_events'] = $this->myprofile_model->getBooking($this->session->userdata('UserID'),'past');
 		if (!empty($data['upcoming_events'])) {
 			foreach ($data['upcoming_events'] as $key => $value) {
 				$ratings = $this->common_model->getRestaurantReview($value['restaurant_id']);
@@ -262,18 +277,18 @@ class Myprofile extends CI_Controller {
 		$this->load->view('myprofile',$data);
     }
 	// add user's address
-	public function addAddress(){ 
+	public function addAddress(){
 		$data['page_title'] = $this->lang->line('add_address').' | '.$this->lang->line('site_title');
-		if($this->input->post('submit_address') != ""){ 
+		if($this->input->post('submit_address') != ""){
 			$this->form_validation->set_rules('address_field', 'Address', 'trim|required');
-			$this->form_validation->set_rules('landmark', 'Landmark', 'trim|required'); 
-	        $this->form_validation->set_rules('latitude', 'Latitude', 'trim|required'); 
+			$this->form_validation->set_rules('landmark', 'Landmark', 'trim|required');
+	        $this->form_validation->set_rules('latitude', 'Latitude', 'trim|required');
 	        $this->form_validation->set_rules('longitude', 'Longitude', 'trim|required');
-			$this->form_validation->set_rules('zipcode', 'Zipcode', 'trim|required'); 
-			$this->form_validation->set_rules('city', 'City', 'trim|required'); 
-            $this->form_validation->set_rules('user_entity_id', 'UserID', 'trim|required');       
+			$this->form_validation->set_rules('zipcode', 'Zipcode', 'trim|required');
+			$this->form_validation->set_rules('city', 'City', 'trim|required');
+            $this->form_validation->set_rules('user_entity_id', 'UserID', 'trim|required');
 	        if ($this->form_validation->run())
-	        { 
+	        {
 	        	$add_data = array(
 	                'address'=>$this->input->post('address_field'),
 	                'search_area'=>$this->input->post('add_address_area'),
@@ -284,15 +299,15 @@ class Myprofile extends CI_Controller {
 	                'city'=>$this->input->post('city'),
 	                'user_entity_id'=>$this->input->post('user_entity_id')
 	            );
-				if (!empty($this->input->post('add_entity_id'))) 
+				if (!empty($this->input->post('add_entity_id')))
 				{
 					$this->common_model->updateData('user_address',$add_data,'entity_id',$this->input->post('add_entity_id')); // edit address
-					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update')); 
+					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
 				}
-				else 
+				else
 				{
 					$address_id = $this->common_model->addData('user_address',$add_data); // add address
-					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_add')); 
+					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_add'));
 				}
 				echo 'success';
 				exit;
@@ -314,7 +329,7 @@ class Myprofile extends CI_Controller {
 	public function ajaxSetAddress(){
 		if (!empty($this->input->post('address_id')) && !empty($this->session->userdata('UserID'))) {
 			$updateData = array(
-				'is_main' => 0 
+				'is_main' => 0
 			);
 			$this->common_model->updateData('user_address',$updateData,'user_entity_id',$this->session->userdata('UserID'));
 			$updateMainData = array(
@@ -327,8 +342,8 @@ class Myprofile extends CI_Controller {
     * Server side validation check email exist
     */
 	public function checkPhone($str){
-		$UserID = $this->input->post('entity_id');      
-		$checkPhone = $this->myprofile_model->checkPhone($str,$this->input->post('entity_id')); 
+		$UserID = $this->input->post('entity_id');
+		$checkPhone = $this->myprofile_model->checkPhone($str,$this->input->post('entity_id'));
 		if($checkPhone>0){
 			$this->form_validation->set_message('checkPhone',$this->lang->line('number_already_registered'));
 			return FALSE;
@@ -341,8 +356,8 @@ class Myprofile extends CI_Controller {
 	* Server side validation check email exist
 	*/
 	public function checkEmail($str){
-		$UserID = $this->input->post('entity_id');      
-		$checkEmail = $this->myprofile_model->checkEmail($str,$this->input->post('entity_id'));       
+		$UserID = $this->input->post('entity_id');
+		$checkEmail = $this->myprofile_model->checkEmail($str,$this->input->post('entity_id'));
 		if($checkEmail>0){
 			$this->form_validation->set_message('checkEmail','User have already registered with this email!');
 			return FALSE;

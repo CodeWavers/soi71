@@ -1,5 +1,5 @@
     <?php defined('BASEPATH') or exit('No direct script access allowed');?>
-    <?php $this->load->view('header');?> 
+    <?php $this->load->view('header');?>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
 
     <section class="inner-pages-section">
@@ -56,7 +56,7 @@
                             <div class="ordering-title">
                                 <h6><?php echo $this->lang->line('ordering') ?></h6>
                             </div>
-                           
+
                             <ul id="myTab" class="nav nav-tabs">
                                 <li id="tab_order_history" class="tabs <?php echo ($selected_tab == '')?'active':'';?>" onclick="addActiveClass(this.id)"><a href="#order_history" data-toggle="tab"><?php echo $this->lang->line('order_history') ?></a></li>
                                 <li id="tab_bookings" class="tabs <?php echo ($selected_tab == 'bookings')?'active':'';?>" onclick="addActiveClass(this.id)"><a href="#bookings" data-toggle="tab"><?php echo $this->lang->line('my_bookings') ?></a></li>
@@ -237,7 +237,7 @@
                                                                             <div class="ordering-img">
                                                                                 <?php $image = ($value['restaurant_image']) ? (base_url() . 'uploads/' . $value['restaurant_image']) : (default_img);?>
                                                                                 <img src="<?php echo $image; ?>">
-                                                                                <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?> 
+                                                                                <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?>
                                                                             </div>
                                                                         </div>
                                                                         <div class="ordering-box-text">
@@ -363,7 +363,7 @@
                                                                             <div class="ordering-box-img">
                                                                                 <div class="ordering-img">
                                                                                     <?php $image = ($value['image'])?($value['image']):(default_img); ?>
-                                                                                    <img src="<?php echo $image;?>"> 
+                                                                                    <img src="<?php echo $image;?>">
                                                                                     <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?>
                                                                                 </div>
                                                                             </div>
@@ -385,7 +385,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            <?php } 
+                                                            <?php }
                                                         }
                                                     } ?>
                                                 </div>
@@ -400,7 +400,7 @@
                                                                             <div class="ordering-box-img">
                                                                                 <div class="ordering-img">
                                                                                     <?php $image = ($value['image'])?($value['image']):(default_img); ?>
-                                                                                    <img src="<?php echo $image;?>"> 
+                                                                                    <img src="<?php echo $image;?>">
                                                                                     <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?>
                                                                                 </div>
                                                                             </div>
@@ -431,7 +431,7 @@
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-                                            <?php } 
+                                            <?php }
                                             else { ?>
                                                 <div class="col-xl-6 col-lg-12">
                                                     <p><?php echo $this->lang->line("no_past_booking_found"); ?></p>
@@ -450,7 +450,7 @@
                                                                             <div class="ordering-box-img">
                                                                                 <div class="ordering-img">
                                                                                     <?php $image = ($value['image'])?($value['image']):(default_img); ?>
-                                                                                    <img src="<?php echo $image;?>"> 
+                                                                                    <img src="<?php echo $image;?>">
                                                                                     <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">NEW</strong>'; ?>
                                                                                 </div>
                                                                             </div>
@@ -472,7 +472,7 @@
                                                                         </div>
                                                                     </div>
                                                                 </div>
-                                                            <?php } 
+                                                            <?php }
                                                         }
                                                     } ?>
                                                 </div>
@@ -487,7 +487,7 @@
                                                                             <div class="ordering-box-img">
                                                                                 <div class="ordering-img">
                                                                                     <?php $image = ($value['image'])?($value['image']):(default_img); ?>
-                                                                                    <img src="<?php echo $image;?>"> 
+                                                                                    <img src="<?php echo $image;?>">
                                                                                     <?php echo ($value['ratings'] > 0)?'<strong>'.$value['ratings'].'</strong>':'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?>
                                                                                 </div>
                                                                             </div>
@@ -519,7 +519,7 @@
                                                         </div>
                                                     </div>
                                                 <?php } ?>
-                                            <?php }  
+                                            <?php }
                                             else { ?>
                                                 <div class="col-xl-6 col-lg-12">
                                                     <p><?php echo $this->lang->line('no_upcoming_bookings') ?></p>
@@ -542,7 +542,7 @@
                                     <?php if (!empty($users_address)) { ?>
                                         <div class="row orders-box-row">
                                             <?php if (!empty($users_address)) {
-                                                foreach ($users_address as $key => $value) { 
+                                                foreach ($users_address as $key => $value) {
                                                     $class = ($value->is_main == 1)?"primary-address":""; ?>
                                                     <div class="col-xl-6 col-lg-12">
                                                         <div class="my-address-main <?php echo $class; ?>">
@@ -560,11 +560,11 @@
                                                                 <?php } ?>
                                                             </div>
                                                         </div>
-                                                    </div>  
+                                                    </div>
                                                 <?php }
-                                            } ?>                    
+                                            } ?>
                                         </div>
-                                    <?php } 
+                                    <?php }
                                     else { ?>
                                         <div class="col-xl-6 col-lg-12">
                                             <p><?php echo $this->lang->line('no_address_found') ?></p>
@@ -608,7 +608,7 @@
                     <span class="error display-no" id="errormsg"></span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="entity_id" id="entity_id" value="<?php echo $profile->entity_id; ?>">
+                    <input type="hidden" name="entity_id" id="entity_id" value="<?php echo $profile->eid; ?>">
                     <input type="hidden" name="uploaded_image" id="uploaded_image" value="<?php echo isset($profile->image) ? $profile->image : ''; ?>" />
                     <input type="text" name="first_name" id="first_name" class="form-control" placeholder=" " value="<?php echo $profile->first_name; ?>">
                     <label><?php echo $this->lang->line('first_name') ?></label>
@@ -625,6 +625,10 @@
                     <input type="text" name="phone_number" id="phone_number" class="form-control digits required" readonly placeholder=" " value="<?php echo $profile->mobile_number; ?>">
                     <label><?php echo $this->lang->line('phone_number') ?></label>
                 </div>
+				<div class="form-group">
+					<input type="text" name="address" id="address" class="form-control   "  placeholder=" " value="<?php echo $profile->address; ?>">
+					<label><?php echo $this->lang->line('address') ?></label>
+				</div>
                 <div class="form-group">
                     <input type="password" name="password" id="password" class="form-control" placeholder=" ">
                     <label><?php echo $this->lang->line('password') ?></label>
