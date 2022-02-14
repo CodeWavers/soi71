@@ -453,7 +453,7 @@ if (isset($_GET['scope'])) {
 			var user = result.user;
 			console.log(user);
 		}).catch(function(error) {
-			 alert(error.message);
+			 //alert(error.message);
 		});
 	}
 
