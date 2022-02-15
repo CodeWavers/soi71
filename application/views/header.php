@@ -204,7 +204,28 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 											<?php $image = ($this->session->userdata('userImage')) ? (base_url() . 'uploads/' . $this->session->userdata('userImage')) : (base_url() . 'assets/front/images/user-login.jpg');?>
                         					<img src="<?php echo $image; ?>">
 										</div>
-										<span class="user-menu-btn"><?php echo $this->session->userdata('userFirstname'); ?></span>
+
+										<?php
+
+										$firstName=$this->session->userdata('userFirstname');
+										$lastName=$this->session->userdata('userLastname');
+
+										$first_word = preg_split("/[\s,&_-]+/", $firstName);
+										$last_word = preg_split("/[\s,&_-]+/", $lastName);
+										$first_new_words = "";
+										$last_new_words = "";
+
+										foreach ($first_word as $w) {
+											$first_new_words .= $w[0];
+										}
+
+										foreach ($last_word as $w) {
+											$last_new_words .= $w[0];
+										}
+
+
+										?>
+										<span class="user-menu-btn"><?php echo $first_new_words.$last_new_words; ?></span>
 										<div class="header-user-menu">
 											<ul>
 												<li class="active"><a href="<?php echo base_url() . 'myprofile'; ?>"><i class="iicon-icon-31"></i><?php echo $this->lang->line('my_profile') ?></a></li>
