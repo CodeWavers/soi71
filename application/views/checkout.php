@@ -202,11 +202,7 @@
 																</label>
 															</div>
 															<div class="delivery-form display-no" id="delivery-form">
-																<div class="current-location">
-																	<p>
-																		<img src="<?php echo base_url(); ?>assets/front/images/current-location.svg"> <?php echo $this->lang->line('choose_delivery_address') ?>
-																	</p>
-																</div>
+
 																<div class="radio-btn-list">
 																	<label>
 																		<input type="radio" name="add_new_address"
@@ -283,35 +279,7 @@
 																		</div>
 																	</div>
 																</div>
-																<?php $address = $this->checkout_model->getUsersAddress($this->session->userdata('UserID'));
-																if (!empty($address)) { ?>
-																	<div class="radio-btn-list">
-																		<label>
-																			<input type="radio" name="add_new_address"
-																				   value="add_your_address"
-																				   class="add_new_address"
-																				   onclick="showYourAdress();">
-																			<span><?php echo $this->lang->line('choose_your_address') ?></span>
-																		</label>
-																	</div>
-																	<div id="your_address_content" class="display-no">
-																		<h5><?php echo $this->lang->line('choose_your_address') ?></h5>
-																		<div class="login-details">
-																			<div class="form-group">
-																				<select class="form-control"
-																						name="your_address"
-																						id="your_address"
-																						onchange="getAddLatLong(this.value,<?php echo $cart_details['cart_total_price']; ?>)">
-																					<option value=""><?php echo $this->lang->line('select') ?></option>
-																					<?php foreach ($address as $key => $value) { ?>
-																						<option value="<?php echo $value['entity_id']; ?>"><?php echo $value['address'] . ',' . $value['landmark'] . ',' . $value['zipcode'] . ',' . $value['city']; ?></option>
-																					<?php } ?>
-																				</select>
-																				<label><?php echo $this->lang->line('your_address') ?></label>
-																			</div>
-																		</div>
-																	</div>
-																<?php } ?>
+
 															</div>
 														</div>
 														<div class="card card2">

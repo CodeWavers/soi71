@@ -580,7 +580,7 @@ class Checkout extends CI_Controller {
                 'order_status' =>'placed',
                 'order_date' =>date('Y-m-d H:i:s'),
                 'subtotal'=> ($this->input->post('subtotal'))?$this->input->post('subtotal'):0,
-                'total_rate' => ($this->session->userdata('total_price'))?$this->session->userdata('total_price'):'',
+                'total_rate' => ($this->session->userdata('total_price')+$this->input->post('dc'))?$this->session->userdata('total_price')+$this->input->post('dc'):'',
                 'status'=>0,
                 'delivery_charge'=>  $this->input->post('dc'),
                 'extra_comment'=> ($this->input->post('extra_comment'))?$this->input->post('extra_comment'):'',
