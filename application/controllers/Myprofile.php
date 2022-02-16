@@ -73,27 +73,6 @@ class Myprofile extends CI_Controller {
                 }
 
                 if(empty($data['Error'])){
-//					$this->db->set('address',$this->input->post('address'));
-//					$this->db->where('user_entity_id',$this->input->post('entity_id'));
-//					$this->db->update('user_address');
-                	$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->input->post('entity_id'))->get()->num_rows();
-//					echo '<pre>';print_r($check_user_address);exit();
-                	if($check_user_address > 0){
-						$this->db->set('address',$this->input->post('address'));
-						$this->db->where('user_entity_id',$this->input->post('entity_id'));
-						$this->db->update('user_address');
-					}else{
-                		$address=array(
-                			'user_entity_id' =>$this->input->post('entity_id'),
-                			'address' =>$this->input->post('address'),
-
-						);
-
-
-						$this->db->insert('user_address',$address);
-					}
-
-
 
 
 
@@ -298,22 +277,18 @@ class Myprofile extends CI_Controller {
 		$data['page_title'] = $this->lang->line('add_address').' | '.$this->lang->line('site_title');
 		if($this->input->post('submit_address') != ""){
 			$this->form_validation->set_rules('address_field', 'Address', 'trim|required');
-			$this->form_validation->set_rules('landmark', 'Landmark', 'trim|required');
-	        $this->form_validation->set_rules('latitude', 'Latitude', 'trim|required');
-	        $this->form_validation->set_rules('longitude', 'Longitude', 'trim|required');
-			$this->form_validation->set_rules('zipcode', 'Zipcode', 'trim|required');
-			$this->form_validation->set_rules('city', 'City', 'trim|required');
+
             $this->form_validation->set_rules('user_entity_id', 'UserID', 'trim|required');
 	        if ($this->form_validation->run())
 	        {
 	        	$add_data = array(
 	                'address'=>$this->input->post('address_field'),
-	                'search_area'=>$this->input->post('add_address_area'),
-	                'landmark'=>$this->input->post('landmark'),
-	                'latitude'=>$this->input->post('latitude'),
-	                'longitude'=>$this->input->post('longitude'),
-	                'zipcode'=>$this->input->post('zipcode'),
-	                'city'=>$this->input->post('city'),
+//	                'search_area'=>$this->input->post('add_address_area'),
+//	                'landmark'=>$this->input->post('landmark'),
+//	                'latitude'=>$this->input->post('latitude'),
+//	                'longitude'=>$this->input->post('longitude'),
+//	                'zipcode'=>$this->input->post('zipcode'),
+//	                'city'=>$this->input->post('city'),
 	                'user_entity_id'=>$this->input->post('user_entity_id')
 	            );
 				if (!empty($this->input->post('add_entity_id')))

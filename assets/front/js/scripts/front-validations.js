@@ -868,7 +868,7 @@ $( "#form_my_profile" ).on("submit", function( event ) {
 // form my address validation on submit
 $( "#form_add_address" ).on("submit", function( event ) {
 	event.preventDefault();
-	if ($('#address_field').val() != '' && $('#landmark').val() != '' && $('#zipcode').val() != '' && $('#city').val() != '')
+	if ($('#address_field').val() != '')
 	{
 		var formData = new FormData($("#form_add_address")[0]);
 		jQuery.ajax({
@@ -1020,13 +1020,10 @@ function editAddress(address_id){
 			$('#user_entity_id').val(address.user_entity_id);
 			$('#add_entity_id').val(address.address_id);
 			$('#address_field').val(address.address);
-			$('#add_address_area').val(address.search_area);
-			$('#latitude').val(address.latitude);
-			$('#longitude').val(address.longitude);
-			$('#landmark').val(address.landmark);
+
 			$('#submit_address').val('Edit');
 			$('#address-form-title').html('Edit');
-			setMarker(address.latitude,address.longitude);
+			// setMarker(address.latitude,address.longitude);
 			$('#quotes-main-loader').hide();
 			$('#add-address').modal('show');
 		},

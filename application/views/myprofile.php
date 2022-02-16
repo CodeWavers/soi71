@@ -626,20 +626,7 @@
                     <label><?php echo $this->lang->line('phone_number') ?></label>
                 </div>
 
-				<div class="form-group">
 
-					<select class="form-control"
-							name="address"
-							id="address"
-							required="">
-						<option value="<?php echo $profile->address; ?>"><?php echo $profile->address; ?></option>
-
-						<?php foreach ($delivery_area as $ds) { ?>
-							<option value="<?php echo $ds->name ?>"><?php echo $ds->name ?></option>
-						<?php } ?>
-					</select>
-					<label>Address</label>
-				</div>
 <!--				<div class="form-group">-->
 <!--					<input type="text" name="address" id="address" class="form-control   "  placeholder=" " value="--><?php //echo $profile->address; ?><!--">-->
 <!--					<label>--><?php //echo $this->lang->line('address') ?><!--</label>-->
@@ -673,19 +660,10 @@
 
                 <!-- Modal body -->
                 <div class="modal-body">
-                    <div class="row">
-                        <div class="col-md-12 modal_body_map">
-                            <div class="location-map" id="location-map">
-                                <div  id="map_canvas"></div>
-                            </div>
-                        </div>
-                    </div>
+
                     <form id="form_add_address" name="form_add_address" method="post" class="form-horizontal float-form" enctype="multipart/form-data" >
                         <div id="error-msg" class="alert alert-danger display-no"></div>
-                        <div class="form-group">
-                            <input type="text" name="add_address_area" id="add_address_area" onFocus="geolocate('')" placeholder=" " onchange="getMarker('');" class="form-control">
-                            <label><?php echo $this->lang->line('search_delivery_area') ?></label>
-                        </div>
+
                         <div class="form-group">
                             <input type="hidden" name="user_entity_id" id="user_entity_id" value="<?php echo $this->session->userdata('UserID'); ?>">
                             <input type="hidden" name="add_entity_id" id="add_entity_id" value="">
@@ -694,18 +672,8 @@
                             <input type="text" name="address_field" id="address_field" class="form-control" placeholder=" " onchange="getMarker(this.value)">
                             <label><?php echo $this->lang->line('your_location') ?></label>
                         </div>
-                        <div class="form-group">
-                            <input type="text" name="landmark" id="landmark" class="form-control" placeholder=" ">
-                            <label><?php echo $this->lang->line('landmark') ?></label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="zipcode" id="zipcode" class="form-control" placeholder=" ">
-                            <label><?php echo $this->lang->line('zipcode') ?></label>
-                        </div>
-                        <div class="form-group">
-                            <input type="text" name="city" id="city" class="form-control" placeholder=" ">
-                            <label><?php echo $this->lang->line('city') ?></label>
-                        </div>
+
+
                         <div class="address-add-btn">
                             <input type="hidden" name="submit_address" id="submit_address" value="Add" class="btn btn-primary">
                             <button type="submit" name="save_address" id="save_address" value="Save" class="btn btn-primary"><?php echo $this->lang->line('save') ?></button>

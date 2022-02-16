@@ -155,7 +155,7 @@
 												</div>
 											<?php } ?>
 											</tbody>
-										</table>
+										</table>f
 									</div>
 								</div>
 							</div>
@@ -202,7 +202,24 @@
 																</label>
 															</div>
 															<div class="delivery-form display-no" id="delivery-form">
+																<div class="form-group">
+																	<input type="hidden" name="add_latitude"
+																		   id="add_latitude">
+																	<input type="hidden" name="add_longitude"
+																		   id="add_longitude">
+																	<select class="form-control"
+																			name="your_address"
+																			id="your_address"
+																			onchange="delievry_charge(this.value)"
+																			required="">
+																		<option value="">Select...</option>
 
+																		<?php foreach ($delivery_area as $ds) { ?>
+																			<option value="<?php echo $ds->entity_id ?>"><?php echo $ds->name ?></option>
+																		<?php } ?>
+																	</select>
+																	<label><?php echo $this->lang->line('delivery_area') ?></label>
+																</div>
 																<div class="radio-btn-list">
 																	<label>
 																		<input type="radio" name="add_new_address"
@@ -212,71 +229,48 @@
 																		<span><?php echo $this->lang->line('add_address') ?></span>
 																	</label>
 																</div>
+
+
+																<?php $address = $this->checkout_model->getUsersAddress($this->session->userdata('UserID'));
+																if (!empty($address)) { ?>
+																	<div class="radio-btn-list">
+																		<label>
+																			<input type="radio" name="add_new_address" value="add_your_address" class="add_new_address" onclick="showYourAdress();">
+																			<span><?php echo $this->lang->line('choose_your_address') ?></span>
+																		</label>
+																	</div>
+																	<div id="your_address_content" class="display-no">
+																		<h5><?php echo $this->lang->line('choose_your_address') ?></h5>
+																		<div class="login-details">
+																			<div class="form-group">
+																				<select class="form-control" name="ch_address" id="ch_address" ">
+																					<option value=""><?php echo $this->lang->line('select') ?></option>
+																					<?php foreach ($address as $key => $value) { ?>
+																						<option value="<?php echo $value['entity_id']; ?>"><?php echo $value['address']; ?></option>
+																					<?php } ?>
+																				</select>
+																				<label><?php echo $this->lang->line('your_address') ?></label>
+																			</div>
+																		</div>
+																	</div>
+																<?php } ?>
 																<div id="add_address_content" class="display-no">
 																	<h5><?php echo $this->lang->line('add_address') ?></h5>
 																	<div class="login-details">
-																		<div class="form-group">
-																			<input type="hidden" name="add_latitude"
-																				   id="add_latitude">
-																			<input type="hidden" name="add_longitude"
-																				   id="add_longitude">
-																			<select class="form-control"
-																					name="your_address"
-																					id="your_address"
-																					onchange="delievry_charge(this.value)"
-																					required="">
-																				<option value="">Select...</option>
 
-																				<?php foreach ($delivery_area as $ds) { ?>
-																					<option value="<?php echo $ds->entity_id ?>"><?php echo $ds->name ?></option>
-																				<?php } ?>
-																			</select>
-																			<label><?php echo $this->lang->line('delivery_area') ?></label>
-																		</div>
-																		<?php $add = $this->checkout_model->getUsersAddress($this->session->userdata('UserID'));?>
-																		<div class="form-group">
-																			<select class="form-control"
-																					name="add_address"
-																					id="add_address"
-																				<option value=""><?php echo $this->lang->line('select') ?></option>
-																				<?php foreach ($add as $key => $value) { ?>
-																					<option value="<?php echo $value['entity_id']; ?>"><?php echo $value['address']?></option>
-																					<input type="hidden" name="address"
-																						   id="address" class="form-control"
-																						   placeholder=" " value="<?php echo $value['address']?>">
-																				<?php } ?>
-<!--																			--><?php //foreach ($delivery_area as $da) { ?>
-<!--																				<option value="--><?php //echo $da->name ?><!--">--><?php //echo $da->name ?><!--</option>-->
-<!--																			--><?php //} ?>
-																			</select>
-																			<label><?php echo $this->lang->line('your_address') ?></label>
-																		</div>
-<!--																		<div class="form-group">-->
-<!--																			<input type="text" name="add_address"-->
-<!--																				   id="add_address" class="form-control"-->
-<!--																				   placeholder=" ">-->
-<!--																			<label>--><?php //echo $this->lang->line('your_location') ?><!--</label>-->
-<!--																		</div>-->
+
 
 
 																		<div class="form-group">
-																			<input type="text" name="landmark"
-																				   id="landmark" class="form-control"
+																			<input type="text" name="add_address"
+																				   id="" class="form-control"
 																				   placeholder=" ">
-																			<input type="hidden" name="dc" id="delivery_charges_val" value="">
-																			<label><?php echo $this->lang->line('landmark') ?></label>
+																			<label><?php echo $this->lang->line('your_location') ?></label>
 																		</div>
-																		<div class="form-group">
-																			<input type="text" name="zipcode"
-																				   id="zipcode" class="form-control"
-																				   placeholder=" ">
-																			<label><?php echo $this->lang->line('zipcode') ?></label>
-																		</div>
-																		<div class="form-group">
-																			<input type="text" name="city" id="city"
-																				   class="form-control" placeholder=" ">
-																			<label><?php echo $this->lang->line('city') ?></label>
-																		</div>
+
+
+
+<!--																		-->
 																	</div>
 																</div>
 
