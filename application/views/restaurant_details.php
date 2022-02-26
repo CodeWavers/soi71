@@ -984,7 +984,7 @@ if (!empty($menu_arr)) {
 	window.onscroll = function() {scrollFunction()};
 
 	function scrollFunction() {
-		if (document.body.scrollTop > 100 || document.documentElement.scrollTop > 100) {
+		if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
 			mybutton.style.display = "block";
 		} else {
 			mybutton.style.display = "none";
@@ -996,6 +996,8 @@ if (!empty($menu_arr)) {
 		$('html, body').animate({
 			scrollTop: $('.search-dishes').offset().top -190
 		}, 500);
+
+
 	}
 
 
