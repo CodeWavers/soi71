@@ -116,7 +116,7 @@ if (isset($_GET['scope'])) {
 	}
 } else {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="google btn" style="background-color:#DB4A39" href="' . $google_client->createAuthUrl() . '">LogIn with Google + </a>';
+	$gmail_button = '<a onclick="gmailCheck()" class="google btn" style="background-color:#DB4A39" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
 }
 ?>
 

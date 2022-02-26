@@ -201,8 +201,8 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 								<?php if ($this->session->userdata('is_user_login')) {?>
 									<div class="header-user">
 										<div class="user-img">
-											<?php $image = ($this->session->userdata('userImage')) ? (base_url() . 'uploads/' . $this->session->userdata('userImage')) : (base_url() . 'assets/front/images/user-login.jpg');?>
-                        					<img src="<?php echo $image; ?>">
+											<?php $image = ($this->session->userdata('userImage')) ? ($this->session->userdata('userImage')) :($this->session->userdata('social_image')) ? ($this->session->userdata('social_image')) : default_user_img; ?>
+											<img src="<?php echo $image; ?>">
 										</div>
 
 										<?php

@@ -868,7 +868,7 @@ body.fixed {
 	font-family: "Century Gothic";
 	text-transform: uppercase;
 	/*font-weight: bolder;*/
-	font-size: 12px;
+	font-size: 13px;
 
 	line-height: 30px;
 
@@ -891,7 +891,7 @@ body.fixed {
 }
 
 .header-inner nav>ul>li>a {
-	/*font-size: 14px;*/
+	font-size: 13px;
 	position: relative;
 	padding: 23px 12px;
 	display: block;
@@ -2158,14 +2158,16 @@ body.fixed {
 
 .footer-area {
 
-	background: var(--main-color);
+	background: var(--second-color);
+
+
 	padding: 50px 0 7px;
 	/*margin-top: 10%;*/
 	/*position: fixed;*/
 	/*left: 0;*/
-	bottom: 0;
+
 	/*width: 100%;*/
-	box-shadow: 1px 1px 70px 1px var(--second-color);
+	/*box-shadow: 1px 1px 70px 1px var(--second-color);*/
 
 
 
@@ -2978,6 +2980,21 @@ body.fixed {
 	border-radius: 10px;
 	margin-top: -70px;
 	margin-bottom: 60px;
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	box-shadow: 0 5px 10px rgba(0, 0, 0, 0.05);
+}
+
+.rest-detail_s {
+	background: #fff;
+	padding: 15px;
+	border-radius: 10px;
+	color: #0c0c0c;
+	/*margin-top: -70px;*/
+	margin-bottom: -75px;
 	display: -webkit-box;
 	display: -moz-box;
 	display: -webkit-flex;
@@ -7031,6 +7048,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	}
 	.footer-area{
+		margin-bottom: 100px;
+	}
+	#openClose{
 		display: none;
 	}
 	.header-area .container {
@@ -7083,9 +7103,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		text-align: center;
 		margin: auto;
 	}
-	.social-icon ul {
-		justify-content: left;
-	}
+	/*.social-icon ul {*/
+	/*	justify-content: center;*/
+	/*}*/
 	.best-offers,
 	.quick-searches,
 	.popular-restaurants {
@@ -7625,8 +7645,23 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	}
 	.footer-area{
+		margin-bottom: 100px;
+	}
+	#openClose{
 		display: none;
 	}
+	.footer-logo {
+		margin-top: 25px;
+	}
+
+	/*#facebook_page{*/
+
+	/*	width: 100px;*/
+	/*}*/
+
+	/*.social-icon ul {*/
+	/*	justify-content: left;*/
+	/*}*/
 	.rest-detail {
 		flex-wrap: wrap;
 		position: relative;
@@ -7763,7 +7798,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	}
 	.footer-area{
-		display: none;
+		margin-bottom: 80px;
 	}
 
 	.search-form .form-group {

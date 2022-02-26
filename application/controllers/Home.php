@@ -229,6 +229,8 @@ class Home extends CI_Controller
 					if ($val->login_provider == 2 || $val->login_provider == 3) {
 						$social_image = unserialize($val->login_provider_detail);
 					}
+
+//					echo '<pre>';print_r($social_image['user_details']['photo']);exit();
 					$this->session->set_userdata(
 						array(
 							'UserID' => $val->entity_id,
@@ -237,7 +239,7 @@ class Home extends CI_Controller
 							'userEmail' => $val->email,
 							'userPhone' => $val->mobile_number,
 							'userImage' => $val->image ? (image_url . $val->image) : default_user_img,
-							'social_image' => ($social_image) ? $social_image : '',
+							'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
 							'is_admin_login' => 0,
 							'is_user_login' => 1,
 							'UserType' => $val->user_type,

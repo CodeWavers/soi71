@@ -550,7 +550,7 @@
 
 <div class="col-sm-12 col-md-6 col-lg-6 ">
 	<div class=" text-center" style="width: 100%;">
-		<div class="card-body ">
+		<div class="card-body " id="facebook_page">
 			<h5 class="card-title s-title">Facebook Page</h5><hr>
 <!---->
 <!--			--><?php //foreach ($delivery_area as $da) {?>
@@ -568,16 +568,48 @@
 <!---->
 <!--			--><?php //} ?>
 
-			<iframe class="coupon" src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=500&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="500" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
-
-
-
-
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=400&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="400" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 		</div>
 	</div>
 </div>
 
 </div>
+	<div class="rest-detail-main">
+		<div class="container">
+			<div class="row">
+				<div class="col-lg-12">
+					<div class="rest-detail_s">
+						<div class="rest-detail-img-main">
+							<div class="rest-detail-img">
+								<img src="<?php echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?>">
+							</div>
+						</div>
+						<div class="rest-detail-content">
+
+							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
+							<ul class="">
+								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
+								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
+								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
+								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
+
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
+								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
+
+							</ul>
+
+
+
+							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
+							<a href="#" id="openClose" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
+						</div>
+
+					</div>
+				</div>
+			</div>
+		</div>
+	</div>
 </section>
 
 <!--<section class="restaurant-app quick-searches "  >-->

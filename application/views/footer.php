@@ -1,5 +1,5 @@
 <div class="wait-loader display-no" id="quotes-main-loader"><img  src="<?php echo base_url() ?>assets/admin/img/ajax-loader.gif" align="absmiddle"  ></div>
-<footer class="footer-area">
+<div class="footer-area">
 	<div class="container">
 		<div class="row">
 			<div class="col-sm-12">
@@ -79,7 +79,7 @@
 			</div>
 		</div>
 	</div>
-</footer>
+</div>
 
 
 
