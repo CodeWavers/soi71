@@ -57,7 +57,7 @@ if (!empty($menu_arr)) {
 		<div class="row">
 			<div class="col-lg-12">
 				<div class="heading-title">
-					<h2><?php echo $this->lang->line('order_food_from') ?> <?php echo $restaurant_details['restaurant'][0]['name']; ?></h2>
+					<h2><?php echo $this->lang->line('order_food_from') ?> </h2>
 				</div>
 <!--				<div class="menu_review">-->
 <!--					<a href="#" class="active" id="menu_link"><button class="btn res-menu">--><?php //echo $this->lang->line('menu'); ?><!--</button></a>-->
@@ -69,15 +69,7 @@ if (!empty($menu_arr)) {
 		<div class="row restaurant-detail-row">
 			<!-- restaurant details start-->
 			<div class="col-sm-12 col-md-5 col-lg-8" id="menu" style="display: block;" >
-				<div class="search-dishes">
-					<form action="#" id="#" class="inner-pages-form">
 
-						<div class="form-group search-restaurant">
-							<input class="input-tags" type="text" name="search_dish" placeholder="<?php echo $this->lang->line('search_dishes') ?>" id="search_dish">
-							<input type="button" name="Search" value="<?php echo $this->lang->line('search') ?>" class="btn" onclick="searchMenuDishes(<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>)">
-						</div>
-					</form>
-				</div>
 				<div id="details_content">
 					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
 						if (!empty($restaurant_details['categories'])) {?>

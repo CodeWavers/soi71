@@ -126,7 +126,7 @@ $config['enable_hooks'] = TRUE;
 |--------------------------------------------------------------------------
 | Class Extension Prefix
 |--------------------------------------------------------------------------
-|
+|res
 | This item allows you to set the filename/classname prefix when extending
 | native libraries.  For more information please see the user guide:
 |
