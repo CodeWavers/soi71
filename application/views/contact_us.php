@@ -6,7 +6,7 @@
             <h2><?php echo $this->lang->line('contact_us') ?></h2>
         </div>
         <div class="row">
-            <div class="col-md-7">
+            <div class="col-7">
                 <div class="contact-us-image">
 					<div class="detail-list-title w-100" >
 						<h3>Gulshan Branch</h3>

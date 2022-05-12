@@ -57,3 +57,4 @@ $route['privacy-policy'] = 'cms/privacy_policy';
 $route['about-us'] = 'cms/about_us';
 $route['faq'] = 'product/faq';
 $route['doc'] = 'product/documentation';
+$route['contact-us/(:any)'] = "contact-us/index/$1";

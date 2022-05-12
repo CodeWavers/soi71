@@ -54,7 +54,7 @@
 	<?php $lang_class = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') . '-lang' : 'en-lang';?>
 	<?php $lang_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en' ;
 	$cmsPages = $this->common_model->getCmsPages($lang_slug);  ?>
-	<body class="<?php echo $lang_class; ?>  ">
+	<body class="<?php echo $lang_class; ?>  " onclick="onBody()">
 	<div class="parallax" >
 
 <?php
@@ -89,10 +89,20 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 						<nav>
 							<ul id="example-one" >
 								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
-								<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
+								<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a>
+
+									<ul class="dropdown-menu">
+										<li>a</li>
+										<li>a</li>
+										<li>a</li>
+
+
+									</ul>
+
+								</li>
 								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>">Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
-									foreach ($cmsPages as $key => $value) { 
+									foreach ($cmsPages as $key => $value) {
 										if($value->CMSSlug == "contact-us") { ?>
 											<li class="<?php echo ($current_page == 'ContactUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'contact-us'; ?>"><?php echo $this->lang->line('contact_us') ?></a></li>
 										<?php }
@@ -148,7 +158,7 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 																}?>
 															</div>
 														</div>
-													<?php } 
+													<?php }
 													else { ?>
 														<a href="javascript:void(0)" class="notification-btn"><i class="iicon-icon-01"></i><span>0</span></a>
 														<div class="noti-popup">
@@ -240,12 +250,13 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 								<?php }?>
 
 								<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
+<!--								--><?php //$closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 
-								<?php if ($closed){ ?>
+
 
 									<div class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'Closed Now':$this->lang->line('open'); ?></div>
 
-								<?php }?>
+
 
 								<div class="mobile-icon">
 									<button class="" id="nav-icon2"></button>
@@ -255,6 +266,21 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 						</nav>
 					</div>
 				</div>
+
+				<div class="container min_header">
+					<div class="takeway " >
+						<ul class="" style="align-items:center;justify-content: center ;color: white">
+
+							<a href="<?php echo base_url() . 'contact-us/1'; ?>"><li class="<?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px "  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+							<a href="<?php echo base_url() . 'contact-us/2'; ?>"><li class="<?php echo ($current_page == 'ContactUs2') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+							<a href="<?php echo base_url() . 'contact-us/3'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
+
+						</ul>
+					</div>
+				</div>
+
+
+
 
 			</header>
 		<?php }?>
@@ -277,8 +303,6 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 
 			$(".search-formd").fadeToggle('slow');
 
-
-
 		});
 
 		$('.head_search').keyup(function (e) {
@@ -297,13 +321,17 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 
 					},
 					success: function(response) {
+
+						console.log(response)
+						// $('#quotes-main-loader').hide();
 						$('.search_result').removeClass('d-none')
 						$('.details_content').html(response);
-					//	$('#quotes-main-loader').hide();
+
 
 							$('section').hide();
 
 							$('.hero').addClass('d-none');
+
 							// $('.quick-searches').hide();
 							// $('.restaurant-app').hide();
 							// $('.driver-app').hide();

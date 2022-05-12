@@ -2,7 +2,12 @@
 <?php $this->load->view('header'); ?>
 
 <style>
-
+	/*body, html{*/
+	/*	height:100%;*/
+	/*	padding:0;*/
+	/*	margin:0;*/
+	/*	background-size: cover;*/
+	/*}*/
 	.hero {
 		position: relative;
 		/*z-index: 1;*/
@@ -12,11 +17,16 @@
 		right: 0;
 
 		/*background: url('https://cdn.pixabay.com/photo/2021/12/05/21/39/christmas-balls-6848782_960_720.jpg');*/
-		background-size: cover;
-		height: 80vh;
+		/*background-size: cover;*/
+		height:100%;
 		width: 100%;
-		width: 100vw;
-		/*padding: 8rem 0 13rem;*/
+
+		background-repeat:no-repeat;
+		background-size:contain;
+		background-position:center;
+		background-color: white;
+
+		padding: 8rem 0 50%;
 		text-transform: uppercase;
 		opacity: 1.0;
 		-webkit-transition: background 1.5s linear;
@@ -28,10 +38,10 @@
 
 	.hero:before {
 		content: '';
-		height: 100%;
-		width: 100%;
-		height: 80vh;
-		width: 100vw;
+		/*height:80vh;*/
+		/*width: 100%;*/
+		/*height: 80vh;*/
+		/*width: 100vw;*/
 		/*padding: 10rem 0 13rem;*/
 		position: absolute;opacity: 1.0;
 		-webkit-transition: background 1.5s linear;
@@ -44,13 +54,20 @@
 
 
 
+	@media only screen and (max-width: 767px) { html,body {
+		max-width: 767px !important;
+	}
+
 
 
 </style>
 
 
 
-<section class="hero ">
+<section>
+
+	<div class="hero "></div>
+
 
 
 <!--	--><?php //if (!empty($coupons)) { ?>
@@ -134,7 +151,7 @@
 
 
 <section class="quick-searches"  >
-	<div class="container" style="margin-top: 200px">
+	<div class="container">
 		<div class="heading-title">
 			<h2>Popular Items</h2>
 			<div class="slider-arrow">
@@ -593,16 +610,10 @@
 								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
 								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
 
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
 
 							</ul>
 
 
-
-							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
-							<a href="#" id="openClose" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
 						</div>
 
 					</div>

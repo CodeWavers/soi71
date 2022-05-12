@@ -596,7 +596,6 @@
 }
 
 @media (max-width:576px) {
-
 	.link {
 		font-size: 14px;
 	}
@@ -628,13 +627,26 @@
 	}
 }
 @media (max-width: 425px){
+
+	/*.hero{*/
+	/*	height: 20vh;*/
+	/*}*/
 		.rest-detail-section .rest-detail-content>ul {
 			width: 270px;
 
 		}
+	.takeway>ul {
+		width: 270px;
+
+	}
+
 		.rest-detail-content>ul>li {
 			font-size: 10px;
 		}
+		.takeway>ul>a>li {
+			font-size: 10px;
+		}
+
 		.rest-detail-content>ul>li>i {
 			font-size: 11px;
 		}

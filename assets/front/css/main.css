@@ -5,12 +5,14 @@ html {
 	line-height: 1.15;
 	-ms-text-size-adjust: 100%;
 	-webkit-text-size-adjust: 100%;
+	height: 100%;
 }
 
 
 
 body {
 	margin: 0;
+	height: 100%;
 }
 
 article,
@@ -45,6 +47,25 @@ main {
 	background-repeat: no-repeat;
 	background-size: cover;
 
+}
+
+.footer {
+	visibility: visible;
+	text-align: center;
+	padding: 0.8rem;
+	color: rgb(0, 0, 0);
+	width: 100%;
+	transition: all 0.2s ease 0s;
+	z-index: 999;
+	background-color: rgb(255, 255, 255);
+	margin-left: -0.4rem;
+	bottom: 0px;
+	position: sticky;
+	justify-content: center;
+	text-transform: uppercase;
+	font-weight: bold;
+
+	font-size: 0.7rem;
 }
 
 figure {
@@ -363,6 +384,12 @@ input {
 	color: white;
 	background: var(--main-color);
 }
+
+.li_sec {
+	color: white;
+	background: var(--second-color);
+}
+
 
 
 
@@ -1497,6 +1524,19 @@ body.fixed {
 	z-index: -1000;
 	background: rgba(252, 253, 253, 0.97);
 }
+
+.min_header {
+	/*padding: 50px 0 25px;*/
+
+	justify-content: center;
+	z-index: -1000;
+	background: rgba(252, 253, 253, 0.41);
+}
+
+.span_text{
+	color: white;
+	font-size: 12px;
+}
 .secondary_footer{
 	padding: 25px 0 25px;
 	z-index: -1000;
@@ -1770,13 +1810,13 @@ body.fixed {
   } */
 
 .home-menu-card{
-	flex: 1 0 21%;
+	/*flex: 1 0 20%;*/
 	/* max-width: 20%; */
 	margin: 20px;
 	box-shadow: 1px 1px 10px 1px var(--main-color);
 	background: rgba(196, 196, 196, 0.1);
 	border-radius: 15px;
-	max-width: 300px;
+	max-width: 250px;
 
 }
 .home-menu-card:hover{
@@ -3022,6 +3062,12 @@ body.fixed {
 	position: relative;
 }
 
+.takeway {
+	width: 100%;
+	padding-left: 30px;
+	position: relative;
+}
+
 .rest-detail-content .openclose {
 	position: absolute;
 	top: 0;
@@ -3061,7 +3107,26 @@ body.fixed {
 	margin: 0px;
 }
 
+.takeway>ul {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	margin: 0px;
+}
+
+
 .rest-detail-content>ul>li {
+	border: 1px solid #C8C8C8;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 500;
+	margin-right: 10px;
+	padding: 5px 10px;
+}
+
+.takeway>ul>a>li {
 	border: 1px solid #C8C8C8;
 	border-radius: 5px;
 	font-size: 16px;
@@ -3075,7 +3140,7 @@ body.fixed {
 }
 
 .rest-detail-content>ul>li>i {
-	color: #ffb300;
+
 	color: var(--main-color);
 	margin-right: 12px;
 	font-size: 22px;
@@ -3537,18 +3602,21 @@ body.fixed {
 	width: 40px;
 	height: 41px;
 	border: 0px;
-	background-color: #ffb300;
+	/*background-color: #ffb300;*/
 	background-color: var(--main-color);
 	color: #fff;
 	border-radius: 5px;
+	counter-increment:slider-checkbox-main;
 }
 
 .slider-checkbox-main .pn-Advancer_Left {
 	left: 0;
+	padding: 0;
 }
 
 .slider-checkbox-main .pn-Advancer_Right {
 	right: 0;
+	padding: 0;
 }
 
 .slider-checkbox-main .pn-ProductNav_Wrapper {
@@ -3558,7 +3626,7 @@ body.fixed {
 	display: -ms-flexbox;
 	display: flex;
 	position: relative;
-	padding: 0 53px;
+	padding: 0 50px;
 }
 
 .slider-checkbox-main .pn-ProductNav {
@@ -6299,7 +6367,15 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.rest-detail-content {
 		padding-left: 20px;
 	}
+
+	.takeway {
+		padding-left: 20px;
+	}
 	.rest-detail-content>ul>li {
+			 font-size: 14px;
+			 padding: 5px;
+		 }
+	.takeway>ul>a>li {
 		font-size: 14px;
 		padding: 5px;
 	}
@@ -7203,10 +7279,20 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.rest-detail-content>ul {
 		flex-wrap: wrap;
 	}
+
+	.takeway>ul {
+		flex-wrap: wrap;
+	}
 	.rest-detail-section .heading-title {
 		margin-bottom: 14px;
 	}
 	.rest-detail-content>ul>li {
+		margin-bottom: 10px;
+		margin-right: 10px;
+		font-size: 12px;
+	}
+
+	.takeway>ul>a>li {
 		margin-bottom: 10px;
 		margin-right: 10px;
 		font-size: 12px;
@@ -7292,6 +7378,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		text-align: center;
 	}
 	.recipe-detail-section .rest-detail-content>ul {
+		justify-content: center;
+	}
+
+	.takeway>ul {
 		justify-content: center;
 	}
 	.order-id-details .details-id {
@@ -7672,11 +7762,16 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin-right: 1px
 	}
 	.rest-detail-content {
-		padding-left: 0px;
-		margin-top: 10px;
+
 	}
 	.rest-detail-content {
+
+	}
+	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
 		position: initial;
+		text-align: center;
 	}
 	.rest-detail-section .rest-detail-content .openclose {
 		top: -150px;
@@ -7730,6 +7825,12 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	}
 	.rest-detail-section .rest-detail-content {
+		width: calc(100% - 70px);
+		padding-left: 10px;
+		margin-top: 0;
+	}
+
+	.takeway {
 		width: calc(100% - 70px);
 		padding-left: 10px;
 		margin-top: 0;

@@ -36,16 +36,8 @@ if (!empty($menu_arr)) {
 								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
 								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
 
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
-
 							</ul>
 
-
-
-							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
-							<a href="#" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
 						</div>
 
 					</div>
@@ -986,7 +978,7 @@ if (!empty($menu_arr)) {
 	function topFunction() {
 
 		$('html, body').animate({
-			scrollTop: $('.search-dishes').offset().top -190
+			scrollTop: $('#details_content').offset().top -190
 		}, 500);
 
 

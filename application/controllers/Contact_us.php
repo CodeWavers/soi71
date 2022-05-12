@@ -12,8 +12,23 @@ class Contact_us extends CI_Controller {
 	// contact us page
 	public function index()
 	{
+
+		$type = $this->uri->segment(2);
+
 		$data['page_title'] = $this->lang->line('contact_us'). ' | ' . $this->lang->line('site_title');
-		$data['current_page'] = 'ContactUs';
+
+		if ($type == 1){
+			$data['current_page'] = 'ContactUs1';
+		}elseif ($type == 2){
+			$data['current_page'] = 'ContactUs2';
+		}elseif ($type == 3){
+			$data['current_page'] = 'ContactUs3';
+		}else{
+			$data['current_page'] = 'ContactUs';
+		}
+
+
+
 
 		if($this->input->post('submit_page') == "Submit"){
 			$this->form_validation->set_rules('name', 'Name', 'trim|required'); 
