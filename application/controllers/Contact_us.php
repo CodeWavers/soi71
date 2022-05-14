@@ -15,6 +15,8 @@ class Contact_us extends CI_Controller {
 
 		$type = $this->uri->segment(2);
 
+
+
 		$data['page_title'] = $this->lang->line('contact_us'). ' | ' . $this->lang->line('site_title');
 
 		if ($type == 1){
@@ -26,6 +28,8 @@ class Contact_us extends CI_Controller {
 		}else{
 			$data['current_page'] = 'ContactUs';
 		}
+
+
 
 
 

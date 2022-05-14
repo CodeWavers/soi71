@@ -9,8 +9,162 @@ class Common_model extends CI_Model {
         $this->db->select('order_count');
         $this->db->where('admin_id',$this->session->userdata('UserID'));
         return $this->db->get('order_notification')->first_row();
-    }	
-    public function getCustomNotificationCount(){
+    }
+
+	public function getRestaurantDetail($content_id,$searchArray=NULL,$food=NULL,$price=NULL){
+		$language_slug = ($this->session->userdata('language_slug'))?$this->session->userdata('language_slug'):'en';
+		$this->db->select("restaurant.entity_id as restaurant_id,restaurant.name,address.address,address.landmark,address.latitude,address.longitude,restaurant.image,restaurant.timings,restaurant.phone_number,restaurant.restaurant_slug,restaurant.content_id,currencies.currency_symbol,currencies.currency_code");
+		$this->db->join('restaurant_address as address','restaurant.entity_id = address.resto_entity_id','left');
+		$this->db->join('currencies','restaurant.currency_id = currencies.currency_id','left');
+		$this->db->where('restaurant.language_slug',$language_slug);
+		$this->db->where('restaurant.content_id',$content_id);
+		$this->db->group_by('restaurant.entity_id');
+		$result['restaurant'] = $this->db->get_where('restaurant',array('status'=>1))->result_array();
+		if (!empty($result['restaurant'])) {
+			foreach ($result['restaurant'] as $key => $value) {
+				$timing = $value['timings'];
+				if($timing){
+					$timing =  unserialize(html_entity_decode($timing));
+					$newTimingArr = array();
+					$day = date("l");
+					foreach($timing as $keys=>$values) {
+						$day = date("l");
+						if($keys == strtolower($day)){
+							$newTimingArr[strtolower($day)]['open'] = (!empty($values['open']))?date('g:i A',strtotime($values['open'])):'';
+							$newTimingArr[strtolower($day)]['close'] = (!empty($values['close']))?date('g:i A',strtotime($values['close'])):'';
+							$newTimingArr[strtolower($day)]['off'] = (!empty($values['open']) && !empty($values['close']))?'open':'close';
+							$newTimingArr[strtolower($day)]['closing'] = (!empty($values['close']) && !empty($values['open']))?(((date("H:m") < date("H:m",strtotime($values['close']))) && (date("H:m") >= date("H:m",strtotime($values['open']))))?'Open':'Closed'):'Closed';
+						}
+					}
+				}
+				$result['restaurant'][$key]['timings'] = $newTimingArr[strtolower($day)];
+				$result['restaurant'][$key]['image'] = ($value['image'])?image_url.$value['image']:'';
+			}
+		}
+		$result['menu_items'] = array();
+		$result['packages'] = array();
+		$result['categories'] = array();
+		if (!empty($result['restaurant'])) {
+			$restaurant_id = $result['restaurant'][0]['restaurant_id'];
+			$this->db->select('restaurant_menu_item.*');
+			$this->db->where('restaurant_menu_item.restaurant_id',$restaurant_id);
+			if (!empty($searchArray)) {
+				$like_statementsOne = array();
+				$like_statementsTwo = array();
+				$like_statementsThree = array();
+				foreach($searchArray as $key => $value) {
+					$like_statementsOne[] = "restaurant_menu_item.name LIKE '%" . $value . "%'";
+					$like_stringOne = "(" . implode(' OR ', $like_statementsOne) . ")";
+					$like_statementsTwo[] = "restaurant_menu_item.menu_detail LIKE '%" . $value . "%'";
+					$like_stringTwo = "(" . implode(' OR ', $like_statementsTwo) . ")";
+					$like_statementsThree[] = "restaurant_menu_item.availability LIKE '%" . $value . "%'";
+					$like_stringThree = "(" . implode(' OR ', $like_statementsThree) . ")";
+				}
+				$this->db->where('('.$like_stringOne.' OR '.$like_stringTwo.' OR '.$like_stringThree.')');
+			}
+			if ($price == "low") {
+				$this->db->order_by('restaurant_menu_item.price','asc');
+			}
+			else
+			{
+				$this->db->order_by('restaurant_menu_item.price','desc');
+			}
+			if ($food == "non_veg") {
+				$this->db->where('restaurant_menu_item.is_veg',0);
+			}
+			else if ($food == "veg") {
+				$this->db->where('restaurant_menu_item.is_veg',1);
+			}
+			$result['menu_items'] = $this->db->get_where('restaurant_menu_item',array('status'=>1))->result_array();
+			if (!empty($result['menu_items'])) {
+				foreach ($result['menu_items'] as $key => $value) {
+					$result['menu_items'][$key]['image'] = ($value['image'])?image_url.$value['image']:'';
+				}
+			}
+
+			$this->db->select('restaurant_package.*');
+			$this->db->where('restaurant_package.restaurant_id',$restaurant_id);
+			if (!empty($searchArray)) {
+				$like_statementsOne = array();
+				$like_statementsTwo = array();
+				$like_statementsThree = array();
+				foreach($searchArray as $key => $value) {
+					$like_statementsOne[] = "restaurant_package.name LIKE '%" . $value . "%'";
+					$like_stringOne = "(" . implode(' OR ', $like_statementsOne) . ")";
+					$like_statementsTwo[] = "restaurant_package.detail LIKE '%" . $value . "%'";
+					$like_stringTwo = "(" . implode(' OR ', $like_statementsTwo) . ")";
+					$like_statementsThree[] = "restaurant_package.availability LIKE '%" . $value . "%'";
+					$like_stringThree = "(" . implode(' OR ', $like_statementsThree) . ")";
+				}
+				$this->db->where('('.$like_stringOne.' OR '.$like_stringTwo.' OR '.$like_stringThree.')');
+			}
+			$result['packages'] = $this->db->get_where('restaurant_package',array('status'=>1))->result_array();
+			if (!empty($result['packages'])) {
+				foreach ($result['packages'] as $key => $value) {
+					$result['packages'][$key]['image'] = ($value['image'])?image_url.$value['image']:'';
+				}
+			}
+			$this->db->select('restaurant_menu_item.category_id,category.name');
+			$this->db->join('category','restaurant_menu_item.category_id = category.entity_id','left');
+			$this->db->where('restaurant_menu_item.restaurant_id',$restaurant_id);
+			if (!empty($searchArray)) {
+				$like_statementsOne = array();
+				$like_statementsTwo = array();
+				$like_statementsThree = array();
+				foreach($searchArray as $key => $value) {
+					$like_statementsOne[] = "restaurant_menu_item.name LIKE '%" . $value . "%'";
+					$like_stringOne = "(" . implode(' OR ', $like_statementsOne) . ")";
+					$like_statementsTwo[] = "restaurant_menu_item.menu_detail LIKE '%" . $value . "%'";
+					$like_stringTwo = "(" . implode(' OR ', $like_statementsTwo) . ")";
+					$like_statementsThree[] = "restaurant_menu_item.availability LIKE '%" . $value . "%'";
+					$like_stringThree = "(" . implode(' OR ', $like_statementsThree) . ")";
+				}
+				$this->db->where('('.$like_stringOne.' OR '.$like_stringTwo.' OR '.$like_stringThree.')');
+			}
+			if ($price == "low") {
+				$this->db->order_by('restaurant_menu_item.price','asc');
+			}
+			else
+			{
+				$this->db->order_by('restaurant_menu_item.price','desc');
+			}
+			if ($food == "non_veg") {
+				$this->db->where('restaurant_menu_item.is_veg',0);
+			}
+			else if ($food == "veg") {
+				$this->db->where('restaurant_menu_item.is_veg',1);
+			}
+			$this->db->group_by('restaurant_menu_item.category_id');
+			$result['categories'] = $this->db->get_where('restaurant_menu_item',array('restaurant_menu_item.status'=>1))->result_array();
+			if (!empty($result['categories'])) {
+				foreach ($result['categories'] as $key => $value) {
+					$this->db->select('restaurant_menu_item.*');
+					$this->db->where('restaurant_menu_item.restaurant_id',$restaurant_id);
+					$this->db->where('restaurant_menu_item.category_id',$value['category_id']);
+					if ($price == "low") {
+						$this->db->order_by('restaurant_menu_item.price','asc');
+					}
+					else
+					{
+						$this->db->order_by('restaurant_menu_item.price','desc');
+					}
+					if ($food == "non_veg") {
+						$this->db->where('restaurant_menu_item.is_veg',0);
+					}
+					else if ($food == "veg") {
+						$this->db->where('restaurant_menu_item.is_veg',1);
+					}
+					$result[$value['name']] = $this->db->get_where('restaurant_menu_item',array('status'=>1))->result_array();
+				}
+			}
+		}
+		return $result;
+	}
+	public function getContentID($restaurant_slug){
+		$this->db->select('content_id');
+		return $this->db->get_where('restaurant',array('restaurant_slug'=>$restaurant_slug))->first_row();
+	}
+	public function getCustomNotificationCount(){
         $this->db->select('order_count');
         $this->db->where('admin_id',$this->session->userdata('UserID'));
         return $this->db->get('custom_order_notification')->first_row();

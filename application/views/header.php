@@ -53,13 +53,29 @@
 	</script>
 	<?php $lang_class = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') . '-lang' : 'en-lang';?>
 	<?php $lang_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en' ;
-	$cmsPages = $this->common_model->getCmsPages($lang_slug);  ?>
+	$cmsPages = $this->common_model->getCmsPages($lang_slug);
+
+	$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+//	$content_id = $this->restaurant_model->getContentID($slug);
+//	$restaurant_details = $this->restaurant_model->getRestaurantDetail($content_id->content_id);
+	?>
+
 	<body class="<?php echo $lang_class; ?>  " onclick="onBody()">
-	<div class="parallax" >
+<!--	<div class="parallax" >-->
 
 <?php
+//$CI = & get_instance();
+//$CI->load->model('restaurant_model');
+//$content_id = $this->restaurant_model->getContentID($slug);
 
-$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+//echo '<pre>';print_r($content_id->content_id);exit();
+
+//$restaurant_details=$this->db->get_where('restaurant_menu_item',array('restaurant_menu_item.status'=>1))->result_array();
+//echo '<pre>';print_r($restaurant_details);exit();
+//
+
+
+
 ?>
 	<?php if ($current_page != "Login" && $current_page != "Registration") { ?>
 
@@ -86,20 +102,31 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 						<div class="logo">
 							<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/front/images/logo.png" alt=""></a>
 						</div>
-						<nav>
+						<nav class="navbar navbar-expand-lg ">
 							<ul id="example-one" >
 								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
-								<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a>
 
-									<ul class="dropdown-menu">
-										<li>a</li>
-										<li>a</li>
-										<li>a</li>
+								<?php if ($current_page == 'RestaurantDetails') { ?>
+								<li class="nav-item dropdown">
+									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+										Menu
+									</a>
+									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
+
+												<a class="dropdown-item " href="#"  id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)"><?php echo $value['name']; ?></a>
 
 
-									</ul>
-
+										<?php }?>
+									</div>
 								</li>
+								<?php } else {?>
+									<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
+
+
+								<?php } ?>
+
+
 								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>">Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
 									foreach ($cmsPages as $key => $value) {

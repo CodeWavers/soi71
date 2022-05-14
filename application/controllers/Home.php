@@ -100,10 +100,6 @@ class Home extends CI_Controller
 		$data['delivery_area'] = $this->restaurant_model->delivery_area();
 		$data['popular_data'] = $main_data;
 
-//		echo '<pre>';print_r($main_data);
-//		print_r($main_data[0]['menu_items'][0]->entity_id);
-//		exit();
-
 		$this->load->view('home_page', $data);
 	}
 

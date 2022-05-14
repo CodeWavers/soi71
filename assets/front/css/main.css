@@ -1650,6 +1650,8 @@ body.fixed {
 .mapouter{
 	padding: 0 ;
 	box-shadow: 1px 1px 5px 1px var(--main-color);
+	width: 100% !important;
+	height: 100% 100% !important;
 }
 
 .coupon{
@@ -5913,6 +5915,7 @@ body.fixed {
 }
 .contact-us-wrapper {
 	background: rgba(252, 253, 253, 0.97);
+	height: auto;
 }
 
 

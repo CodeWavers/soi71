@@ -511,6 +511,19 @@ function menuSearch(category_id){
 
 	}
 }
+function menuTopSearch(category_id){
+
+
+
+		// alert("Hello")
+		$('html, body').animate({
+			scrollTop: $('#category-'+category_id+'').offset().top -190
+
+
+		}, 500)
+
+
+}
 // autocomplete function
 var autocomplete;
 function initAutocomplete(id) {

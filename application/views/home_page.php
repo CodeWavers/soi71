@@ -54,9 +54,9 @@
 
 
 
-	@media only screen and (max-width: 767px) { html,body {
-		max-width: 767px !important;
-	}
+	/*@media only screen and (max-width: 767px) { html,body {*/
+	/*	max-width: 767px !important;*/
+	/*}*/
 
 
 
@@ -221,7 +221,7 @@
 
 </section>
 <section class="quick-searches"  >
-	<div class="container" style="margin-top: 200px">
+	<div class="container" style="margin-top: 5%">
 		<div class="heading-title">
 			<h2>Best Deals</h2>
 			<div class="slider-arrow">
