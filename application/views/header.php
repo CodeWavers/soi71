@@ -83,7 +83,7 @@
 			<form id="home_search_form" class="search-formd" style="display: none">
 				<div class="form-group">
 
-					<input class="search_menu head_search"  type="search" id="" placeholder="  Search..." />
+					<input class="search_menu head_search"  type="search" id="head_search" placeholder="  Search..." />
 
 
 				</div>
@@ -338,6 +338,9 @@
 
 				var searchDish = this.value;
 
+				// alert('Hello');
+				// return
+
 				jQuery.ajax({
 					type : "POST",
 					dataType :"html",
@@ -349,12 +352,18 @@
 					},
 					success: function(response) {
 
-						console.log(response)
+						$('#quotes-main-loader').hide();
+
+						 console.log(response)
+						//
+						// return
 						// $('#quotes-main-loader').hide();
 						$('.search_result').removeClass('d-none')
-						$('.details_content').html(response);
+						  $('.details_content').html(response);
 
+						// $('#details_content').html(response);
 
+							//
 							$('section').hide();
 
 							$('.hero').addClass('d-none');

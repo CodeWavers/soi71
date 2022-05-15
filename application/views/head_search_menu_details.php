@@ -1,10 +1,11 @@
 
 <div class="heading-title">
 	<h2>Search Results:</h2>
-	<div class="slider-arrow">
-		<div id="customNav" class="arrow"></div>
-	</div>
+<!--	<div class="slider-arrow">-->
+<!--		<div id="customNav" class="arrow"></div>-->
+<!--	</div>-->
 </div>
+
 
 <div class="detail-list-box-main">
 	<?php if (!empty($restaurant_details['menu_items'])) {

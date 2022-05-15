@@ -5,9 +5,13 @@ $menu_ids = array();
 if (!empty($menu_arr)) {
 	$menu_ids = array_column($menu_arr, 'menu_id');
 } ?>
-<script type="text/javascript" src="<?php echo base_url();?>assets/front/js/tab-slider.js"></script>
+
+
+<!--<script type="text/javascript" src="--><?php //echo base_url();?><!--assets/front/js/tab-slider.js"></script>-->
+<script type="text/javascript" src="<?php echo base_url();?>assets/front/js/flickity.pkgd.min.js"></script>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/bootstrap-tagsinput.css">
+<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/flickity.min.css">
 <section class="inner-banner restaurant-detail-banner">
 	<div class="container">
 		<div class="inner-pages-banner">
@@ -62,28 +66,20 @@ if (!empty($menu_arr)) {
 			<!-- restaurant details start-->
 			<div class="col-sm-12 col-md-5 col-lg-8" id="menu" style="display: block;" >
 
-				<div id="details_content">
+				<div class="gallery js-flickity">
+					<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
+
+					<div class="gallery-cell">
+							<span  id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)"><?php echo $value['name']; ?></span>
+					</div>
+					<?php }?>
+
+				</div>
+
+				<div id="details_content" >
 					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
 						if (!empty($restaurant_details['categories'])) {?>
-							<div class="slider-checkbox-main">
-								<div class="pn-ProductNav_Wrapper" >
-									<button id="goPrev" class="pn-Advancer pn-Advancer_Left" type="button"><i class="iicon-icon-16"></i></button>
-									<nav id="pnProductNav" class="pn-ProductNav">
-										<div id="menus" class="pn-ProductNav_Contents">
-											<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
-												<div class="slider-checkbox" aria-selected="true">
-													<label>
-														<input class="check-menu" type="checkbox" name="checkbox-option" id="checkbox-option-<?php echo $value['category_id']; ?>" onclick="menuSearch(<?php echo $value['category_id']; ?>)">
-														<span><?php echo $value['name']; ?></span>
-													</label>
-												</div>
-											<?php }?>
-											<span id="pnIndicator" class="pn-ProductNav_Indicator"></span>
-										</div>
-									</nav>
-									<button id="goNext" class="pn-Advancer pn-Advancer_Right" type="button"><i class="iicon-icon-17"></i></button>
-								</div>
-							</div>
+
 						<?php }?>
 						<div class="option-filter-tab">
 							<!-- <div class="custom-control custom-checkbox">

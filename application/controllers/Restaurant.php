@@ -428,6 +428,8 @@ class Restaurant extends CI_Controller {
 	}
 
 	public function getSearchDish(){
+
+//		echo 'okay';exit();
         $data['page_title'] = $this->lang->line('menu_details').' | '.$this->lang->line('site_title');
 		$searchDish = array();
 		if (!empty($this->input->post('searchDish'))) {
@@ -453,6 +455,8 @@ class Restaurant extends CI_Controller {
 			}
 		}
 		$data['menu_arr'] = $menu_arr;
+
+		//echo '<pre>';print_r($data);exit();
 		$this->load->view('head_search_menu_details',$data);
 	}
 	// event booking detail page

@@ -5918,12 +5918,50 @@ body.fixed {
 	height: auto;
 }
 
+.gallery {
+	background: #EEE;
+}
+
+.gallery-cell {
+	width: 20%;
+	height: 50px;
+	margin-right: 10px;
+	/*background: #88cc88;*/
+	background:  var(--main-color);
+	counter-increment: gallery-cell;
+	color: white;
+	justify-content: center;
+	text-align: center;
+	font-weight: bold;
+	border-radius: 5%;
+	font-size: 1rem;
+}
+
+.gallery-cell.is-selected {
+	/*background: #ED2;*/
+	background: var(--second-color);
+}
+
+/* cell number */
+.gallery-cell:before {
+	display: block;
+	text-align: center;
+	/*content: counter(gallery-cell);*/
+	line-height: 200px;
+	font-size: 1rem;
+	color: white;
+	justify-content: center;
+	text-align: center
+}
+
 
 .ul-disc {
+	display: none;
 	list-style-type: disc;
 }
 
 .ul-cir {
+	display: none;
 	list-style-type: circle;
 }
 
