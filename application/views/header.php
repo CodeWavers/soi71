@@ -26,6 +26,7 @@
 		<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 		<link href="https://fonts.googleapis.com/css2?family=Norican&display=swap" rel="stylesheet">
 		<link rel="stylesheet" href="https://pro.fontawesome.com/releases/v5.10.0/css/all.css" integrity="sha384-AYmEC3Yw5cVb3ZcuHtOA93w35dYTsvhLPVnYs9eStHfGJvOvKxVfELGroGkvsg+p" crossorigin="anonymous"/>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/flickity.min.css">
 
 	    <!-- Required jQuery -->
 	     <script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/jquery.min.js'></script> 
@@ -84,6 +85,7 @@
 				<div class="form-group">
 
 					<input class="search_menu head_search"  type="search" id="head_search" placeholder="  Search..." />
+					<input class="search_menu d-none search_dish"  type="search" id="search_dish" placeholder="  Search..." />
 
 
 				</div>
@@ -112,6 +114,8 @@
 										Menu
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
+										<a class="dropdown-item " href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"   >Main Menu</a>
+
 										<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
 
 												<a class="dropdown-item " href="#"  id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)"><?php echo $value['name']; ?></a>
@@ -213,6 +217,7 @@
 												<div class="form-group">
 
 													<input class="search head_search" type="search" id="head_search" placeholder="  Search..." />
+													<input class="search search_dish d-none " type="search " id="search_dish" placeholder="  Search..." />
 
 
 												</div>
@@ -352,9 +357,9 @@
 					},
 					success: function(response) {
 
-						$('#quotes-main-loader').hide();
+						// $('#quotes-main-loader').hide();
 
-						 console.log(response)
+						 // console.log(response)
 						//
 						// return
 						// $('#quotes-main-loader').hide();

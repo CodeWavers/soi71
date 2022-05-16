@@ -11,7 +11,6 @@ if (!empty($menu_arr)) {
 <script type="text/javascript" src="<?php echo base_url();?>assets/front/js/flickity.pkgd.min.js"></script>
 
 <link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/bootstrap-tagsinput.css">
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/flickity.min.css">
 <section class="inner-banner restaurant-detail-banner">
 	<div class="container">
 		<div class="inner-pages-banner">
@@ -1045,7 +1044,7 @@ if (!empty($menu_arr)) {
 	}
 
 
-	$('#search_dish').keyup(function (e) {
+	$('.search_dish').keyup(function (e) {
 
 		if (e.keyCode===13){
 
