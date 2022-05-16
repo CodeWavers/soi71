@@ -20,14 +20,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/assets/front/css/flickity.min.css" afterDir="false" />
-      <change afterPath="$PROJECT_DIR$/assets/front/js/flickity.pkgd.min.js" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/head_search_menu_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/head_search_menu_details.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -126,7 +123,8 @@
       <workItem from="1652333901290" duration="23144000" />
       <workItem from="1652447310686" duration="173000" />
       <workItem from="1652503835702" duration="21413000" />
-      <workItem from="1652626517463" duration="3397000" />
+      <workItem from="1652626517463" duration="4145000" />
+      <workItem from="1652680035588" duration="2243000" />
     </task>
     <servers />
   </component>
@@ -143,12 +141,13 @@
         </entry>
       </map>
     </option>
+    <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1652629269889">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1652681590297">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1858.1080@0.0.1366.728" timestamp="1652524295429" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1652629269889" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1652681590297" />
   </component>
 </project>

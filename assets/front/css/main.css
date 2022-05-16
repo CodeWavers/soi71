@@ -7802,6 +7802,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.rest-detail-content>ul>li {
 		margin-right: 1px
 	}
+
+	.takeway>ul>a>li {
+		margin-right: 1px
+	}
 	.rest-detail-content {
 
 	}

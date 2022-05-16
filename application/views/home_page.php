@@ -149,8 +149,8 @@
 <div class="modal modal-main" id="myModal"></div>
 
 
-
-<section class="quick-searches"  >
+<?php if(!$popular_data) { ?>
+<section class="quick-searches"  style="margin-top: 10%">
 	<div class="container">
 		<div class="heading-title">
 			<h2>Popular Items</h2>
@@ -220,7 +220,8 @@
 		</div>
 
 </section>
-<section class="quick-searches"  >
+<?php } ?>
+<section class="quick-searches" style="margin-top: 5%" >
 	<div class="container" style="margin-top: 5%">
 		<div class="heading-title">
 			<h2>Best Deals</h2>

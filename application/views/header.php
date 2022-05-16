@@ -294,9 +294,9 @@
 					</div>
 				</div>
 
-				<div class="container min_header">
+				<div class="container rest-detail-content">
 					<div class="takeway " >
-						<ul class="" style="align-items:center;justify-content: center ;color: white">
+						<ul class="" style="align-items:center;justify-content: center ;color: white;">
 
 							<a href="<?php echo base_url() . 'contact-us/1'; ?>"><li class="<?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px "  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
 							<a href="<?php echo base_url() . 'contact-us/2'; ?>"><li class="<?php echo ($current_page == 'ContactUs2') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
