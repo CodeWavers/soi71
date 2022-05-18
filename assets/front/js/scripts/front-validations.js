@@ -522,7 +522,7 @@ function menuTopSearch(category_id){
 
 		}, 500)
 
-
+	// $('#example-one').addClass('open')
 }
 // autocomplete function
 var autocomplete;

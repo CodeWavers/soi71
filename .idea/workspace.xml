@@ -21,10 +21,15 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/head_search_menu_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/head_search_menu_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Restaurant.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/ajax_restaurant_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_restaurant_detail.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/cart.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/js/flickity.pkgd.min.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/flickity.pkgd.min.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/images/empty-cart.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/images/empty-cart.png" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -104,8 +109,13 @@
     <property name="RunOnceActivity.OpenProjectViewOnStart" value="true" />
     <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/front/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+  </component>
+  <component name="RecentsManager">
+    <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\git\soi71\assets\front\images" />
+    </key>
   </component>
   <component name="SvnConfiguration">
     <configuration />
@@ -124,7 +134,10 @@
       <workItem from="1652447310686" duration="173000" />
       <workItem from="1652503835702" duration="21413000" />
       <workItem from="1652626517463" duration="4145000" />
-      <workItem from="1652680035588" duration="7738000" />
+      <workItem from="1652680035588" duration="7929000" />
+      <workItem from="1652765198142" duration="171000" />
+      <workItem from="1652796454367" duration="1450000" />
+      <workItem from="1652849410697" duration="20732000" />
     </task>
     <servers />
   </component>
@@ -144,10 +157,10 @@
     <option name="oldMeFiltersMigrated" value="true" />
   </component>
   <component name="WindowStateProjectService">
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1652683971330">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1652891676127">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1858.1080@0.0.1366.728" timestamp="1652524295429" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1652683971330" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1858.1080@0.0.1366.728" timestamp="1652872762259" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1652891676127" />
   </component>
 </project>

@@ -725,6 +725,7 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
+		display: contents;
 	}
 }
 @media (max-width: 375px) {
@@ -739,6 +740,26 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
+		display: contents;
+	}
+	.address-btn .btn {
+		font-size: 11px;
+		margin-left: 0;
+	}
+}
+@media (min-width: 300px) {
+
+
+	.takeway>ul>a>li {
+		margin-right: 1px;
+		font-size: 1rem;
+	}
+	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
+		position: initial;
+		text-align: center;
+		display: contents;
 	}
 	.address-btn .btn {
 		font-size: 11px;

@@ -3068,6 +3068,7 @@ body.fixed {
 	width: 100%;
 	padding-left: 30px;
 	position: relative;
+	display: contents;
 }
 
 .rest-detail-content .openclose {
@@ -5937,6 +5938,11 @@ body.fixed {
 	font-size: 1rem;
 }
 
+.gallery_cats {
+	margin:6%;
+	cursor: pointer;
+}
+
 .gallery-cell.is-selected {
 	/*background: #ED2;*/
 	background: var(--second-color);
@@ -7817,6 +7823,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
+		display: contents;
 	}
 	.rest-detail-section .rest-detail-content .openclose {
 		top: -150px;

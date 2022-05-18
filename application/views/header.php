@@ -108,8 +108,11 @@
 							<ul id="example-one" >
 								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
 
+
+
+
 								<?php if ($current_page == 'RestaurantDetails') { ?>
-								<li class="nav-item dropdown">
+								<li class="nav-item dropdown mobile_menu">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										Menu
 									</a>
@@ -125,10 +128,12 @@
 									</div>
 								</li>
 								<?php } else {?>
-									<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
+									<li class="mobile_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
 
 
 								<?php } ?>
+
+								<li id="pc_menu" class="pc_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
 
 
 								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>">Reservation</a></li>
@@ -299,17 +304,18 @@
 					</div>
 				</div>
 
-				<div class="container rest-detail-content">
-					<div class="takeway " >
-						<ul class="" style="align-items:center;justify-content: center ;color: white;">
+
+					<div class="container takeway " >
+						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
 							<a href="<?php echo base_url() . 'contact-us/1'; ?>"><li class="<?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px "  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
-							<a href="<?php echo base_url() . 'contact-us/2'; ?>"><li class="<?php echo ($current_page == 'ContactUs2') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+							<a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
 							<a href="<?php echo base_url() . 'contact-us/3'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
 
 						</ul>
 					</div>
-				</div>
+
+
 
 
 
@@ -404,4 +410,18 @@
 					}
 				});
 			});
+
+			function myFunction(x) {
+				if (x.matches) {
+					$('#pc_menu').hide();
+					$('.mobile_menu').show();
+				} else {
+					$('.mobile_menu').hide();
+					$('.pc_menu').show();
+				}
+			}
+
+			var x = window.matchMedia("(max-width: 1200px)")
+			myFunction(x) // Call listener function at run time
+			x.addListener(myFunction)
 		</script>

@@ -65,15 +65,22 @@ if (!empty($menu_arr)) {
 			<!-- restaurant details start-->
 			<div class="col-sm-12 col-md-5 col-lg-8" id="menu" style="display: block;" >
 
-				<div class="gallery js-flickity">
+
+				<div class="carousel"
+					 data-flickity='{ "wrapAround": true }'>
 					<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
 
-					<div class="gallery-cell">
-							<span  id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)"><?php echo $value['name']; ?></span>
-					</div>
+						<div class="gallery-cell">
+							<div class="gallery_cats" id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)">
+								<span   ><?php echo $value['name']; ?></span>
+
+
+							</div>
+						</div>
 					<?php }?>
 
 				</div>
+
 
 				<div id="details_content" >
 					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
@@ -101,6 +108,10 @@ if (!empty($menu_arr)) {
 								<input type="radio" name="filter_price" class="custom-control-input" id="filter_low_price" value="filter_low_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
 								<label class="custom-control-label" for="filter_low_price"><?php echo $this->lang->line('sort_by_price_high') ?></label>
 							</div>
+							<div class="custom-control custom-checkbox">
+								<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
+								<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
+							</div>
 
 						</div>
 
@@ -109,14 +120,14 @@ if (!empty($menu_arr)) {
 
 
 						<div id="res_detail_content">
-
-							<div class="heading-title">
+							<?php if(!$popular_data) { ?>
+							<div class="heading-title bd">
 								<h2>Popular Items</h2>
 								<div class="slider-arrow">
 									<div id="customNav" class="arrow"></div>
 								</div>
 							</div>
-							<div class="home-items">
+							<div class="home-items bd">
 
 								<?php  foreach ($popular_data as $ds){ ?>
 
@@ -169,6 +180,8 @@ if (!empty($menu_arr)) {
 
 
 							</div>
+
+							<?php } ?>
 							<div class="heading-title">
 								<h2>Best Deals</h2>
 								<div class="slider-arrow">
@@ -231,13 +244,13 @@ if (!empty($menu_arr)) {
 								<?php }?>
 							</div>
 
-							<div class="heading-title">
+							<div class="heading-title bd">
 								<h2>Menu Items</h2>
 								<div class="slider-arrow">
 									<div id="customNav" class="arrow"></div>
 								</div>
 							</div>
-							<div class="home-items">
+							<div class="home-items bd">
 								<?php if (!empty($restaurant_details['menu_items'])) {
 									$popular_count = 0;
 									if (!empty($restaurant_details['categories'])) {
@@ -465,8 +478,8 @@ if (!empty($menu_arr)) {
 							<a href="<?php echo base_url() . 'checkout'; ?>"><button class="btn"><?php echo $this->lang->line('continue') ?></button></a>
 						</div>
 					<?php } else { ?>
-						<div class="cart-empty text-center">
-							<img src="<?php echo base_url();?>assets/front/images/empty-cart.png">
+						<div class="cart-empty text-center" >
+							<img src="<?php echo base_url();?>assets/front/images/empty-cart.png" style="height: 50%;width: 50%">
 							<h6><?php echo $this->lang->line('cart_empty') ?> <br> <?php echo $this->lang->line('add_some_dishes') ?></h6>
 						</div>
 					<?php } ?>
@@ -1071,6 +1084,30 @@ if (!empty($menu_arr)) {
 
 
 	});
+
+	function best_deal() {
+
+		if($('#filter_best_deal').is(':checked')){
+
+			$('#quotes-main-loader').show();
+			setTimeout(function() {
+
+				$('#quotes-main-loader').hide();
+			}, 500);
+			// $('#quotes-main-loader').show();
+			$('.bd').hide();
+
+		}else{
+
+			$('#quotes-main-loader').show();
+			setTimeout(function() {
+
+				$('#quotes-main-loader').hide();
+			}, 500);
+			$('.bd').show();
+
+		}
+	}
 </script>
 
 

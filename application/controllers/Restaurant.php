@@ -184,7 +184,7 @@ class Restaurant extends CI_Controller {
 		$total_orders = $this->restaurant_model->getTotalOrders($this->session->userdata('UserID'),$data['restaurant_details']['restaurant'][0]['restaurant_id']);
 		$total_reviews = $this->restaurant_model->getTotalReviews($this->session->userdata('UserID'),$data['restaurant_details']['restaurant'][0]['restaurant_id']);
 		$data['remaining_reviews'] = $total_orders - $total_reviews;
-
+//		echo '<pre>';print_r($main_data);exit();
 		//echo '<pre>';print_r($data['cart_details']);exit();
 		$this->load->view('restaurant_details',$data);
 	}
@@ -217,7 +217,30 @@ class Restaurant extends CI_Controller {
 				);
 			}
 		}
+
+		$items = $this->restaurant_model->popular_items();
+
+		$item_all = array_count_values(array_column($items, 'item_id'));
+		$a = array_column($items, 'item_id');
+
+
+		arsort($item_all);
+//
+
+		foreach ($item_all as $x => $x_value) {
+
+			$menu_data = $this->db->select('*')->from('restaurant_menu_item')->where('entity_id', $x)->get()->result_array();
+			$popular_items[] = array(
+				'menu_items' => $menu_data
+
+			);
+		}
+
+		$main_data = array_slice($popular_items, 0, 8);
 		$data['menu_arr'] = $menu_arr;
+		$data['popular_data'] = $main_data;
+
+		//echo '<pre>';print_r($main_data);exit();
 		$this->load->view('ajax_restaurant_detail',$data);
 	}
 	// get Cart items
