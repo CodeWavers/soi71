@@ -178,6 +178,20 @@ input:focus , button:focus , a:focus{
     border-color: var(--main-color);
 }
 
+.btn.btn-danger {
+	background-color:#e02222;
+	color:white;
+	border-color: #e02222;
+
+}
+
+.btn.btn-danger:hover {
+	background-color:white;
+	color:#e02222;
+	border-color: #e02222;
+
+}
+
 .btn.btn-secondary:hover {
 	background-color: #ffb300;
 	background-color: var(--main-color);

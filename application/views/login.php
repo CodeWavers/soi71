@@ -78,7 +78,7 @@ if (isset($_GET['state'])) {
 	//$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/takeway/home/login/', $facebook_permissions);
 	$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
 	// Render Facebook login button
-	$facebook_login_url = '<a class="fb btn " style="background-color:#4267B2" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
+	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
 	// }
 }
 
@@ -116,7 +116,7 @@ if (isset($_GET['scope'])) {
 	}
 } else {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="google btn" style="background-color:#DB4A39" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
+	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
 }
 ?>
 
@@ -219,10 +219,10 @@ if (isset($_GET['scope'])) {
 							<?php } ?>
 
 							<div class="action-button">
-								<button type="submit" name="submit_page" id="submit_page" value="Login" class="btn btn-primary"><?php echo $this->lang->line('title_login') ?></button>
+								<button type="submit" name="submit_page" id="submit_page" value="Login" class=" common_login btn btn-primary"><?php echo $this->lang->line('title_login') ?></button>
 								<!-- <input type="submit" name="submit_page" id="submit_page" value="Login" class="btn btn-primary"> -->
 								<?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
-									<a href="<?php echo base_url() . 'home/registration'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('sign_up') ?></a>
+									<a href="<?php echo base_url() . 'home/registration'; ?>" class="common_login btn btn-secondary"><?php echo $this->lang->line('sign_up') ?></a>
 								<?php } ?>
 								<!-- title_login -->
 							</div>

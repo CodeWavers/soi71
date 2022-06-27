@@ -504,7 +504,7 @@ function menuSearch(category_id){
 		$('#checkbox-option-'+category_id+'').prop("checked", true);
 
 		$('html, body').animate({
-			scrollTop: $('#category-'+category_id+'').offset().top -190
+			scrollTop: $('#category-'+category_id+'').offset().top -300
 
 
 		}, 500)
@@ -517,7 +517,7 @@ function menuTopSearch(category_id){
 
 		// alert("Hello")
 		$('html, body').animate({
-			scrollTop: $('#category-'+category_id+'').offset().top -190
+			scrollTop: $('#category-'+category_id+'').offset().top -300
 
 
 		}, 500)

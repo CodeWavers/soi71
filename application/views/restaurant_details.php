@@ -8,9 +8,7 @@ if (!empty($menu_arr)) {
 
 
 <!--<script type="text/javascript" src="--><?php //echo base_url();?><!--assets/front/js/tab-slider.js"></script>-->
-<script type="text/javascript" src="<?php echo base_url();?>assets/front/js/flickity.pkgd.min.js"></script>
 
-<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/bootstrap-tagsinput.css">
 <section class="inner-banner restaurant-detail-banner">
 	<div class="container">
 		<div class="inner-pages-banner">
@@ -63,32 +61,27 @@ if (!empty($menu_arr)) {
 
 		<div class="row restaurant-detail-row">
 			<!-- restaurant details start-->
-			<div class="col-sm-12 col-md-5 col-lg-8" id="menu" style="display: block;" >
+			<div class="col-sm-12 col-md-12 col-lg-12 " id="menu" style="display: block;" >
 
 
-				<div class="carousel"
-					 data-flickity='{ "wrapAround": true }'>
-					<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
 
-						<div class="gallery-cell">
-							<div class="gallery_cats" id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)">
-								<span   ><?php echo $value['name']; ?></span>
+				<div id="cat_stick">
+					<div  class="carousel"
+						  data-flickity='{ "wrapAround": true }'>
+						<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
+
+							<div class="gallery-cell">
+								<div class="gallery_cats" id="category_id-<?php echo $value['category_id']; ?>" onclick="menuTopSearch(<?php echo $value['category_id']; ?>)">
+									<span id="category_name-<?php echo $value['category_id']; ?>"  ><?php echo $value['name']; ?></span>
 
 
+								</div>
 							</div>
-						</div>
-					<?php }?>
-
-				</div>
-
-
-				<div id="details_content" >
-					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
-						if (!empty($restaurant_details['categories'])) {?>
-
 						<?php }?>
-						<div class="option-filter-tab">
-							<!-- <div class="custom-control custom-checkbox">
+
+					</div>
+					<div class="option-filter-tab">
+						<!-- <div class="custom-control custom-checkbox">
 								<input type="radio" name="filter_food" class="custom-control-input" id="filter_veg" value="filter_veg" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
 								<label class="custom-control-label" for="filter_veg"><?php echo $this->lang->line('veg') ?></label>
 							</div>
@@ -96,90 +89,97 @@ if (!empty($menu_arr)) {
 								<input type="radio" name="filter_food" class="custom-control-input" id="filter_non_veg" value="filter_non_veg" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
 								<label class="custom-control-label" for="filter_non_veg"><?php echo $this->lang->line('non_veg') ?></label>
 							</div> -->
-							<div class="custom-control custom-checkbox">
-								<input type="radio" checked="checked" name="filter_food" class="custom-control-input" id="all" value="all" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-								<label class="custom-control-label" for="all"><?php echo $this->lang->line('view_all') ?></label>
-							</div>
-							<div class="custom-control custom-checkbox">
-								<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-								<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
-							</div>
-							<div class="custom-control custom-checkbox">
-								<input type="radio" name="filter_price" class="custom-control-input" id="filter_low_price" value="filter_low_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-								<label class="custom-control-label" for="filter_low_price"><?php echo $this->lang->line('sort_by_price_high') ?></label>
-							</div>
-							<div class="custom-control custom-checkbox">
-								<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
-								<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
-							</div>
-
+						<div class="custom-control custom-checkbox">
+							<input type="radio" checked="checked" name="filter_food" class="custom-control-input" id="all" value="all" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+							<label class="custom-control-label" for="all"><?php echo $this->lang->line('view_all') ?></label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+							<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="radio" name="filter_price" class="custom-control-input" id="filter_low_price" value="filter_low_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+							<label class="custom-control-label" for="filter_low_price"><?php echo $this->lang->line('sort_by_price_high') ?></label>
+						</div>
+						<div class="custom-control custom-checkbox">
+							<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
+							<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
 						</div>
 
-						<div class="is_close">	<?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'<span id="closedres">'.$this->lang->line('not_accepting_orders').'</span>':''; ?>
-						</div>
+					</div>
+
+					<div class="is_close">	<?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'<span id="closedres">'.$this->lang->line('not_accepting_orders').'</span>':''; ?>
+					</div>
+				</div>
+				<div id="details_content" >
+					<?php if (!empty($restaurant_details['menu_items']) || !empty($restaurant_details['packages']) || !empty($restaurant_details['categories'])) {
+						if (!empty($restaurant_details['categories'])) {?>
+
+						<?php }?>
+
 
 
 						<div id="res_detail_content">
 							<?php if(!$popular_data) { ?>
-							<div class="heading-title bd">
-								<h2>Popular Items</h2>
-								<div class="slider-arrow">
-									<div id="customNav" class="arrow"></div>
+								<div class="heading-title bd">
+									<h2>Popular Items</h2>
+									<div class="slider-arrow">
+										<div id="customNav" class="arrow"></div>
+									</div>
 								</div>
-							</div>
-							<div class="home-items bd">
+								<div class="home-items bd">
 
-								<?php  foreach ($popular_data as $ds){ ?>
+									<?php  foreach ($popular_data as $ds){ ?>
 
-									<?php foreach ($ds['menu_items'] as $key => $value) { ?>
+										<?php foreach ($ds['menu_items'] as $key => $value) { ?>
 
 
-										<div class="home-menu-card ">
-											<div class="home-menu-image hover"  data-id="<?php echo ($value['entity_id']) ?>">
-												<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
-
-											</div>
-											<div class="home-menu-des">
-												<div class="">
-													<div class="home-menu-name"><?php echo $value['name']; ?></div>
+											<div class="home-menu-card ">
+												<div class="home-menu-image hover"  data-id="<?php echo ($value['entity_id']) ?>">
+													<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
 
 												</div>
-												<div class="home-menu-details-parent">
-													<div class="det-with-price">
-														<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
-														<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
+												<div class="home-menu-des">
+													<div class="">
+														<div class="home-menu-name"><?php echo $value['name']; ?></div>
 
 													</div>
+													<div class="home-menu-details-parent">
+														<div class="det-with-price">
+															<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+															<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
-													<div class="add-btn-div">
-														<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
-															if ($value['check_add_ons'] == 1) { ?>
-																<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-																<div class="add-btn home-add">
-																	<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-																	<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
-																</div>
-															<?php } else { ?>
-																<div class="add-btn home-add">
-																	<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-																	<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-																</div>
-															<?php }
-														} ?>
+														</div>
+
+														<div class="add-btn-div">
+															<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
+																if ($value['check_add_ons'] == 1) { ?>
+																	<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+																	<div class="add-btn home-add">
+																		<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+																		<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
+																	</div>
+																<?php } else { ?>
+																	<div class="add-btn home-add">
+																		<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+																		<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+																	</div>
+																<?php }
+															} ?>
+														</div>
 													</div>
 												</div>
 											</div>
-										</div>
 
 
-									<?php }?>
+										<?php }?>
 
 
-								<?php } ?>
+									<?php } ?>
 
 
 
-							</div>
+								</div>
 
 							<?php } ?>
 							<div class="heading-title">
@@ -315,6 +315,7 @@ if (!empty($menu_arr)) {
 						</div>
 					<?php }?>
 				</div>
+
 			</div>
 			<!-- restaurant details end -->
 			<!-- ratings and review start -->
@@ -431,60 +432,7 @@ if (!empty($menu_arr)) {
 			<!-- ratings and review end -->
 
 			<!-- your cart -->
-			<div class="col-sm-12 col-md-5 col-lg-4" id="your_cart">
-				<div class="your-cart-main">
-					<div class="your-cart-title">
-						<h3><i class="iicon-icon-02"></i><?php echo $this->lang->line('your_cart') ?></h3>
-						<h6><?php echo count($cart_details['cart_items']); ?> <?php echo $this->lang->line('items') ?></h6>
-					</div>
-					<?php if (!empty($cart_details['cart_items'])) { ?>
-						<div class="add-cart-list-main type-food-option">
-							<?php foreach ($cart_details['cart_items'] as $cart_key => $value) { ?>
-								<div class="add-cart-list">
-									<div class="cart-list-content <?php echo ($value['is_veg'] == 1) ? 'veg' : 'non-veg'; ?>">
-										<h5><?php echo $value['name']; ?></h5>
-										<ul class="ul-disc">
-											<?php if (!empty($value['addons_category_list'])) {
-												foreach ($value['addons_category_list'] as $key => $cat_value) { ?>
-													<li><h6><?php echo $cat_value['addons_category']; ?></h6></li>
-													<ul class="ul-cir">
-														<?php if (!empty($cat_value['addons_list'])) {
-															foreach ($cat_value['addons_list'] as $key => $add_value) {?>
-																<li><?php echo $add_value['add_ons_name']; ?>  <?php echo $restaurant_details['restaurant'][0]['currency_symbol']; ?> <?php echo $add_value['add_ons_price']; ?></li>
-															<?php }
-														}?>
-													</ul>
-												<?php }
-											}?>
-										</ul>
 
-									</div>
-									<div class="add-cart-item">
-										<strong><?php echo $restaurant_details['restaurant'][0]['currency_symbol']; ?> <?php echo $value['totalPrice']; ?></strong>
-										<div class="number">
-											<span class="minus" id="minusQuantity" onclick="customItemCount(<?php echo $value['menu_id']; ?>,<?php echo $value['restaurant_id']; ?>,'minus',<?php echo $cart_key; ?>)"><i class="iicon-icon-22"></i></span>
-											<input type="text" value="<?php echo $value['quantity']; ?>" class="pointer-none" />
-											<span class="plus" id="plusQuantity" onclick="customItemCount(<?php echo $value['menu_id']; ?>,<?php echo $value['restaurant_id']; ?>,'plus',<?php echo $cart_key; ?>)"><i class="iicon-icon-21"></i></span>
-										</div>
-									</div>
-								</div>
-							<?php }?>
-						</div>
-						<div class="cart-subtotal">
-							<strong><?php echo $this->lang->line('sub_total') ?></strong>
-							<strong class="price"><?php echo $restaurant_details['restaurant'][0]['currency_symbol']; ?> <?php echo $cart_details['cart_total_price']; ?></strong>
-						</div>
-						<div class="continue-btn">
-							<a href="<?php echo base_url() . 'checkout'; ?>"><button class="btn"><?php echo $this->lang->line('continue') ?></button></a>
-						</div>
-					<?php } else { ?>
-						<div class="cart-empty text-center" >
-							<img src="<?php echo base_url();?>assets/front/images/empty-cart.png" style="height: 50%;width: 50%">
-							<h6><?php echo $this->lang->line('cart_empty') ?> <br> <?php echo $this->lang->line('add_some_dishes') ?></h6>
-						</div>
-					<?php } ?>
-				</div>
-			</div>
 			<!-- your cart end -->
 		</div>
 
@@ -1036,12 +984,14 @@ if (!empty($menu_arr)) {
 	})
 	var mybutton = document.getElementById("myBtn");
 
+
 	// When the user scrolls down 20px from the top of the document, show the button
 	window.onscroll = function() {scrollFunction()};
 
 	function scrollFunction() {
 		if (document.body.scrollTop > 1000 || document.documentElement.scrollTop > 1000) {
 			mybutton.style.display = "block";
+
 		} else {
 			mybutton.style.display = "none";
 		}
@@ -1108,6 +1058,18 @@ if (!empty($menu_arr)) {
 
 		}
 	}
+
+
+	$(window).scroll(function(e){
+		var $el = $('.fixedElement');
+		var isPositionFixed = ($el.css('position') == 'fixed');
+		if ($(this).scrollTop() > 200 && !isPositionFixed){
+			$el.css({'position': 'fixed', 'top': '0px'});
+		}
+		if ($(this).scrollTop() < 200 && isPositionFixed){
+			$el.css({'position': 'static', 'top': '0px'});
+		}
+	});
 </script>
 
 

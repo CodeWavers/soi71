@@ -14,7 +14,9 @@
 
 	    <!-- Required Stylesheet -->
 <!--    <link rel='stylesheet' href='--><?php //echo base_url(); ?><!--assets/front/css/font-awesome.min.css'>-->
-	    <link rel='stylesheet' href='<?php echo base_url(); ?>assets/front/css/animate.min.css'>
+		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/bootstrap-tagsinput.css">
+
+		<link rel='stylesheet' href='<?php echo base_url(); ?>assets/front/css/animate.min.css'>
 	    <link rel='stylesheet' href='<?php echo base_url(); ?>assets/front/css/owl.carousel.min.css'>
 	    <!--  <link rel="stylesheet" type="text/css" href="//maxcdn.bootstrapcdn.com/bootstrap/3.2.0/css/bootstrap.min.css"> -->
 	    <link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/bootstrap.min.css" type="text/css">
@@ -29,7 +31,9 @@
 		<link rel="stylesheet" href="<?php echo base_url(); ?>assets/front/css/flickity.min.css">
 
 	    <!-- Required jQuery -->
-	     <script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/jquery.min.js'></script> 
+		<script type="text/javascript" src="<?php echo base_url();?>assets/front/js/flickity.pkgd.min.js"></script>
+
+		<script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/jquery.min.js'></script>
 	    <script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/wow.min.js'></script>
 	    <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/popper.min.js" defer></script>
 		 <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/bootstrap.min.js"></script> 
@@ -78,7 +82,7 @@
 
 
 ?>
-	<?php if ($current_page != "Login" && $current_page != "Registration") { ?>
+<!--	--><?php //if ($current_page != "Login" && $current_page != "Registration") { ?>
 
 		<div class="manu-icon" >
 			<form id="home_search_form" class="search-formd" style="display: none">
@@ -106,15 +110,12 @@
 						</div>
 						<nav class="navbar navbar-expand-lg ">
 							<ul id="example-one" >
-								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><?php echo $this->lang->line('home') ?></a></li>
-
-
-
+								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li>
 
 								<?php if ($current_page == 'RestaurantDetails') { ?>
 								<li class="nav-item dropdown mobile_menu">
 									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-										Menu
+										<span class="mobile-nav fas fa-bars"></span> 	Menu
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
 										<a class="dropdown-item " href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"   >Main Menu</a>
@@ -128,22 +129,22 @@
 									</div>
 								</li>
 								<?php } else {?>
-									<li class="mobile_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
+									<li class="mobile_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fa fa-bars"></span>  Menu</a></li>
 
 
 								<?php } ?>
 
-								<li id="pc_menu" class="pc_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>">Menu</a></li>
+								<li id="pc_menu" class="pc_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fas fa-bars"></span>  Menu</a></li>
 
 
-								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>">Reservation</a></li>
+								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><span class="mobile-nav fa fa-file"></span>   Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
 									foreach ($cmsPages as $key => $value) {
 										if($value->CMSSlug == "contact-us") { ?>
-											<li class="<?php echo ($current_page == 'ContactUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'contact-us'; ?>"><?php echo $this->lang->line('contact_us') ?></a></li>
+											<li class="<?php echo ($current_page == 'ContactUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'contact-us'; ?>"><span class="mobile-nav fa fa-phone"></span>  <?php echo $this->lang->line('contact_us') ?></a></li>
 										<?php }
 										else if ($value->CMSSlug == "about-us") { ?>
-											<li class="<?php echo ($current_page == 'AboutUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'about-us'; ?>"><?php echo $this->lang->line('about_us') ?></a></li>
+											<li class="<?php echo ($current_page == 'AboutUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'about-us'; ?>"><span class="mobile-nav fas fa-address-card"></span>  <?php echo $this->lang->line('about_us') ?></a></li>
 										<?php }
 									}
 								} ?>
@@ -281,17 +282,25 @@
 										</div>
 									</div>
 								<?php } else {?>
-									<div class="signin-btn">
-										<a href="<?php echo base_url() . 'home/login'; ?>" class="btn"><?php echo $this->lang->line('sign_in') ?></a>
+									<div class=" signin-btn">
+										<a href="<?php echo base_url() . 'home/login'; ?>" class="common btn"><?php echo $this->lang->line('sign_in') ?></a>
 									</div>
 								<?php }?>
 
 								<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 <!--								--><?php //$closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 
+								<?php if ($closed == 'closed') {?>
+								<div class="open_closed  <?php echo $closed; ?>">
+									<a href="" class="common btn btn-danger">Closed</a>
+								</div>
+								<?php }else{?>
+								<div class=" open_closed  <?php echo $closed; ?>">
+									<a href="" class="common btn ">Open</a>
+								</div>
+								<?php } ?>
 
-
-									<div class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'Closed Now':$this->lang->line('open'); ?></div>
+<!--									<div class="openclose --><?php //echo $closed; ?><!--">--><?php //echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'Closed Now':$this->lang->line('open'); ?><!--</div>-->
 
 
 
@@ -308,9 +317,9 @@
 					<div class="container takeway " >
 						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
-							<a href="<?php echo base_url() . 'contact-us/1'; ?>"><li class="<?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px "  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
-							<a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
-							<a href="<?php echo base_url() . 'contact-us/3'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="color:white;font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
+							<a class="three_button" href="<?php echo base_url() . 'contact-us/1'; ?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+							<a class="three_button" href="<?php echo base_url() . 'contact-us/3'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
 
 						</ul>
 					</div>
@@ -321,7 +330,7 @@
 
 
 			</header>
-		<?php }?>
+<!--		--><?php //}?>
 
 		<div class="search_result d-none " >
 			<div class="container">

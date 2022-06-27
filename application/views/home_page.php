@@ -592,36 +592,38 @@
 </div>
 
 </div>
-	<div class="rest-detail-main">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="rest-detail_s">
-						<div class="rest-detail-img-main">
-							<div class="rest-detail-img">
-								<img src="<?php echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?>">
-							</div>
-						</div>
-						<div class="rest-detail-content">
+<!--	<div class="rest-detail-main">-->
+<!--		<div class="container">-->
+<!--			<div class="row">-->
+<!--				<div class="col-lg-12">-->
+<!--					<div class="rest-detail_s">-->
+<!--						<div class="rest-detail-img-main">-->
+<!--							<div class="rest-detail-img">-->
+<!--								<img src="--><?php //echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?><!--">-->
+<!--							</div>-->
+<!--						</div>-->
+<!--						<div class="rest-detail-content">-->
+<!---->
+<!--							<p><i class="iicon-icon-20"></i>--><?php //echo $restaurant_details['restaurant'][0]['address']; ?><!--</p>-->
+<!--							<ul class="">-->
+<!--								<li><i class="iicon-icon-29"></i>--><?php //echo $restaurant_details['restaurant'][0]['name']; ?><!--</li>-->
+<!--								<li><i class="iicon-icon-05"></i>--><?php //echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?><!--</li>-->
+<!--								<li><i class="iicon-icon-18"></i>--><?php //echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?><!--</li>-->
+<!--								<li><i class="iicon-icon-19"></i>--><?php //echo $restaurant_details['restaurant'][0]['phone_number']; ?><!--</li>-->
+<!---->
+<!---->
+<!--							</ul>-->
+<!---->
+<!---->
+<!--						</div>-->
+<!---->
+<!--					</div>-->
+<!--				</div>-->
+<!--			</div>-->
+<!--		</div>-->
+<!--	</div>-->
 
-							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
-							<ul class="">
-								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
-								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
-								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
-								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
 
-
-							</ul>
-
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 </section>
 
 <!--<section class="restaurant-app quick-searches "  >-->

@@ -34,6 +34,10 @@ main {
 	display: block;
 }
 
+.mobile-nav{
+	display: none !important;
+}
+
 .parallax {
 	/* The image used */
 	background-image: url(../images/bg.jpg);
@@ -388,6 +392,16 @@ input {
 .li_sec {
 	color: white;
 	background: var(--second-color);
+}
+
+.span_text:hover{
+	color: #72A140;
+}
+
+.three_button>li:hover{
+	background: white;
+	color: #72A140;
+	border: 2px solid var(--main-color);
 }
 
 
@@ -823,7 +837,7 @@ body.fixed {
 	top: 0;
 	left: 0;
 	width: 100%;
-	z-index: 999;
+	z-index: 2000;
 
 }
 
@@ -1534,7 +1548,7 @@ body.fixed {
 }
 
 .span_text{
-	color: white;
+	/*color: white;*/
 	font-size: 12px;
 }
 .secondary_footer{
@@ -2481,6 +2495,21 @@ body.fixed {
 	letter-spacing: 0.02em;
 	font-weight: 600;
 	line-height: 1.2;
+}
+
+.open_closed .btn {
+	padding: 7px 15px;
+	line-height: 1;
+	font-size: 14px;
+	text-transform: uppercase;
+	letter-spacing: 0.02em;
+	font-weight: 600;
+	line-height: 1.2;
+}
+
+.open_closed closed{
+	background: #0c91e5;
+
 }
 
 
@@ -5537,6 +5566,7 @@ body.fixed {
 	padding-left: 10px;
 }
 
+
 .profile-page-title {
 	background: #fff;
 	border: 1px solid #E2E2E2;
@@ -6133,6 +6163,33 @@ body.fixed {
 	background-color: var(--main-color);
 	color: #fff;
 }
+
+.common{
+	width: 100px;
+}
+.common_login{
+	width: 140px;
+}
+.common_with_login{
+	width: 270px;
+}
+
+#cat_stick{
+	position: -webkit-sticky;
+	position: sticky;
+	background: white;
+	padding: 10px;
+	top: 138px;
+	font-size: 20px;
+z-index: 1000;
+border-bottom-left-radius: 10px;
+border-bottom-right-radius: 10px;
+	/*box-shadow: 8px 1px 1px var(--main-color);*/
+	box-shadow: 2px 2px 2px 1px rgb(114, 161, 64);
+
+}
+
+
 
 .dropbtn {
 	background-color: #ffb300;
@@ -6893,8 +6950,14 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 
 @media only screen and (max-width:1199px) {
+	.mobile-nav{
+		display: inline !important;
+	}
 	.manu-icon{
 		display: none;
+	}
+	#cat_stick{
+		top: 110px;
 	}
 	.coupon .title{;
 
@@ -6917,6 +6980,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 	#example-one {
 		padding: 0px;
+
 	}
 	.header-inner nav>ul>li >a:hover, .header-inner nav>ul>li >a:focus,
 	.header-inner nav>ul>li.current_page_item>a {
@@ -6952,7 +7016,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin: 0;
 		bottom: 0;
 		width: 300px;
-		z-index: 9;
+
 		box-shadow: 0px 15px 15px rgba(0, 0, 0, 0.2);
 		border-top: 3px solid #ffb300;
 		border-top: 3px solid var(--main-color);
@@ -6990,6 +7054,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.manu-icon{
 		display: none;
 	}
+	#cat_stick{
+		top: 110px;
+	}
 	/*.search {*/
 	/*	display: none;*/
 	/*}*/
@@ -7014,6 +7081,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 @media only screen and (max-width:991px) {
 	.manu-icon{
 		display: none;
+	}
+	#cat_stick{
+		top: 110px;
 	}
 
 	/*.search {*/
@@ -7159,6 +7229,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 
 @media only screen and (max-width:767px) {
+	#cat_stick{
+		top: 105px;
+	}
 	.manu-icon{
 		display: table;
 	}
@@ -7279,6 +7352,20 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		font-family: 'eatance'!important;
 		font-size: 15px;
 	}
+
+	.open_closed{
+		margin-left: 7px;
+		margin-right: 7px;
+	}
+	.open_closed a.btn {
+		font-size: 0px;
+		padding: 1px 5px;
+	}
+	.open_closed a.btn::before {
+		content: "\e91a";
+		font-family: 'eatance'!important;
+		font-size: 15px;
+	}
 	.mobile-icon button {
 		width: 19px;
 		height: 19px;
@@ -7329,6 +7416,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	.takeway>ul {
 		flex-wrap: wrap;
+
 	}
 	.rest-detail-section .heading-title {
 		margin-bottom: 14px;
@@ -7343,6 +7431,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin-bottom: 10px;
 		margin-right: 10px;
 		font-size: 12px;
+
 	}
 	.rest-detail-content>ul>li>i {
 		font-size: 13px;
@@ -7770,6 +7859,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 
 @media only screen and (max-width:575px) {
+
+	#cat_stick{
+		top: 105px;
+	}
 	.manu-icon{
 		display: table;
 	}

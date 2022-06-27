@@ -85,7 +85,7 @@
 
 </style>
 
-<?php if (!$this->session->userdata('is_user_login')) {?>
+<?php if (!$this->session->userdata('is_user_login') && $current_page == 'HomePage')  {?>
 	<div id="login_alert" class="footer">
 		<p class="cjeKAy">Login to unlock awesome benefits</p>
 		<p class="hWYAwo">It hardly takes 10 seconds!</p>
@@ -101,7 +101,7 @@
 
 		</div>
 
-		<?php } ?>
+
 
 
 		<div class="signin-btn">
@@ -110,7 +110,7 @@
 	</div>
 
 
-
+<?php } ?>
 
 
 <div class='wrapper d-none' >
