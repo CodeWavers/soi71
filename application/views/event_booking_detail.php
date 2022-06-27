@@ -39,8 +39,7 @@
 								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
 
 							</ul>
-							<?php $closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
-							<a href="#" class="openclose <?php echo $closed; ?>"><?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?$this->lang->line('closed'):$this->lang->line('open'); ?></a>
+
 						</div>
 					</div>
 				</div>
