@@ -939,6 +939,12 @@ body.fixed {
 	color: rgb(17, 16, 16);
 }
 
+.header-inner nav>ul>li>a:hover {
+	/*font-size: 13.5px;*/
+	font-weight: bold;
+	color: var(--second-color);
+}
+
 #magic-line {
 	position: absolute;
 	bottom: 0px;
@@ -3203,7 +3209,7 @@ body.fixed {
 	margin-bottom: 15px;
 	font-weight: bolder;
 	text-transform: uppercase;
-	border-left: 8px dotted var(--second-color);
+	border-left: 8px solid var(--second-color);
 	margin-left: 15px;
 
 }
@@ -6174,12 +6180,17 @@ body.fixed {
 	width: 270px;
 }
 
+.common_with_sign{
+	width: 300px;
+}
+
+
 #cat_stick{
 	position: -webkit-sticky;
 	position: sticky;
 	background: white;
-	padding: 10px;
-	top: 138px;
+	/*padding: 10px;*/
+	top: 95px;
 	font-size: 20px;
 z-index: 1000;
 border-bottom-left-radius: 10px;
@@ -6957,7 +6968,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		display: none;
 	}
 	#cat_stick{
-		top: 110px;
+		top: 68px;
 	}
 	.coupon .title{;
 
@@ -7055,7 +7066,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		display: none;
 	}
 	#cat_stick{
-		top: 110px;
+		top: 65px;
 	}
 	/*.search {*/
 	/*	display: none;*/
@@ -7083,7 +7094,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		display: none;
 	}
 	#cat_stick{
-		top: 110px;
+		top: 65px;
 	}
 
 	/*.search {*/
@@ -7230,7 +7241,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 @media only screen and (max-width:767px) {
 	#cat_stick{
-		top: 105px;
+		top: 65px;
 	}
 	.manu-icon{
 		display: table;
@@ -7861,7 +7872,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 @media only screen and (max-width:575px) {
 
 	#cat_stick{
-		top: 105px;
+		top: 60px;
 	}
 	.manu-icon{
 		display: table;

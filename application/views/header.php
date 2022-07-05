@@ -313,7 +313,7 @@
 					</div>
 				</div>
 
-
+				<?php if ($current_page == 'HomePage')  {?>
 					<div class="container takeway " >
 						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
@@ -323,7 +323,7 @@
 
 						</ul>
 					</div>
-
+				<?php } ?>
 
 
 
