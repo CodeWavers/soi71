@@ -21,15 +21,13 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Restaurant.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Restaurant.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/ajax_restaurant_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_restaurant_detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/cart.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/cart.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/contact_us.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/contact_us.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/flickity.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/flickity.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/images/empty-cart.png" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/images/empty-cart.png" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/images/user-login.jpg" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/images/user-login.jpg" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -50,6 +48,14 @@
   </component>
   <component name="Git.Settings">
     <option name="RECENT_GIT_ROOT_PATH" value="$PROJECT_DIR$" />
+  </component>
+  <component name="GitSEFilterConfiguration">
+    <file-type-list>
+      <filtered-out-file-type name="LOCAL_BRANCH" />
+      <filtered-out-file-type name="REMOTE_BRANCH" />
+      <filtered-out-file-type name="TAG" />
+      <filtered-out-file-type name="COMMIT_BY_MESSAGE" />
+    </file-type-list>
   </component>
   <component name="PhpWorkspaceProjectConfiguration">
     <include_path>
@@ -111,12 +117,14 @@
     <property name="WebServerToolWindowFactoryState" value="false" />
     <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/front/images" />
     <property name="list.type.of.created.stylesheet" value="CSS" />
+    <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\git\soi71\assets\front\images" />
     </key>
   </component>
+  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -138,11 +146,18 @@
       <workItem from="1652765198142" duration="171000" />
       <workItem from="1652796454367" duration="1450000" />
       <workItem from="1652849410697" duration="20732000" />
+      <workItem from="1656229760955" duration="742000" />
+      <workItem from="1656305259003" duration="23347000" />
+      <workItem from="1656392399605" duration="160000" />
+      <workItem from="1657039257931" duration="3998000" />
+      <workItem from="1657082964697" duration="598000" />
+      <workItem from="1657949745045" duration="2352000" />
+      <workItem from="1657952197072" duration="16568000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="2" />
+    <option name="version" value="3" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -155,12 +170,5 @@
       </map>
     </option>
     <option name="oldMeFiltersMigrated" value="true" />
-  </component>
-  <component name="WindowStateProjectService">
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1652891676127">
-      <screen x="0" y="0" width="1366" height="728" />
-    </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.-313.1858.1080@0.0.1366.728" timestamp="1652872762259" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1652891676127" />
   </component>
 </project>

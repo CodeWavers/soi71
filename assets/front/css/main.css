@@ -945,6 +945,11 @@ body.fixed {
 	color: var(--second-color);
 }
 
+.active_color{
+	font-weight: bold;
+	color: var(--second-color) !important;
+}
+
 #magic-line {
 	position: absolute;
 	bottom: 0px;
@@ -952,14 +957,16 @@ body.fixed {
 	width: 100%;
 	height: 4px;
 	background: #ffb300;
-	background: var(--main-color);
+	/*background: var(--main-color);*/
 	display: none;
 }
 
 .current_page_item~#magic-line {
 	display: block;
 }
-
+/*.current_page_item{*/
+/*	color: var(--main-color) ;*/
+/*}*/
 .noti-cart>ul {
 	display: -webkit-box;
 	display: -moz-box;
@@ -1444,6 +1451,7 @@ body.fixed {
 	align-items: flex-start;
 	margin-bottom: 25px;
 	text-transform: uppercase;
+	margin-top: 2%;
 }
 
 .heading-title>h2 {
@@ -2525,7 +2533,7 @@ body.fixed {
 /* ====== Order food start ======== ================================ */
 
 .inner-banner {
-	height: 350px;
+	height: 400px;
 	background-position: center center;
 	background-repeat: no-repeat;
 	background-size: cover;
@@ -2537,6 +2545,7 @@ body.fixed {
 	align-items: center;
 	position: relative;
 	z-index: 0;
+	margin-top: 10px;
 }
 .inner-banner:after {
     position: absolute;
@@ -5960,8 +5969,8 @@ body.fixed {
 }
 
 .gallery-cell {
-	width: 20%;
-	height: 50px;
+	width: 16%;
+	height: 40px;
 	margin-right: 10px;
 	/*background: #88cc88;*/
 	background:  var(--main-color);
@@ -5981,7 +5990,7 @@ body.fixed {
 
 .gallery-cell.is-selected {
 	/*background: #ED2;*/
-	background: var(--second-color);
+	/*background: var(--second-color);*/
 }
 
 /* cell number */
@@ -6189,8 +6198,9 @@ body.fixed {
 	position: -webkit-sticky;
 	position: sticky;
 	background: white;
-	/*padding: 10px;*/
-	top: 95px;
+
+	/*padding-top: 10px;*/
+	top:100px;
 	font-size: 20px;
 z-index: 1000;
 border-bottom-left-radius: 10px;
@@ -6287,7 +6297,7 @@ border-bottom-right-radius: 10px;
 .option-filter-tab {
 	background-color: #fff;
 	margin-bottom: 22px;
-	padding: 10px;
+	padding: 7px;
 	border: 1px solid #E5E5E5;
 }
 
@@ -6471,6 +6481,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.manu-icon{
 		display: none;
 	}
+
 }
 @media only screen and (max-width:1440px) {
 	.manu-icon{
@@ -6482,6 +6493,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.rest-detail-content {
 		padding-left: 20px;
 	}
+	/*#cat_stick{*/
+	/*	top: 8%;*/
+	/*}*/
 
 	.takeway {
 		padding-left: 20px;
@@ -6967,9 +6981,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.manu-icon{
 		display: none;
 	}
-	#cat_stick{
-		top: 68px;
-	}
+
 	.coupon .title{;
 
 		font-size: 16px;
@@ -6996,7 +7008,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.header-inner nav>ul>li >a:hover, .header-inner nav>ul>li >a:focus,
 	.header-inner nav>ul>li.current_page_item>a {
 		background: #ffb300;
-		background: var(--main-color);
+		/*background: var(--main-color);*/
 		color: #fff;
 
 	}
@@ -7060,14 +7072,33 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		padding: 0px;
 	}
 }
+@media (min-width:2561px) and (max-width:3800px) {
+
+
+	#cat_stick {
+		top:90px;
+	}
+}
+@media (min-width:1200px) and (max-width:2560px) {
+
+
+	#cat_stick {
+		top:90px;
+	}
+}
+
+
 
 @media only screen and (min-width:992px) and (max-width:1199px) {
 	.manu-icon{
 		display: none;
 	}
-	#cat_stick{
-		top: 65px;
+	#cat_stick {
+		top:69px;
 	}
+	/*#cat_stick{*/
+	/*	top: 8.2%;*/
+	/*}*/
 	/*.search {*/
 	/*	display: none;*/
 	/*}*/
@@ -7093,8 +7124,8 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.manu-icon{
 		display: none;
 	}
-	#cat_stick{
-		top: 65px;
+	#cat_stick {
+		top:69px;
 	}
 
 	/*.search {*/
@@ -7239,9 +7270,27 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 }
 
+@media (max-width:850px) {
+	.form-control:focus {
+		box-shadow: none;
+		border: 1px solid #E4E4E4;
+	}
+
+	#cat_stick {
+		top:69px;
+	}
+	/*#cat_stick{*/
+	/*	top: 13%;*/
+	/*}*/
+
+
+
+
+}
+
 @media only screen and (max-width:767px) {
-	#cat_stick{
-		top: 65px;
+	#cat_stick {
+		top:60px;
 	}
 	.manu-icon{
 		display: table;
@@ -7869,11 +7918,12 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 }
 
+
 @media only screen and (max-width:575px) {
 
-	#cat_stick{
-		top: 60px;
-	}
+	/*#cat_stick{*/
+	/*	top:6%;*/
+	/*}*/
 	.manu-icon{
 		display: table;
 	}
@@ -8042,6 +8092,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 
 @media only screen and (max-width:480px) {
+
+	#cat_stick {
+		top:50px;
+	}
 	.manu-icon{
 		display: table;
 

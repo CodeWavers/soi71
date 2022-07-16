@@ -110,11 +110,12 @@
 						</div>
 						<nav class="navbar navbar-expand-lg ">
 							<ul id="example-one" >
-								<li class="<?php echo ($current_page == 'HomePage') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url(); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li>
+								<li ><a class="<?php echo ($current_page == 'HomePage') ? 'active_color' : ''; ?>" href="<?php echo base_url(); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li>
 
 								<?php if ($current_page == 'RestaurantDetails') { ?>
 								<li class="nav-item dropdown mobile_menu">
-									<a class="nav-link dropdown-toggle" href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+<!--									nav-link dropdown-toggle //a class-->
+									<a class="<?php echo ($current_page == 'RestaurantDetails') ? 'active_color' : ''; ?>"  href="#" id="navbarDropdown" role="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 										<span class="mobile-nav fas fa-bars"></span> 	Menu
 									</a>
 									<div class="dropdown-menu" aria-labelledby="navbarDropdown">
@@ -129,22 +130,22 @@
 									</div>
 								</li>
 								<?php } else {?>
-									<li class="mobile_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fa fa-bars"></span>  Menu</a></li>
+									<li class="mobile_menu"><a <?php echo ($current_page == 'RestaurantDetails') ? 'active_color' : ''; ?> href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fa fa-bars"></span>  Menu</a></li>
 
 
 								<?php } ?>
 
-								<li id="pc_menu" class="pc_menu<?php echo ($current_page == 'RestaurantDetails') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fas fa-bars"></span>  Menu</a></li>
+								<li id="pc_menu" class="pc_menu"><a  class="<?php echo ($current_page == 'RestaurantDetails') ? 'active_color' : ''; ?>" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fas fa-bars"></span>  Menu</a></li>
 
 
-								<li class="<?php echo ($current_page == 'EventBooking') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><span class="mobile-nav fa fa-file"></span>   Reservation</a></li>
+								<li><a  class="<?php echo ($current_page == 'EventBooking') ? 'active_color' : ''; ?>" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><span class="mobile-nav fa fa-file"></span>   Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
 									foreach ($cmsPages as $key => $value) {
 										if($value->CMSSlug == "contact-us") { ?>
-											<li class="<?php echo ($current_page == 'ContactUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'contact-us'; ?>"><span class="mobile-nav fa fa-phone"></span>  <?php echo $this->lang->line('contact_us') ?></a></li>
+											<li ><a  class="<?php echo ($current_page == 'ContactUs') ? 'active_color' : ''; ?>" href="<?php echo base_url() . 'contact-us'; ?>"><span class="mobile-nav fa fa-phone"></span>  <?php echo $this->lang->line('contact_us') ?></a></li>
 										<?php }
 										else if ($value->CMSSlug == "about-us") { ?>
-											<li class="<?php echo ($current_page == 'AboutUs') ? 'current_page_item' : ''; ?>"><a href="<?php echo base_url() . 'about-us'; ?>"><span class="mobile-nav fas fa-address-card"></span>  <?php echo $this->lang->line('about_us') ?></a></li>
+											<li><a  class="<?php echo ($current_page == 'AboutUs') ? 'active_color' : ''; ?>" href="<?php echo base_url() . 'about-us'; ?>"><span class="mobile-nav fas fa-address-card"></span>  <?php echo $this->lang->line('about_us') ?></a></li>
 										<?php }
 									}
 								} ?>
@@ -249,7 +250,18 @@
 								<?php if ($this->session->userdata('is_user_login')) {?>
 									<div class="header-user">
 										<div class="user-img">
-											<?php $image = ($this->session->userdata('userImage')) ? ($this->session->userdata('userImage')) :($this->session->userdata('social_image')) ? ($this->session->userdata('social_image')) : default_user_img; ?>
+											<?php
+
+											$ses_image=$this->session->userdata('userImage');
+											$sc_image=$this->session->userdata('social_image');
+
+
+
+											$image = ((!empty($sc_image)) ? $sc_image : (!empty($sc_image) ) ? $sc_image : $ses_image);
+											?>
+
+<!--											--><?php //$image = ($this->session->userdata('userImage')) ? ($this->session->userdata('userImage')) :($this->session->userdata('social_image')) ? ($this->session->userdata('social_image')) : default_img; ?>
+<!--											--><?php //$image = ($this->session->userdata('userImage')) ? ( $this->session->userdata('userImage')) :($this->session->userdata('social_image')) ? ($this->session->userdata('social_image')): (base_url() . 'assets/front/images/user-login.jpg');?>
 											<img src="<?php echo $image; ?>">
 										</div>
 

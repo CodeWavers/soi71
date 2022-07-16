@@ -49,6 +49,9 @@
 	.ordering-box-bottom {
 		flex-wrap: wrap;
 	}
+	/*#cat_stick{*/
+	/*	top:11%;*/
+	/*}*/
 	.ordering-box-bottom .ordering-btn {
 		margin-top: 10px;
 		width: 100%;
@@ -61,6 +64,7 @@
 }
 
 @media (max-width:1440px) {
+
 	.header-inner nav>ul>li>a {
 		font-size: 13px;
 		padding: 24px 10px;
@@ -183,6 +187,7 @@
 		flex: 0 0 30%;
 		max-width: 30%;
 	}
+
 }
 
 @media (max-width:1199px) {
@@ -203,6 +208,10 @@
 	.footer-logo img {
 		height: 50px;
 	}
+
+	/*#cat_stick{*/
+	/*	top:6%;*/
+	/*}*/
 }
 
 @media (max-width:991px) {
@@ -212,13 +221,16 @@
 	.contact-form {
 		padding: 2.1rem 1.4rem 2.4rem;
 	}
-}
+
 
 @media (min-width:768px) {
 	.form-control:focus {
 		box-shadow: none;
 		border: 1px solid #E4E4E4;
 	}
+
+
+
 }
 
 @media (max-width: 767px) {

@@ -132,6 +132,6 @@ https://flickity.metafizzy.co
 	cursor: pointer
 }
 
-.flickity-page-dots .dot.is-selected {
-	opacity: 1
-}
+/*.flickity-page-dots .dot.is-selected {*/
+/*	opacity: 1*/
+/*}*/
