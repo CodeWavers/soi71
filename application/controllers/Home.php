@@ -26,6 +26,9 @@ class Home extends CI_Controller
 	{
 
 //		set_cookie('cart_restaurant', 104);
+		$slider = $this->db->select('image')->from('slider_image')->where('status',1)->order_by('entity_id', 'desc')->limit(4)->get()->result_array();
+
+
 		$slug = $this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id', 'asc')->limit(1)->get()->row()->restaurant_slug;
 		$entity_id = $this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id', 'asc')->limit(1)->get()->row()->entity_id;
 		$data['current_page'] = 'HomePage';
@@ -99,6 +102,7 @@ class Home extends CI_Controller
 		$data['timings'] = json_encode($timings[0]['timings']);
 		$data['delivery_area'] = $this->restaurant_model->delivery_area();
 		$data['popular_data'] = $main_data;
+		$data['slider'] = $slider;
 
 		$this->load->view('home_page', $data);
 	}
