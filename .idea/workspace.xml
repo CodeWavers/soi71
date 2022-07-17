@@ -24,8 +24,8 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/controllers/Myprofile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Myprofile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/contact_us.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/contact_us.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
     </list>
@@ -154,7 +154,7 @@
       <workItem from="1657082964697" duration="598000" />
       <workItem from="1657949745045" duration="2352000" />
       <workItem from="1657952197072" duration="16789000" />
-      <workItem from="1658032373041" duration="10160000" />
+      <workItem from="1658032373041" duration="12683000" />
     </task>
     <servers />
   </component>

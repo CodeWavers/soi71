@@ -77,17 +77,17 @@
 
 		<div class="carousel-inner">
 			<div class="carousel-item active">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[0]['image']) ?>" alt="Second slide">
+				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[0]['image']) ?>" >
 			</div>
 			<div class="carousel-item ">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[1]['image']) ?> alt="First slide">
+				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[1]['image']) ?>" >
 			</div>
 
 			<div class="carousel-item">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[2]['image']) ?>" alt="Third slide">
+				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[2]['image']) ?>" >
 			</div>
 			<div class="carousel-item">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" alt="Third slide">
+				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" >
 			</div>
 		</div>
 <!--		--><?php //echo '<pre>';print_r($slider[0]['image']);exit(); ?>
