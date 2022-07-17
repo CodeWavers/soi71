@@ -5,3 +5,4 @@ application/cache/*
 application/config/database.php
 uploads/*
 error_log
+.idea/workspace.xml

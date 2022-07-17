@@ -26,7 +26,7 @@
 		background-position:center;
 		background-color: white;
 
-		padding: 8rem 0 50%;
+		/*padding: 8rem 0 50%;*/
 		text-transform: uppercase;
 		opacity: 1.0;
 		-webkit-transition: background 1.5s linear;
@@ -65,8 +65,40 @@
 
 
 <section>
+	<div class="hero">
+	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+		<ol class="carousel-indicators">
+			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+		</ol>
+		<div class="carousel-inner">
+			<div class="carousel-item active">
+				<img class="d-block w-100" src="<?= base_url('assets/front/images/sl2.jpg') ?>" alt="Second slide">
+			</div>
+			<div class="carousel-item ">
+				<img class="d-block w-100" src="<?= base_url('assets/front/images/sl1.jpg') ?>" alt="First slide">
+			</div>
 
-	<div class="hero "></div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="<?= base_url('assets/front/images/sl3.jpg') ?>" alt="Third slide">
+			</div>
+			<div class="carousel-item">
+				<img class="d-block w-100" src="<?= base_url('assets/front/images/sl4.jpg') ?>" alt="Third slide">
+			</div>
+		</div>
+		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+			<span class="sr-only">Previous</span>
+		</a>
+		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+			<span class="carousel-control-next-icon" aria-hidden="true"></span>
+			<span class="sr-only">Next</span>
+		</a>
+	</div>
+	</div>
+<!--	<div class="hero "></div>-->
 
 
 
@@ -652,7 +684,16 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGh2j6KRaaSf96cTYekgAD-IuUG0GkMVA&libraries=places"></script>
 <script>
-$(document).on('ready', function() { 
+$(document).on('ready', function() {
+	var owl = $('.owl-carousel');
+	owl.owlCarousel({
+		items:4,
+		loop:true,
+		margin:10,
+		autoplay:true,
+		autoplayTimeout:1000,
+		autoplayHoverPause:true
+	});
 	initAutocomplete('address');
 	// auto detect location if even searched once.
 	if (SEARCHED_LAT == '' && SEARCHED_LONG == '' && SEARCHED_ADDRESS == '') {
@@ -698,7 +739,7 @@ function parallax(){
 var images=new Array("<?= base_url('assets/front/images/sl1.jpg') ?>","<?= base_url('assets/front/images/sl2.jpg') ?>","<?= base_url('assets/front/images/sl3.jpg') ?>","<?= base_url('assets/front/images/sl4.jpg') ?>");
 var nextimage=0;
 
-	doSlideshow();
+	// doSlideshow();
 
 
 
@@ -708,7 +749,7 @@ function doSlideshow(){
 			.css('background-image','url("'+images[nextimage++]+'")')
 
 
-			.fadeIn(100,function(){
+			.slide(100,function(){
 				setTimeout(doSlideshow,5000);
 
 			});

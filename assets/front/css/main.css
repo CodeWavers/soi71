@@ -947,7 +947,7 @@ body.fixed {
 
 .active_color{
 	font-weight: bold;
-	color: var(--second-color) !important;
+	color: var(--main-color) !important;
 }
 
 #magic-line {
@@ -6316,6 +6316,7 @@ border-bottom-right-radius: 10px;
 
 .option-filter-tab .custom-control .custom-control-label {
 	cursor: pointer;
+	font-size: 0.7em;
 }
 
 .option-filter-tab .custom-control:last-child {
@@ -7289,6 +7290,11 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 
 @media only screen and (max-width:767px) {
+
+	.hero{
+		padding-bottom: 10%;
+	}
+
 	#cat_stick {
 		top:60px;
 	}
@@ -7920,7 +7926,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 
 @media only screen and (max-width:575px) {
-
+	.hero{
+		padding-bottom: 20%;
+	}
 	/*#cat_stick{*/
 	/*	top:6%;*/
 	/*}*/
@@ -8093,6 +8101,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 @media only screen and (max-width:480px) {
 
+	.hero{
+		padding-bottom: 30%;
+	}
 	#cat_stick {
 		top:50px;
 	}
