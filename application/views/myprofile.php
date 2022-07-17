@@ -1,7 +1,15 @@
     <?php defined('BASEPATH') or exit('No direct script access allowed');?>
     <?php $this->load->view('header');?>
     <link rel="stylesheet" href="//code.jquery.com/ui/1.12.1/themes/base/jquery-ui.css">
+	<?php
 
+	$ses_image=$this->session->userdata('userImage');
+	$sc_image=$this->session->userdata('social_image');
+
+
+
+	$image_u = ((!empty($sc_image)) ? $sc_image : (!empty($sc_image) ) ? $sc_image : $ses_image);
+	?>
     <section class="inner-pages-section">
         <div class="container">
             <div class="row">
@@ -27,7 +35,7 @@
                         <div class="profile-img-main">
                             <div class="profile-img">
                                 <?php $image = ($profile->image) ? (base_url() . 'uploads/' . $profile->image) : (default_user_img);?>
-                                <img src="<?php echo $image; ?>">
+                                <img src="<?php echo $image_u; ?>">
                             </div>
                         </div>
                         <div class="my-profile-detail">
@@ -597,8 +605,10 @@
                 <div id="error-msg" class="error display-no"></div>
                 <div class="edit-profile-img">
                     <div class="edit-img">
+
+
                         <?php $image = ($profile->image) ? (base_url() . 'uploads/' . $profile->image) : (base_url() . 'assets/front/images/user-login.jpg');?>
-                        <img id='old' src="<?php echo $image; ?>">
+                        <img id='old' src="<?php echo $image_u; ?>">
                         <img id="preview" class="display-no"/>
                         <label>
                             <input type="file" name="image" id="image" accept="image/*" data-msg-accept="<?php echo $this->lang->line('file_extenstion') ?>" onchange="readURL(this)"/>
@@ -629,15 +639,15 @@
 <!--					<label>--><?php //echo $this->lang->line('address') ?><!--</label>-->
 <!--				</div>-->
                 <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-control"  placeholder=" " value="" required>
+                    <input type="password" name="password" id="password" class="form-control"  placeholder=" " value="" >
                     <label><?php echo $this->lang->line('password') ?></label>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="confirm_password" id="confirm_password" class="form-control"  onchange="pass_val()" value="" placeholder=" " required>
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control"  value="" placeholder=" " >
                     <label><?php echo $this->lang->line('confirm_pass') ?></label>
                 </div>
                 <div class="save-btn">
-                    <button type="submit" name="submit_profile" id="submit_profile" value="Save" class="btn btn-primary" disabled><?php echo $this->lang->line('save') ?></button>
+                    <button type="submit" name="submit_profile" id="" value="Save" class="btn btn-primary" ><?php echo $this->lang->line('save') ?></button>
                 </div>
             </form>
           </div>

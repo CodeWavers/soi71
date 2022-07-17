@@ -125,7 +125,8 @@ class Myprofile extends CI_Controller {
 								'userLastname' => $this->input->post('last_name'),
 								'userEmail' => $this->input->post('email'),
 								'userPhone' => $this->input->post('phone_number'),
-								'userImage' => base_url('uploads/'.$updateUserData['image'])
+								'userImage' => base_url('uploads/'.$updateUserData['image']),
+								'social_image' => base_url('uploads/'.$updateUserData['image'])
 							)
 						);
 					}
