@@ -150,6 +150,8 @@ input:focus , button:focus , a:focus{
 	max-width: 200px;
 	width: 100%;
 	height: auto;
+	margin-top: 8%;
+}
 }
 
 .links {
