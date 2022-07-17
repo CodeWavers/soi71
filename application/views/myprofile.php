@@ -593,7 +593,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form id="form_my_profile" name="form_my_profile" method="post" class="form-horizontal float-form" enctype="multipart/form-data">
+            <form id="form_my_profile" name="form_my_profile" action="<?= base_url('myprofile/edit_profile') ?>" method="post" class="form-horizontal float-form" enctype="multipart/form-data">
                 <div id="error-msg" class="error display-no"></div>
                 <div class="edit-profile-img">
                     <div class="edit-img">
@@ -610,19 +610,16 @@
                 <div class="form-group">
                     <input type="hidden" name="entity_id" id="entity_id" value="<?php echo $profile->eid; ?>">
                     <input type="hidden" name="uploaded_image" id="uploaded_image" value="<?php echo isset($profile->image) ? $profile->image : ''; ?>" />
-                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder=" " value="<?php echo $profile->first_name; ?>">
+                    <input type="text" name="first_name" id="first_name" class="form-control" placeholder=" " value="<?php echo $profile->first_name; ?>" required>
                     <label><?php echo $this->lang->line('first_name') ?></label>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="last_name" id="last_name" class="form-control" placeholder=" " value="<?php echo $profile->last_name; ?>">
-                    <label><?php echo $this->lang->line('last_name') ?></label>
-                </div>
                 <div class="form-group">
                     <input type="text" name="email" id="email" class="form-control email" placeholder=" " value="<?php echo $profile->email; ?>">
                     <label><?php echo $this->lang->line('email') ?></label>
                 </div>
                 <div class="form-group">
-                    <input type="text" name="phone_number" id="phone_number" class="form-control digits required" readonly placeholder=" " value="<?php echo $profile->mobile_number; ?>">
+                    <input type="text" name="phone_number" id="phone_number" class="form-control digits required" readonly placeholder=" " value="<?php echo $profile->mobile_number; ?>" required>
                     <label><?php echo $this->lang->line('phone_number') ?></label>
                 </div>
 
@@ -632,15 +629,15 @@
 <!--					<label>--><?php //echo $this->lang->line('address') ?><!--</label>-->
 <!--				</div>-->
                 <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-control" placeholder=" ">
+                    <input type="password" name="password" id="password" class="form-control"  placeholder=" " value="" required>
                     <label><?php echo $this->lang->line('password') ?></label>
                 </div>
                 <div class="form-group">
-                    <input type="password" name="confirm_password" id="confirm_password" class="form-control" placeholder=" ">
+                    <input type="password" name="confirm_password" id="confirm_password" class="form-control"  onchange="pass_val()" value="" placeholder=" " required>
                     <label><?php echo $this->lang->line('confirm_pass') ?></label>
                 </div>
                 <div class="save-btn">
-                    <button type="submit" name="submit_profile" id="submit_profile" value="Save" class="btn btn-primary"><?php echo $this->lang->line('save') ?></button>
+                    <button type="submit" name="submit_profile" id="submit_profile" value="Save" class="btn btn-primary" disabled><?php echo $this->lang->line('save') ?></button>
                 </div>
             </form>
           </div>
@@ -748,7 +745,32 @@
     <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
     <script type="text/javascript">
     var map, marker;
+
+    function pass_val(){
+    	var pass=$('#password').val();
+    	var confirm_pass=$('#confirm_password').val();
+
+    	// console.log(pass)
+    	// console.log(confirm_pass)
+		if (pass != confirm_pass){
+			alert("Password not match!!")
+			return
+		}
+
+		if (confirm_pass != ''){
+			$('#submit_profile').removeAttr("disabled");
+		}
+	}
+
+	function pass_match(){
+		var pass=$('#password').val();
+		var confirm_pass=$('#confirm_pass').val();
+
+
+	}
     jQuery(document).ready(function() {
+
+		// $('#submit_profile').removeAttr("disabled");
         initMap();
         initAutocomplete('add_address_area');
         // auto detect location if even searched once.

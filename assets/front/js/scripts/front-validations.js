@@ -839,7 +839,17 @@ function digitCheck(string) {
 	return regex.test(string);
 }
 // form my profile validation on submit
-$( "#form_my_profile" ).on("submit", function( event ) {
+$( "#" ).on("submit", function( event ) {
+	if ($('#password').val() == ''){
+		alert('Please Fill Password')
+	}
+	return
+	if ($('#confirm_password').val() == ''){
+		alert('Please Confirm Password')
+	}
+
+	return
+
 	if ($('#first_name').val() != '' && $('#email').val() != '' && isEmail($('#email').val()) && $('#phone_number').val() != '' && digitCheck($('#phone_number').val()) && (($('#pass').val() != '' && $('#confirm_password').val() != '' && $('#password').val() == $('#confirm_password').val()) || ($('#password').val() == '' && $('#confirm_password').val() == '')))
 	{
 
@@ -848,7 +858,7 @@ $( "#form_my_profile" ).on("submit", function( event ) {
 		formData.append('submit_profile', 'Save');
 		jQuery.ajax({
 			type : "POST",
-			url : BASEURL+'myprofile',
+			url : BASEURL+'myprofile/edit_profile',
 			data : formData,
 			cache: false,
 			processData: false,
@@ -856,10 +866,12 @@ $( "#form_my_profile" ).on("submit", function( event ) {
 			beforeSend: function(){
 				$('#quotes-main-loader').show();
 			},
+
+
 			success: function(response) {
 
 				console.log(response)
-				 location.reload();
+				 // location.reload();
 				/*if (response == "success") {
 					location.reload();
 				}

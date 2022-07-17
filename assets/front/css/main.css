@@ -5984,9 +5984,13 @@ body.fixed {
 }
 
 .gallery_cats {
-	margin:6%;
+	margin:3%;
 	cursor: pointer;
 }
+
+/*.gallery_cats >span{*/
+/*	margin: 20px;*/
+/*}*/
 
 .gallery-cell.is-selected {
 	/*background: #ED2;*/

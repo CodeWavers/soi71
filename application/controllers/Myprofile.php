@@ -20,85 +20,7 @@ class Myprofile extends CI_Controller {
 		$data['page_title'] = $this->lang->line('my_profile').' | '.$this->lang->line('site_title');
 		$data['current_page'] = 'MyProfile';
 		$data['selected_tab'] = "";
-		if($this->input->post('submit_profile') == "Save"){
-			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
-			$this->form_validation->set_rules('address', 'Address', 'trim|required');
-			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|callback_checkPhone');
-	        $this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[6]|callback_checkEmail');
-	        $this->form_validation->set_rules('password', 'New Password', 'trim|required');
-            $this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
-	        if ($this->form_validation->run())
-	        {
-	        	$updateUserData = array(
-					'first_name' =>$this->input->post('first_name'),
-					'last_name' =>$this->input->post('last_name'),
-					'mobile_number' =>$this->input->post('phone_number'),
-					'email' =>$this->input->post('email'),
-					'updated_by'=>$this->session->userdata("UserID"),
-					'updated_date'=>date('Y-m-d H:i:s')
-				);
 
-//	        	echo '<pre>';print_r($updateUserData);exit();
-
-				if (!empty($this->input->post('password')) && !empty($this->input->post('confirm_password'))) {
-					$newEncryptPass  = md5(SALT.$this->input->post('password'));
-					$updateUserData['password'] = $newEncryptPass;
-				}
-                if (!empty($_FILES['image']['name']))
-                {
-                    $this->load->library('upload');
-                    $config['upload_path'] = './uploads/users';
-                    $config['allowed_types'] = 'gif|jpg|png|jpeg';
-                    $config['max_size'] = '5120'; //in KB
-                    $config['encrypt_name'] = TRUE;
-                    // create directory if not exists
-                    if (!@is_dir('uploads/users')) {
-                      @mkdir('./uploads/users', 0777, TRUE);
-                    }
-                    $this->upload->initialize($config);
-                    if ($this->upload->do_upload('image'))
-                    {
-                      $img = $this->upload->data();
-                      $updateUserData['image'] = "users/".$img['file_name'];
-                      if($this->input->post('uploaded_image')){
-                        @unlink(FCPATH.'uploads/'.$this->input->post('uploaded_image'));
-                      }
-                    }
-                    else
-                    {
-                      $data['Error'] = $this->upload->display_errors();
-                      $this->form_validation->set_message('upload_invalid_filetype', 'Error Message');
-                      $this->session->set_flashdata('myProfileMSGerror', $data['Error']);
-                    }
-                }
-
-                if(empty($data['Error'])){
-
-
-
-			$affected_rows = $this->common_model->updateData('users',$updateUserData,'entity_id',$this->input->post('entity_id'));
-					if ($affected_rows) {
-						$this->session->set_userdata(
-							array(
-							  'UserID' => $this->input->post('entity_id'),
-							  'userFirstname' => $this->input->post('first_name'),
-							  'userLastname' => $this->input->post('last_name'),
-							  'userEmail' => $this->input->post('email'),
-							  'userPhone' => $this->input->post('phone_number'),
-							  'userImage' => $updateUserData['image']
-							)
-						);
-					}
-					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
-					echo 'success';
-                }
-	        }
-	        else
-	        {
-	        	echo validation_errors();
-	        }
-	        exit;
-		}
 		$data['profile'] = $this->common_model->getSingleRow('users','entity_id',$this->session->userdata('UserID'));
 		$data['addresses'] = $this->common_model->getMultipleRows('user_address','user_entity_id',$this->session->userdata('UserID'));
 		$data['in_process_orders'] = $this->myprofile_model->getOrderDetail('process',$this->session->userdata('UserID'),'');
@@ -136,6 +58,85 @@ class Myprofile extends CI_Controller {
 			//echo '<pre>';print_r($data['profile']);exit();
 		$this->load->view('myprofile',$data);
 	}
+
+	public function edit_profile(){
+		if($this->input->post('submit_profile') == "Save") {
+			//echo '<pre>';print_r($_POST);exit();
+
+//			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
+////			$this->form_validation->set_rules('address', 'Address', 'trim|required');
+//			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required|callback_checkPhone');
+////			$this->form_validation->set_rules('email', 'Email', 'trim|required|min_length[6]|callback_checkEmail');
+//			$this->form_validation->set_rules('password', 'New Password', 'trim|required');
+//			$this->form_validation->set_rules('confirm_password', 'Confirm Password', 'trim|required|matches[password]');
+//			if ($this->form_validation->run())
+//			{
+
+			$updateUserData = array(
+				'first_name' => $this->input->post('first_name'),
+				'last_name' => $this->input->post('last_name'),
+				'mobile_number' => $this->input->post('phone_number'),
+				'email' => $this->input->post('email'),
+				'updated_by' => $this->session->userdata("UserID"),
+				'updated_date' => date('Y-m-d H:i:s')
+			);
+
+
+			if (!empty($this->input->post('password')) && !empty($this->input->post('confirm_password'))) {
+				$newEncryptPass = md5(SALT . $this->input->post('password'));
+				$updateUserData['password'] = $newEncryptPass;
+			}
+			if (!empty($_FILES['image']['name'])) {
+				$this->load->library('upload');
+				$config['upload_path'] = './uploads/users';
+				$config['allowed_types'] = 'gif|jpg|png|jpeg';
+				$config['max_size'] = '5120'; //in KB
+				$config['encrypt_name'] = TRUE;
+				// create directory if not exists
+				if (!@is_dir('uploads/users')) {
+					@mkdir('./uploads/users', 0777, TRUE);
+				}
+				$this->upload->initialize($config);
+				if ($this->upload->do_upload('image')) {
+					$img = $this->upload->data();
+					$updateUserData['image'] = "users/" . $img['file_name'];
+					if ($this->input->post('uploaded_image')) {
+						@unlink(FCPATH . 'uploads/' . $this->input->post('uploaded_image'));
+					}
+				}
+
+
+
+				}
+
+				if(empty($data['Error'])){
+
+
+
+					$affected_rows = $this->common_model->updateData('users',$updateUserData,'entity_id',$this->input->post('entity_id'));
+
+
+					//echo '<pre>';print_r($session);exit();
+					if ($affected_rows) {
+						$this->session->set_userdata(
+							array(
+								'UserID' => $this->input->post('entity_id'),
+								'userFirstname' => $this->input->post('first_name'),
+								'userLastname' => $this->input->post('last_name'),
+								'userEmail' => $this->input->post('email'),
+								'userPhone' => $this->input->post('phone_number'),
+								'userImage' => base_url('uploads/'.$updateUserData['image'])
+							)
+						);
+					}
+					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
+					redirect('myprofile');
+
+				}
+			}
+
+		}
+	//}
 	// get order details
 	public function getOrderDetails(){
 		$data['page_title'] = $this->lang->line('order_details').' | '.$this->lang->line('site_title');
