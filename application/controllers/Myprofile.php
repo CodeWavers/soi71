@@ -61,7 +61,9 @@ class Myprofile extends CI_Controller {
 
 	public function edit_profile(){
 		if($this->input->post('submit_profile') == "Save") {
-			//echo '<pre>';print_r($_POST);exit();
+//			echo '<pre>';print_r($_POST);
+//			echo '<pre>';print_r($_FILES);
+//			exit();
 
 //			$this->form_validation->set_rules('first_name', 'First Name', 'trim|required');
 ////			$this->form_validation->set_rules('address', 'Address', 'trim|required');
@@ -107,8 +109,11 @@ class Myprofile extends CI_Controller {
 
 
 
-				}
+				}else{
 
+				$updateUserData['image'] = $this->input->post('uploaded_image') ;
+			}
+			//echo '<pre>';print_r($updateUserData);exit();
 				if(empty($data['Error'])){
 
 
@@ -117,7 +122,7 @@ class Myprofile extends CI_Controller {
 
 
 					//echo '<pre>';print_r($session);exit();
-					if ($affected_rows) {
+//					if ($affected_rows) {
 						$this->session->set_userdata(
 							array(
 								'UserID' => $this->input->post('entity_id'),
@@ -129,7 +134,7 @@ class Myprofile extends CI_Controller {
 								'social_image' => base_url('uploads/'.$updateUserData['image'])
 							)
 						);
-					}
+//					}
 					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
 					redirect('myprofile');
 

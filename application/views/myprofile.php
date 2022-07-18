@@ -601,7 +601,7 @@
 
           <!-- Modal body -->
           <div class="modal-body">
-            <form id="form_my_profile" name="form_my_profile" action="<?= base_url('myprofile/edit_profile') ?>" method="post" class="form-horizontal float-form" enctype="multipart/form-data">
+            <form id="" name="form_my_profile" action="<?= base_url('myprofile/edit_profile') ?>" method="post" class="form-horizontal float-form" enctype="multipart/form-data">
                 <div id="error-msg" class="error display-no"></div>
                 <div class="edit-profile-img">
                     <div class="edit-img">
@@ -625,7 +625,7 @@
                 </div>
                 <div class="form-group">
                 <div class="form-group">
-                    <input type="text" name="email" id="email" class="form-control email" placeholder=" " value="<?php echo $profile->email; ?>">
+                    <input type="text" name="email" id="" class="form-control " placeholder=" " value="<?php echo $profile->email; ?>">
                     <label><?php echo $this->lang->line('email') ?></label>
                 </div>
                 <div class="form-group">
