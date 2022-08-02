@@ -326,12 +326,12 @@
 				</div>
 
 				<?php if ($current_page == 'HomePage')  {?>
-					<div class="container takeway " >
+					<div class="  takeway  " >
 						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
-							<a class="three_button" href="<?php echo base_url() . 'contact-us/1'; ?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
 							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
-							<a class="three_button" href="<?php echo base_url() . 'contact-us/3'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
+							<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
 
 						</ul>
 					</div>

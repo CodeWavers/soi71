@@ -29,9 +29,9 @@
 								<?php }
 							}
 						} ?> -->
-						<li><a href="#"><i class="iicon-icon-08"></i></a></li>
-						<li><a href="#"><i class="iicon-icon-09"></i></a></li>
-						<li><a href="#"><i class="iicon-icon-10"></i></a></li>
+						<li><a href="https://www.facebook.com/soi71"><i class="iicon-icon-08"></i></a></li>
+<!--						<li><a href="#"><i class="iicon-icon-09"></i></a></li>-->
+<!--						<li><a href="#"><i class="iicon-icon-10"></i></a></li>-->
 					</ul>
 				</div>
 			</div>

@@ -1,5 +1,8 @@
 <?php defined('BASEPATH') OR exit('No direct script access allowed');?>
-<?php $this->load->view('header'); ?>
+<?php $this->load->view('header');
+$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+
+?>
 <section class="inner-pages-section cart-section">
 	<div class="container">
 		<div class="row">
@@ -8,8 +11,14 @@
 					<h2><?php echo $this->lang->line('cart') ?></h2>
 				</div>
 			</div>
+
+		</div>
+	</div>
+		<div class="col-lg-2 continue-btn mb-5">
+			<a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><button class="btn">Add More</button></a>
 		</div>
 		<div class="row cart-row" id="your_main_cart">
+
 			<?php if (!empty($cart_details['cart_items'])) { ?>
 				<div class="col-lg-8">
 					<div class="cart-content">
@@ -97,7 +106,7 @@
 									</tfoot>
 								</table>
 								<div class="continue-btn">
-									<a href="<?php echo base_url().'checkout'; ?>"><button class="btn"><?php echo $this->lang->line('continue') ?></button></a>
+									<a href="<?php echo base_url().'checkout'; ?>"><button class="btn">Checkout</button></a>
 								</div>
 							</div>
 						</div>

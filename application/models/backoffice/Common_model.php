@@ -289,13 +289,19 @@ class Common_model extends CI_Model {
     $wherefieldname: where field name
     $wherefieldvalue: where field value
     ****************************************/
-    public function getSingleRow($tablename,$wherefieldname,$wherefieldvalue)
-    {
-		$this->db->select('*,users.entity_id as eid');
-		$this->db->join('user_address','users.entity_id = user_address.user_entity_id','left');
-		return $this->db->get_where($tablename,array('users.entity_id'=>$wherefieldvalue))->first_row();
+//    public function getSingleRow($tablename,$wherefieldname,$wherefieldvalue)
+//    {
+//		$this->db->select('*,users.entity_id as eid');
+//		$this->db->join('user_address','users.entity_id = user_address.user_entity_id','left');
+//		return $this->db->get_where($tablename,array('users.entity_id'=>$wherefieldname))->first_row();
+//
+//    }
 
-    }
+	public function getSingleRow($tablename,$wherefieldname,$wherefieldvalue)
+	{
+		$this->db->where($wherefieldname,$wherefieldvalue);
+		return $this->db->get($tablename)->first_row();
+	}
 
     /****************************************
     Function: getMultipleRows, get multiple row from table in Object format using single WHERE clause

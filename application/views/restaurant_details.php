@@ -18,44 +18,25 @@ if (!empty($menu_arr)) {
 </section>
 
 <section class="inner-pages-section rest-detail-section ">
-	<div class="rest-detail-main">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="rest-detail">
-						<div class="rest-detail-img-main">
-							<div class="rest-detail-img">
-								<img src="<?php echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?>">
-							</div>
-						</div>
-						<div class="rest-detail-content">
 
-							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
-							<ul class="">
-								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
-								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
-								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
-								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
-
-							</ul>
-
-						</div>
-
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="container">
+
 		<div class="row">
-			<div class="col-lg-12">
-				<div class="heading-title">
-					<h2><?php echo $this->lang->line('order_food_from') ?> </h2>
-				</div>
-<!--				<div class="menu_review">-->
-<!--					<a href="#" class="active" id="menu_link"><button class="btn res-menu">--><?php //echo $this->lang->line('menu'); ?><!--</button></a>-->
-<!--				</div>-->
+			<div class="  takeway_re  " >
+				<ul class="" style="align-items:center;justify-content: center ;color: white;">
+
+					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+					<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'EventBooking') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
+
+				</ul>
 			</div>
+<!--			<div class="col-lg-12">-->
+<!--				<div class="heading-title">-->
+<!--					<h2>--><?php //echo $this->lang->line('order_food_from') ?><!-- </h2>-->
+<!--				</div>-->
+<!---->
+<!--			</div>-->
 		</div>
 
 
@@ -63,9 +44,13 @@ if (!empty($menu_arr)) {
 			<!-- restaurant details start-->
 			<div class="col-sm-12 col-md-12 col-lg-12 " id="menu" style="display: block;" >
 
-
-
 				<div id="cat_stick">
+					<div class="col-lg-12">
+						<div class="heading-title">
+							<h2><?php echo $this->lang->line('order_food_from') ?> </h2>
+						</div>
+
+					</div>
 					<div  class="carousel"
 						  data-flickity='{ "wrapAround": true }'>
 						<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
@@ -202,7 +187,7 @@ if (!empty($menu_arr)) {
 											if ($value['popular_item'] == 1) { ?>
 
 												<div class="home-menu-card ">
-													<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
+													<div class="home-menu-image hover" data-id="<?php echo ($value['entity_id']) ?>">
 														<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>" >
 
 													</div>
@@ -541,7 +526,7 @@ if (!empty($menu_arr)) {
 			<div class="modal-body">
 
 				<div class="row">
-					<div class="col-md-4" id="img1">
+					<div class="col-md-4 display-no" id="img1">
 						<div class="thumbnail coupon">
 
 							<img id="image1" src="" alt="Image" style="width:100%">
@@ -554,7 +539,7 @@ if (!empty($menu_arr)) {
 
 
 					</div>
-					<div class="col-md-4 " id="img2">
+					<div class="col-md-4 display-no " id="img2">
 						<div class="thumbnail coupon">
 
 							<img id="image2" src="" alt="Image" style="width:100%">
@@ -562,7 +547,7 @@ if (!empty($menu_arr)) {
 
 						</div>
 					</div>
-					<div class="col-md-4" id="img3" >
+					<div class="col-md-4 display-no" id="img3" >
 						<div class="thumbnail coupon">
 
 							<img id="image3" src="" alt="Image" style="width:100%">
@@ -917,6 +902,7 @@ if (!empty($menu_arr)) {
 				var json=JSON.parse(response)
 
 				if (json[0].image ){
+					$('#img1').removeClass('display-no');
 
 					$('#image1').attr('src', base_url+'uploads/'+json[0].image);
 				}else{
@@ -924,14 +910,14 @@ if (!empty($menu_arr)) {
 				}
 
 				if (json[0].image2 ){
-
+					$('#img2').removeClass('display-no');
 					$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
 				}else{
 					$('#image2').attr('src', default_im);
 				}
 
 				if (json[0].image3 ){
-
+					$('#img3').removeClass('display-no');
 					$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
 				}else{
 					$('#image3').attr('src', default_im);

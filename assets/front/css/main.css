@@ -1451,7 +1451,7 @@ body.fixed {
 	align-items: flex-start;
 	margin-bottom: 25px;
 	text-transform: uppercase;
-	margin-top: 6%;
+	margin-top: 3%;
 }
 
 .heading-title>h2 {
@@ -3110,9 +3110,30 @@ body.fixed {
 
 .takeway {
 	width: 100%;
-	padding-left: 30px;
+	/*padding-left: 30px;*/
 	position: relative;
-	display: contents;
+	display: flex;
+	justify-content: flex-end;
+	padding: inherit;
+
+
+
+
+
+}
+.takeway_re {
+	width: 100%;
+	/*padding-left: 30px;*/
+	position: relative;
+	display: flex;
+	justify-content: center;
+	padding: inherit;
+	/*margin-top: auto;*/
+
+
+
+
+
 }
 
 .rest-detail-content .openclose {
@@ -3160,7 +3181,22 @@ body.fixed {
 	display: -webkit-flex;
 	display: -ms-flexbox;
 	display: flex;
+	position: fixed;
+	bottom: 55px;
 	margin: 0px;
+	padding: 0;
+}
+
+.takeway_re>ul {
+	display: -webkit-box;
+	display: -moz-box;
+	display: -webkit-flex;
+	display: -ms-flexbox;
+	display: flex;
+	/*position: fixed;*/
+	/*bottom: 200px;*/
+	/*margin: 0px;*/
+	/*padding: 0;*/
 }
 
 
@@ -3174,6 +3210,14 @@ body.fixed {
 }
 
 .takeway>ul>a>li {
+	border: 1px solid #C8C8C8;
+	border-radius: 5px;
+	font-size: 16px;
+	font-weight: 500;
+	margin-right: 10px;
+	padding: 5px 10px;
+}
+.takeway_re>ul>a>li {
 	border: 1px solid #C8C8C8;
 	border-radius: 5px;
 	font-size: 16px;
@@ -6209,9 +6253,10 @@ body.fixed {
 z-index: 1000;
 border-bottom-left-radius: 10px;
 border-bottom-right-radius: 10px;
-	/*box-shadow: 8px 1px 1px var(--main-color);*/
-	box-shadow: 2px 2px 2px 1px rgb(114, 161, 64);
+	border: 1px solid var(--main-color);
 
+	/*box-shadow: 2px 2px 2px 1px rgb(114, 161, 64);*/
+	/*box-shadow: var(--main-color);*/
 }
 
 
@@ -6505,11 +6550,14 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.takeway {
 		padding-left: 20px;
 	}
+	.takeway_re {
+		padding-left: 20px;
+	}
 	.rest-detail-content>ul>li {
 			 font-size: 14px;
 			 padding: 5px;
 		 }
-	.takeway>ul>a>li {
+	.takeway_re>ul>a>li {
 		font-size: 14px;
 		padding: 5px;
 	}
@@ -7488,6 +7536,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		flex-wrap: wrap;
 
 	}
+	.takeway_re>ul {
+		flex-wrap: wrap;
+
+	}
 	.rest-detail-section .heading-title {
 		margin-bottom: 14px;
 	}
@@ -7498,6 +7550,12 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 
 	.takeway>ul>a>li {
+		margin-bottom: 10px;
+		margin-right: 10px;
+		font-size: 12px;
+
+	}
+	.takeway_re>ul>a>li {
 		margin-bottom: 10px;
 		margin-right: 10px;
 		font-size: 12px;
@@ -7588,6 +7646,9 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 
 	.takeway>ul {
+		justify-content: center;
+	}
+	.takeway_re>ul {
 		justify-content: center;
 	}
 	.order-id-details .details-id {
@@ -7978,6 +8039,10 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.takeway>ul>a>li {
 		margin-right: 1px
 	}
+
+	.takeway_re>ul>a>li {
+		margin-right: 1px
+	}
 	.rest-detail-content {
 
 	}
@@ -7985,6 +8050,13 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	}
 	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
+		position: initial;
+		text-align: center;
+		display: contents;
+	}
+	.takeway_re {
 		padding-left: 0px;
 		margin-top: 10px;
 		position: initial;
@@ -8049,6 +8121,11 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 
 	.takeway {
+		width: calc(100% - 70px);
+		padding-left: 10px;
+		margin-top: 0;
+	}
+	.takeway_re {
 		width: calc(100% - 70px);
 		padding-left: 10px;
 		margin-top: 0;
@@ -8286,6 +8363,22 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 }
 /*Date Time picker CSS  End */
 #myBtn {
+	display: none;
+	position: fixed;
+	bottom: 20px;
+	right: 30px;
+	z-index: 99;
+	font-size: 18px;
+	border: none;
+	outline: none;
+	background-color: var(--main-color);
+	color: white;
+	cursor: pointer;
+	padding: 15px;
+	border-radius: 4px;
+}
+
+.fixed_btn {
 	display: none;
 	position: fixed;
 	bottom: 20px;

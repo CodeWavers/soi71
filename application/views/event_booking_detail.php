@@ -6,54 +6,45 @@
 <?php if(empty($restaurant_details['restaurant'])) {
     redirect(base_url().'restaurant/event-booking');
 } ?>
-<section class="inner-banner booking-detail-banner">
-	<div class="container">
-		<div class="inner-pages-banner">
-			
-		</div>
-	</div>
-</section>
+<!--<section class="inner-banner booking-detail-banner">-->
+<!--	<div class="container">-->
+<!--		<div class="inner-pages-banner">-->
+<!--			-->
+<!--		</div>-->
+<!--	</div>-->
+<!--</section>-->
 
 <section class="inner-pages-section rest-detail-section">
-	<div class="rest-detail-main">
-		<div class="container">
-			<div class="row">
-				<div class="col-lg-12">
-					<div class="rest-detail">
-						<div class="rest-detail-img-main">
-							<div class="rest-detail-img">
-								<img src="<?php echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?>">
-							</div>
-						</div>
-						<div class="rest-detail-content">
 
-							<p><i class="iicon-icon-20"></i><?php echo $restaurant_details['restaurant'][0]['address']; ?></p>
-							<ul class="tilesWrap">
-								<li><i class="iicon-icon-29"></i><?php echo $restaurant_details['restaurant'][0]['name']; ?></li>
-								<li><i class="iicon-icon-05"></i><?php echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?></li>
-								<li><i class="iicon-icon-18"></i><?php echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?></li>
-								<li><i class="iicon-icon-19"></i><?php echo $restaurant_details['restaurant'][0]['phone_number']; ?></li>
 
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Takeway</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span></i><strong> Delivery</strong></li>
-								<li class="li_bg" ><span class="fas fa-check"></span><strong> Dine In</strong></li>
-
-							</ul>
-
-						</div>
-					</div>
-				</div>
-			</div>
-		</div>
-	</div>
 	<div class="container">
+
+		<div class="row " style="margin-top: 100px">
+
+			<div class="col-lg-12">
+
+			</div>
+
+		</div>
+
 		<div class="row">
+			<div class="  takeway_re  " >
+				<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
+
+					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+					<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'EventBooking') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
+
+				</ul>
+			</div>
 			<div class="col-lg-12">
 				<div class="heading-title">
 					<h2><?php echo $this->lang->line('select_package') ?></h2>
 				</div>
 			</div>
+
 		</div>
+
 		<div class="row restaurant-detail-row">	
 			<div class="col-sm-12 col-md-5 col-lg-8">					
 				<div class="detail-list-box-main">

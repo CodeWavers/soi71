@@ -155,7 +155,7 @@
 												</div>
 											<?php } ?>
 											</tbody>
-										</table>f
+										</table>
 									</div>
 								</div>
 							</div>

@@ -260,9 +260,9 @@
 	<div class="container" style="margin-top: 5%">
 		<div class="heading-title">
 			<h2>Best Deals</h2>
-			<div class="slider-arrow">
-				<div id="customNav" class="arrow"></div>
-			</div>
+<!--			<div class="slider-arrow">-->
+<!--				<div id="customNav" class="arrow"></div>-->
+<!--			</div>-->
 		</div>
 
 
@@ -449,8 +449,8 @@
 			<div class="modal-body">
 
 				<div class="row">
-					<div class="col-md-4">
-						<div class="thumbnail coupon">
+					<div class="col-md-4 display-no" id="img1Div">
+						<div class="thumbnail coupon ">
 
 							<img id="image1" src="" alt="Lights" style="width:100%">
 							<div class="det-with-price">
@@ -462,7 +462,7 @@
 
 
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 display-no" id="img2Div">
 						<div class="thumbnail coupon">
 
 							<img id="image2" src="" alt="Lights" style="width:100%">
@@ -470,7 +470,7 @@
 
 						</div>
 					</div>
-					<div class="col-md-4">
+					<div class="col-md-4 display-no" id="img3Div">
 						<div class="thumbnail coupon">
 
 							<img id="image3" src="" alt="Lights" style="width:100%">
@@ -777,6 +777,7 @@ function image_show(entity_id){
 			var json=JSON.parse(response)
 
 			if (json[0].image ){
+				$('#img1Div').removeClass('display-no');
 
 				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
 			}else{
@@ -784,6 +785,7 @@ function image_show(entity_id){
 			}
 
 			if (json[0].image2 ){
+				$('#img2Div').removeClass('display-no');
 
 				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
 			}else{
@@ -791,6 +793,7 @@ function image_show(entity_id){
 			}
 
 			if (json[0].image3 ){
+				$('#img3Div').removeClass('display-no');
 
 				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
 			}else{
