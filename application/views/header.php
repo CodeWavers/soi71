@@ -303,12 +303,26 @@
 <!--								--><?php //$closed = ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed")?'closed':''; ?>
 
 								<?php if ($closed == 'closed') {?>
-								<div class="open_closed  <?php echo $closed; ?>">
-									<a href="" class="common btn btn-danger">Closed</a>
+								<div class="header-user open_closed  <?php echo $closed; ?>">
+
+									<div class="user-img">
+										<img src="<?php echo base_url(); ?>assets/front/images/close.jpeg">
+									</div>
+
+
+
+
+<!--									<a href="" class="common btn btn-danger">Closed</a>-->
 								</div>
 								<?php }else{?>
-								<div class=" open_closed  <?php echo $closed; ?>">
-									<a href="" class="common btn ">Open</a>
+								<div class="header-user open_closed  <?php echo $closed; ?>">
+									<div class="user-img">
+										<img src="<?php echo base_url(); ?>assets/front/images/open.jpeg">
+									</div>
+
+
+
+<!--									<a href="" class="common btn ">Open</a>-->
 								</div>
 								<?php } ?>
 
