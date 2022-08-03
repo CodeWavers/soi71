@@ -189,9 +189,7 @@
 	<div class="container">
 		<div class="heading-title">
 			<h2>Popular Items</h2>
-			<div class="slider-arrow">
-				<div id="customNav" class="arrow"></div>
-			</div>
+
 		</div>
 
 
@@ -266,8 +264,14 @@
 		</div>
 
 
+	<!-- Flickity HTML init -->
+		<div class="carousel " data-flickity='{ "groupCells": true }'>
 
-		<div class="home-items">
+
+
+
+
+
 			<?php if (!empty($restaurant_details['menu_items'])) {
 				$popular_count = 0;
 				foreach ($restaurant_details['menu_items'] as $key => $value) {
@@ -278,8 +282,8 @@
 				if ($popular_count > 0) { ?>
 					<?php foreach ($restaurant_details['menu_items'] as $key => $value) {
 						if ($value['popular_item'] == 1) { ?>
-
-							<div class="home-menu-card ">
+					<div class="carousel-cell">
+							<div class="home-menu-card " style="height: 340px">
 								<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
 									<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>" >
 
@@ -315,17 +319,18 @@
 									</div>
 								</div>
 							</div>
+					</div>
 
 						<?php }
 					}?>
 
 				<?php }?>
 			<?php }?>
-		</div>
 
 
 
 		</div>
+
 
 </section>
 

@@ -15,18 +15,20 @@ $this->load->view('header');
 		</div>
 		<div class="row">
 			<div class="col-sm-12 col-md-6 col-lg-6">
+
 				<div class="contact-us-image">
 					<div class="detail-list-title w-100" >
 						<h3>Gulshan Branch</h3>
 					</div>
+					<?php if (!empty($contact_us)) { ?>
+						<div class="row widgets"><?php echo $contact_us[0]->description; ?></div>
+					<?php } ?>
 					<!-- <?php //echo ($contact_us[0]->image)?image_url.$contact_us[0]->image:default_img?> -->
 					<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:378px;width:100% !important;}</<style><style>.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:100% !important;}</style></div></div>
 				</div>
 
 
-				<?php if (!empty($contact_us)) { ?>
-					<div class="row widgets"><?php echo $contact_us[0]->description; ?></div>
-				<?php } ?>
+
 			</div>
 			<div class="col-sm-12 col-md-6 col-lg-6">
 				<div class="contact-form">

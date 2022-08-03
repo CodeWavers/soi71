@@ -61,6 +61,7 @@
 	$cmsPages = $this->common_model->getCmsPages($lang_slug);
 
 	$slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+	$slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
 //	$content_id = $this->restaurant_model->getContentID($slug);
 //	$restaurant_details = $this->restaurant_model->getRestaurantDetail($content_id->content_id);
 	?>
@@ -343,8 +344,8 @@
 					<div class="  takeway  " >
 						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
-							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
-							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
+							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
+							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
 							<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
 
 						</ul>

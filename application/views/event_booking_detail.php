@@ -28,15 +28,15 @@
 		</div>
 
 		<div class="row">
-			<div class="  takeway_re  " >
-				<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
-
-					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
-					<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_bg' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
-					<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'EventBooking') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
-
-				</ul>
-			</div>
+<!--			<div class="  takeway_re  " >-->
+<!--				<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">-->
+<!---->
+<!--					<a class="three_button" href="--><?php //echo base_url('restaurant/restaurant-detail/'.$slug);?><!--"><li class=" --><?php //echo ($current_page == 'ContactUs1') ? 'li_bg' : 'li_bg'; ?><!--" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>-->
+<!--					<a class="three_button" href="--><?php //echo base_url('restaurant/restaurant-detail/'.$slug);?><!--"><li class="--><?php //echo ($current_page == 'RestaurantDetails') ? 'li_bg' : 'li_bg'; ?><!--" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>-->
+<!--					<a class="three_button" href="--><?php //echo base_url() . 'restaurant/event-booking'; ?><!--"><li class="--><?php //echo ($current_page == 'EventBooking') ? 'li_sec' : 'li_bg'; ?><!--" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>-->
+<!---->
+<!--				</ul>-->
+<!--			</div>-->
 			<div class="col-lg-12">
 				<div class="heading-title">
 					<h2><?php echo $this->lang->line('select_package') ?></h2>
