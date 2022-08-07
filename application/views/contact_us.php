@@ -13,19 +13,26 @@ $this->load->view('header');
 		<div class="heading-title text-center">
 			<h2><?php echo $this->lang->line('contact_us') ?></h2>
 		</div>
+		<div class="detail-list-title w-100" >
+			<h3>Gulshan Branch</h3>
+		</div>
+		<?php if (!empty($contact_us)) { ?>
+			<div class="row widgets"><?php echo $contact_us[0]->description; ?></div>
+		<?php } ?>
 		<div class="row">
+
+
 			<div class="col-sm-12 col-md-6 col-lg-6">
 
-				<div class="contact-us-image">
-					<div class="detail-list-title w-100" >
-						<h3>Gulshan Branch</h3>
-					</div>
-					<?php if (!empty($contact_us)) { ?>
-						<div class="row widgets"><?php echo $contact_us[0]->description; ?></div>
-					<?php } ?>
-					<!-- <?php //echo ($contact_us[0]->image)?image_url.$contact_us[0]->image:default_img?> -->
-					<div class="mapouter"><div class="gmap_canvas"><iframe width="600" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:378px;width:100% !important;}</<style><style>.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:100% !important;}</style></div></div>
+				<div class="map-responsive">
+
+					<iframe src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
+
 				</div>
+
+					<!-- <?php //echo ($contact_us[0]->image)?image_url.$contact_us[0]->image:default_img?> -->
+<!--					<div class="mapouter"><div class="gmap_canvas"><iframe width="740" height="378" id="gmap_canvas" src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" frameborder="0" scrolling="no" marginheight="0" marginwidth="0"></iframe><br><style>.mapouter{position:relative;text-align:right;height:378px;width:100% !important;}</<style><style>.gmap_canvas {overflow:hidden;background:none!important;height:378px;width:100% !important;}</style></div></div>-->
+
 
 
 

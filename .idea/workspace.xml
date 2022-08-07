@@ -25,13 +25,11 @@
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/contact_us.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/contact_us.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/event_booking_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/event_booking_detail.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/css/bootstrap.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/bootstrap.min.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/css/flickity.min.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/flickity.min.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/style.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -162,7 +160,8 @@
       <workItem from="1658032373041" duration="22493000" />
       <workItem from="1658118641910" duration="2734000" />
       <workItem from="1659421333294" duration="16397000" />
-      <workItem from="1659502047158" duration="6333000" />
+      <workItem from="1659502047158" duration="6494000" />
+      <workItem from="1659852517145" duration="6222000" />
     </task>
     <servers />
   </component>

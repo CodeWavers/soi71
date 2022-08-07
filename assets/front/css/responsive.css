@@ -173,7 +173,7 @@
 	}
 	.contact-us-wrapper .widgets {
 		margin-right: -10px;
-		margin-left: -10px;
+		margin-left: 0px;
 	}
 	.contact-us-wrapper .widgets [class*="col-"] {
 		padding-right: 10px;

@@ -31,12 +31,12 @@ if (!empty($menu_arr)) {
 <!---->
 <!--				</ul>-->
 <!--			</div>-->
-<!--			<div class="col-lg-12">-->
-<!--				<div class="heading-title">-->
-<!--					<h2>--><?php //echo $this->lang->line('order_food_from') ?><!-- </h2>-->
-<!--				</div>-->
-<!---->
-<!--			</div>-->
+			<div class="col-lg-12">
+				<div class="heading-title">
+					<h2><?php echo $this->lang->line('order_food_from') ?> </h2>
+				</div>
+
+			</div>
 		</div>
 
 
@@ -45,12 +45,7 @@ if (!empty($menu_arr)) {
 			<div class="col-sm-12 col-md-12 col-lg-12 " id="menu" style="display: block;" >
 
 				<div id="cat_stick">
-					<div class="col-lg-12">
-						<div class="heading-title">
-							<h2><?php echo $this->lang->line('order_food_from') ?> </h2>
-						</div>
 
-					</div>
 					<div  class="carousel"
 						  data-flickity='{ "wrapAround": true }'>
 						<?php foreach ($restaurant_details['categories'] as $key => $value) {?>
