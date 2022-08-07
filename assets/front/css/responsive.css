@@ -187,6 +187,9 @@
 		flex: 0 0 30%;
 		max-width: 30%;
 	}
+	carousel-item  > img{
+		max-height: 540px;
+	}
 
 }
 
@@ -209,6 +212,11 @@
 		height: 50px;
 	}
 
+	carousel-item  > img{
+		max-height: 540px;
+	}
+
+
 	/*#cat_stick{*/
 	/*	top:6%;*/
 	/*}*/
@@ -229,11 +237,17 @@
 		border: 1px solid #E4E4E4;
 	}
 
+	carousel-item  > img{
+		max-height: 540px;
+	}
 
 
 }
 
 @media (max-width: 767px) {
+	carousel-item  > img{
+		max-height: 540px;
+	}
 
 
 	.logo img {
@@ -255,6 +269,10 @@
 	.order-food-section .restaurant-box-row .col-lg-6 {
 	    margin-bottom: 20px;
 	}
+	carousel-item  > img{
+		max-height: 540px;
+	}
+
 
 	.slider-arrow .arrow>div {
 	    width: 30px;
