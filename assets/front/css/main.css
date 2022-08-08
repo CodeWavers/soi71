@@ -7418,11 +7418,11 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.search {
 		display: none;
 	}
-	.cart{
+	/*.cart{*/
 
-		display: none;
+	/*	display: none;*/
 
-	}
+	/*}*/
 	.footer-area{
 		margin-bottom: 100px;
 	}
@@ -8065,11 +8065,11 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.search {
 		display: none;
 	}
-	.cart{
+	/*.cart{*/
 
-		display: none;
+	/*	display: none;*/
 
-	}
+	/*}*/
 	.footer-area{
 		margin-bottom: 100px;
 	}
@@ -8257,11 +8257,11 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	.search {
 		display: none;
 	}
-	.cart{
+	/*.cart{*/
 
-		display: none;
+	/*	display: none;*/
 
-	}
+	/*}*/
 	.footer-area{
 		margin-bottom: 80px;
 	}

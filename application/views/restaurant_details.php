@@ -417,7 +417,7 @@ if (!empty($menu_arr)) {
 			<!-- your cart end -->
 		</div>
 
-		<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-circle-up"></span></button>
+<!--		<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-circle-up"></span></button>-->
 
 
 	</div>
