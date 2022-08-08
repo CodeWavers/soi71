@@ -618,13 +618,26 @@
 	.contact-us-wrapper .widgets {
     	margin-top: 1rem;
 	}
+	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
+		position: initial;
+		text-align: center;
+		display: none;
+	}
 }
 
 @media (min-width: 576px) {
 	.modal-dialog {
 		max-width: 669px;
 	}
-
+	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
+		position: initial;
+		text-align: center;
+		display: none;
+	}
 }
 
 @media (max-width:576px) {
@@ -757,7 +770,7 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
-		display: contents;
+		display: none;
 	}
 }
 @media (max-width: 375px) {
@@ -772,7 +785,7 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
-		display: contents;
+		display: none;
 	}
 	.address-btn .btn {
 		font-size: 11px;
@@ -791,7 +804,7 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
-		display: contents;
+		display: none;
 	}
 	.address-btn .btn {
 		font-size: 11px;
@@ -814,5 +827,12 @@
 	}
 	.form-group {
 		margin-bottom: 20px;
+	}
+	.takeway {
+		padding-left: 0px;
+		margin-top: 10px;
+		position: initial;
+		text-align: center;
+		display: none;
 	}
 }

@@ -64,7 +64,7 @@
 
 
 
-<section>
+<section class="">
 	<div class="hero">
 	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
 		<ol class="carousel-indicators">
@@ -606,7 +606,7 @@
 	</div>
 </div>
 
-<div class="col-sm-12 col-md-6 col-lg-6 ">
+<div class="col-sm-8 col-md-6 col-lg-6 ">
 	<div class=" text-center" style="width: 100%;">
 		<div class="card-body " id="facebook_page">
 			<h5 class="card-title s-title">Facebook Page</h5><hr>
@@ -626,7 +626,7 @@
 <!---->
 <!--			--><?php //} ?>
 
-			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=400&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="400" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
 		</div>
 	</div>
 </div>
@@ -693,6 +693,20 @@
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGh2j6KRaaSf96cTYekgAD-IuUG0GkMVA&libraries=places"></script>
 <script>
 $(document).on('ready', function() {
+
+	// $(window).resize(function() {
+	//
+	// 	if ($(this).width() < 765) {
+	//
+	// 		$('.takeway').hide();
+	//
+	// 	} else {
+	//
+	// 		$('.takeway').show();
+	//
+	// 	}
+	//
+	// });
 	var owl = $('.owl-carousel');
 	owl.owlCarousel({
 		items:4,
