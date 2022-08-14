@@ -40,7 +40,7 @@ input:focus , button:focus , a:focus{
 }
 
 .user-page .row [class*="col-"] {
-	min-height: 100vh;
+	min-height: 85vh;
 	display: flex;
 	display: -webkit-flex;
 	align-items: center;

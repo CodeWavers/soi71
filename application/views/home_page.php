@@ -143,6 +143,18 @@
 <!--	--><?php //} ?>
 </section>
 
+<?php if ($current_page == 'HomePage')  {?>
+	<div class="takeway" >
+		<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
+
+			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li><strong class="span_text"> Takeway</strong></li></a>
+			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li ><strong  class="span_text"> Delivery</strong></li></a>
+			<a class="" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li  ><strong class="span_text"> Dine In</strong></li></a>
+
+		</ul>
+	</div>
+<?php } ?>
+
 
 
 

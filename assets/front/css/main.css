@@ -1168,7 +1168,7 @@ body.fixed {
 
 .signin-btn {
 	margin-left: 15px;
-	margin-right: 10px;
+	/*margin-right: 10px;*/
 }
 
 .signin-btn >a>i{
@@ -3142,10 +3142,10 @@ body.fixed {
 .takeway {
 	width: 100%;
 	/*padding-left: 30px;*/
-	position: relative;
-	display: flex;
-	justify-content: flex-end;
-	padding: inherit;
+	/*position: relative;*/
+	/*display: flex;*/
+	/*justify-content: flex-end;*/
+	/*padding: inherit;*/
 
 
 
@@ -3211,14 +3211,14 @@ body.fixed {
 	display: -moz-box;
 	display: -webkit-flex;
 	display: -ms-flexbox;
-	display: flex;
-	position: fixed;
-	bottom: 55px;
-	margin: 0px;
+	/*display: flex;*/
+	/*position: fixed;*/
+	/*bottom: 55px;*/
+	/*margin: 0px;*/
 	padding: 6px;
-	flex-direction: column;
-
-	list-style: none;
+	flex-direction: row;
+	list-style-type: circle;
+	/*list-style: none;*/
 	border-radius: 5px;
 
 }
@@ -3246,12 +3246,15 @@ body.fixed {
 }
 
 .takeway>ul>a>li {
-	border: 1px solid #C8C8C8;
+	/*border: 1px solid #C8C8C8;*/
 	border-radius: 5px;
 	font-size: 16px;
-	font-weight: 500;
-	margin-right: 10px;
-	padding: 5px 10px;
+	font-weight: bolder;
+	margin-right: 50px;
+	padding: 0px 5px;
+	text-align: right;
+	justify-content: right;
+	justify-items: flex-start;
 }
 .takeway_re>ul>a>li {
 	border: 1px solid #C8C8C8;
@@ -6612,7 +6615,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	/*}*/
 
 	.takeway {
-		padding-left: 20px;
+		/*padding-left: 20px;*/
 	}
 	.takeway_re {
 		padding-left: 20px;
@@ -7095,6 +7098,8 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	.mobile-nav{
 		display: inline !important;
+		font-weight: bolder;
+
 	}
 	.manu-icon{
 		display: none;
@@ -7446,7 +7451,8 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin-bottom: 15px
 	}
 	.heading-title>h2 {
-		padding-bottom: 12px
+		padding-bottom: 12px;
+		margin-top: inherit;
 	}
 	.heading-title .view-all {
 		padding: 5px 10px;
@@ -7531,7 +7537,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	}
 	.signin-btn {
 		margin-left: 7px;
-		margin-right: 7px;
+		margin-right: -14px;
 	}
 
 	/*.signin-btn a.btn::before {*/

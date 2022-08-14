@@ -78,7 +78,7 @@ if (isset($_GET['state'])) {
 	//$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/takeway/home/login/', $facebook_permissions);
 	$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
 	// Render Facebook login button
-	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
+	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2;" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
 	// }
 }
 
@@ -126,9 +126,9 @@ if (isset($_GET['scope'])) {
 		<div class="row">
 			<div class="col-md-6 user-form">
 				<div class="content-wrapper">
-					<div class="logo"> <a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/front/images/logo.png" alt="Logo"></a>
-					</div>
-					<h3><?php echo $this->lang->line('lets_get_started') ?></h3>
+<!--					<div class="logo"> <a href="--><?php //echo base_url(); ?><!--"><img src="--><?php //echo base_url(); ?><!--assets/front/images/logo.png" alt="Logo"></a>-->
+<!--					</div>-->
+<!--					<h3>--><?php //echo $this->lang->line('lets_get_started') ?><!--</h3>-->
 
 					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
 						<div class="alert alert-danger">
@@ -140,7 +140,7 @@ if (isset($_GET['scope'])) {
 							<?php echo validation_errors(); ?>
 						</div>
 					<?php } ?>
-					<div class="container">
+					<div class="container" style="display: contents">
 						<br />
 						<?php
 						//session_destroy();
@@ -176,7 +176,7 @@ if (isset($_GET['scope'])) {
 					<br></br>
 
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
-						<h2 style="margin-left: 20%; color:dimgrey">____OR____</h2>
+						<h2 style=" color:dimgrey">____OR____</h2>
 					<?php } ?>
 					<br></br>
 
@@ -377,6 +377,13 @@ if (isset($_GET['scope'])) {
 	firebase.initializeApp(firebaseConfig);
 </script>
 <script>
+
+	$(".mobile-icon  button").on("click", function(e) {
+		$("#example-one").toggleClass("open");
+		$(this).toggleClass('open');
+		//	$("#example-one").fadeToggle();
+		e.stopPropagation()
+	});
 	function checkExist(mobile_number) {
 		// var entity_id = $('#entity_id').val();
 		$.ajax({

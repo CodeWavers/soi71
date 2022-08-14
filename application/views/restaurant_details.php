@@ -250,7 +250,7 @@ if (!empty($menu_arr)) {
 														</div>
 														<div class="home-menu-des">
 															<div class="">
-																<div class="home-menu-name"><?php echo $mvalue['name']; ?></div>
+																<div class="home-menu-name hover" data-id="<?php echo ($mvalue['entity_id']) ?>" ><?php echo $mvalue['name']; ?></div>
 
 															</div>
 															<div class="home-menu-details-parent">

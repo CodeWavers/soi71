@@ -101,7 +101,7 @@
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-shopping-bag"></span></a><span>Takeway</span></li>
 				<li class="footer_search"><a> <span class="fas fa-search"></span></a><span>Search</span></li>
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a> <span class="fas fa-motorcycle"></span></a><span>Delivery</span></li>
-				<li class="<?php echo ($current_page == 'EventBooking') ? 'current' : ''?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"> <span class="fas fa-sitemap"></span></a><span>Dine In</span></li>
+				<li class="<?php echo ($current_page == 'EventBooking') ? 'current' : ''?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"> <i class="iicon-icon-27 font-weight-bolder"></i></a><span>Dine In</span></li>
 <!--				<li   class="--><?php //echo ($current_page == 'Cart') ? 'current' : ''?><!--"><a href="--><?php //echo base_url() . 'cart'; ?><!--"> <span class="fas fa-shopping-cart"></span><span class="manu_span cart_count " id="cart_count" >--><?php //echo $count; ?><!--</span></a><span>Cart</span></li>-->
 
 			</ul>
@@ -142,7 +142,7 @@
 								<li id="pc_menu" class="pc_menu"><a  class="<?php echo ($current_page == 'RestaurantDetails') ? 'active_color' : ''; ?>" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug) ?>"><span class="mobile-nav fas fa-bars"></span>  Menu</a></li>
 
 
-								<li><a  class="<?php echo ($current_page == 'EventBooking') ? 'active_color' : ''; ?>" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><span class="mobile-nav fa fa-file"></span>   Reservation</a></li>
+								<li><a  class="<?php echo ($current_page == 'EventBooking') ? 'active_color' : ''; ?>" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><strong> <i class="mobile-nav iicon-icon-27"></i></strong>   Reservation</a></li>
 								<?php if (!empty($cmsPages)) {
 									foreach ($cmsPages as $key => $value) {
 										if($value->CMSSlug == "contact-us") { ?>
@@ -343,17 +343,17 @@
 					</div>
 				</div>
 
-				<?php if ($current_page == 'HomePage')  {?>
-					<div class="  takeway  " >
-						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
-
-							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class=" <?php echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>
-							<a class="three_button" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class="<?php echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>
-							<a class="three_button" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li class="<?php echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?>" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>
-
-						</ul>
-					</div>
-				<?php } ?>
+<!--				--><?php //if ($current_page == 'HomePage')  {?>
+<!--					<div class="  takeway  " >-->
+<!--						<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">-->
+<!---->
+<!--							<a class="three_button" href="--><?php //echo base_url('restaurant/restaurant-detail/'.$slug_soi);?><!--"><li class=" --><?php //echo ($current_page == 'ContactUs1') ? 'li_sec' : 'li_bg'; ?><!--" ><span style="font-size: 12px"  class="fas fa-check"></span><strong class="span_text"> Takeway</strong></li></a>-->
+<!--							<a class="three_button" href="--><?php //echo base_url('restaurant/restaurant-detail/'.$slug_soi);?><!--"><li class="--><?php //echo ($current_page == 'RestaurantDetails') ? 'li_sec' : 'li_bg'; ?><!--" ><span style="font-size: 12px " class="fas fa-check"></span><strong  class="span_text"> Delivery</strong></li></a>-->
+<!--							<a class="three_button" href="--><?php //echo base_url() . 'restaurant/event-booking'; ?><!--"><li class="--><?php //echo ($current_page == 'ContactUs3') ? 'li_sec' : 'li_bg'; ?><!--" ><span style="font-size: 12px " class="fas fa-check"></span><strong class="span_text"> Dine In</strong></li></a>-->
+<!---->
+<!--						</ul>-->
+<!--					</div>-->
+<!--				--><?php //} ?>
 
 
 
