@@ -134,11 +134,11 @@ if (isset($_GET['scope'])) {
 		<div class="row">
 			<div class="col-md-6 user-form">
 				<div class="content-wrapper">
-					<div class="logo">
-						<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/front/images/logo.png" alt="Logo"></a>
-					</div>
-					<h3><?php echo $this->lang->line('welcome_to') ?> <?php echo $this->lang->line('site_title'); ?>!</h3>
-					<div class="container">
+<!--					<div class="logo">-->
+<!--						<a href="--><?php //echo base_url(); ?><!--"><img src="--><?php //echo base_url(); ?><!--assets/front/images/logo.png" alt="Logo"></a>-->
+<!--					</div>-->
+<!--					<h3>--><?php //echo $this->lang->line('welcome_to') ?><!-- --><?php //echo $this->lang->line('site_title'); ?><!--!</h3>-->
+					<div class="container" style="display: contents">
 						<br />
 						<!-- <a href="#" onclick="hideContainer()" class="google btn"><i class="fa fa-google fa-fw">
 							</i> Sign Up With Number
@@ -154,7 +154,7 @@ if (isset($_GET['scope'])) {
 
 							// if google is selected than not to show fb button
 							if (!isset($_GET['scope'])) {
-								echo $facebook_login_url;
+//								echo $facebook_login_url;
 							}
 						} else {
 							echo '<img src="' . $_SESSION["user_image"] . '" class="img-responsive img-circle img-thumbnail" />';
@@ -190,7 +190,7 @@ if (isset($_GET['scope'])) {
 						<div id="userExist"></div>
 					</div>
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
-						<h2 style="margin-left: 28%; color:dimgrey">____OR____</h2>
+						<h2 style="color:dimgrey">____OR____</h2>
 					<?php } ?>
 					<br></br>
 
