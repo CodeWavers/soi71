@@ -96,7 +96,8 @@
 				</div>
 			</form>
 			<ul>
-				<li class="<?php echo ($current_page == 'HomePage') ? 'current' : ''?>"><a href="<?php echo base_url()?>"><span class="fas fa-home"></span></a><span>Home</span></li>
+<!--				<li class="--><?php //echo ($current_page == 'HomePage') ? 'current' : ''?><!--"><a href="--><?php //echo base_url()?><!--"><span class="fas fa-home"></span></a><span>Home</span></li>-->
+				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-bars"></span></a><span>Menu</span></li>
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-shopping-bag"></span></a><span>Takeway</span></li>
 				<li class="footer_search"><a> <span class="fas fa-search"></span></a><span>Search</span></li>
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a> <span class="fas fa-motorcycle"></span></a><span>Delivery</span></li>
@@ -298,7 +299,7 @@
 									</div>
 								<?php } else {?>
 									<div class=" signin-btn">
-										<a href="<?php echo base_url() . 'home/login'; ?>" class="common btn"><?php echo $this->lang->line('sign_in') ?></a>
+										<a href="<?php echo base_url() . 'home/login'; ?>" class="common "><i class="iicon-icon-32 "></i> <?php echo $this->lang->line('sign_in') ?></a>
 									</div>
 								<?php }?>
 

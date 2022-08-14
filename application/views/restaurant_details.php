@@ -122,7 +122,7 @@ if (!empty($menu_arr)) {
 												</div>
 												<div class="home-menu-des">
 													<div class="">
-														<div class="home-menu-name"><?php echo $value['name']; ?></div>
+														<div class="home-menu-name hover" data-id="<?php echo ($value['entity_id']) ?>"><?php echo $value['name']; ?></div>
 
 													</div>
 													<div class="home-menu-details-parent">
@@ -188,7 +188,7 @@ if (!empty($menu_arr)) {
 													</div>
 													<div class="home-menu-des">
 														<div class="">
-															<div class="home-menu-name"><?php echo $value['name']; ?></div>
+															<div class="home-menu-name hover" data-id="<?php echo ($value['entity_id']) ?>"><?php echo $value['name']; ?></div>
 
 														</div>
 														<div class="home-menu-details-parent">
@@ -417,7 +417,7 @@ if (!empty($menu_arr)) {
 			<!-- your cart end -->
 		</div>
 
-<!--		<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-circle-up"></span></button>-->
+		<button onclick="topFunction()" id="myBtn" title="Go to top"><span class="fa fa-arrow-circle-up"></span></button>
 
 
 	</div>
@@ -982,7 +982,7 @@ if (!empty($menu_arr)) {
 	function topFunction() {
 
 		$('html, body').animate({
-			scrollTop: $('#details_content').offset().top -190
+			scrollTop: $('#details_content').offset().top -220
 		}, 500);
 
 

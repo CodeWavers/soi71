@@ -416,7 +416,7 @@ input {
 	margin-top: 5vh;
 	left: 0;
 	width: 100%;
-	height:  38vh !important;
+	height:  55vh !important;
 }
 
 
@@ -911,6 +911,9 @@ body.fixed {
 
 .header-inner .logo {
 	padding: 10px 2px;
+	display: flex;
+	/* justify-content: center; */
+	align-items: center;
 }
 
 .header-inner nav {
@@ -1166,6 +1169,10 @@ body.fixed {
 .signin-btn {
 	margin-left: 15px;
 	margin-right: 10px;
+}
+
+.signin-btn >a>i{
+	font-weight: bolder;
 }
 
 .header-right {
@@ -1488,8 +1495,8 @@ body.fixed {
 	content: "";
 	width: 80px;
 	height: 5px;
-	background: #ffb300;
-	background: var(--main-color);
+	/*background: #ffb300;*/
+	/*background: var(--main-color);*/
 	border-radius: 7px;
 	position: absolute;
 	left: 0;
@@ -2399,7 +2406,7 @@ body.fixed {
 }
 
 .manu-icon ul {
-	padding: 10px;
+	padding: 2px;
 	margin: 0px;
 	display: -webkit-box;
 	display: -moz-box;
@@ -2409,6 +2416,7 @@ body.fixed {
 	justify-content: center;
 	list-style: none;
 	align-items: center;
+	font-size: 0px;
 }
 
 .manu-icon ul li {
@@ -2587,7 +2595,7 @@ body.fixed {
 }
 
 .inner-pages-banner>h1 {
-	margin: 0px 0 30px;
+	margin: 50px 0 0px;
 	text-align: center;
 	color: #fff;
 	font-size: calc(23px + 24 * ((100vw - 300px) / (1920 - 300)));
@@ -6056,7 +6064,7 @@ body.fixed {
 	min-height: calc(100vh - 117px);
 }
 .contact-us-wrapper .widgets p {
-	padding: 0 15px;
+	/*padding: 0 15px;*/
 }
 .contact-us-wrapper {
 	background: rgba(252, 253, 253, 0.97);
@@ -6284,6 +6292,7 @@ body.fixed {
 
 .common{
 	width: 100px;
+	font-weight: bolder;
 }
 .common_login{
 	width: 140px;
@@ -7156,6 +7165,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		-moz-transition: all 0.5s ease-out;
 		-o-transition: all 0.5s ease-out;
 		transition: all 0.5s ease-out;
+		opacity: 0.9;
 	}
 	#example-one.open {
 		right: 0;
@@ -7424,7 +7434,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	/*}*/
 	.footer-area{
-		margin-bottom: 100px;
+		margin-bottom: 50px;
 	}
 	#openClose{
 		display: none;
@@ -7523,11 +7533,19 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 		margin-left: 7px;
 		margin-right: 7px;
 	}
-	.signin-btn a.btn {
+
+	/*.signin-btn a.btn::before {*/
+	/*	content: "\e90a";*/
+	/*	font-family: 'eatance'!important;*/
+	/*	font-size: 15px;*/
+	/*}*/
+
+	.signin-btn a {
 		font-size: 0px;
 		padding: 1px 5px;
 	}
-	.signin-btn a.btn::before {
+
+	.signin-btn a::before {
 		content: "\e90a";
 		font-family: 'eatance'!important;
 		font-size: 15px;
@@ -8071,7 +8089,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	/*}*/
 	.footer-area{
-		margin-bottom: 100px;
+		margin-bottom: 50px;
 	}
 	#openClose{
 		display: none;
@@ -8263,7 +8281,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 	/*}*/
 	.footer-area{
-		margin-bottom: 80px;
+		margin-bottom: 30px;
 	}
 
 	.search-form .form-group {
@@ -8427,7 +8445,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 #myBtn {
 	display: none;
 	position: fixed;
-	bottom: 20px;
+	bottom: 50px;
 	right: 30px;
 	z-index: 99;
 	font-size: 18px;

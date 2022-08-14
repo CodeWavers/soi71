@@ -208,7 +208,7 @@
 								</div>
 								<div class="home-menu-des">
 									<div class="">
-										<div class="home-menu-name"><?php echo $value['name']; ?></div>
+										<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
 
 									</div>
 									<div class="home-menu-details-parent">
@@ -290,7 +290,7 @@
 								</div>
 								<div class="home-menu-des">
 									<div class="">
-										<div class="home-menu-name"><?php echo $value['name']; ?></div>
+										<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
 
 									</div>
 									<div class="home-menu-details-parent">
