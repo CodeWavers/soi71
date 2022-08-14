@@ -277,7 +277,7 @@
 
 
 	<!-- Flickity HTML init -->
-		<div class="carousel " data-flickity='{ "groupCells": true }'>
+		<div class="carousel " style="background: white" data-flickity='{ "groupCells": true }'>
 
 
 
