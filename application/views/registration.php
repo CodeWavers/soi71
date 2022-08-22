@@ -185,14 +185,14 @@ if (isset($_GET['scope'])) {
 
 					</div>
 
-					<br></br>
+					<br>
 					<div class="form-group">
 						<div id="userExist"></div>
 					</div>
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
-						<h2 style="color:dimgrey">____OR____</h2>
+						<h4 style="color:dimgrey;margin-bottom: 7%">____OR____</h4>
 					<?php } ?>
-					<br></br>
+
 
 					<form action="" id="form_front_registration" name="form_front_registration" method="post" class="form-horizontal float-form ">
 						<div class="form-body">

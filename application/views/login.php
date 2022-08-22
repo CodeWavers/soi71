@@ -176,9 +176,9 @@ if (isset($_GET['scope'])) {
 					<br></br>
 
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
-						<h2 style=" color:dimgrey">____OR____</h2>
+						<h4 style=" color:dimgrey">____OR____</h4>
 					<?php } ?>
-					<br></br>
+					<br>
 
 					<form action="<?php echo base_url() . 'home/login'; ?>" id="form_front_login" name="form_front_login" method="post" class="form-horizontal float-form">
 						<div class="form-body">
@@ -205,7 +205,7 @@ if (isset($_GET['scope'])) {
 									<input type="password" name="password" id="password" class="form-control" placeholder=" " value="<?php echo $adminCook['hash']; ?>">
 									<label><?php echo $this->lang->line('password') ?></label>
 								</div>
-
+								<br>
 								<div class="links text-right">
 									<div class="check-box">
 										<label>
@@ -260,8 +260,9 @@ if (isset($_GET['scope'])) {
 </section>
 <!--/ end content-area section -->
 <!-- Modal -->
-<div class="modal  fade bd-example-modal-sm" tabindex="-1" role="dialog" id="forgot-pass-modal">
-	<div class="modal-dialog modal-dialog-centered modal-sm" role="document">
+<div class="modal  fade bd-example-modal-md" tabindex="-1" role="dialog" id="forgot-pass-modal">
+	<div class="modal-dialog modal-dialog-centered modal-md
+" role="document">
 		<div class="modal-content" >
 			<div class="row align-items-center">
 				<div class="col-12">
