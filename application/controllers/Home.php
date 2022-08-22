@@ -12,7 +12,7 @@ class Home extends CI_Controller
 		$this->load->model(ADMIN_URL . '/common_model');
 		$this->load->model('/home_model');
 		$this->load->model('/restaurant_model');
-
+		$this->db->query('SET SESSION sql_mode = ""');
 		if (empty($this->session->userdata('language_slug'))) {
 			$data['lang'] = $this->common_model->getdefaultlang();
 			$this->session->set_userdata('language_directory', $data['lang']->language_directory);

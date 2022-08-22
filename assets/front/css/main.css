@@ -1576,7 +1576,7 @@ body.fixed {
 }
 
 .quick-searches {
-	padding: 50px 0 25px;
+	padding: 55px 0 25px;
 	z-index: -1000;
 	background: rgba(252, 253, 253, 0.97);
 }

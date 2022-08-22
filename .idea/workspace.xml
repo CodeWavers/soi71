@@ -24,8 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/footer.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -112,12 +115,10 @@
     <option name="hideEmptyMiddlePackages" value="true" />
     <option name="showLibraryContents" value="true" />
   </component>
-  <component name="PropertiesComponent">{
-  &quot;keyToString&quot;: {
-    &quot;WebServerToolWindowFactoryState&quot;: &quot;false&quot;,
-    &quot;vue.rearranger.settings.migration&quot;: &quot;true&quot;
-  }
-}</component>
+  <component name="PropertiesComponent">
+    <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="vue.rearranger.settings.migration" value="true" />
+  </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\git\soi71\assets\front\images" />
@@ -160,7 +161,8 @@
       <workItem from="1659852517145" duration="7787000" />
       <workItem from="1659869684061" duration="1866000" />
       <workItem from="1659935023514" duration="12767000" />
-      <workItem from="1660382703778" duration="21386000" />
+      <workItem from="1660382703778" duration="21439000" />
+      <workItem from="1661148210948" duration="1899000" />
     </task>
     <servers />
   </component>

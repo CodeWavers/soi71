@@ -154,7 +154,7 @@ if (isset($_GET['scope'])) {
 
 							// if google is selected than not to show fb button
 							if (!isset($_GET['scope'])) {
-//								echo $facebook_login_url;
+								echo $facebook_login_url;
 							}
 						} else {
 							echo '<img src="' . $_SESSION["user_image"] . '" class="img-responsive img-circle img-thumbnail" />';

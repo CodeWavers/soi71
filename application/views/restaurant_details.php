@@ -60,7 +60,7 @@ if (!empty($menu_arr)) {
 						<?php }?>
 
 					</div>
-					<div class="option-filter-tab">
+					<div class="option-filter-tab display-no">
 						<!-- <div class="custom-control custom-checkbox">
 								<input type="radio" name="filter_food" class="custom-control-input" id="filter_veg" value="filter_veg" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
 								<label class="custom-control-label" for="filter_veg"><?php echo $this->lang->line('veg') ?></label>
