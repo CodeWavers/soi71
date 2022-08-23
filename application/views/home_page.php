@@ -141,6 +141,12 @@
 <!--			</div>-->
 <!---->
 <!--	--><?php //} ?>
+
+	<?php
+
+	$slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity_id','asc')->limit(1)->get()->row()->restaurant_slug;
+
+	?>
 </section>
 
 <?php if ($current_page == 'HomePage')  {?>
