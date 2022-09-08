@@ -149,6 +149,7 @@
 	}
 	.noti-cart>ul>li {
 		padding: 0 10px;
+		padding-top: 5px;
 	}
 	.header-user .user-img {
 		width: 45px;
@@ -422,7 +423,7 @@
 	}
 	.header-user .user-img {
 		width: 25px;
-		height: 25px;
+		height: 30px;
 		margin-right: 3px;
 	}
 	.float-form .form-control:not(:placeholder-shown)~label {
@@ -772,6 +773,11 @@
 		text-align: center;
 		display: none;
 	}
+	.common_login {
+		width: auto;
+
+	}
+}
 }
 @media (max-width: 375px) {
 

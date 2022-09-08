@@ -78,7 +78,7 @@ if (isset($_GET['state'])) {
 	//$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/takeway/home/login/', $facebook_permissions);
 	$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
 	// Render Facebook login button
-	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2;" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
+	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2; border:none !important" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
 	// }
 }
 
@@ -116,14 +116,14 @@ if (isset($_GET['scope'])) {
 	}
 } else {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
+	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39; border:none !important" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
 }
 ?>
 
 <?php $this->load->view('header'); ?>
-<section class="content-area user-page quick-searches">
+<section class="content-area user-page quick-searches" >
 	<div class="container-fluid">
-		<div class="row">
+		<div class="row"  style="height: calc(100vh - 92px)">
 			<div class="col-md-6 user-form">
 				<div class="content-wrapper">
 <!--					<div class="logo"> <a href="--><?php //echo base_url(); ?><!--"><img src="--><?php //echo base_url(); ?><!--assets/front/images/logo.png" alt="Logo"></a>-->
@@ -176,7 +176,7 @@ if (isset($_GET['scope'])) {
 					<br></br>
 
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
-						<h4 style=" color:dimgrey">____OR____</h4>
+						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
 					<?php } ?>
 					<br>
 
@@ -254,7 +254,7 @@ if (isset($_GET['scope'])) {
 
 				</div>
 			</div>
-			<div class="col-md-6 login-bg"></div>
+			<div class="col-md-6 login-bg h-100"></div>
 		</div>
 	</div>
 </section>

@@ -968,6 +968,8 @@ function moreEvents(order_flag){
 }
 // get orders details
 function order_details(order_id){
+
+//	alert(order_id)
 	if (order_id) {
 		jQuery.ajax({
 			type : "POST",

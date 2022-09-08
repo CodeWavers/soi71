@@ -61,10 +61,14 @@
 					                            <img src="<?php echo $image; ?>">
 											</div>
 										</div>
+
 										<?php if ($latestOrder->driver_id) {?>
-											<div class="call-btn">
-												<button class="btn"><i class="iicon-icon-12"></i><?php echo $this->lang->line('call') .' '. $latestOrder->first_name.' '; ?><br><?php echo $latestOrder->mobile_number; ?></button>
-											</div>
+												<a href="tel:<?= $latestOrder->mobile_number?>">
+													<div class="call-btn">
+														<button class="btn"><i class="iicon-icon-12"></i><?php echo $this->lang->line('call') .' '. $latestOrder->first_name.' '; ?><br><?php echo $latestOrder->mobile_number; ?></button>
+													</div>
+												</a>
+
 										<?php }?>
 									</div>
 								</div>

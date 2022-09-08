@@ -49,6 +49,8 @@ input:focus , button:focus , a:focus{
 .login-bg {
 	background: #cdcdcd url(../images/login.jpg) no-repeat;
 	background-size: cover;
+	background-position: center;
+	height: 100%;
 }
 
 .form-control {

@@ -100,7 +100,7 @@
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-bars"></span></a><span>Menu</span></li>
 				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-shopping-bag"></span></a><span>Takeway</span></li>
 				<li class="footer_search"><a> <span class="fas fa-search"></span></a><span>Search</span></li>
-				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a> <span class="fas fa-motorcycle"></span></a><span>Delivery</span></li>
+				<li class="<?php echo ($current_page == 'RestaurantDetails') ? 'current' : ''?>"><a  href="<?php echo base_url('restaurant/restaurant-detail/'.$slug);?>"> <span class="fas fa-motorcycle"></span></a><span>Delivery</span></li>
 				<li class="<?php echo ($current_page == 'EventBooking') ? 'current' : ''?>"><a href="<?php echo base_url() . 'restaurant/event-booking'; ?>"> <i class="iicon-icon-27 font-weight-bolder"></i></a><span>Dine In</span></li>
 <!--				<li   class="--><?php //echo ($current_page == 'Cart') ? 'current' : ''?><!--"><a href="--><?php //echo base_url() . 'cart'; ?><!--"> <span class="fas fa-shopping-cart"></span><span class="manu_span cart_count " id="cart_count" >--><?php //echo $count; ?><!--</span></a><span>Cart</span></li>-->
 

@@ -136,7 +136,7 @@
                                                                             <span class="date-icon"><?php echo date("d M Y", strtotime($value['order_date'])); ?></span>
                                                                             <span class="relivered-icon"><?php echo $value['order_status']; ?></span>
                                                                             <div class="ordering-btn">
-                                                                                <button class="btn" data-toggle="modal" onclick="order_details(<?php echo $value['order_id']; ?>)"><?php echo $this->lang->line('view_details') ?></button>
+                                                                                <button class="btn"  onclick="order_details(<?php echo $value['order_id']; ?>)"><?php echo $this->lang->line('view_details') ?></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
