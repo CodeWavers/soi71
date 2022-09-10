@@ -78,7 +78,7 @@ if (isset($_GET['state'])) {
 	//$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/takeway/home/login/', $facebook_permissions);
 	$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
 	// Render Facebook login button
-	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2; border:none !important" onclick="fbCheck()" href="' . $facebook_login_url . '" >LogIn with Facebook</a>';
+	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2; border:none !important" onclick="fbCheck()" href="' . $facebook_login_url . '" ><nobr>LogIn with Facebook</nobr></a>';
 	// }
 }
 
@@ -116,7 +116,7 @@ if (isset($_GET['scope'])) {
 	}
 } else {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39; border:none !important" href="' . $google_client->createAuthUrl() . '">LogIn with Google  </a>';
+	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39; border:none !important" href="' . $google_client->createAuthUrl() . '"><nobr>LogIn with Google </nobr> </a>';
 }
 ?>
 

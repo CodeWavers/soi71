@@ -85,7 +85,7 @@ if (isset($_GET['state'])) {
 
 	// Render Facebook login button
 	// $facebook_login_url = '<a href="' . $facebook_login_url . '"><img class="facebook" src="' . base_url() . 'assets/front/images/facebook.png" alt="Login with facebook" height="40px" width=84%></a>';
-	$facebook_login_url = '<a class="common_with_sign fb btn" style="background-color:#4267B2; border:none !important"  onclick="fbCheck()" href="' . $facebook_login_url . '" >Sign Up with Facebook</a>';
+	$facebook_login_url = '<a class="common_with_sign fb btn" style="background-color:#4267B2; border:none !important"  onclick="fbCheck()" href="' . $facebook_login_url . '" ><nobr>Sign Up with Facebook</nobr></a>';
 	// }
 }
 
@@ -125,7 +125,7 @@ if (isset($_GET['scope'])) {
 
 	// if ($fb_check == 1) {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="common_with_sign google btn" style="background-color:#DB4A39; border:none !important"  href="' . $google_client->createAuthUrl() . '">Sign Up with Google</a>';
+	$gmail_button = '<a onclick="gmailCheck()" class="common_with_sign google btn" style="background-color:#DB4A39; border:none !important"  href="' . $google_client->createAuthUrl() . '"><nobr>Sign Up with Google</nobr></a>';
 }
 ?>
 

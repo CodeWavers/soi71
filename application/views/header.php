@@ -32,7 +32,9 @@
 
 	    <!-- Required jQuery -->
 		<script type="text/javascript" src="<?php echo base_url();?>assets/front/js/flickity.pkgd.min.js"></script>
-
+		<script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/popper.js@1.12.9/dist/umd/popper.min.js" integrity="sha384-ApNbgh9B+Y1QKtv3Rn7W3mgPxhU9K/ScQsAP7hUibX39j7fakFPskvXusvfa0b4Q" crossorigin="anonymous"></script>
+		<script src="https://cdn.jsdelivr.net/npm/bootstrap@4.0.0/dist/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
 		<script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/jquery.min.js'></script>
 	    <script type="text/javascript" src='<?php echo base_url(); ?>assets/front/js/wow.min.js'></script>
 	    <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/popper.min.js" defer></script>
@@ -67,6 +69,12 @@
 	?>
 
 	<body class="<?php echo $lang_class; ?>  " onclick="onBody()">
+
+	<div class="loader-wrapper">
+		<div class="spinner-grow spinner-grow-lg text-success" style="width: 8rem; height: 8rem;" role="status">
+			<span class="sr-only">Loading...</span>
+		</div>
+	</div>
 <!--	<div class="parallax" >-->
 
 <?php
@@ -437,6 +445,9 @@
 		});
 	</script>
 		<script type="text/javascript">
+			$(window).on("load",function(){
+				$(".loader-wrapper").fadeOut("slow");
+			});
 			$(document).on('ready', function() {
 
 				var count = '<?php echo count($cart_details['cart_items']); ?>';

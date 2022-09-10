@@ -981,8 +981,11 @@ function order_details(order_id){
 			},
 			success: function(response) {
 				$('#quotes-main-loader').hide();
+
+				//console.log(response)
 				$('#order-details').html(response);
 				$('#order-details').modal('show');
+				$("#order-details").css("display", "block");
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
@@ -1021,9 +1024,15 @@ function booking_details(event_id){
 				$('#quotes-main-loader').show();
 			},
 			success: function(response) {
+
 				$('#quotes-main-loader').hide();
-				$('#booking-details').html(response);
-				$('#booking-details').modal('show');
+				$('#booking-details').html(response).modal('show');
+			//$('#booking-details').html(response);
+
+				// $('#booking-details').modal('show');
+				// $('#booking-details').modal('show');
+				// $("#booking-details").css("display", "block");
+
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);

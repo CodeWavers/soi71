@@ -10,13 +10,19 @@
 
 	$image_u = ((!empty($sc_image)) ? $sc_image : (!empty($sc_image) ) ? $sc_image : $ses_image);
 	?>
+
     <section class="inner-pages-section">
         <div class="container">
+			<!-- Booking Details -->
+			<div class="modal modal-main  order-detail-popup" id="booking-details" ></div>
+			<!-- Order Details -->
+			<div class="modal modal-main order-detail-popup " id="order-details" ></div>
             <div class="row">
                 <div class="col-lg-12">
                     <div class="heading-title">
                         <h2><?php echo $this->lang->line('my_profile') ?></h2>
                     </div>
+
                 </div>
                 <div class="col-lg-12">
                 <?php if($this->session->flashdata('myProfileMSG')) {?>
@@ -190,7 +196,7 @@
                                                                             <span class="date-icon"><?php echo date("d M Y", strtotime($value['order_date'])); ?></span>
                                                                             <span class="relivered-icon"><?php echo $value['order_status']; ?></span>
                                                                             <div class="ordering-btn">
-                                                                                <button class="btn" data-toggle="modal" onclick="order_details(<?php echo $value['order_id']; ?>)"><?php echo $this->lang->line('view_details') ?></button>
+                                                                                <button class="btn" data-toggle="modal" data-target="#order-details" onclick="order_details(<?php echo $value['order_id']; ?>)"><?php echo $this->lang->line('view_details') ?></button>
                                                                             </div>
                                                                         </div>
                                                                     </div>
@@ -744,10 +750,7 @@
       <p><span class="ui-icon ui-icon-alert"></span><?php echo $this->lang->line('set_main_address_confirm') ?></p>
     </div>
 
-    <!-- Booking Details -->
-    <div class="modal modal-main order-detail-popup" id="booking-details"></div>
-    <!-- Order Details -->
-    <div class="modal modal-main order-detail-popup" id="order-details"></div>
+
 
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
     <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGh2j6KRaaSf96cTYekgAD-IuUG0GkMVA&libraries=places"></script>

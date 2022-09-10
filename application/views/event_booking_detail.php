@@ -37,30 +37,30 @@
 <!---->
 <!--				</ul>-->
 <!--			</div>-->
-			<div class="col-lg-12">
-				<div class="heading-title">
-					<h2><?php echo $this->lang->line('select_package') ?></h2>
-				</div>
-			</div>
+<!--			<div class="col-lg-12">-->
+<!--				<div class="heading-title">-->
+<!--					<h2>--><?php //echo $this->lang->line('select_package') ?><!--</h2>-->
+<!--				</div>-->
+<!--			</div>-->
 
 		</div>
 
-		<div class="row restaurant-detail-row">	
-			<div class="col-sm-12 col-md-5 col-lg-8">					
+		<div class="row restaurant-detail-row" style="justify-content: center;">
+			<div class="col-sm-12 col-md-5 col-lg-8 d-none">
 				<div class="detail-list-box-main">
 					<!-- <div class="detail-list-title">
 						<h3>Gold Packages</h3>
 					</div> -->
 					<div class="detail-list-box">
-						<?php if (!empty($restaurant_details['packages'])) { 
+						<?php if (!empty($restaurant_details['packages'])) {
 							foreach ($restaurant_details['packages'] as $key => $value) { ?>
 								<div class="detail-list">
 									<div class="detail-list-img">
-										<div class="list-img">	
+										<div class="list-img">
 											<img src="<?php echo ($value['image'])?$value['image']:default_img; ?>">
 										</div>
 									</div>
-									<div class="detail-list-content"> 
+									<div class="detail-list-content">
 										<div class="detail-list-text">
 											<h4><?php echo $value['name']; ?></h4>
 											<p><?php echo $value['detail']; ?></p>
@@ -72,7 +72,7 @@
 									</div>
 								</div>
 							<?php } ?>
-						<?php } 
+						<?php }
 						else { ?>
 							<div class="detail-list-title">
 								<h3 class="no-results"><?php echo $this->lang->line('no_results_found') ?></h3>
@@ -81,7 +81,7 @@
 					</div>
 				</div>
 			</div>
-			<div class="col-sm-12 col-md-5 col-lg-4">
+			<div class="col-sm-12 col-md-12 col-lg-8" style="">
 				<div class="your-booking-main">
 					<div class="your-booking-title">
 						<h3><i class="iicon-icon-27"></i><?php echo $this->lang->line('your_booking') ?></h3>

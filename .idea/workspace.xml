@@ -23,15 +23,16 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
+      <change afterPath="$PROJECT_DIR$/assets/front/images/filter.png" afterDir="false" />
+      <change afterPath="$PROJECT_DIR$/assets/front/images/menu.svg" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/event_booking_detail.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/event_booking_detail.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/myprofile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/myprofile.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/registration.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/track_order.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/track_order.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/css/style.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/style.css" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -121,6 +122,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/front/images" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -168,7 +170,8 @@
       <workItem from="1660382703778" duration="21439000" />
       <workItem from="1661148210948" duration="3585000" />
       <workItem from="1661227432064" duration="2165000" />
-      <workItem from="1662628864112" duration="9181000" />
+      <workItem from="1662628864112" duration="9263000" />
+      <workItem from="1662785223983" duration="20933000" />
     </task>
     <servers />
   </component>
@@ -185,5 +188,16 @@
         </entry>
       </map>
     </option>
+  </component>
+  <component name="XDebuggerManager">
+    <breakpoint-manager>
+      <breakpoints>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/views/myprofile.php</url>
+          <line>615</line>
+          <option name="timeStamp" value="1" />
+        </line-breakpoint>
+      </breakpoints>
+    </breakpoint-manager>
   </component>
 </project>
