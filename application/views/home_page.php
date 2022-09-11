@@ -163,9 +163,9 @@
 
 
 
-
+<?php if (!empty($coupons)) { ?>
 <section class="cp" >
-	<?php if (!empty($coupons)) { ?>
+
 
 		<div class="container " style="" id="hahha">
 
@@ -195,9 +195,9 @@
 
 		</div>
 
-	<?php } ?>
-</section>
 
+</section>
+<?php } ?>
 
 <div class="modal modal-main" id="myModal"></div>
 

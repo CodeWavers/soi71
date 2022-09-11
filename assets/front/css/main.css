@@ -845,6 +845,15 @@ img {
 
 
 }
+
+.dropdown_options {
+
+	display: block;
+	box-shadow: rgb(99 99 99 / 20%) 0px 2px 8px 0px;
+
+}
+
+
 .btn:hover {
 	background: #fff;
 	color: #ffb300;
@@ -1634,7 +1643,7 @@ body.fixed {
 }
 
 .quick-searches {
-	padding: 73px 0 0px;
+	/*padding: 73px 0 0px;*/
 	z-index: -1000;
 	background: rgba(252, 253, 253, 0.97);
 }
@@ -6152,6 +6161,8 @@ body.fixed {
 	font-weight: bold;
 	border-radius: 5%;
 	font-size: 1rem;
+	inline-size: 150px;
+	overflow-wrap: break-word;
 }
 .gallery-cell:hover{
 	background: rgba(96, 90, 90, 0.29);
@@ -6503,6 +6514,10 @@ border-bottom-right-radius: 10px;
 .option-filter-tab .custom-control .custom-control-label {
 	cursor: pointer;
 	font-size: 0.7em;
+	position: relative;
+	margin-bottom: 0;
+	vertical-align: top;
+	padding-bottom: 3px;
 }
 
 .option-filter-tab .custom-control:last-child {

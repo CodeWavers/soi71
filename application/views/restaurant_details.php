@@ -73,28 +73,32 @@ if (!empty($menu_arr)) {
 							<img class="" src="<?php echo base_url(); ?>assets/front/images/filter.png">
 
 						</div>
-						<div class="btn-group" id="filter_options">
+						<div class="btn-group" id="filter_options" style="display:none">
 							<button class=" btn-secondary btn-sm dropdown-toggle" type="button" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
 								Filter Options
 							</button>
-							<div class="dropdown-menu">
-								<div class="custom-control custom-checkbox ">
-									<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-									<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
+							<div class="dropdown_options">
+							<div class="dropdown-menu" style="padding: 7px">
+
+									<div class="custom-control custom-checkbox ">
+										<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+										<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
+									</div>
+									<div class="custom-control custom-checkbox ">
+										<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+										<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
+									</div>
+									<div class="custom-control custom-checkbox ">
+										<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
+										<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
+									</div>
+									<div class="dropdown-divider"></div>
+									<div class="custom-control custom-checkbox">
+										<input type="radio" checked="checked" name="filter_food" class="custom-control-input" id="all" value="all" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+										<label class="custom-control-label" for="all"><?php echo $this->lang->line('view_all') ?></label>
+									</div>
 								</div>
-								<div class="custom-control custom-checkbox ">
-									<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-									<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
-								</div>
-								<div class="custom-control custom-checkbox ">
-									<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
-									<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
-								</div>
-								<div class="dropdown-divider"></div>
-								<div class="custom-control custom-checkbox">
-									<input type="radio" checked="checked" name="filter_food" class="custom-control-input" id="all" value="all" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-									<label class="custom-control-label" for="all"><?php echo $this->lang->line('view_all') ?></label>
-								</div>
+
 							</div>
 						</div>
 
@@ -905,6 +909,13 @@ if (!empty($menu_arr)) {
 
 <script type="text/javascript">
 	$('.dropdown-toggle').dropdown();
+
+	$('.filter').click(function() {
+
+		$("#filter_options").fadeToggle('slow');
+
+	});
+
 
 	$(".hover").on("click", function() {
 
