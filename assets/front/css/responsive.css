@@ -810,7 +810,7 @@
 		margin-top: 10px;
 		position: initial;
 		text-align: center;
-		display: none;
+		/*display: none;*/
 	}
 	.address-btn .btn {
 		font-size: 11px;

@@ -153,9 +153,9 @@
 	<div class="takeway" >
 		<ul class="mb-2" style="align-items:center;justify-content: center ;color: white;">
 
-			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li><strong class="span_text"> Takeway</strong></li></a>
-			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li ><strong  class="span_text"> Delivery</strong></li></a>
-			<a class="" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li  ><strong class="span_text"> Dine In</strong></li></a>
+			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class="mr-3"><strong class="span_text mr-2"> Takeway</strong></li></a>
+			<a class="" href="<?php echo base_url('restaurant/restaurant-detail/'.$slug_soi);?>"><li class="mr-3"><strong  class="span_text mr-2"> Delivery</strong></li></a>
+			<a class="" href="<?php echo base_url() . 'restaurant/event-booking'; ?>"><li  class="mr-3"><strong class="span_text mr-2"> Dine In</strong></li></a>
 
 		</ul>
 	</div>
