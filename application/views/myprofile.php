@@ -758,7 +758,12 @@
     <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
     <script type="text/javascript">
     var map, marker;
+	$('#nav-icon2').click(function () {
 
+		$('#nav-icon2').addClass('open');
+		$('#example-one').addClass('open');
+
+	})
     function pass_val(){
     	var pass=$('#password').val();
     	var confirm_pass=$('#confirm_password').val();
