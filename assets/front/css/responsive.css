@@ -621,10 +621,10 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
-		display: none;
+		/*display: none;*/
 	}
 }
 
@@ -634,10 +634,10 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
-		display: none;
+		/*display: none;*/
 	}
 }
 
@@ -768,10 +768,10 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
-		display: none;
+		/*display: none;*/
 	}
 	.common_login {
 		width: auto;
@@ -788,10 +788,10 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
-		display: none;
+		/*display: none;*/
 	}
 	.address-btn .btn {
 		font-size: 11px;
@@ -807,7 +807,7 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
 		/*display: none;*/
@@ -836,7 +836,7 @@
 	}
 	.takeway {
 		padding-left: 0px;
-		margin-top: 10px;
+		/*margin-top: 10px;*/
 		position: initial;
 		text-align: center;
 		display: none;
