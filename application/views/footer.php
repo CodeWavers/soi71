@@ -172,6 +172,7 @@
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/custom_js.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/scripts/front-validations.js"></script>
 
+
 </div>
 </body>
 </html>
