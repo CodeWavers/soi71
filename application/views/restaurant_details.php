@@ -80,20 +80,21 @@ if (!empty($menu_arr)) {
 							<div class="dropdown_options">
 							<div class="dropdown-menu" style="padding: 7px">
 
-									<div class="custom-control custom-checkbox ">
-										<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-										<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
-									</div>
-									<div class="custom-control custom-checkbox ">
-										<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
-										<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_high') ?></label>
-									</div>
+								<div class="custom-control custom-checkbox">
+									<input type="radio" checked="checked" name="filter_price" class="custom-control-input" id="filter_high_price" value="filter_high_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+									<label class="custom-control-label" for="filter_high_price"><?php echo $this->lang->line('sort_by_price_low') ?></label>
+								</div>
+								<div class="custom-control custom-checkbox">
+									<input type="radio" name="filter_price" class="custom-control-input" id="filter_low_price" value="filter_low_price" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
+									<label class="custom-control-label" for="filter_low_price"><?php echo $this->lang->line('sort_by_price_high') ?></label>
+								</div>
+
 									<div class="custom-control custom-checkbox ">
 										<input type="checkbox" name="filter_best_deal" class="custom-control-input" id="filter_best_deal" value="" onclick="best_deal()">
 										<label class="custom-control-label" for="filter_best_deal">Best Deal</label>
 									</div>
-									<div class="dropdown-divider"></div>
-									<div class="custom-control custom-checkbox">
+<!--									<div class="dropdown-divider"></div>-->
+									<div class="custom-control custom-checkbox d-none">
 										<input type="radio" checked="checked" name="filter_food" class="custom-control-input" id="all" value="all" onclick="menuFilter(<?php echo $restaurant_details['restaurant'][0]['content_id']; ?>)">
 										<label class="custom-control-label" for="all"><?php echo $this->lang->line('view_all') ?></label>
 									</div>
