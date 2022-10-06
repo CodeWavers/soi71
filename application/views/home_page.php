@@ -66,81 +66,81 @@
 
 <section class="">
 	<div class="hero">
-	<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
-		<ol class="carousel-indicators">
-			<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-			<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
-		</ol>
+		<div id="carouselExampleIndicators" class="carousel slide" data-ride="carousel">
+			<ol class="carousel-indicators">
+				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
+				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+			</ol>
 
 
-		<div class="carousel-inner" >
-			<div class="carousel-item active">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[0]['image']) ?>" >
-			</div>
-			<div class="carousel-item ">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[1]['image']) ?>" >
-			</div>
+			<div class="carousel-inner" >
+				<div class="carousel-item active">
+					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[0]['image']) ?>" >
+				</div>
+				<div class="carousel-item ">
+					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[1]['image']) ?>" >
+				</div>
 
-			<div class="carousel-item">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[2]['image']) ?>" >
+				<div class="carousel-item">
+					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[2]['image']) ?>" >
+				</div>
+				<div class="carousel-item">
+					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" >
+				</div>
 			</div>
-			<div class="carousel-item">
-				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" >
-			</div>
+			<!--		--><?php //echo '<pre>';print_r($slider[0]['image']);exit(); ?>
+			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
+				<span class="carousel-control-prev-icon" aria-hidden="true"></span>
+				<span class="sr-only">Previous</span>
+			</a>
+			<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
+				<span class="carousel-control-next-icon" aria-hidden="true"></span>
+				<span class="sr-only">Next</span>
+			</a>
 		</div>
-<!--		--><?php //echo '<pre>';print_r($slider[0]['image']);exit(); ?>
-		<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">
-			<span class="carousel-control-prev-icon" aria-hidden="true"></span>
-			<span class="sr-only">Previous</span>
-		</a>
-		<a class="carousel-control-next" href="#carouselExampleIndicators" role="button" data-slide="next">
-			<span class="carousel-control-next-icon" aria-hidden="true"></span>
-			<span class="sr-only">Next</span>
-		</a>
 	</div>
-	</div>
-<!--	<div class="hero "></div>-->
+	<!--	<div class="hero "></div>-->
 
 
 
-<!--	--><?php //if (!empty($coupons)) { ?>
-<!---->
-<!--			<div class="container " style="margin-top:150px;" id="hahha">-->
-<!--				<div class="heading-title">-->
-<!--					<h2 style="color: whitesmoke">--><?php //echo $this->lang->line('latest_coupons'); ?><!--</h2>-->
-<!--					<div class="slider-arrow">-->
-<!--						<div id="customNav2" class="arrow"></div>-->
-<!--					</div>-->
-<!--				</div>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--					<div class="row col-*" style="justify-content: center">-->
-<!--						--><?php //foreach ($coupons as $key => $value) { ?>
-<!--						<div class="col-sm-12 col-md-6 col-lg-3  coupon"  >-->
-<!---->
-<!--							<a href="--><?php //echo base_url('restaurant')?><!--"><img  class="card-img-top coupon_image" src="--><?php //echo ($value->image)?base_url().'uploads/'.$value->image:default_img;?><!--" alt="Coupon" ></a>-->
-<!---->
-<!--								<h1 class=" title font-weight-bold " >--><?php //echo $value->name?><!--</h1>-->
-<!--								<h4 class=" des font-weight-bold " >--><?php //echo $value->description?><!--</h4>-->
-<!---->
-<!--						</div>-->
-<!--						--><?php //} ?>
-<!---->
-<!--					</div>-->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!---->
-<!--			</div>-->
-<!---->
-<!--	--><?php //} ?>
+	<!--	--><?php //if (!empty($coupons)) { ?>
+	<!---->
+	<!--			<div class="container " style="margin-top:150px;" id="hahha">-->
+	<!--				<div class="heading-title">-->
+	<!--					<h2 style="color: whitesmoke">--><?php //echo $this->lang->line('latest_coupons'); ?><!--</h2>-->
+	<!--					<div class="slider-arrow">-->
+	<!--						<div id="customNav2" class="arrow"></div>-->
+	<!--					</div>-->
+	<!--				</div>-->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!--					<div class="row col-*" style="justify-content: center">-->
+	<!--						--><?php //foreach ($coupons as $key => $value) { ?>
+	<!--						<div class="col-sm-12 col-md-6 col-lg-3  coupon"  >-->
+	<!---->
+	<!--							<a href="--><?php //echo base_url('restaurant')?><!--"><img  class="card-img-top coupon_image" src="--><?php //echo ($value->image)?base_url().'uploads/'.$value->image:default_img;?><!--" alt="Coupon" ></a>-->
+	<!---->
+	<!--								<h1 class=" title font-weight-bold " >--><?php //echo $value->name?><!--</h1>-->
+	<!--								<h4 class=" des font-weight-bold " >--><?php //echo $value->description?><!--</h4>-->
+	<!---->
+	<!--						</div>-->
+	<!--						--><?php //} ?>
+	<!---->
+	<!--					</div>-->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!---->
+	<!--			</div>-->
+	<!---->
+	<!--	--><?php //} ?>
 
 	<?php
 
@@ -164,7 +164,7 @@
 
 
 <?php if (!empty($coupons)) { ?>
-<section class="cp" >
+	<section class="cp" >
 
 
 		<div class="container " style="" id="hahha">
@@ -196,93 +196,93 @@
 		</div>
 
 
-</section>
+	</section>
 <?php } ?>
 
 <div class="modal modal-main" id="myModal"></div>
 
 
 <?php if(!$popular_data) { ?>
-<section class="quick-searches"  style="margin-top: 10%">
-	<div class="container">
-		<div class="heading-title">
-			<h2>Popular Items</h2>
+	<section class="quick-searches"  style="margin-top: 10%">
+		<div class="container">
+			<div class="heading-title">
+				<h2>Popular Items</h2>
 
-		</div>
+			</div>
 
 
 
-		<div class="home-items">
+			<div class="home-items">
 
-			<?php  foreach ($popular_data as $ds){ ?>
+				<?php  foreach ($popular_data as $ds){ ?>
 
 					<?php foreach ($ds['menu_items'] as $key => $value) { ?>
 
 
-							<div class="home-menu-card ">
-								<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
-									<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
+						<div class="home-menu-card ">
+							<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
+								<img class="" src="<?php echo ($value['image']) ? (base_url('uploads/'.$value['image'])) : (base_url('assets/front/images/placeholder_image.png')); ?>" >
+
+							</div>
+							<div class="home-menu-des">
+								<div class="">
+									<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
 
 								</div>
-								<div class="home-menu-des">
-									<div class="">
-										<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
+								<div class="home-menu-details-parent">
+									<div class="det-with-price">
+										<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+										<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
 									</div>
-									<div class="home-menu-details-parent">
-										<div class="det-with-price">
-											<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
-											<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
-										</div>
-
-										<div class="add-btn-div">
-											<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
-												if ($value['check_add_ons'] == 1) { ?>
-													<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-													<div class="add-btn home-add">
-														<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-														<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
-													</div>
-												<?php } else { ?>
-													<div class="add-btn home-add">
-														<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-														<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-													</div>
-												<?php }
-											} ?>
-										</div>
+									<div class="add-btn-div">
+										<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
+											if ($value['check_add_ons'] == 1) { ?>
+												<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+												<div class="add-btn home-add">
+													<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+													<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
+												</div>
+											<?php } else { ?>
+												<div class="add-btn home-add">
+													<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+													<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+												</div>
+											<?php }
+										} ?>
 									</div>
 								</div>
 							</div>
+						</div>
 
 
 					<?php }?>
 
 
-			<?php } ?>
+				<?php } ?>
+
+
+
+			</div>
 
 
 
 		</div>
 
-
-
-		</div>
-
-</section>
+	</section>
 <?php } ?>
 <section class="quick-searches" style="margin-top: 5%" >
 	<div class="container" style="margin-top: 5%">
 		<div class="heading-title">
 			<h2>Best Deals</h2>
-<!--			<div class="slider-arrow">-->
-<!--				<div id="customNav" class="arrow"></div>-->
-<!--			</div>-->
+			<!--			<div class="slider-arrow">-->
+			<!--				<div id="customNav" class="arrow"></div>-->
+			<!--			</div>-->
 		</div>
 
 
-	<!-- Flickity HTML init -->
+		<!-- Flickity HTML init -->
 		<div class="carousel " style="background: white" data-flickity='{ "groupCells": true }'>
 
 
@@ -300,44 +300,44 @@
 				if ($popular_count > 0) { ?>
 					<?php foreach ($restaurant_details['menu_items'] as $key => $value) {
 						if ($value['popular_item'] == 1) { ?>
-					<div class="carousel-cell">
-							<div class="home-menu-card " style="height: 340px">
-								<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
-									<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>" >
-
-								</div>
-								<div class="home-menu-des">
-									<div class="">
-										<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
+							<div class="carousel-cell">
+								<div class="home-menu-card " style="height: 340px">
+									<div class="home-menu-image"  onclick="image_show(<?php echo ($value['entity_id']) ?>)">
+										<img class="" src="<?php echo ($value['image']) ? ($value['image']) : (default_img); ?>" >
 
 									</div>
-									<div class="home-menu-details-parent">
-										<div class="det-with-price">
-											<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
-											<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
+									<div class="home-menu-des">
+										<div class="">
+											<div class="home-menu-name" onclick="image_show(<?php echo ($value['entity_id']) ?>)"><?php echo $value['name']; ?></div>
 
 										</div>
+										<div class="home-menu-details-parent">
+											<div class="det-with-price">
+												<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+												<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
-										<div class="add-btn-div">
-											<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
-												if ($value['check_add_ons'] == 1) { ?>
-													<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-													<div class="add-btn home-add">
-														<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-														<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
-													</div>
-												<?php } else { ?>
-													<div class="add-btn home-add">
-														<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
-														<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
-													</div>
-												<?php }
-											} ?>
+											</div>
+
+											<div class="add-btn-div">
+												<?php if ($restaurant_details['restaurant'][0]['timings']['closing'] != "Closed") {
+													if ($value['check_add_ons'] == 1) { ?>
+														<?php  $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+														<div class="add-btn home-add">
+															<button class="btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : '' ?> onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'addons',this.id)"> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+															<span class="cust"><?php echo $this->lang->line('customizable') ?></span>
+														</div>
+													<?php } else { ?>
+														<div class="add-btn home-add">
+															<?php $add = (in_array($value['entity_id'], $menu_ids)) ? 'Added' : 'Add'; ?>
+															<button class="home-add btn <?php echo strtolower($add); ?> addtocart-<?php echo $value['entity_id']; ?>" id="addtocart-<?php echo $value['entity_id']; ?>" onclick="checkCartRestaurant(<?php echo $value['entity_id']; ?>,<?php echo $restaurant_details['restaurant'][0]['restaurant_id']; ?>,'',this.id)" <?php echo ($restaurant_details['restaurant'][0]['timings']['closing'] == "Closed") ? 'disabled' : ''; ?>> <?php echo (in_array($value['entity_id'], $menu_ids)) ? $this->lang->line('added') : $this->lang->line('add'); ?> </button>
+														</div>
+													<?php }
+												} ?>
+											</div>
 										</div>
 									</div>
 								</div>
 							</div>
-					</div>
 
 						<?php }
 					}?>
@@ -533,153 +533,153 @@
 	$business_timings =unserialize(json_decode($timings));
 
 	?>
-<div class="row col-*">
+	<div class="row col-*">
 
-<div class="col-sm-12 col-md-6 col-lg-6 ">
-	<div class=" text-center" style="width: 100%;">
-		<div class="card-body">
-			<h5 class="card-title s-title">Opening Hours</h5><hr>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Saturday</p>
+		<div class="col-sm-12 col-md-6 col-lg-6 ">
+			<div class=" text-center" style="width: 100%;">
+				<div class="card-body">
+					<h5 class="card-title s-title">Opening Hours</h5><hr>
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Saturday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['saturday']['open']; ?> to <?php echo @$business_timings['saturday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Sunday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['sunday']['open']; ?> to <?php echo @$business_timings['sunday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Monday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['monday']['open']; ?> to <?php echo @$business_timings['monday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Tuesday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['tuesday']['open']; ?> to <?php echo @$business_timings['tuesday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Wednesday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['wednesday']['open']; ?> to <?php echo @$business_timings['wednesday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Thursday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['thursday']['open']; ?> to <?php echo @$business_timings['thursday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+
+					<div class="row col-* " >
+						<div class="col-6 secodary_footer_day" >
+							<p class="card-text s-day">Friday</p>
+						</div>
+						<div class="col-6 secodary_footer_time">
+							<p class="card-text s-time"><?php echo $business_timings['friday']['open']; ?> to <?php echo @$business_timings['friday']['close']; ?></p>
+
+						</div>
+
+
+					</div>
+
+
 				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['saturday']['open']; ?> to <?php echo @$business_timings['saturday']['close']; ?></p>
-
-				</div>
-
-
 			</div>
-
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Sunday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['sunday']['open']; ?> to <?php echo @$business_timings['sunday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Monday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['monday']['open']; ?> to <?php echo @$business_timings['monday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Tuesday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['tuesday']['open']; ?> to <?php echo @$business_timings['tuesday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Wednesday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['wednesday']['open']; ?> to <?php echo @$business_timings['wednesday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Thursday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['thursday']['open']; ?> to <?php echo @$business_timings['thursday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-
-			<div class="row col-* " >
-				<div class="col-6 secodary_footer_day" >
-					<p class="card-text s-day">Friday</p>
-				</div>
-				<div class="col-6 secodary_footer_time">
-					<p class="card-text s-time"><?php echo $business_timings['friday']['open']; ?> to <?php echo @$business_timings['friday']['close']; ?></p>
-
-				</div>
-
-
-			</div>
-
-
 		</div>
-	</div>
-</div>
 
-<div class="col-sm-8 col-md-6 col-lg-6 ">
-	<div class=" text-center" style="width: 100%;">
-		<div class="card-body " id="facebook_page">
-			<h5 class="card-title s-title">Facebook Page</h5><hr>
-<!---->
-<!--			--><?php //foreach ($delivery_area as $da) {?>
-<!--			<div class="row col-* " >-->
-<!--				<div class="col-6 secodary_footer_day" >-->
-<!--					<p class="card-text s-day">--><?php //echo $da->name?><!--</p>-->
-<!--				</div>-->
-<!--				<div class="col-6 secodary_footer_time">-->
-<!--					<p class="card-text s-time">৳ --><?php //echo $da->delivery_charge?><!--</p>-->
-<!---->
-<!--				</div>-->
-<!---->
-<!---->
-<!--			</div>-->
-<!---->
-<!--			--><?php //} ?>
+		<div class="col-sm-8 col-md-6 col-lg-6 ">
+			<div class=" text-center" style="width: 100%;">
+				<div class="card-body " id="facebook_page">
+					<h5 class="card-title s-title">Facebook Page</h5><hr>
+					<!---->
+					<!--			--><?php //foreach ($delivery_area as $da) {?>
+					<!--			<div class="row col-* " >-->
+					<!--				<div class="col-6 secodary_footer_day" >-->
+					<!--					<p class="card-text s-day">--><?php //echo $da->name?><!--</p>-->
+					<!--				</div>-->
+					<!--				<div class="col-6 secodary_footer_time">-->
+					<!--					<p class="card-text s-time">৳ --><?php //echo $da->delivery_charge?><!--</p>-->
+					<!---->
+					<!--				</div>-->
+					<!---->
+					<!---->
+					<!--			</div>-->
+					<!---->
+					<!--			--><?php //} ?>
 
-			<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+					<iframe src="https://www.facebook.com/plugins/page.php?href=https%3A%2F%2Fwww.facebook.com%2Fsoi71&tabs=timeline&width=340&height=300&small_header=true&adapt_container_width=true&hide_cover=false&show_facepile=true&appId" width="340" height="300" style="border:none;overflow:hidden" scrolling="no" frameborder="0" allowfullscreen="true" allow="autoplay; clipboard-write; encrypted-media; picture-in-picture; web-share"></iframe>
+				</div>
+			</div>
 		</div>
-	</div>
-</div>
 
-</div>
-<!--	<div class="rest-detail-main">-->
-<!--		<div class="container">-->
-<!--			<div class="row">-->
-<!--				<div class="col-lg-12">-->
-<!--					<div class="rest-detail_s">-->
-<!--						<div class="rest-detail-img-main">-->
-<!--							<div class="rest-detail-img">-->
-<!--								<img src="--><?php //echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?><!--">-->
-<!--							</div>-->
-<!--						</div>-->
-<!--						<div class="rest-detail-content">-->
-<!---->
-<!--							<p><i class="iicon-icon-20"></i>--><?php //echo $restaurant_details['restaurant'][0]['address']; ?><!--</p>-->
-<!--							<ul class="">-->
-<!--								<li><i class="iicon-icon-29"></i>--><?php //echo $restaurant_details['restaurant'][0]['name']; ?><!--</li>-->
-<!--								<li><i class="iicon-icon-05"></i>--><?php //echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?><!--</li>-->
-<!--								<li><i class="iicon-icon-18"></i>--><?php //echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?><!--</li>-->
-<!--								<li><i class="iicon-icon-19"></i>--><?php //echo $restaurant_details['restaurant'][0]['phone_number']; ?><!--</li>-->
-<!---->
-<!---->
-<!--							</ul>-->
-<!---->
-<!---->
-<!--						</div>-->
-<!---->
-<!--					</div>-->
-<!--				</div>-->
-<!--			</div>-->
-<!--		</div>-->
-<!--	</div>-->
+	</div>
+	<!--	<div class="rest-detail-main">-->
+	<!--		<div class="container">-->
+	<!--			<div class="row">-->
+	<!--				<div class="col-lg-12">-->
+	<!--					<div class="rest-detail_s">-->
+	<!--						<div class="rest-detail-img-main">-->
+	<!--							<div class="rest-detail-img">-->
+	<!--								<img src="--><?php //echo ($restaurant_details['restaurant'][0]['image'])?$restaurant_details['restaurant'][0]['image']:default_img;?><!--">-->
+	<!--							</div>-->
+	<!--						</div>-->
+	<!--						<div class="rest-detail-content">-->
+	<!---->
+	<!--							<p><i class="iicon-icon-20"></i>--><?php //echo $restaurant_details['restaurant'][0]['address']; ?><!--</p>-->
+	<!--							<ul class="">-->
+	<!--								<li><i class="iicon-icon-29"></i>--><?php //echo $restaurant_details['restaurant'][0]['name']; ?><!--</li>-->
+	<!--								<li><i class="iicon-icon-05"></i>--><?php //echo ($restaurant_details['restaurant'][0]['ratings'] > 0)?$restaurant_details['restaurant'][0]['ratings']:'<strong class="newres">'. $this->lang->line("new") .'</strong>'; ?><!--</li>-->
+	<!--								<li><i class="iicon-icon-18"></i>--><?php //echo $restaurant_details['restaurant'][0]['timings']['open'].'-'.$restaurant_details['restaurant'][0]['timings']['close']; ?><!--</li>-->
+	<!--								<li><i class="iicon-icon-19"></i>--><?php //echo $restaurant_details['restaurant'][0]['phone_number']; ?><!--</li>-->
+	<!---->
+	<!---->
+	<!--							</ul>-->
+	<!---->
+	<!---->
+	<!--						</div>-->
+	<!---->
+	<!--					</div>-->
+	<!--				</div>-->
+	<!--			</div>-->
+	<!--		</div>-->
+	<!--	</div>-->
 
 
 </section>
@@ -710,169 +710,169 @@
 <script type="text/javascript" src="<?php echo base_url();?>assets/admin/plugins/jquery-ui/jquery-ui.min.js"></script>
 <script type="text/javascript" src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCGh2j6KRaaSf96cTYekgAD-IuUG0GkMVA&libraries=places"></script>
 <script>
-$(document).on('ready', function() {
+	$(document).on('ready', function() {
 
-	// $(window).resize(function() {
-	//
-	// 	if ($(this).width() < 765) {
-	//
-	// 		$('.takeway').hide();
-	//
-	// 	} else {
-	//
-	// 		$('.takeway').show();
-	//
-	// 	}
-	//
-	// });
-	var owl = $('.owl-carousel');
-	owl.owlCarousel({
-		items:4,
-		loop:true,
-		margin:10,
-		autoplay:true,
-		autoplayTimeout:1000,
-		autoplayHoverPause:true
-	});
-	initAutocomplete('address');
-	// auto detect location if even searched once.
-	if (SEARCHED_LAT == '' && SEARCHED_LONG == '' && SEARCHED_ADDRESS == '') {
-		getLocation('home_page');
-	}
-	else
-	{
-		getSearchedLocation(SEARCHED_LAT,SEARCHED_LONG,SEARCHED_ADDRESS,'home_page');
-	}
-
-	$(window).keydown(function(event){
-		if(event.keyCode == 13) {
-		  event.preventDefault();
-		  return false;
+		// $(window).resize(function() {
+		//
+		// 	if ($(this).width() < 765) {
+		//
+		// 		$('.takeway').hide();
+		//
+		// 	} else {
+		//
+		// 		$('.takeway').show();
+		//
+		// 	}
+		//
+		// });
+		var owl = $('.owl-carousel');
+		owl.owlCarousel({
+			items:4,
+			loop:true,
+			margin:10,
+			autoplay:true,
+			autoplayTimeout:1000,
+			autoplayHoverPause:true
+		});
+		initAutocomplete('address');
+		// auto detect location if even searched once.
+		if (SEARCHED_LAT == '' && SEARCHED_LONG == '' && SEARCHED_ADDRESS == '') {
+			getLocation('home_page');
 		}
+		else
+		{
+			getSearchedLocation(SEARCHED_LAT,SEARCHED_LONG,SEARCHED_ADDRESS,'home_page');
+		}
+
+		$(window).keydown(function(event){
+			if(event.keyCode == 13) {
+				event.preventDefault();
+				return false;
+			}
+		});
+
+
 	});
 
 
-});
+	$(window).scroll(function(e){
+		//parallax();
+	});
 
-
-$(window).scroll(function(e){
-	//parallax();
-});
-
-function parallax(){
-	var scrolled = $(window).scrollTop();
-	// $('.hero').css('background-image',-(scrolled*-0.1)+'rem');
-	// $('.hero').css('background-image',1-(scrolled*.00175)+'rem');
-	$('.hero').css('top',-(scrolled*0.0444)+'rem');
-	$('.hero').css('opacity',1-(scrolled*.00175)+'rem');
-	$('.hero > div > div > h1').css('top',-(scrolled*-0.1)+'rem');
-	$('.hero > div > div > h1').css('opacity',1-(scrolled*.00175));
-	$('.hero > div > div > p').css('top',-(scrolled*-0.1)+'rem');
-	$('.hero > div > div > p').css('opacity',1-(scrolled*.00175));
-}
+	function parallax(){
+		var scrolled = $(window).scrollTop();
+		// $('.hero').css('background-image',-(scrolled*-0.1)+'rem');
+		// $('.hero').css('background-image',1-(scrolled*.00175)+'rem');
+		$('.hero').css('top',-(scrolled*0.0444)+'rem');
+		$('.hero').css('opacity',1-(scrolled*.00175)+'rem');
+		$('.hero > div > div > h1').css('top',-(scrolled*-0.1)+'rem');
+		$('.hero > div > div > h1').css('opacity',1-(scrolled*.00175));
+		$('.hero > div > div > p').css('top',-(scrolled*-0.1)+'rem');
+		$('.hero > div > div > p').css('opacity',1-(scrolled*.00175));
+	}
 
 
 
 
-//Array of images which you want to show: Use path you want.
-// var images=new Array('Assets/BGImages/head_sandwichman1.jpg','Assets/BGImages/head_sandwichman2.jpg','Assets/BGImages/head_sandwichman3.jpg');
-var images=new Array("<?= base_url('assets/front/images/sl1.jpg') ?>","<?= base_url('assets/front/images/sl2.jpg') ?>","<?= base_url('assets/front/images/sl3.jpg') ?>","<?= base_url('assets/front/images/sl4.jpg') ?>");
-var nextimage=0;
+	//Array of images which you want to show: Use path you want.
+	// var images=new Array('Assets/BGImages/head_sandwichman1.jpg','Assets/BGImages/head_sandwichman2.jpg','Assets/BGImages/head_sandwichman3.jpg');
+	var images=new Array("<?= base_url('assets/front/images/sl1.jpg') ?>","<?= base_url('assets/front/images/sl2.jpg') ?>","<?= base_url('assets/front/images/sl3.jpg') ?>","<?= base_url('assets/front/images/sl4.jpg') ?>");
+	var nextimage=0;
 
 	// doSlideshow();
 
 
 
-function doSlideshow(){
-	if(nextimage>=images.length){nextimage=0;}
-	$('.hero')
-			.css('background-image','url("'+images[nextimage++]+'")')
+	function doSlideshow(){
+		if(nextimage>=images.length){nextimage=0;}
+		$('.hero')
+				.css('background-image','url("'+images[nextimage++]+'")')
 
 
-			.slide(100,function(){
-				setTimeout(doSlideshow,5000);
+				.slide(100,function(){
+					setTimeout(doSlideshow,5000);
 
-			});
-
-
-
-}
-
-function image_show(entity_id){
-
-
-	var base_url=$('#base_url').val();
-	var default_im="<?php echo default_img?>"
-	//	alert(base_url)
-
-	$.ajax({
-		url: base_url + "restaurant/find_all_image",
-		type: 'post',
-		data: {entity_id: entity_id},
-		success: function(response){
-
-			var json=JSON.parse(response)
-
-			if (json[0].image ){
-				$('#img1Div').removeClass('display-no');
-
-				$('#image1').attr('src', base_url+'uploads/'+json[0].image);
-			}else{
-				$('#image1').attr('src', default_im);
-			}
-
-			if (json[0].image2 ){
-				$('#img2Div').removeClass('display-no');
-
-				$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
-			}else{
-				$('#image2').attr('src', default_im);
-			}
-
-			if (json[0].image3 ){
-				$('#img3Div').removeClass('display-no');
-
-				$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
-			}else{
-				$('#image3').attr('src', default_im);
-			}
-			$('.item_name').html(json[0].name)
-			$('.item_details').html(json[0].menu_detail)
-			$('.item_price').html('৳ '+json[0].price)
-
-			$('.imagemodaltwo').modal('show');
-
-			var btn_id=('addtocart-'+entity_id);
-
-			var check_add_on=json[0].check_add_ons;
-
-			if (check_add_on == 0){
-				$('.customize').addClass('d-none');
-
-				$("#btn_add").click(function(){
-					checkCartRestaurant(entity_id,104,'',btn_id);
-					$('#quotes-main-loader').hide();
-					$('.imagemodaltwo').modal('hide');
-				});
-			}else{
-				$('.item_price').html('Customize')
-				$("#btn_add").click(function(){
-					checkCartRestaurant(entity_id,104,'addons',btn_id);
-					$('#quotes-main-loader').hide();
-					$('.imagemodaltwo').modal('hide');
 				});
 
+
+
+	}
+
+	function image_show(entity_id){
+
+
+		var base_url=$('#base_url').val();
+		var default_im="<?php echo default_img?>"
+		//	alert(base_url)
+
+		$.ajax({
+			url: base_url + "restaurant/find_all_image",
+			type: 'post',
+			data: {entity_id: entity_id},
+			success: function(response){
+
+				var json=JSON.parse(response)
+
+				if (json[0].image ){
+					$('#img1Div').removeClass('display-no');
+
+					$('#image1').attr('src', base_url+'uploads/'+json[0].image);
+				}else{
+					$('#image1').attr('src', default_im);
+				}
+
+				if (json[0].image2 ){
+					$('#img2Div').removeClass('display-no');
+
+					$('#image2').attr('src', base_url+'uploads/'+json[0].image2);
+				}else{
+					$('#image2').attr('src', default_im);
+				}
+
+				if (json[0].image3 ){
+					$('#img3Div').removeClass('display-no');
+
+					$('#image3').attr('src', base_url+'uploads/'+json[0].image3);
+				}else{
+					$('#image3').attr('src', default_im);
+				}
+				$('.item_name').html(json[0].name)
+				$('.item_details').html(json[0].menu_detail)
+				$('.item_price').html('৳ '+json[0].price)
+
+				$('.imagemodaltwo').modal('show');
+
+				var btn_id=('addtocart-'+entity_id);
+
+				var check_add_on=json[0].check_add_ons;
+
+				if (check_add_on == 0){
+					$('.customize').addClass('d-none');
+
+					$("#btn_add").click(function(){
+						checkCartRestaurant(entity_id,104,'',btn_id);
+						$('#quotes-main-loader').hide();
+						$('.imagemodaltwo').modal('hide');
+					});
+				}else{
+					$('.item_price').html('Customize')
+					$("#btn_add").click(function(){
+						checkCartRestaurant(entity_id,104,'addons',btn_id);
+						$('#quotes-main-loader').hide();
+						$('.imagemodaltwo').modal('hide');
+					});
+
+				}
+
+
+				//console.log(json[0].image)
+
+
+
 			}
+		});
 
-
-			//console.log(json[0].image)
-
-
-
-		}
-	});
-
-}
+	}
 
 
 
