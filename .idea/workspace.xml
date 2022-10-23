@@ -24,10 +24,11 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/config/routes.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/config/routes.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/footer.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/footer.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/home_page.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/home_page.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/restaurant_details.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/restaurant_details.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/css/responsive.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/responsive.css" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/css/main.css" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/css/main.css" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -116,11 +117,12 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/assets/front/images" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/uploads" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\git\soi71\uploads" />
       <recent name="C:\laragon\www\git\soi71\assets\front\images" />
       <recent name="C:\laragon\www\git\soi71\assets\front\js" />
     </key>
@@ -173,7 +175,8 @@
       <workItem from="1663042673255" duration="146000" />
       <workItem from="1663049460241" duration="2808000" />
       <workItem from="1664100126561" duration="757000" />
-      <workItem from="1665047066583" duration="376000" />
+      <workItem from="1665047066583" duration="962000" />
+      <workItem from="1665378288171" duration="2672000" />
     </task>
     <servers />
   </component>

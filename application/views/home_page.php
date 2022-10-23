@@ -71,7 +71,7 @@
 				<li data-target="#carouselExampleIndicators" data-slide-to="0" class="active"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="1"></li>
 				<li data-target="#carouselExampleIndicators" data-slide-to="2"></li>
-				<li data-target="#carouselExampleIndicators" data-slide-to="3"></li>
+				<!-- <li data-target="#carouselExampleIndicators" data-slide-to="3"></li> -->
 			</ol>
 
 
@@ -86,9 +86,9 @@
 				<div class="carousel-item">
 					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[2]['image']) ?>" >
 				</div>
-				<div class="carousel-item">
-					<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" >
-				</div>
+				<!-- <div class="carousel-item">
+				<img class="d-block w-100" src="<?= base_url('uploads/'.$slider[3]['image']) ?>" >
+			</div> -->
 			</div>
 			<!--		--><?php //echo '<pre>';print_r($slider[0]['image']);exit(); ?>
 			<a class="carousel-control-prev" href="#carouselExampleIndicators" role="button" data-slide="prev">

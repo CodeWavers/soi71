@@ -86,28 +86,28 @@
 </style>
 
 <?php if (!$this->session->userdata('is_user_login') && $current_page == 'HomePage')  {?>
-	<div id="login_alert" class="footer">
-		<p class="cjeKAy">Login to unlock awesome benefits</p>
-		<p class="hWYAwo">It hardly takes 10 seconds!</p>
-
-		<div class="row" style="padding: 5px;justify-content: center;">
-
-			<div class="p-2"><img style="width: 20px;height: auto;" src="<?php echo base_url(); ?>assets/front/images/address.svg"> <p>Easy Ordering</p></div>
-
-
-
-			<div class="p-2"><img style="width: 20px;height: auto" src="<?php echo base_url(); ?>assets/front/images/order-mode.svg"> <p>Track Your Order</p></div>
-
-
-		</div>
-
-
-
-
-		<div class="signin-btn">
-			<a href="<?php echo base_url() . 'home/login'; ?>" class="btn">Login</a>
-		</div>
-	</div>
+<!--	<div id="login_alert" class="footer display-none">-->
+<!--		<p class="cjeKAy">Login to unlock awesome benefits</p>-->
+<!--		<p class="hWYAwo">It hardly takes 10 seconds!</p>-->
+<!---->
+<!--		<div class="row" style="padding: 5px;justify-content: center;">-->
+<!---->
+<!--			<div class="p-2"><img style="width: 20px;height: auto;" src="--><?php //echo base_url(); ?><!--assets/front/images/address.svg"> <p>Easy Ordering</p></div>-->
+<!---->
+<!---->
+<!---->
+<!--			<div class="p-2"><img style="width: 20px;height: auto" src="--><?php //echo base_url(); ?><!--assets/front/images/order-mode.svg"> <p>Track Your Order</p></div>-->
+<!---->
+<!---->
+<!--		</div>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--		<div class="signin-btn">-->
+<!--			<a href="--><?php //echo base_url() . 'home/login'; ?><!--" class="btn">Login</a>-->
+<!--		</div>-->
+<!--	</div>-->
 
 
 <?php } ?>

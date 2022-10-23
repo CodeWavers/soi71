@@ -8621,7 +8621,7 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 	bottom: 20px;
 	right: 30px;
 	z-index: 99;
-	font-size: 18px;
+	font-size: 18px;h
 	border: none;
 	outline: none;
 	background-color: var(--main-color);

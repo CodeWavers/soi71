@@ -131,7 +131,8 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 			</div>
 			<nav class="navbar navbar-expand-lg ">
 				<ul id="example-one" >
-					<li ><a class="<?php echo ($current_page == 'HomePage') ? 'active_color' : ''; ?>" href="<?php echo base_url(); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li>
+					<!-- <li ><a class="<?php echo ($current_page == 'HomePage') ? 'active_color' : ''; ?>" href="<?php echo base_url(''); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li> -->
+					<li ><a class="<?php echo ($current_page == 'HomePage') ? 'active_color' : ''; ?>" href="<?php echo base_url('/home'); ?>"><span class="mobile-nav fas fa-home"></span> <?php echo $this->lang->line('home') ?></a></li>
 
 					<?php if ($current_page == 'RestaurantDetails') { ?>
 						<li class="nav-item dropdown mobile_menu">
