@@ -101,6 +101,7 @@ class Restaurant_model extends CI_Model {
             $this->db->select('restaurant_menu_item.category_id,category.name');
             $this->db->join('category','restaurant_menu_item.category_id = category.entity_id','left');
             $this->db->where('restaurant_menu_item.restaurant_id',$restaurant_id);
+			$this->db->order_by('category.entity_id','asc');
             if (!empty($searchArray)) {
                 $like_statementsOne = array();
                 $like_statementsTwo = array();
@@ -246,6 +247,7 @@ class Restaurant_model extends CI_Model {
             $this->db->select('restaurant_menu_item.category_id,category.name');
             $this->db->join('category','restaurant_menu_item.category_id = category.entity_id','left');
             $this->db->where('restaurant_menu_item.restaurant_id',$restaurant_id);
+			$this->db->order_by('category.entity_id','asc');
             if (!empty($searchArray)) {
                 $like_statementsOne = array();
                 $like_statementsTwo = array();
@@ -274,6 +276,7 @@ class Restaurant_model extends CI_Model {
                 $this->db->where('restaurant_menu_item.is_veg',1);
             }
             $this->db->group_by('restaurant_menu_item.category_id');
+
             $result['categories'] = $this->db->get_where('restaurant_menu_item',array('restaurant_menu_item.status'=>1))->result_array();
             if (!empty($result['categories'])) {
                 foreach ($result['categories'] as $key => $value) {
@@ -619,7 +622,7 @@ class Restaurant_model extends CI_Model {
         $couponAmount = $ItemDiscount['couponAmount'];
         $ItemDiscount = (!empty($ItemDiscount['itemDetail']))?array_column($ItemDiscount['itemDetail'], 'item_id'):array();
 
-        $this->db->select('menu.restaurant_id,menu.is_deal,menu.entity_id as menu_id,menu.status,menu.name,menu.price,menu.menu_detail,menu.image,menu.is_veg,menu.recipe_detail,availability,c.name as category,c.entity_id as category_id,add_ons_master.add_ons_name,add_ons_master.add_ons_price,add_ons_category.name as addons_category,menu.check_add_ons,add_ons_category.entity_id as addons_category_id,add_ons_master.add_ons_id,add_ons_master.is_multiple');
+        $this->db->select('menu.restaurant_id,menu.vat,menu.sd,menu.is_deal,menu.entity_id as menu_id,menu.status,menu.name,menu.price,menu.menu_detail,menu.image,menu.is_veg,menu.recipe_detail,availability,c.name as category,c.entity_id as category_id,add_ons_master.add_ons_name,add_ons_master.add_ons_price,add_ons_category.name as addons_category,menu.check_add_ons,add_ons_category.entity_id as addons_category_id,add_ons_master.add_ons_id,add_ons_master.is_multiple');
         $this->db->join('category as c','menu.category_id = c.entity_id','left');
         $this->db->join('add_ons_master','menu.entity_id = add_ons_master.menu_id AND menu.check_add_ons = 1','left');
         $this->db->join('add_ons_category','add_ons_master.category_id = add_ons_category.entity_id','left');
@@ -627,6 +630,8 @@ class Restaurant_model extends CI_Model {
         $this->db->where('menu.language_slug',$language_slug);
         $this->db->where('menu.entity_id',$entity_id);
         $result = $this->db->get('restaurant_menu_item as menu')->result();
+
+	//	echo '<pre>';print_r($result);exit();
 
         $menu = array();
         if (!empty($result)) {
@@ -679,7 +684,7 @@ class Restaurant_model extends CI_Model {
                         $i++;
                     }
                 }else{
-                    $menu[$value->category_id]['items'][]  = array('restaurant_id'=>$value->restaurant_id,'menu_id'=>$value->menu_id,'name' => $value->name,'price' =>$value->price,'offer_price'=>$offer_price,'menu_detail' => $value->menu_detail,'image'=>$image,'recipe_detail'=>$value->recipe_detail,'availability'=>$value->availability,'is_veg'=>$value->is_veg,'is_customize'=>$value->check_add_ons,'is_deal'=>$value->is_deal,'status'=>$value->status);
+                    $menu[$value->category_id]['items'][]  = array('restaurant_id'=>$value->restaurant_id,'menu_id'=>$value->menu_id,'vat'=>$value->vat,'sd'=>$value->sd,'name' => $value->name,'price' =>$value->price,'offer_price'=>$offer_price,'menu_detail' => $value->menu_detail,'image'=>$image,'recipe_detail'=>$value->recipe_detail,'availability'=>$value->availability,'is_veg'=>$value->is_veg,'is_customize'=>$value->check_add_ons,'is_deal'=>$value->is_deal,'status'=>$value->status);
                 }
             }
         }
@@ -708,6 +713,7 @@ class Restaurant_model extends CI_Model {
                 array_push($finalArray, $va);
             }
         }
+
         return $finalArray;     
     }
     // get total orders of a user
