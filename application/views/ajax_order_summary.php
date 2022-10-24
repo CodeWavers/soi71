@@ -20,7 +20,7 @@
 					<tr>
 						<td>Vat</td>
 						<td>
-							<input type="hidden" id="total_vat" value="<?php echo $cart_details['total_vat']; ?>">
+							<input type="text" id="total_vat"  value="<?php echo $cart_details['total_vat']; ?>">
 
 							<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $total_vat=$cart_details['total_vat']; ?></strong>
 						</td>

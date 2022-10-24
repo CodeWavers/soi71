@@ -619,14 +619,16 @@ class Checkout extends CI_Controller {
                 'subtotal'=> ($this->input->post('subtotal'))?$this->input->post('subtotal'):0,
                 'total_rate' => ($this->session->userdata('total_price')+$this->input->post('dc'))?$this->session->userdata('total_price')+$this->input->post('dc'):'',
                 'status'=>0,
-                'delivery_charge'=>  $this->input->post('dc'),
+                'delivery_charge'=>  ($this->input->post('dc'))?$this->input->post('dc'):0,
+                'vat'=> ($this->input->post('vat'))?$this->input->post('vat'):0,
+                'sd'=> ($this->input->post('sd'))?$this->input->post('sd'):0,
                 'extra_comment'=> ($this->input->post('extra_comment'))?$this->input->post('extra_comment'):'',
                 'payment_option'=> ($this->input->post('payment_option'))?$this->input->post('payment_option'):'',
             );
 
 
 
-    				//echo '<pre>';print_r($add_data);
+    				// '<pre>';print_r($add_data);exit();
             if ($this->session->userdata('coupon_applied') == "yes") {
             	$add_data['coupon_id'] = ($this->session->userdata('coupon_id'))?$this->session->userdata('coupon_id'):'';
             	$add_data['coupon_type'] = ($this->session->userdata('coupon_type'))?$this->session->userdata('coupon_type'):'';
