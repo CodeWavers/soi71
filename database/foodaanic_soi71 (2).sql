@@ -82,7 +82,7 @@ INSERT INTO `add_ons_master` (`add_ons_id`, `menu_id`, `category_id`, `add_ons_n
 (2877, 3023, 31, 'MIXED', 625, 0),
 (2881, 3028, 31, 'CHICKEN', 580, 0),
 (2882, 3028, 31, 'VEGETABLE', 580, 0),
-(2883, 3032, 31, 'CHICKEN', 600, 0),
+(2883, 3032, 31, 'CHICKEN', 600, 0)
 (2884, 3032, 31, 'PRAWN', 600, 0),
 (2885, 3032, 31, 'VEGETABLE', 600, 0),
 (2886, 3032, 31, 'MIXED', 600, 0),

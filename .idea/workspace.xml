@@ -24,6 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/ajax_order_summary.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_order_summary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/database/foodaanic_soi71 (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/foodaanic_soi71 (2).sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -117,6 +121,7 @@
   </component>
   <component name="RecentsManager">
     <key name="CopyFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\git\soi71\database" />
       <recent name="C:\laragon\www\git\soi71\uploads" />
       <recent name="C:\laragon\www\git\soi71\assets\front\images" />
       <recent name="C:\laragon\www\git\soi71\assets\front\js" />
@@ -173,7 +178,7 @@
       <workItem from="1665047066583" duration="962000" />
       <workItem from="1665378288171" duration="2672000" />
       <workItem from="1666508821342" duration="5163000" />
-      <workItem from="1666593021839" duration="906000" />
+      <workItem from="1666593021839" duration="3943000" />
     </task>
     <servers />
   </component>

@@ -180,12 +180,23 @@
 													<div class="choose-order-title">
 														<h6><?php echo $this->lang->line('choose_order_mode') ?></h6>
 													</div>
+
+<!--													--><?php //echo print_r($cart_details);exit();?>
 													<div class="order-mode">
 														<div class="card">
 															<div class="radio-btn-list">
 																<label>
 																	<input type="hidden" name="subtotal" id="subtotal"
 																		   value="<?php echo $cart_details['cart_total_price']; ?>">
+
+																	<input type="hidden" name="vat" id="vat"
+																		   value="<?php echo $cart_details['vat']; ?>">
+
+																	<input type="hidden" name="sd" id="sd"
+																		   value="<?php echo $cart_details['sd']; ?>">
+
+																	<input type="hidden" name="dc" id="delivery_charges_val"
+																		   value="">
 
 																	<input type="radio" name="choose_order" id="pickup"
 																		   value="pickup"
