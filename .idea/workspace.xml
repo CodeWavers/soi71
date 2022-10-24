@@ -24,9 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/models/Restaurant_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Restaurant_model.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -115,7 +112,7 @@
   </component>
   <component name="PropertiesComponent">
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/uploads" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$/database" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -175,7 +172,8 @@
       <workItem from="1664100126561" duration="757000" />
       <workItem from="1665047066583" duration="962000" />
       <workItem from="1665378288171" duration="2672000" />
-      <workItem from="1666508821342" duration="4492000" />
+      <workItem from="1666508821342" duration="5163000" />
+      <workItem from="1666593021839" duration="906000" />
     </task>
     <servers />
   </component>
