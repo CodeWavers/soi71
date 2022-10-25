@@ -1118,4 +1118,3 @@ class Order extends CI_Controller
         echo 'success';
     }
 }
-?>
