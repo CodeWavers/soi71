@@ -156,6 +156,9 @@ class Myprofile extends CI_Controller {
 				}
 			}
 		}
+		// echo "<pre>";
+		// print_r($data);
+		// exit();
 		$this->load->view('ajax_order_details',$data);
 	}
 	// getAllOrders ajax call
