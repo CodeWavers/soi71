@@ -221,6 +221,8 @@ class Checkout extends CI_Controller
 	{
 		$cartItems = array();
 		$cartTotalPrice = 0;
+		$service_charge = $this->systemoption_model->getValue('service_charge');
+		$item_vat = $this->systemoption_model->getValue('vat');
 		if (!empty($cart_details)) {
 			foreach (json_decode($cart_details) as $key => $value) {
 				$details = $this->restaurant_model->getMenuItem($value->menu_id, $cart_restaurant);
@@ -269,9 +271,6 @@ class Checkout extends CI_Controller
 						$subtotal = $subtotal + $price;
 					}
 					$cartTotalPrice = ($subtotal * $value->quantity) + $cartTotalPrice;
-					$service_charge = $this->systemoption_model->getValue('service_charge');
-
-					$vat = ($details[0]['items'][0]['vat'] * $price) / 100;
 					$cartItems[] = array(
 						'menu_id' => $details[0]['items'][0]['menu_id'],
 						'restaurant_id' => $cart_restaurant,
@@ -280,9 +279,9 @@ class Checkout extends CI_Controller
 						'is_customize' => $details[0]['items'][0]['is_customize'],
 						'is_veg' => $details[0]['items'][0]['is_veg'],
 						'is_deal' => $details[0]['items'][0]['is_deal'],
-						'vat' => ($vat * $value->quantity),
+						'vat' => $item_vat,
+						'service_charge' => $service_charge,
 						'price' => $details[0]['items'][0]['price'],
-						'service_charge' => ceil(($service_charge * $subtotal) / 100),
 						'offer_price' => $details[0]['items'][0]['offer_price'],
 						'subtotal' => $subtotal,
 						'totalPrice' => ($subtotal * $value->quantity),
@@ -293,14 +292,16 @@ class Checkout extends CI_Controller
 				}
 			}
 		}
+
+		$total_service_charge =  ceil(($service_charge * $cartTotalPrice) / 100);
+		$vat = ($cartTotalPrice + $total_service_charge) * ($item_vat / 100);
+
 		$cart_details = array(
 			'cart_items' => $cartItems,
 			'cart_total_price' => $cartTotalPrice,
-			'total_vat' => array_sum(array_column($cartItems, 'vat')),
+			'total_vat' => $vat,
+			'service_charge' => $total_service_charge,
 		);
-		// echo "<pre>";
-		// print_r($cart_details);
-		// exit();
 		return $cart_details;
 	}
 	// get lat long from the address
@@ -376,9 +377,6 @@ class Checkout extends CI_Controller
 		$data['cart_details'] = $this->getCartItems($cart_details, $cart_restaurant);
 		$data['currency_symbol'] = $this->common_model->getRestaurantCurrencySymbol($cart_restaurant);
 		$data['order_mode'] = $this->session->userdata('order_mode');
-		// echo "<pre>";
-		// print_r($data);
-		// exit();
 		$this->load->view('ajax_order_summary', $data);
 	}
 	//check lat long exist in area

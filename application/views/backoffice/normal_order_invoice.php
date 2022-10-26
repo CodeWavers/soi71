@@ -360,7 +360,8 @@
 				<h3>Ship To</h3>
 				<?php $user_detail = unserialize($menu_item->user_detail);
 				$address = json_decode($user_detail['address']);
-				$pay = $order_records->payment_option;
+				// $pay = $order_records->payment_option;
+				$pay = $order_records->payment_option == "cod" ? "Cash on Delivery" : $order_records->payment_option;
 				if (!empty($user_detail)) { ?>
 					<p><?php echo $user_detail['first_name'] . ' ' . $user_detail['last_name'] . '<br>' . $order_records->mobile_number ?>
 						<?php echo ($order_records->order_delivery == 'Delivery') ? '<br> Road No: ' . $address->RoadNo . ', Block No: ' . $address->BlockNo . ', Flat No: ' . $address->FlatNo  . ', House No: ' . $address->Houseno . ' , ' . $address->area . '<br>' : '' ?><?php echo '<br>' . $pay ?></p>

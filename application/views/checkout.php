@@ -498,7 +498,7 @@
 					var coupon_discount = 0;
 				}
 
-				if (dc > 0) {
+				if (dc >= 0 ) {
 					$('.dc').removeClass('d-none');
 					$('#delivery_charges').html('৳ ' + dc);
 					$('#delivery_charges_val').val(dc);

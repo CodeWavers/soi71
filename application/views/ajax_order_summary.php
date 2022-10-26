@@ -23,7 +23,7 @@
 							<strong><?php
 									echo $currency_symbol->currency_symbol; ?><?php
 
-																				echo $cart_details['cart_items'][0]['service_charge']; ?></strong>
+																				echo $cart_details['service_charge']; ?></strong>
 						</td>
 					</tr>
 
