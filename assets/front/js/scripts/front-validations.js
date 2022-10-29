@@ -1,49 +1,49 @@
 
 "use strict";
 //setLanguage
-function setLanguage(language_slug){
+function setLanguage(language_slug) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+'/backoffice/lang_loader/setLanguage',
-		data : {'language_slug':language_slug},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + '/backoffice/lang_loader/setLanguage',
+		data: { 'language_slug': language_slug },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			location.reload();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 //logout
-function logout(){
+function logout() {
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'home/logout',
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'home/logout',
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			location.reload();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // click on notification icon
-$(".notification-btn").on("click", function(e){
+$(".notification-btn").on("click", function (e) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+'home/unreadNotifications',
-		success: function(response) {
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'home/unreadNotifications',
+		success: function (response) {
 			//$('.notification_count').html(0);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -63,17 +63,17 @@ $('#forgot-pass-modal').on('hidden.bs.modal', function (e) {
 });
 
 // get footer notifications
-jQuery(document).ready(function() {
+jQuery(document).ready(function () {
 	$('.quick-searches-slider').owlCarousel({
 		loop: true,
 		margin: 20,
 		nav: true,
 		autoplay: true,
-		autoplayTimeout:3500,
-		navSpeed:1300,
-		touchDrag:true,
-		slideBy:2,
-		autoplaySpeed:1300,
+		autoplayTimeout: 3500,
+		navSpeed: 1300,
+		touchDrag: true,
+		slideBy: 2,
+		autoplaySpeed: 1300,
 		autoplayHoverPause: true,
 		navContainer: '#customNav',
 		responsive: {
@@ -103,9 +103,9 @@ jQuery(document).ready(function() {
 		margin: 20,
 		nav: true,
 		autoplay: true,
-		autoplayTimeout:3500,
-		navSpeed:1300,
-		autoplaySpeed:1300,
+		autoplayTimeout: 3500,
+		navSpeed: 1300,
+		autoplaySpeed: 1300,
 		autoplayHoverPause: true,
 		navContainer: '#customNav2',
 		responsive: {
@@ -118,28 +118,28 @@ jQuery(document).ready(function() {
 				margin: 20
 			},
 
-			1550:{
+			1550: {
 				items: 4
 			}
 		}
 	});
 	// set interval to get notification
-	var i = setInterval(function(){
+	var i = setInterval(function () {
 		jQuery.ajax({
-			type : "POST",
-			dataType : "html",
+			type: "POST",
+			dataType: "html",
 			async: false,
-			url : BASEURL+'home/getNotifications',
-			success: function(response) {
+			url: BASEURL + 'home/getNotifications',
+			success: function (response) {
 				$('#notifications_list').html(response);
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 			}
 		});
-	},10000);
+	}, 10000);
 });
 // menu filter function
-function menuFilter(content_id){
+function menuFilter(content_id) {
 	var food = '';
 	var price = '';
 	var searchDish = $('#search_dish').val();
@@ -156,65 +156,65 @@ function menuFilter(content_id){
 		price = "low";
 	}
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'restaurant/ajax_restaurant_details',
-		data : {"content_id":content_id,"food":food,"price":price,"searchDish":searchDish},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'restaurant/ajax_restaurant_details',
+		data: { "content_id": content_id, "food": food, "price": price, "searchDish": searchDish },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#quotes-main-loader').hide();
 			$('#res_detail_content').html(response);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // decrease the menu quantity
-function minusQuantity(restaurant_id,menu_id,cart_key){
-	customItemCount(menu_id,restaurant_id,'minus',cart_key);
+function minusQuantity(restaurant_id, menu_id, cart_key) {
+	customItemCount(menu_id, restaurant_id, 'minus', cart_key);
 }
 // increase the menu quantity
-function plusQuantity(restaurant_id,menu_id,cart_key){
-	customItemCount(menu_id,restaurant_id,'plus',cart_key);
+function plusQuantity(restaurant_id, menu_id, cart_key) {
+	customItemCount(menu_id, restaurant_id, 'plus', cart_key);
 }
 // custom item count
-function customItemCount(entity_id,restaurant_id,action,cart_key){
+function customItemCount(entity_id, restaurant_id, action, cart_key) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "json",
-		url : BASEURL+'cart/customItemCount',
-		data : {"entity_id":entity_id,"restaurant_id":restaurant_id,"action":action,"cart_key":cart_key,'is_main_cart':'no'},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "json",
+		url: BASEURL + 'cart/customItemCount',
+		data: { "entity_id": entity_id, "restaurant_id": restaurant_id, "action": action, "cart_key": cart_key, 'is_main_cart': 'no' },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#your_cart').html(response.cart);
 			if (response.added == 0) {
-				$('.addtocart-'+entity_id).html(ADD);
-				$('.addtocart-'+entity_id).removeClass('added');
-				$('.addtocart-'+entity_id).addClass('add');
+				$('.addtocart-' + entity_id).html(ADD);
+				$('.addtocart-' + entity_id).removeClass('added');
+				$('.addtocart-' + entity_id).addClass('add');
 			}
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // check cart restaurant before adding menu item
-function checkCartRestaurant(entity_id,restaurant_id,is_addon,item_id) {
+function checkCartRestaurant(entity_id, restaurant_id, is_addon, item_id) {
 
 
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'cart/checkCartRestaurant',
-		data : {"restaurant_id":restaurant_id},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'cart/checkCartRestaurant',
+		data: { "restaurant_id": restaurant_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#quotes-main-loader').hide();
 			if (response == 0) {
 				// another restaurant
@@ -227,23 +227,22 @@ function checkCartRestaurant(entity_id,restaurant_id,is_addon,item_id) {
 			if (response == 1) {
 				// same restaurant
 				if (is_addon == '') {
-					AddToCart(entity_id,restaurant_id,item_id);
+					AddToCart(entity_id, restaurant_id, item_id);
 				}
-				else
-				{
-					checkMenuItem(entity_id,restaurant_id,item_id);
+				else {
+					checkMenuItem(entity_id, restaurant_id, item_id);
 				}
 			}
 
 
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // confirm to add menu item
-function ConfirmCartRestaurant(){
+function ConfirmCartRestaurant() {
 	var entity_id = $('#rest_entity_id').val();
 	var restaurant_id = $('#rest_restaurant_id').val();
 	var is_addon = $('#rest_is_addon').val();
@@ -252,19 +251,18 @@ function ConfirmCartRestaurant(){
 	$('#anotherRestModal').modal('hide');
 	if (restaurant == "discardOld") {
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'cart/emptyCart',
-			data : {"entity_id":entity_id,'restaurant_id':restaurant_id},
-			success: function(response) {
+			type: "POST",
+			url: BASEURL + 'cart/emptyCart',
+			data: { "entity_id": entity_id, 'restaurant_id': restaurant_id },
+			success: function (response) {
 				if (is_addon == '') {
-					AddToCart(entity_id,restaurant_id,item_id);
+					AddToCart(entity_id, restaurant_id, item_id);
 				}
-				else
-				{
-					checkMenuItem(entity_id,restaurant_id,item_id);
+				else {
+					checkMenuItem(entity_id, restaurant_id, item_id);
 				}
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
@@ -272,40 +270,39 @@ function ConfirmCartRestaurant(){
 	return false;
 }
 // add to cart
-function AddToCart(entity_id,restaurant_id,item_id){
+function AddToCart(entity_id, restaurant_id, item_id) {
 	var action;
-	if ($("#addpackage-"+entity_id).hasClass('inpackage')) {
+	if ($("#addpackage-" + entity_id).hasClass('inpackage')) {
 		action = "remove";
 	}
-	else
-	{
+	else {
 		action = "add";
 	}
 
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'cart/addToCart',
-		data : {"menu_item_id":entity_id,'restaurant_id':restaurant_id},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'cart/addToCart',
+		data: { "menu_item_id": entity_id, 'restaurant_id': restaurant_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#your_cart').html(response);
-			$('.'+item_id).html(ADDED);
-			$('.'+item_id).removeClass('add');
-			$('.'+item_id).addClass('added');
+			$('.' + item_id).html(ADDED);
+			$('.' + item_id).removeClass('add');
+			$('.' + item_id).addClass('added');
 			$('#quotes-main-loader').hide();
 
 			$.ajax({
-				url:  BASEURL+'home/get_cart_item_no',
+				url: BASEURL + 'home/get_cart_item_no',
 				type: 'POST',
-				success: function(n) {
+				success: function (n) {
 					$('.cart_count').html(parseInt(n));
 
 				}
 			})
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -315,16 +312,16 @@ function AddToCart(entity_id,restaurant_id,item_id){
 
 
 // check menu item availability
-function checkMenuItem(entity_id,restaurant_id,item_id){
+function checkMenuItem(entity_id, restaurant_id, item_id) {
 	// check the item in cart if it's already added
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'cart/checkMenuItem' ,
-		data : {"entity_id":entity_id,"restaurant_id":restaurant_id},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'cart/checkMenuItem',
+		data: { "entity_id": entity_id, "restaurant_id": restaurant_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#quotes-main-loader').hide();
 			if (response == 1) {
 				$('#con_entity_id').val(entity_id);
@@ -332,55 +329,53 @@ function checkMenuItem(entity_id,restaurant_id,item_id){
 				$('#con_item_id').val(item_id);
 				$('#myconfirmModal').modal('show');
 			}
-			else
-			{
-				customMenu(entity_id,restaurant_id,item_id);
+			else {
+				customMenu(entity_id, restaurant_id, item_id);
 			}
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // confirm to add to cart
-function ConfirmCartAdd(){
+function ConfirmCartAdd() {
 	var entity_id = $('#con_entity_id').val();
 	var restaurant_id = $('#con_restaurant_id').val();
 	var item_id = $('#con_item_id').val();
 	var cart = $('input[name="addedToCart"]:checked').val();
 	$('#myconfirmModal').modal('hide');
 	if (cart == "increaseitem") {
-		customItemCount(entity_id,restaurant_id,'plus','');
+		customItemCount(entity_id, restaurant_id, 'plus', '');
 	}
-	else
-	{
-		customMenu(entity_id,restaurant_id,item_id);
+	else {
+		customMenu(entity_id, restaurant_id, item_id);
 	}
 	return false;
 }
 // custom menu page
-function customMenu(entity_id,restaurant_id,item_id){
+function customMenu(entity_id, restaurant_id, item_id) {
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'restaurant/getCustomAddOns',
-		data : {"entity_id":entity_id,"restaurant_id":restaurant_id},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'restaurant/getCustomAddOns',
+		data: { "entity_id": entity_id, "restaurant_id": restaurant_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#myModal').html(response);
 			$('#myModal').modal('show');
 			$('#quotes-main-loader').hide();
 			$.ajax({
-				url:  BASEURL+'home/get_cart_item_no',
+				url: BASEURL + 'home/get_cart_item_no',
 				type: 'POST',
-				success: function(n) {
+				success: function (n) {
 					$('.cart_count').html(parseInt(n));
 
 				}
 			})
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -405,18 +400,18 @@ function searchMenuDishes(restaurant_id) {
 		price = "low";
 	}
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+'restaurant/getResturantsDish',
-		data : {'restaurant_id':restaurant_id,'searchDish':searchDish,"food":food,"price":price},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'restaurant/getResturantsDish',
+		data: { 'restaurant_id': restaurant_id, 'searchDish': searchDish, "food": food, "price": price },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#details_content').html(response);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -425,15 +420,15 @@ function searchMenuDishes(restaurant_id) {
 
 }
 
-function searchMenuDishes_enter(restaurant_id,e) {
+function searchMenuDishes_enter(restaurant_id, e) {
 
-	if(e.key === "Enter"){
+	if (e.key === "Enter") {
 		alert("Enter was just pressed.");
 	}
 
 	return false;
 
-	if (e.keyCode==13){
+	if (e.keyCode == 13) {
 		var searchDish = $('#search_dish').val();
 		var food = '';
 		var price = '';
@@ -450,18 +445,18 @@ function searchMenuDishes_enter(restaurant_id,e) {
 			price = "low";
 		}
 		jQuery.ajax({
-			type : "POST",
-			dataType :"html",
-			url : BASEURL+'restaurant/getResturantsDish',
-			data : {'restaurant_id':restaurant_id,'searchDish':searchDish,"food":food,"price":price},
-			beforeSend: function(){
+			type: "POST",
+			dataType: "html",
+			url: BASEURL + 'restaurant/getResturantsDish',
+			data: { 'restaurant_id': restaurant_id, 'searchDish': searchDish, "food": food, "price": price },
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				$('#details_content').html(response);
 				$('#quotes-main-loader').hide();
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
@@ -470,7 +465,7 @@ function searchMenuDishes_enter(restaurant_id,e) {
 
 }
 // get address from lat long
-function getAddress(latitude,longitude,page){
+function getAddress(latitude, longitude, page) {
 	// jQuery.ajax({
 	//   type : "POST",
 	//   dataType :"json",
@@ -498,29 +493,29 @@ function getAddress(latitude,longitude,page){
 	//   });
 }
 // search restaurant menu
-function menuSearch(category_id){
-	if ($('#checkbox-option-'+category_id+'').is(':checked')) {
+function menuSearch(category_id) {
+	if ($('#checkbox-option-' + category_id + '').is(':checked')) {
 		$('.check-menu').prop("checked", false);
-		$('#checkbox-option-'+category_id+'').prop("checked", true);
+		$('#checkbox-option-' + category_id + '').prop("checked", true);
 
 		$('html, body').animate({
-			scrollTop: $('#category-'+category_id+'').offset().top -300
+			scrollTop: $('#category-' + category_id + '').offset().top - 300
 
 
 		}, 500)
 
 	}
 }
-function menuTopSearch(category_id){
+function menuTopSearch(category_id) {
 
 
 
-		// alert("Hello")
-		$('html, body').animate({
-			scrollTop: $('#category-'+category_id+'').offset().top -300
+	// alert("Hello")
+	$('html, body').animate({
+		scrollTop: $('#category-' + category_id + '').offset().top - 300
 
 
-		}, 500)
+	}, 500)
 
 	// $('#example-one').addClass('open')
 }
@@ -529,15 +524,15 @@ var autocomplete;
 function initAutocomplete(id) {
 	autocomplete = new google.maps.places.Autocomplete(
 		document.getElementById(id), {
-			types: ['geocode'] //'geocode','address','establishment','regions','cities'
-		});
+		types: ['geocode'] //'geocode','address','establishment','regions','cities'
+	});
 	autocomplete.setFields(['address_component']);
 }
 
 //get restaurant location function 
 function geolocate(page) {
 	if (navigator.geolocation) {
-		navigator.geolocation.getCurrentPosition(function(position) {
+		navigator.geolocation.getCurrentPosition(function (position) {
 			var geolocation = {
 				lat: position.coords.latitude,
 				lng: position.coords.longitude
@@ -557,40 +552,40 @@ function geolocate(page) {
 function getLocation(page) {
 	if (navigator.geolocation) {
 		if (page == 'restaurant_details') {
-			navigator.geolocation.getCurrentPosition(showPosition,locationFail);
+			navigator.geolocation.getCurrentPosition(showPosition, locationFail);
 		}
 		else if (page == 'home_page') {
-			navigator.geolocation.getCurrentPosition(showPositionHome,locationFailHome);
+			navigator.geolocation.getCurrentPosition(showPositionHome, locationFailHome);
 		}
 		else if (page == 'order_food') {
-			navigator.geolocation.getCurrentPosition(showPositionFood,locationFailFood);
+			navigator.geolocation.getCurrentPosition(showPositionFood, locationFailFood);
 		}
 		else if (page == 'my_profile') {
-			navigator.geolocation.getCurrentPosition(showPositionProfile,locationFailProfile);
+			navigator.geolocation.getCurrentPosition(showPositionProfile, locationFailProfile);
 		}
 	}
 }
-function getSearchedLocation(searched_lat,searched_long,searched_address,page){
+function getSearchedLocation(searched_lat, searched_long, searched_address, page) {
 	if (page == "home_page") {
 		$('#address').val(searched_address);
-		getAddress(searched_lat,searched_long,'');
-		getPopularResturants(searched_lat,searched_long,'');
+		getAddress(searched_lat, searched_long, '');
+		getPopularResturants(searched_lat, searched_long, '');
 	}
 	else if (page == "order_food") {
 		$('#distance_filter').show();
 		$('#latitude').val(searched_lat);
 		$('#longitude').val(searched_long);
 		$('#address').val(searched_address);
-		getAddress(searched_lat,searched_long,'');
+		getAddress(searched_lat, searched_long, '');
 		getFavouriteResturants('');
 	}
 	else if (page == "my_profile") {
-		setMarker(searched_lat,searched_long);
+		setMarker(searched_lat, searched_long);
 	}
 }
 // restaurant details functions
 function showPosition(position) {
-	getAddress(position.coords.latitude,position.coords.longitude,'restaurant_details');
+	getAddress(position.coords.latitude, position.coords.longitude, 'restaurant_details');
 }
 function locationFail() {
 	//getAddress(23.0751887,72.52568870000005,'restaurant_details');
@@ -602,13 +597,13 @@ function showPositionHome(position) {
 }
 function locationFailHome() {
 	//getAddress(23.0751887,72.52568870000005,'');
-	getPopularResturants('','','');
+	getPopularResturants('', '', '');
 }
 // js location function for order Food page
 function showPositionFood(position) {
 	$('#latitude').val(position.coords.latitude);
 	$('#longitude').val(position.coords.longitude);
-	getAddress(position.coords.latitude,position.coords.longitude,'');
+	getAddress(position.coords.latitude, position.coords.longitude, '');
 	getFavouriteResturants('');
 	$('#distance_filter').show();
 }
@@ -621,10 +616,10 @@ function locationFailFood() {
 }
 // my profile 
 function showPositionProfile(position) {
-	setMarker(position.coords.latitude,position.coords.longitude);
+	setMarker(position.coords.latitude, position.coords.longitude);
 }
 function locationFailProfile() {
-	setMarker(23.0751887,72.52568870000005);
+	setMarker(23.0751887, 72.52568870000005);
 }
 // home page js functions
 function fillInAddress(page) {
@@ -632,10 +627,10 @@ function fillInAddress(page) {
 	var place = autocomplete.getPlace();
 	var geocoder = new google.maps.Geocoder();
 	var address = document.getElementById("address").value;
-	geocoder.geocode( { 'address': address}, function(results, status) {
+	geocoder.geocode({ 'address': address }, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			if (page == "home_page") {
-				getPopularResturants(results[0].geometry.location.lat(),results[0].geometry.location.lng(),'scroll');
+				getPopularResturants(results[0].geometry.location.lat(), results[0].geometry.location.lng(), 'scroll');
 			}
 			else if (page == "order_food") {
 				$('#distance_filter').show();
@@ -643,58 +638,58 @@ function fillInAddress(page) {
 				$('#longitude').val(results[0].geometry.location.lng());
 				getFavouriteResturants('scroll');
 			}
-			addLatLong(results[0].geometry.location.lat(),results[0].geometry.location.lng(),address);
+			addLatLong(results[0].geometry.location.lat(), results[0].geometry.location.lng(), address);
 		}
 	});
 }
 // store the lat long in session
-function addLatLong(lat,long,address){
+function addLatLong(lat, long, address) {
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+'home/addLatLong',
-		data : {'lat':lat,'long':long,'address':address},
-		success: function(response) {
-			console.log('addlatlongres',response);
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'home/addLatLong',
+		data: { 'lat': lat, 'long': long, 'address': address },
+		success: function (response) {
+			console.log('addlatlongres', response);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // quick search menu items
-function quickSearch(value){
+function quickSearch(value) {
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+'home/quickCategorySearch',
-		data : {'category_id':value},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'home/quickCategorySearch',
+		data: { 'category_id': value },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#popular-restaurants').html(response);
 			$('html, body').animate({
 				scrollTop: $("#popular-restaurants").offset().top
 			}, 2000);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // get the popular restaurants
-function getPopularResturants(latitude,longitude,scroll){
+function getPopularResturants(latitude, longitude, scroll) {
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+'home/getPopularResturants',
-		data : {'latitude':latitude,'longitude':longitude},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'home/getPopularResturants',
+		data: { 'latitude': latitude, 'longitude': longitude },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#popular-restaurants').html(response);
 			if (scroll == "scroll") {
 				$('html, body').animate({
@@ -704,15 +699,15 @@ function getPopularResturants(latitude,longitude,scroll){
 			$('#quotes-main-loader').hide();
 
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // get the favourite restaurants
-function getFavouriteResturants(scroll){
-	var food_veg = ($('#food_veg').is(":checked"))?1:0;
-	var food_non_veg = ($('#food_non_veg').is(":checked"))?1:0;
+function getFavouriteResturants(scroll) {
+	var food_veg = ($('#food_veg').is(":checked")) ? 1 : 0;
+	var food_non_veg = ($('#food_non_veg').is(":checked")) ? 1 : 0;
 	var resdishes = $('#resdishes').val();
 	var latitude = $('#latitude').val();
 	var longitude = $('#longitude').val();
@@ -720,14 +715,14 @@ function getFavouriteResturants(scroll){
 	var maximum_range = $('#maximum_range').val();
 	var page = page ? page : 0;
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url: BASEURL+'restaurant/ajax_restaurants/'+page,
-		data : {'latitude':latitude,'longitude':longitude,'resdishes':resdishes,'page':page,'minimum_range':minimum_range,'maximum_range':maximum_range,'food_veg':food_veg,'food_non_veg':food_non_veg},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'restaurant/ajax_restaurants/' + page,
+		data: { 'latitude': latitude, 'longitude': longitude, 'resdishes': resdishes, 'page': page, 'minimum_range': minimum_range, 'maximum_range': maximum_range, 'food_veg': food_veg, 'food_non_veg': food_non_veg },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#order_from_restaurants').html(response);
 			if (scroll == "scroll") {
 				$('html, body').animate({
@@ -736,34 +731,34 @@ function getFavouriteResturants(scroll){
 			}
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // recipe page
-function searchRecipes(){
+function searchRecipes() {
 	var recipe = $('#recipe').val();
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+'recipe/ajax_recipies',
-		data : {'recipe':recipe,'page':''},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'recipe/ajax_recipies',
+		data: { 'recipe': recipe, 'page': '' },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#sort_recipies').html(response);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
-$('#recipe').keypress(function(event){
+$('#recipe').keypress(function (event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
+	if (keycode == '13') {
 		event.preventDefault();
 	}
 });
@@ -771,7 +766,7 @@ $('#recipe').keypress(function(event){
 function geocodePosition(pos) {
 	geocoder.geocode({
 		latLng: pos
-	}, function(responses) {
+	}, function (responses) {
 		if (responses && responses.length > 0) {
 			marker.formatted_address = responses[0].formatted_address;
 		} else {
@@ -783,21 +778,20 @@ function geocodePosition(pos) {
 	});
 }
 // get the marker for the map
-function getMarker(address_value){
+function getMarker(address_value) {
 	var place = autocomplete.getPlace();
 	var geocoder = new google.maps.Geocoder();
 	if (address_value != '') {
 		var address = address_value;
 	}
-	else
-	{
+	else {
 		var address = document.getElementById("add_address_area").value;
 	}
 	$('#address_field').val(address);
-	geocoder.geocode( { 'address': address}, function(results, status) {
+	geocoder.geocode({ 'address': address }, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			//set the map's marker
-			var myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(),results[0].geometry.location.lng());
+			var myLatlng = new google.maps.LatLng(results[0].geometry.location.lat(), results[0].geometry.location.lng());
 			marker.setPosition(myLatlng);
 			map.setCenter(myLatlng);
 			if (address_value != '') {
@@ -809,18 +803,18 @@ function getMarker(address_value){
 	return false;
 }
 // set marker on the map
-function setMarker(latitude,longitude){
-	var myLatlng = new google.maps.LatLng(latitude,longitude);
+function setMarker(latitude, longitude) {
+	var myLatlng = new google.maps.LatLng(latitude, longitude);
 	marker.setPosition(myLatlng);
 	map.setCenter(myLatlng);
 	$('#latitude').val(latitude);
 	$('#longitude').val(longitude);
-	getAddress(latitude,longitude,'my_profile');
+	getAddress(latitude, longitude, 'my_profile');
 }
 // add active class
-function addActiveClass(value){
+function addActiveClass(value) {
 	$('.tabs').removeClass('active');
-	$('#'+value).addClass('active');
+	$('#' + value).addClass('active');
 }
 // check email validation
 function isEmail(email) {
@@ -839,39 +833,38 @@ function digitCheck(string) {
 	return regex.test(string);
 }
 // form my profile validation on submit
-$( "#" ).on("submit", function( event ) {
-	if ($('#password').val() == ''){
+$("#").on("submit", function (event) {
+	if ($('#password').val() == '') {
 		alert('Please Fill Password')
 	}
 	return
-	if ($('#confirm_password').val() == ''){
+	if ($('#confirm_password').val() == '') {
 		alert('Please Confirm Password')
 	}
 
 	return
 
-	if ($('#first_name').val() != '' && $('#email').val() != '' && isEmail($('#email').val()) && $('#phone_number').val() != '' && digitCheck($('#phone_number').val()) && (($('#pass').val() != '' && $('#confirm_password').val() != '' && $('#password').val() == $('#confirm_password').val()) || ($('#password').val() == '' && $('#confirm_password').val() == '')))
-	{
+	if ($('#first_name').val() != '' && $('#email').val() != '' && isEmail($('#email').val()) && $('#phone_number').val() != '' && digitCheck($('#phone_number').val()) && (($('#pass').val() != '' && $('#confirm_password').val() != '' && $('#password').val() == $('#confirm_password').val()) || ($('#password').val() == '' && $('#confirm_password').val() == ''))) {
 
 
 		var formData = new FormData($("#form_my_profile")[0]);
 		formData.append('submit_profile', 'Save');
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'myprofile/edit_profile',
-			data : formData,
+			type: "POST",
+			url: BASEURL + 'myprofile/edit_profile',
+			data: formData,
 			cache: false,
 			processData: false,
 			contentType: false,
-			beforeSend: function(){
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
 
 
-			success: function(response) {
+			success: function (response) {
 
 				console.log(response)
-				 // location.reload();
+				// location.reload();
 				/*if (response == "success") {
 					location.reload();
 				}
@@ -882,7 +875,7 @@ $( "#" ).on("submit", function( event ) {
 					$('#error-msg').show();
 				}*/
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				$('#quotes-main-loader').hide();
 				alert(errorThrown);
 			}
@@ -891,33 +884,31 @@ $( "#" ).on("submit", function( event ) {
 	event.preventDefault();
 });
 // form my address validation on submit
-$( "#form_add_address" ).on("submit", function( event ) {
+$("#form_add_address").on("submit", function (event) {
 	event.preventDefault();
-	if ($('#address_field').val() != '')
-	{
+	if ($('#address_field').val() != '') {
 		var formData = new FormData($("#form_add_address")[0]);
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'myprofile/addAddress',
-			data : formData,
+			type: "POST",
+			url: BASEURL + 'myprofile/addAddress',
+			data: formData,
 			cache: false,
 			processData: false,
 			contentType: false,
-			beforeSend: function(){
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				if (response == "success") {
-					window.location.href = BASEURL+"myprofile/view-my-addresses";
+					window.location.href = BASEURL + "myprofile/view-my-addresses";
 				}
-				else
-				{
+				else {
 					$('#quotes-main-loader').hide();
 					$('#add-error-msg').html(response);
 					$('#add-error-msg').show();
 				}
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				$('#quotes-main-loader').hide();
 				alert(errorThrown);
 			}
@@ -945,7 +936,7 @@ $('#edit-profile').on('hidden.bs.modal', function (e) {
 	$("#old").show();
 });
 // get more orders
-function moreOrders(order_flag){
+function moreOrders(order_flag) {
 	if (order_flag == "process") {
 		$('#all_current_orders').show();
 		$('#more_in_process_orders').hide();
@@ -956,7 +947,7 @@ function moreOrders(order_flag){
 	}
 }
 // get more events
-function moreEvents(order_flag){
+function moreEvents(order_flag) {
 	if (order_flag == "upcoming") {
 		$('#all_upcoming_events').show();
 		$('#more_upcoming_events').hide();
@@ -967,19 +958,19 @@ function moreEvents(order_flag){
 	}
 }
 // get orders details
-function order_details(order_id){
+function order_details(order_id) {
 
-//	alert(order_id)
+	//	alert(order_id)
 	if (order_id) {
 		jQuery.ajax({
-			type : "POST",
-			dataType : "html",
-			url : BASEURL+'myprofile/getOrderDetails',
-			data : {"order_id":order_id},
-			beforeSend: function(){
+			type: "POST",
+			dataType: "html",
+			url: BASEURL + 'myprofile/getOrderDetails',
+			data: { "order_id": order_id },
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				$('#quotes-main-loader').hide();
 
 				//console.log(response)
@@ -987,70 +978,70 @@ function order_details(order_id){
 				$('#order-details').modal('show');
 				$("#order-details").css("display", "block");
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
 	}
 }
 // track orders
-function track_order(order_id){
+function track_order(order_id) {
 	if (order_id) {
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'order',
-			data : {"order_id":order_id},
-			beforeSend: function(){
+			type: "POST",
+			url: BASEURL + 'order',
+			data: { "order_id": order_id },
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				$('#quotes-main-loader').hide();
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
 	}
 }
 // get booking details
-function booking_details(event_id){
+function booking_details(event_id) {
 	if (event_id) {
 		jQuery.ajax({
-			type : "POST",
-			dataType : "html",
-			url : BASEURL+ 'myprofile/getBookingDetails',
-			data : {"event_id":event_id},
-			beforeSend: function(){
+			type: "POST",
+			dataType: "html",
+			url: BASEURL + 'myprofile/getBookingDetails',
+			data: { "event_id": event_id },
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 
 				$('#quotes-main-loader').hide();
 				$('#booking-details').html(response).modal('show');
-			//$('#booking-details').html(response);
+				//$('#booking-details').html(response);
 
 				// $('#booking-details').modal('show');
 				// $('#booking-details').modal('show');
 				// $("#booking-details").css("display", "block");
 
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
 	}
 }
 // edit address
-function editAddress(address_id){
+function editAddress(address_id) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+'myprofile/getEditAddress',
-		data : {"address_id":address_id},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'myprofile/getEditAddress',
+		data: { "address_id": address_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			var address = JSON.parse(response);
 			console.log(address);
 			$('#user_entity_id').val(address.user_entity_id);
@@ -1063,56 +1054,56 @@ function editAddress(address_id){
 			$('#quotes-main-loader').hide();
 			$('#add-address').modal('show');
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // show delete address popup
-function showDeleteAddress(address_id){
+function showDeleteAddress(address_id) {
 	$('#delete_address_id').val(address_id);
 	$('#delete-address').modal('show');
 }
 // delete address
-function deleteAddress(){
+function deleteAddress() {
 	var address_id = $('#delete_address_id').val();
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+ 'myprofile/ajaxDeleteAddress' ,
-		data : {'address_id':address_id},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'myprofile/ajaxDeleteAddress',
+		data: { 'address_id': address_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
-			window.location.href = BASEURL+"myprofile/view-my-addresses";
+		success: function (response) {
+			window.location.href = BASEURL + "myprofile/view-my-addresses";
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			$('#quotes-main-loader').hide();
 			alert(errorThrown);
 		}
 	});
 }
 // show set main address popup
-function showMainAddress(address_id){
+function showMainAddress(address_id) {
 	$('#main_address_id').val(address_id);
 	$('#main-address').modal('show');
 }
 // set main address 
-function setMainAddress(){
+function setMainAddress() {
 	var address_id = $('#main_address_id').val();
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+'myprofile/ajaxSetAddress',
-		data : {'address_id':address_id},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'myprofile/ajaxSetAddress',
+		data: { 'address_id': address_id },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
-			window.location.href = BASEURL+"myprofile/view-my-addresses";
+		success: function (response) {
+			window.location.href = BASEURL + "myprofile/view-my-addresses";
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			$('#quotes-main-loader').hide();
 			alert(errorThrown);
 		}
@@ -1120,40 +1111,40 @@ function setMainAddress(){
 }
 /*event booking details*/
 // get people value
-function getPeople(value){
-	var people = (parseInt(value) > 0)?parseInt(value):1;
-	$('#peepid').html('<strong>'+people+' People</strong>');
+function getPeople(value) {
+	var people = (parseInt(value) > 0) ? parseInt(value) : 1;
+	$('#peepid').html('<strong>' + people + ' People</strong>');
 	$('#no_of_people').val(people);
 }
 // show all the reviews
-function showAllReviews(){
+function showAllReviews() {
 	$('#all_reviews').show();
 	$('#review_button').hide();
 }
 // form check availability submit
-$("#check_event_availability").on("submit", function(event) {
+$("#check_event_availability").on("submit", function (event) {
 	event.preventDefault();
 	var no_of_people = $('#no_of_people').val();
 	var date_time = $('#datetimepicker1').val();
 	var restaurant_id = $('#restaurant_id').val();
 	if (restaurant_id != '' && date_time != '' && no_of_people != '') {
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'restaurant/checkEventAvailability',
-			data : $('#check_event_availability').serialize(),
-			beforeSend: function(){
+			type: "POST",
+			url: BASEURL + 'restaurant/checkEventAvailability',
+			data: $('#check_event_availability').serialize(),
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				if (response == "success") {
 					$('#booking-available').modal('show');
 				}
-				else if (response == "fail")  {
+				else if (response == "fail") {
 					$('#booking-not-available').modal('show');
 				}
 				$('#quotes-main-loader').hide();
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
@@ -1161,55 +1152,53 @@ $("#check_event_availability").on("submit", function(event) {
 	return false;
 });
 // add package for event booking
-function AddPackage(entity_id){
+function AddPackage(entity_id) {
 	var action;
-	if ($("#addpackage-"+entity_id).hasClass('inpackage')) {
+	if ($("#addpackage-" + entity_id).hasClass('inpackage')) {
 		action = "remove";
 	}
-	else
-	{
+	else {
 		action = "add";
 	}
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'restaurant/add_package',
-		data : {"entity_id":entity_id,"action":action},
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'restaurant/add_package',
+		data: { "entity_id": entity_id, "action": action },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#quotes-main-loader').hide();
 			if (response == "success") {
-				if ($("#addpackage-"+entity_id).hasClass('inpackage')) {
-					$("#addpackage-"+entity_id).removeClass("inpackage");
+				if ($("#addpackage-" + entity_id).hasClass('inpackage')) {
+					$("#addpackage-" + entity_id).removeClass("inpackage");
 					$(".addpackage").html(ADD);
-					$("#addpackage-"+entity_id).html(ADD);
+					$("#addpackage-" + entity_id).html(ADD);
 				}
-				else
-				{
+				else {
 					$(".addpackage").removeClass("inpackage");
-					$("#addpackage-"+entity_id).addClass("inpackage");
+					$("#addpackage-" + entity_id).addClass("inpackage");
 					$(".addpackage").html(ADD);
-					$("#addpackage-"+entity_id).html(ADDED);
+					$("#addpackage-" + entity_id).html(ADDED);
 				}
 			}
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 	return false;
 }
 // confirm event booking
-function confirmBooking(){
+function confirmBooking() {
 	jQuery.ajax({
-		type : "POST",
-		url : BASEURL+'restaurant/bookEvent',
-		data : $('#check_event_availability').serialize(),
-		beforeSend: function(){
+		type: "POST",
+		url: BASEURL + 'restaurant/bookEvent',
+		data: $('#check_event_availability').serialize(),
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#quotes-main-loader').hide();
 			if (response == "success") {
 				$('#booking-confirmation').modal('show');
@@ -1218,7 +1207,7 @@ function confirmBooking(){
 				$('#booking-not-available').modal('show');
 			}
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -1227,28 +1216,28 @@ function confirmBooking(){
 /*event booking details js end*/
 
 /*event booking page js*/
-function searchEvents(){
+function searchEvents() {
 	var searchEvent = $('#searchEvent').val();
 	jQuery.ajax({
-		type : "POST",
-		dataType :"html",
-		url : BASEURL+"restaurant/ajax_events",
-		data : {'searchEvent':searchEvent,'page':''},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + "restaurant/ajax_events",
+		data: { 'searchEvent': searchEvent, 'page': '' },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#sort_events').html(response);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
-$('#searchEvent').keypress(function(event){
+$('#searchEvent').keypress(function (event) {
 	var keycode = (event.keyCode ? event.keyCode : event.which);
-	if(keycode == '13'){
+	if (keycode == '13') {
 		event.preventDefault();
 	}
 });
@@ -1256,70 +1245,69 @@ $('#searchEvent').keypress(function(event){
 
 /*checkout page*/
 //get lat long
-function getLatLong(cart_total){
+function getLatLong(cart_total) {
 	var place = autocomplete.getPlace();
 	var geocoder = new google.maps.Geocoder();
 	var address = document.getElementById("add_address_area").value;
-	geocoder.geocode( { 'address': address}, function(results, status) {
+	geocoder.geocode({ 'address': address }, function (results, status) {
 		if (status == google.maps.GeocoderStatus.OK) {
 			//get delivery charges
-			getDeliveryCharges(results[0].geometry.location.lat(),results[0].geometry.location.lng(),"get",cart_total);
+			getDeliveryCharges(results[0].geometry.location.lat(), results[0].geometry.location.lng(), "get", cart_total);
 			$('#add_latitude').val(results[0].geometry.location.lat());
 			$('#add_longitude').val(results[0].geometry.location.lng());
 		}
 	});
 }
 // get delivery charges from the address
-function getAddLatLong(address_id,cart_total){
+function getAddLatLong(address_id, cart_total) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "json",
-		url : BASEURL+'checkout/getAddressLatLng',
-		data : {"entity_id":address_id},
-		success: function(response) {
-			getDeliveryCharges(response.latitude,response.longitude,"get",cart_total);
+		type: "POST",
+		dataType: "json",
+		url: BASEURL + 'checkout/getAddressLatLng',
+		data: { "entity_id": address_id },
+		success: function (response) {
+			getDeliveryCharges(response.latitude, response.longitude, "get", cart_total);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // get delivery charges
-function getDeliveryCharges(latitude,longitude,action,cart_total){
+function getDeliveryCharges(latitude, longitude, action, cart_total) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "json",
-		url : BASEURL+'checkout/getDeliveryCharges',
-		data : {"latitude":latitude,"longitude":longitude,"action":action},
-		beforeSend: function(){
+		type: "POST",
+		dataType: "json",
+		url: BASEURL + 'checkout/getDeliveryCharges',
+		data: { "latitude": latitude, "longitude": longitude, "action": action },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#ajax_order_summary').html(response.ajax_order_summary);
 			if (action == "get") {
 				if (response.check != '') {
 					$("#submit_order").attr("disabled", false);
 				}
-				else
-				{
+				else {
 					$('#delivery-not-avaliable').modal('show');
 					$("#submit_order").attr("disabled", true);
 				}
 			}
 			$('#quotes-main-loader').hide();
-			getCoupons(cart_total,'delivery');
+			getCoupons(cart_total, 'delivery');
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // show delivery options
-function showDelivery(cart_total_price){
-	document.getElementById('delivery-form').style.display ='block';
+function showDelivery(cart_total_price) {
+	document.getElementById('delivery-form').style.display = 'block';
 	initAutocomplete('add_address_area');
-	jQuery( ".add_new_address" ).prop('required',true);
-	getCoupons(cart_total_price,'delivery');
+	jQuery(".add_new_address").prop('required', true);
+	getCoupons(cart_total_price, 'delivery');
 	$('#checkout_form').validate().resetForm();
 	$('#checkout_form')[0].reset();
 	$("#submit_order").attr("disabled", false);
@@ -1328,43 +1316,44 @@ function showDelivery(cart_total_price){
 	$('#your_address_content').hide();
 }
 // show pickup options
-function showPickup(cart_total_price){
+function showPickup(cart_total_price) {
 	document.getElementById('delivery-form').style.display = 'none';
-	getCoupons(cart_total_price,'pickup');
+	getCoupons(cart_total_price, 'pickup');
 	$('#checkout_form').validate().resetForm();
 	$('#checkout_form')[0].reset();
 	$("#submit_order").attr("disabled", false);
 	$("#pickup").prop("checked", true);
 }
 // remove delivery options
-function removeDeliveryOptions(){
+function removeDeliveryOptions() {
 	jQuery.ajax({
-		type : "POST",
-		dataType : "html",
-		url : BASEURL+'checkout/removeDeliveryOptions',
-		beforeSend: function(){
+		type: "POST",
+		dataType: "html",
+		url: BASEURL + 'checkout/removeDeliveryOptions',
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
+			// console.log(response);
 			$('#ajax_order_summary').html(response);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // get Coupons
-function getCoupons(subtotal,order_mode){
+function getCoupons(subtotal, order_mode) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : 'json',
-		url : BASEURL+'checkout/getCoupons',
-		data : {"subtotal":subtotal,"order_mode":order_mode},
-		beforeSend: function(){
+		type: "POST",
+		dataType: 'json',
+		url: BASEURL + 'checkout/getCoupons',
+		data: { "subtotal": subtotal, "order_mode": order_mode },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#ajax_order_summary').html(response.ajax_order_summary);
 			$('#your_coupons').html(response.html);
 			$('#quotes-main-loader').hide();
@@ -1372,50 +1361,50 @@ function getCoupons(subtotal,order_mode){
 				removeDeliveryOptions();
 			}
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // get Coupon details
-function getCouponDetails(coupon_id,subtotal,order_mode){
+function getCouponDetails(coupon_id, subtotal, order_mode) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : 'html',
-		url : BASEURL+'checkout/addCoupon',
-		data : {"coupon_id":coupon_id,"subtotal":subtotal,"order_mode":order_mode},
-		beforeSend: function(){
+		type: "POST",
+		dataType: 'html',
+		url: BASEURL + 'checkout/addCoupon',
+		data: { "coupon_id": coupon_id, "subtotal": subtotal, "order_mode": order_mode },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#ajax_order_summary').html(response);
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
 }
 // show address
-function showAddAdress(){
-	document.getElementById('add_address_content').style.display ='block';
-	jQuery( "#add_address_area" ).prop('required',true);
-	jQuery( "#add_address" ).prop('required',true);
+function showAddAdress() {
+	document.getElementById('add_address_content').style.display = 'block';
+	jQuery("#add_address_area").prop('required', true);
+	jQuery("#add_address").prop('required', true);
 	// jQuery( "#landmark" ).prop('required',true);
 	// jQuery( "#zipcode" ).prop('required',true);
 	// jQuery( "#city" ).prop('required',true);
-	if($('#your_address_content').length){
-		document.getElementById('your_address_content').style.display ='none';
+	if ($('#your_address_content').length) {
+		document.getElementById('your_address_content').style.display = 'none';
 	}
 }
 // show your already added address
-function showYourAdress(){
-	document.getElementById('add_address_content').style.display ='none';
+function showYourAdress() {
+	document.getElementById('add_address_content').style.display = 'none';
 	document.getElementById('your_address_content').style.display = 'block';
-	jQuery( "#your_address" ).prop('required',true);
+	jQuery("#your_address").prop('required', true);
 }
 // show registration form
-function showregister(){
+function showregister() {
 	$('#form_front_login_checkout').validate().resetForm();
 	$('#form_front_registration_checkout').validate().resetForm();
 	$('.login-validations').html('');
@@ -1423,7 +1412,7 @@ function showregister(){
 	$('#signup_form').show();
 }
 //show login form
-function showlogin(){
+function showlogin() {
 	$('#form_front_login_checkout').validate().resetForm();
 	$('#form_front_registration_checkout').validate().resetForm();
 	$('.register-validations').html('');
@@ -1431,23 +1420,22 @@ function showlogin(){
 	$('#login_form').show();
 }
 // submit checkout form
-$( "#checkout_form" ).on("submit", function( event ) {
+$("#checkout_form").on("submit", function (event) {
 	event.preventDefault();
 	var choose_order = $("input[name='choose_order']:checked").val();
 	var add_new_address = $("input[name='add_new_address']:checked").val();
 	var payment_option = $("input[name='payment_option']:checked").val();
-	if (((choose_order == "delivery" && ((add_new_address == "add_your_address" && $('#your_address').val() != '') || (add_new_address == "add_new_address" && $('#add_address_area').val() != '' && $('#add_address').val() != ''  ))) || choose_order == "pickup") && payment_option != '' && payment_option != undefined)
-	{
+	if (((choose_order == "delivery" && ((add_new_address == "add_your_address" && $('#your_address').val() != '') || (add_new_address == "add_new_address" && $('#add_address_area').val() != '' && $('#add_address').val() != ''))) || choose_order == "pickup") && payment_option != '' && payment_option != undefined) {
 		jQuery.ajax({
-			type : "POST",
+			type: "POST",
 			dataType: 'json',
-			url : BASEURL+'checkout/addOrder',
-			data : $("#checkout_form").serialize(),
+			url: BASEURL + 'checkout/addOrder',
+			data: $("#checkout_form").serialize(),
 			cache: false,
-			beforeSend: function(){
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 
 				console.log(response)
 				console.log(response.order_id)
@@ -1458,23 +1446,23 @@ $( "#checkout_form" ).on("submit", function( event ) {
 					//  setTimeout(location.reload.bind(location), 300000);
 				}
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
 	}
 });
 // check custom checkout item
-function customCheckoutItemCount(entity_id,restaurant_id,action,cart_key){
+function customCheckoutItemCount(entity_id, restaurant_id, action, cart_key) {
 	jQuery.ajax({
-		type : "POST",
-		dataType : 'json',
-		url : BASEURL+'checkout/ajax_checkout',
-		data : {"entity_id":entity_id,"restaurant_id":restaurant_id,"action":action,"cart_key":cart_key,'is_main_cart':'checkout'},
-		beforeSend: function(){
+		type: "POST",
+		dataType: 'json',
+		url: BASEURL + 'checkout/ajax_checkout',
+		data: { "entity_id": entity_id, "restaurant_id": restaurant_id, "action": action, "cart_key": cart_key, 'is_main_cart': 'checkout' },
+		beforeSend: function () {
 			$('#quotes-main-loader').show();
 		},
-		success: function(response) {
+		success: function (response) {
 			$('#ajax_your_items').html(response.ajax_your_items);
 			$('#ajax_order_summary').html(response.ajax_order_summary);
 
@@ -1484,15 +1472,14 @@ function customCheckoutItemCount(entity_id,restaurant_id,action,cart_key){
 			else if (action == "minus" && $('#total_cart_items').val() == null && $('#item_count_check').val() == null) {
 				$('#order_mode_method').hide();
 			}
-			else
-			{
-				if (IS_USER_LOGIN == 1 ){
+			else {
+				if (IS_USER_LOGIN == 1) {
 					//document.getElementById('delivery-form').style.display ='block';
 				}
 			}
 			$('#quotes-main-loader').hide();
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {
+		error: function (XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
 	});
@@ -1503,18 +1490,17 @@ function customCheckoutItemCount(entity_id,restaurant_id,action,cart_key){
 var totalPrice = 0;
 var radiototalPrice = 0;
 var checktotalPrice = 0;
-function getItemPrice(id,price,is_multiple){
+function getItemPrice(id, price, is_multiple) {
 	radiototalPrice = 0;
 	checktotalPrice = 0;
 	if (is_multiple != 1) {
 		//$("#custom_items_form input[type=radio]:checked").each(function() {
-		$("input:radio.radio_addons:checked").each(function() {
+		$("input:radio.radio_addons:checked").each(function () {
 			var sThisVal = (this.checked ? $(this).attr("amount") : 0);
 			radiototalPrice = parseFloat(radiototalPrice) + parseFloat(sThisVal);
 		});
 	}
-	else
-	{
+	else {
 		$('.check_addons:checkbox:checked').each(function () {
 			var sThisVal = (this.checked ? $(this).attr("amount") : 0);
 			checktotalPrice = parseFloat(checktotalPrice) + parseFloat(sThisVal);
@@ -1525,7 +1511,7 @@ function getItemPrice(id,price,is_multiple){
 	$('#subTotal').val(totalPrice);
 }
 // get the addons to cart
-function AddAddonsToCart(menu_id,item_id){
+function AddAddonsToCart(menu_id, item_id) {
 	var restaurant_id = $("#restaurant_id").val();
 	var user_id = $("#user_id").val();
 	var totalPrice = $('#subTotal').val();
@@ -1535,7 +1521,7 @@ function AddAddonsToCart(menu_id,item_id){
 		var addons_category = $(this).attr("addons_category");
 		var addons_category_id = $(this).attr("addons_category_id");
 		if (valueArray.length > 0) {
-			jQuery.each( valueArray, function( key, value ) {
+			jQuery.each(valueArray, function (key, value) {
 				var new_addons_list = new Array();
 				if (value.addons_category_id == addons_category_id) {
 					var addonslist = value.addons_list;
@@ -1546,10 +1532,9 @@ function AddAddonsToCart(menu_id,item_id){
 							"add_ons_price": value.addons_list.add_ons_price
 						});
 					}
-					else
-					{
+					else {
 						if (addonslist.length > 0) {
-							jQuery.each(addonslist, function( key, value ) {
+							jQuery.each(addonslist, function (key, value) {
 								new_addons_list.push(value);
 							});
 						}
@@ -1558,32 +1543,30 @@ function AddAddonsToCart(menu_id,item_id){
 					new_addons_list.push(addonValue);
 					value.addons_list = new_addons_list;
 				}
-				else
-				{
+				else {
 					valueArray.push({
-						'addons_category_id':addons_category_id,
-						'addons_category':addons_category,
-						'addons_list':addonValue
+						'addons_category_id': addons_category_id,
+						'addons_category': addons_category,
+						'addons_list': addonValue
 					});
 				}
 			});
 		}
-		else
-		{
+		else {
 			valueArray.push({
-				'addons_category_id':addons_category_id,
-				'addons_category':addons_category,
-				'addons_list':addonValue
+				'addons_category_id': addons_category_id,
+				'addons_category': addons_category,
+				'addons_list': addonValue
 			});
 		}
 	});
-	$("#custom_items_form input[type=radio][class='radio_addons']:checked").each(function() {
+	$("#custom_items_form input[type=radio][class='radio_addons']:checked").each(function () {
 		var addonValue = jQuery.parseJSON($(this).attr("addonValue"));
 		var addons_category = $(this).attr("addons_category");
 		var addons_category_id = $(this).attr("addons_category_id");
 		var new_addons_list = new Array();
 		if (valueArray.length > 0) {
-			jQuery.each( valueArray, function( key, value ) {
+			jQuery.each(valueArray, function (key, value) {
 				if (value.addons_category_id == addons_category_id) {
 					new_addons_list.push(value.addons_list);
 					new_addons_list.push(addonValue);
@@ -1595,46 +1578,46 @@ function AddAddonsToCart(menu_id,item_id){
 			addonValue = new_addons_list;
 		}
 		valueArray.push({
-			'addons_category_id':addons_category_id,
-			'addons_category':addons_category,
-			'addons_list':addonValue
+			'addons_category_id': addons_category_id,
+			'addons_category': addons_category,
+			'addons_list': addonValue
 		});
 	});
 	var arr = [];
 	var addons_category_id_arr = [];
 	if (valueArray.length > 0) {
-		jQuery.each( valueArray, function( key, value ) {
+		jQuery.each(valueArray, function (key, value) {
 			var addons = value.addons_list;
 			var addons_count = addons.length;
 			addons_category_id_arr.push(value.addons_category_id);
 			arr.push({
-				'addons_category_id':value.addons_category_id,
-				'key':key,
-				'addons_count':(addons_count)?addons_count:0
+				'addons_category_id': value.addons_category_id,
+				'key': key,
+				'addons_count': (addons_count) ? addons_count : 0
 			});
 		});
 	}
 	var unique_addons_category = [];
-	$.each(addons_category_id_arr, function(i, el){
-		if($.inArray(el, unique_addons_category) === -1) unique_addons_category.push(el);
+	$.each(addons_category_id_arr, function (i, el) {
+		if ($.inArray(el, unique_addons_category) === -1) unique_addons_category.push(el);
 	});
 	var maxval = [];
 	var arrkeys = [];
 	if (unique_addons_category.length > 0) {
-		jQuery.each( unique_addons_category, function( key, value ) {
+		jQuery.each(unique_addons_category, function (key, value) {
 			var max = 0;
 			var keyvalue = '';
 			if (arr.length > 0) {
-				jQuery.each( arr, function( arrkey, arrvalue ) {
+				jQuery.each(arr, function (arrkey, arrvalue) {
 					if (arrvalue.addons_category_id == value) {
-						if(max <= arrvalue.addons_count){
+						if (max <= arrvalue.addons_count) {
 							max = arrvalue.addons_count;
 							keyvalue = arrvalue.key;
 						}
 					}
 				});
 				maxval.push({
-					'id':value,
+					'id': value,
 					'addons_count': max,
 					'key': keyvalue
 				});
@@ -1645,14 +1628,13 @@ function AddAddonsToCart(menu_id,item_id){
 	var finalValueArray = [];
 	// to unset the duplicate keys
 	if (valueArray.length > 0) {
-		jQuery.each( valueArray, function( key, value ) {
+		jQuery.each(valueArray, function (key, value) {
 			if (arrkeys.length > 0) {
-				if(jQuery.inArray(key, arrkeys) !== -1) {
+				if (jQuery.inArray(key, arrkeys) !== -1) {
 					finalValueArray.push(value);
 				}
 			}
-			else
-			{
+			else {
 				finalValueArray = valueArray;
 			}
 		});
@@ -1661,30 +1643,30 @@ function AddAddonsToCart(menu_id,item_id){
 	// send addons array to cart
 	if (finalValueArray.length > 0) {
 		jQuery.ajax({
-			type : "POST",
-			url : BASEURL+'cart/addToCart',
-			data : {'menu_id':menu_id,'user_id':user_id,'restaurant_id':restaurant_id,'totalPrice':totalPrice,'add_ons_array':finalValueArray},
-			beforeSend: function(){
+			type: "POST",
+			url: BASEURL + 'cart/addToCart',
+			data: { 'menu_id': menu_id, 'user_id': user_id, 'restaurant_id': restaurant_id, 'totalPrice': totalPrice, 'add_ons_array': finalValueArray },
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				$('#quotes-main-loader').hide();
 				$('#myModal').modal('hide');
 				$('#your_cart').html(response);
-				$('.'+item_id).html(ADDED);
-				$('.'+item_id).removeClass('add');
-				$('.'+item_id).addClass('added');
+				$('.' + item_id).html(ADDED);
+				$('.' + item_id).removeClass('add');
+				$('.' + item_id).addClass('added');
 
 				$.ajax({
-					url:  BASEURL+'home/get_cart_item_no',
+					url: BASEURL + 'home/get_cart_item_no',
 					type: 'POST',
-					success: function(n) {
+					success: function (n) {
 						$('.cart_count').html(parseInt(n));
 
 					}
 				})
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
@@ -1693,35 +1675,34 @@ function AddAddonsToCart(menu_id,item_id){
 
 }
 
-function addReview(restaurant_id){
+function addReview(restaurant_id) {
 	$('#reviewModal').modal('show');
 }
 
 // form check availability submit
-$("#review_form").on("submit", function(event) {
+$("#review_form").on("submit", function (event) {
 	event.preventDefault();
 	if ($("input[name=rating]:checked").val() != '' && $('#review_text').val() != '') {
 		jQuery.ajax({
-			type : "POST",
+			type: "POST",
 			dataType: "html",
-			url : BASEURL+'restaurant/addReview',
-			data : $('#review_form').serialize(),
-			beforeSend: function(){
+			url: BASEURL + 'restaurant/addReview',
+			data: $('#review_form').serialize(),
+			beforeSend: function () {
 				$('#quotes-main-loader').show();
 			},
-			success: function(response) {
+			success: function (response) {
 				$('#quotes-main-loader').hide();
 				if (response == 'success') {
 					location.reload();
 				}
 			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
+			error: function (XMLHttpRequest, textStatus, errorThrown) {
 				alert(errorThrown);
 			}
 		});
 	}
-	else
-	{
+	else {
 		return false;
 	}
 });

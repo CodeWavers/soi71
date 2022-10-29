@@ -236,7 +236,7 @@ class Restaurant extends CI_Controller {
                     'updated_date'=>date('Y-m-d H:i:s'),
                     'is_veg'=>($this->input->post('is_veg') != '')?$this->input->post('is_veg'):NULL,
                     'driver_commission'=>$this->input->post('driver_commission'),
-                    'created_by' => $this->input->post('admin_user'),
+                    'created_by' => $this->input->post('admin_user') ? $this->input->post('admin_user') : null,
                 );    
                 if(!empty($this->input->post('timings'))){
                     $timingsArr = $this->input->post('timings');

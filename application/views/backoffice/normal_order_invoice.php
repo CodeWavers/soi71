@@ -360,10 +360,11 @@
 				<h3>Ship To</h3>
 				<?php $user_detail = unserialize($menu_item->user_detail);
 				$address = json_decode($user_detail['address']);
-				$pay = $order_records->payment_option;
+				// $pay = $order_records->payment_option;
+				$pay = $order_records->payment_option == "cod" ? "Cash on Delivery" : $order_records->payment_option;
 				if (!empty($user_detail)) { ?>
 					<p><?php echo $user_detail['first_name'] . ' ' . $user_detail['last_name'] . '<br>' . $order_records->mobile_number ?>
-					<?php echo ($order_records->order_delivery == 'Delivery') ? '<br> Road No: ' . $address->RoadNo . ', Block No: ' . $address->BlockNo . ', Flat No: ' . $address->FlatNo  . ', House No: ' . $address->Houseno . ' , ' . $address->area . '<br>' : '' ?><?php echo '<br>'. $pay ?></p>
+						<?php echo ($order_records->order_delivery == 'Delivery') ? '<br> Road No: ' . $address->RoadNo . ', Block No: ' . $address->BlockNo . ', Flat No: ' . $address->FlatNo  . ', House No: ' . $address->Houseno . ' , ' . $address->area . '<br>' : '' ?><?php echo '<br>' . $pay ?></p>
 				<?php } else { ?>
 					<p>Order By Restaurant</p>
 				<?php } ?>
@@ -445,6 +446,10 @@
 			<td class="align-left" class="width20"><?php echo $restaurant_detail->currency_symbol; ?><?php echo number_format_unchanged_precision($order_records->subtotal, $restaurant_detail->currency_code) ?></td>
 		</tr>
 		<tr>
+			<td class="align-right"><strong>Service Charge</strong></td>
+			<td class="align-left"><?php echo ($order_records->service_charge) ? $restaurant_detail->currency_symbol . number_format_unchanged_precision($order_records->service_charge, $restaurant_detail->currency_code) : '-'; ?></td>
+		</tr>
+		<tr>
 			<td class="align-right"><strong>Delivery Charge</strong></td>
 			<td class="align-left"><?php echo ($order_records->delivery_charge) ? $restaurant_detail->currency_symbol . number_format_unchanged_precision($order_records->delivery_charge, $restaurant_detail->currency_code) : '-'; ?></td>
 		</tr>
@@ -460,8 +465,9 @@
 			<td class="align-right"><strong>VAT</strong></td>
 			<td class="align-left"><?php echo $restaurant_detail->currency_symbol; ?><?php echo number_format_unchanged_precision($order_records->vat, $restaurant_detail->currency_code); ?></td>
 		</tr>
-		
+
 		<tr>
+			<td></td>
 			<td class="align-right grand-total"><strong>TOTAL</strong></td>
 			<td class="align-left grand-total"><?php echo $restaurant_detail->currency_symbol; ?><?php echo number_format_unchanged_precision($order_records->total_rate, $restaurant_detail->currency_code); ?></td>
 		</tr>
