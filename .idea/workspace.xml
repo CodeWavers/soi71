@@ -24,10 +24,6 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/ajax_order_summary.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_order_summary.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/database/foodaanic_soi71 (2).sql" beforeDir="false" afterPath="$PROJECT_DIR$/database/foodaanic_soi71 (2).sql" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -36,7 +32,9 @@
   </component>
   <component name="ComposerSettings" doNotAsk="true" synchronizationState="SYNCHRONIZE">
     <pharConfigPath>$PROJECT_DIR$/composer.json</pharConfigPath>
-    <execution />
+    <execution>
+      <executable />
+    </execution>
   </component>
   <component name="FileTemplateManagerImpl">
     <option name="RECENT_TEMPLATES">
@@ -115,8 +113,9 @@
     <option name="showLibraryContents" value="true" />
   </component>
   <component name="PropertiesComponent">
+    <property name="RunOnceActivity.ShowReadmeOnStart" value="true" />
     <property name="WebServerToolWindowFactoryState" value="false" />
-    <property name="last_opened_file_path" value="$PROJECT_DIR$/database" />
+    <property name="last_opened_file_path" value="$PROJECT_DIR$" />
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
@@ -178,7 +177,11 @@
       <workItem from="1665047066583" duration="962000" />
       <workItem from="1665378288171" duration="2672000" />
       <workItem from="1666508821342" duration="5163000" />
-      <workItem from="1666593021839" duration="3943000" />
+      <workItem from="1666593021839" duration="5440000" />
+      <workItem from="1666609446249" duration="1176000" />
+      <workItem from="1666628349183" duration="26000" />
+      <workItem from="1666681502104" duration="1526000" />
+      <workItem from="1667128768961" duration="269000" />
     </task>
     <servers />
   </component>
@@ -190,12 +193,19 @@
       <map>
         <entry key="MAIN">
           <value>
-            <State />
+            <State>
+              <option name="COLUMN_ORDER" />
+            </State>
           </value>
         </entry>
       </map>
     </option>
-    <option name="oldMeFiltersMigrated" value="true" />
+  </component>
+  <component name="WindowStateProjectService">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667129270939">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667129270939" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
