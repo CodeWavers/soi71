@@ -758,6 +758,15 @@
     <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
     <script type="text/javascript">
     var map, marker;
+
+	$('#ex_us').click(function () {
+
+		//alert('Hello')
+
+		$('#us_menu').addClass('open');
+
+	})
+
 	$('#nav-icon2').click(function () {
 
 		$('#nav-icon2').addClass('open');
@@ -856,6 +865,8 @@
             $("#old").show();
         }
     }
+
+
 
     </script>
     <?php $this->load->view('footer');?>

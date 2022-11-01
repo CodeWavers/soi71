@@ -225,7 +225,7 @@ if (isset($_GET['scope'])) {
 								<div id="phoneExist"></div>
 							</div>
 							<div class="form-group" id="name_container">
-								<input type="text" name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
+								<input type="text"  onchange="checking()" onkeypress="checking()" onkeyup="checking()" name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
 								<label><?php echo $this->lang->line('name') ?></label>
 							</div>
 							<input type="hidden" name='fb_id' id='fb_id' onchange="checkExistProviderId(this.value)" value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
@@ -238,19 +238,21 @@ if (isset($_GET['scope'])) {
 							<input type="hidden" name='g_name' value="<?php echo ($_SESSION['google_name']) ? $_SESSION['google_name'] : ''; ?>" />
 							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" />
 
+							<input type="hidden" id="phnE" name='phnE' value="" />
+
 
 							<!--<div class="form-group">-->
 							<!--    <input type="email" name="email" id="email" class="form-control" placeholder=" " >-->
 							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
 							<!--</div>-->
 							<div class="form-group" id="number_container">
-								<input type="number" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
+								<input type="number"  onkeypress="checking()" onkeyup="checking()" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
 							</div>
 
 							<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
 								<div class="form-group">
-									<input type="password" name="password" id="password" class="form-control" placeholder=" " onkeyup="checkAllFields();">
+									<input type="password" onchange="checking()"  onkeypress="checking()" onkeyup="checking()" name="password" id="password" class="form-control" placeholder=" " onkeyup="checkAllFields();">
 									<label><?php echo $this->lang->line('password') ?></label>
 								</div>
 
@@ -260,7 +262,7 @@ if (isset($_GET['scope'])) {
 							<div class="action-button" style="margin-top:10px;">
 								<a href="<?php echo base_url() . 'home/login'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('title_login') ?></a>
 								<!-- <button type="submit" name="submit_page" id="submit_page" value="Register" onclick="phoneAuth();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button> -->
-								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button>
+								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" disabled> <?php echo $this->lang->line('sign_up') ?></button>
 
 							</div>
 							<!-- <button type="button" onclick="phoneAuth();">SendCode</button> -->
@@ -410,7 +412,12 @@ if (isset($_GET['scope'])) {
 		var name = $('#name').val();
 		var number = $('#number').val();
 		var pass = $('#password').val();
-
+		var phnE=$('#phnE').val();
+		// if (phnE > 0){
+		// 	$(':input[type="submit"]').prop("disabled", true);
+		// }else{
+		// 	$(':input[type="submit"]').prop("disabled", false);
+		// }
 		if (name == "" || number == "" || pass == "") {
 
 			$(':input[name="submit_page"]').prop("disabled", true);
@@ -449,6 +456,8 @@ if (isset($_GET['scope'])) {
 	function codeverify() {
 		var code = document.getElementById('verificationCode').value;
 		coderesult.confirm(code).then(function(result) {
+
+			console.log(result)
 			alert("Successfully verified");
 			var number = $('#number').val();
 			ajaxCall(number);
@@ -494,6 +503,15 @@ if (isset($_GET['scope'])) {
 		$('.container').css('display', 'none');
 	}
 
+	function checking() {
+
+		var mobile_number=$('#number').val();
+
+
+		checkExistNum(mobile_number);
+
+	}
+
 
 	function checkExistNum(mobile_number) {
 		// var entity_id = $('#entity_id').val();
@@ -505,6 +523,8 @@ if (isset($_GET['scope'])) {
 			success: function(html) {
 				console.log(html);
 				if (html > 0) {
+					$('#phnE').val(html);
+					$(':input[type="submit"]').prop("disabled", true);
 					$('#phoneExist').show();
 					$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
 					$('#phoneExist').css({
@@ -512,7 +532,7 @@ if (isset($_GET['scope'])) {
 						'font-size': '20px',
 						'font-weight': 'bold'
 					});
-					$(':input[type="submit"]').prop("disabled", true);
+
 				} else {
 					$('#phoneExist').html("");
 					$('#phoneExist').hide();
