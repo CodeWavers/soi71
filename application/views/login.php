@@ -336,7 +336,6 @@ if (isset($_GET['scope'])) {
 							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
 
 						</div>
-
 					</div>
 				</form>
 			</div>

@@ -638,8 +638,10 @@ class Home extends CI_Controller
 		$this->load->view('registration', $data);
 	}
 
+	
+
 	// user forgot password
-	public function forgot_password()
+	public function forgot_password_old()
 	{
 		if ($this->input->post('forgot_submit_page') == "Submit") {
 			//$this->form_validation->set_rules('number_forgot', 'Phone Number', 'trim|required');
