@@ -24,6 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/models/Home_model.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/models/Home_model.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/registration.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -119,6 +123,9 @@
     <property name="vue.rearranger.settings.migration" value="true" />
   </component>
   <component name="RecentsManager">
+    <key name="MoveFile.RECENT_KEYS">
+      <recent name="C:\laragon\www\git\soi71\assets\front\images" />
+    </key>
     <key name="CopyFile.RECENT_KEYS">
       <recent name="C:\laragon\www\git\soi71\database" />
       <recent name="C:\laragon\www\git\soi71\uploads" />
@@ -126,7 +133,7 @@
       <recent name="C:\laragon\www\git\soi71\assets\front\js" />
     </key>
   </component>
-  <component name="SpellCheckerSettings" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" DefaultDictionary="application-level" UseSingleDictionary="true" transferred="true" />
+  <component name="SpellCheckerSettings" BundledDictionaries="0" RuntimeDictionaries="0" Folders="0" CustomDictionaries="0" Dictionaries="0" CorrectionsLimit="5" DefaultDictionary="application-level" UseSingleDictionary="true" />
   <component name="SvnConfiguration">
     <configuration />
   </component>
@@ -181,12 +188,16 @@
       <workItem from="1666609446249" duration="1176000" />
       <workItem from="1666628349183" duration="26000" />
       <workItem from="1666681502104" duration="1526000" />
-      <workItem from="1667128768961" duration="269000" />
+      <workItem from="1667128768961" duration="528000" />
+      <workItem from="1667214529357" duration="3375000" />
+      <workItem from="1667221009338" duration="2785000" />
+      <workItem from="1667224934038" duration="2025000" />
+      <workItem from="1667277663470" duration="1518000" />
     </task>
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
-    <option name="version" value="3" />
+    <option name="version" value="1" />
   </component>
   <component name="Vcs.Log.Tabs.Properties">
     <option name="TAB_STATES">
@@ -202,10 +213,16 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667129270939">
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1667277664817">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667129270939" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667277664817" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1667224933703" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667278048657">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667278048657" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1667222524111" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>

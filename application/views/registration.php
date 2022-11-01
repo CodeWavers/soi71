@@ -100,6 +100,7 @@ if (isset($_GET['scope'])) {
 	//Set the access token used for requests
 	$google_client->setAccessToken($token['access_token']);
 
+
 	//Store "access_token" value in $_SESSION variable for future use.
 	$_SESSION['google_access_token'] = $token['access_token'];
 
@@ -192,32 +193,32 @@ if (isset($_GET['scope'])) {
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
 						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
 					<?php } ?>
-
+					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
+						<div class="alert alert-danger">
+							<?php echo $this->session->flashdata('error_MSG'); ?>
+						</div>
+					<?php } ?>
+					<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
+						<div class="alert alert-success">
+							<?php echo $this->session->flashdata('success_MSG'); ?>
+						</div>
+					<?php } ?>
+					<?php if (!empty($success)) { ?>
+						<div class="alert alert-success"><?php echo $success; ?></div>
+					<?php } ?>
+					<?php if (!empty($error)) { ?>
+						<div class="alert alert-danger"><?php echo $error; ?></div>
+					<?php } ?>
+					<?php if (validation_errors()) { ?>
+						<div class="alert alert-danger">
+							<?php echo validation_errors(); ?>
+						</div>
+					<?php } ?>
 
 					<form action="" id="form_front_registration" name="form_front_registration" method="post" class="form-horizontal float-form ">
 						<div class="form-body">
 
-							<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
-								<div class="alert alert-danger">
-									<?php echo $this->session->flashdata('error_MSG'); ?>
-								</div>
-							<?php } ?>
-							<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
-								<div class="alert alert-success">
-									<?php echo $this->session->flashdata('success_MSG'); ?>
-								</div>
-							<?php } ?>
-							<?php if (!empty($success)) { ?>
-								<div class="alert alert-success"><?php echo $success; ?></div>
-							<?php } ?>
-							<?php if (!empty($error)) { ?>
-								<div class="alert alert-danger"><?php echo $error; ?></div>
-							<?php } ?>
-							<?php if (validation_errors()) { ?>
-								<div class="alert alert-danger">
-									<?php echo validation_errors(); ?>
-								</div>
-							<?php } ?>
+
 
 
 							<div class="form-group">
@@ -330,6 +331,7 @@ if (isset($_GET['scope'])) {
 		apiKey: "AIzaSyDcXe6AacheUcFHeV8jtanJT21nyS9e3kM",
 		authDomain: "soi71-62621.firebaseapp.com",
 		projectId: "soi71-62621",
+		databaseURL: "https://soi71-62621.firebaseio.com",
 		storageBucket: "soi71-62621.appspot.com",
 		messagingSenderId: "1022686565372",
 		appId: "1:1022686565372:web:cd995980b1497401b65879",
@@ -465,7 +467,7 @@ if (isset($_GET['scope'])) {
 			cache: false,
 			success: function(html) {
 				console.log('bla', html);
-				window.location.replace("<?php echo base_url(); ?>home/login");
+				window.location("<?php echo base_url(); ?>home/login");
 
 				//   if(html > 0){
 				//     $('#phoneExist').show();

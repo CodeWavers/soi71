@@ -183,6 +183,66 @@ class Home extends CI_Controller
 		return $cart_details;
 	}
 	// frontend user login
+	public function login_gjc()
+	{
+		$data['page_title'] = $this->lang->line('title_login') . ' | ' . $this->lang->line('site_title');
+		if ($this->input->post('submit_page') == "Login") {
+			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required');
+			if ($this->form_validation->run()) {
+				$phone_number = trim($this->input->post('phone_number'));
+				$this->deleteMatchingNonActiveUsers($phone_number);
+				$enc_pass = md5(SALT . trim($this->input->post('password')));
+
+				$this->db->where('mobile_number', $phone_number);
+				$this->db->where('password', $enc_pass);
+				$this->db->where("(user_type='User')");
+				$val = $this->db->get('users')->first_row();
+				if (!empty($val)) {
+					if ($val->active == '1' && $val->status == '1') {
+						$this->session->set_userdata(
+							array(
+								'UserID' => $val->entity_id,
+								'userFirstname' => $val->first_name,
+								'userLastname' => $val->last_name,
+								'userEmail' => $val->email,
+								'userPhone' => $val->mobile_number,
+								//   'userImage' => $val->image,
+								'userImage' => $val->image ? (image_url . $val->image) : default_user_img,
+								'is_admin_login' => 0,
+								'is_user_login' => 1,
+								'UserType' => $val->user_type,
+								'package_id' => array(),
+							)
+						);
+						// remember ME
+						$cookie_name = "adminAuth";
+						if ($this->input->post('rememberMe') == 1) {
+							$this->input->set_cookie($cookie_name, 'usr=' . $phone_number . '&hash=' . trim($this->input->post('password')), 60 * 60 * 24 * 5); // 5 days
+						} else {
+							delete_cookie($cookie_name);
+						}
+						if ($this->session->userdata('previous_url')) {
+							redirect($this->session->userdata('previous_url'));
+						} else {
+							redirect(base_url() . 'restaurant/restaurant-detail/soi71');
+						}
+					} else if ($val->active == '0' || $val->active == '' || $val->status == '0') {
+						$data['loginError'] = $this->lang->line('front_login_deactivate');
+					} else {
+						$data['loginError'] = $this->lang->line('front_login_error');
+					}
+				} else {
+					$data['loginError'] = $this->lang->line('front_login_error');
+				}
+				$this->session->set_flashdata('error_MSG', $data['loginError']);
+				redirect(base_url() . 'home/login');
+				exit;
+			}
+		}
+		$data['current_page'] = 'Login';
+		$this->load->view('login', $data);
+	}
 	// frontend user login
 	public function login()
 	{
@@ -373,9 +433,90 @@ class Home extends CI_Controller
 		$number = $this->input->post('mobile_number');
 		$this->home_model->updateuser($number);
 	}
-
 	// frontend user registration
 	public function registration()
+	{
+		$data['page_title'] = $this->lang->line('title_registration') . ' | ' . $this->lang->line('site_title');
+		// if($this->input->post('submit_page') == "Register"){
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required');
+		// $this->form_validation->set_rules('email', 'Email', 'trim|required|callback_checkEmail');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		if ($this->form_validation->run()) {
+
+			$checkRecords = $this->home_model->mobileCheck(trim($this->input->post('phone_number')));
+			if ($checkRecords == 0) {
+				$name = trim($this->input->post('name'));
+				$namearr = explode(" ", $name);
+				if (!empty($namearr)) {
+					foreach ($namearr as $key => $value) {
+						if ($key != 0) {
+							$last_name[] = $value;
+						}
+					}
+				}
+				//$code="+88";
+				$userData = array(
+					"first_name" => (!empty($namearr[0])) ? $namearr[0] : '',
+					"last_name" => (!empty($last_name)) ? implode(" ", $last_name) : '',
+					"password" => md5(SALT . $this->input->post('password')),
+					// "email"=>trim($this->input->post('email')),
+					"mobile_number" => trim($this->input->post('phone_number')),
+					"user_type" => "User",
+					"status" => 1,
+					"active" => 1
+				);
+				$entity_id = $this->common_model->addData('users', $userData);
+				if ($entity_id) {
+					$data['success'] = $this->lang->line('registration_success');
+					$this->session->set_flashdata('success_MSG', $data['success']);
+				}
+				if ($this->input->post('email')) {
+					// confirmation link
+					$language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
+					$verificationCode = random_string('alnum', 20) . $UserID . random_string('alnum', 5);
+					$confirmationLink = '<a href=' . base_url() . 'user/verify_account/' . $verificationCode . '>here</a>';
+					$email_template = $this->db->get_where('email_template', array('email_slug' => 'verify-account', 'language_slug' => $language_slug))->first_row();
+					$arrayData = array('FirstName' => $namearr[0], 'ForgotPasswordLink' => $confirmationLink);
+					$EmailBody = generateEmailBody($email_template->message, $arrayData);
+					//get System Option Data
+					$this->db->select('OptionValue');
+					$FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
+
+					$this->db->select('OptionValue');
+					$FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
+
+					$this->load->library('email');
+					$config['charset'] = "utf-8";
+					$config['mailtype'] = "html";
+					$config['newline'] = "\r\n";
+					$this->email->initialize($config);
+					$this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
+					$this->email->to($this->input->post('email'));
+					$this->email->subject($email_template->subject);
+					$this->email->message($EmailBody);
+					$this->email->send();
+
+					// update verification code
+					$addata = array('email_verification_code' => $verificationCode);
+					$this->common_model->updateData('users', $addata, 'entity_id', $entity_id);
+				}
+			} else {
+				$data['error'] = $this->lang->line('front_registration_fail');
+				$this->session->set_flashdata('error_MSG', $data['error']);
+			}
+			// redirect(base_url().'home/verify');
+			exit;
+		}
+		// }
+		//$this->session->set_flashdata('');
+		$_SESSION['error_MSG'] = "";
+		$_SESSION['success_MSG'] = "";
+		$data['current_page'] = 'Registration';
+		$this->load->view('registration', $data);
+	}
+	// frontend user registration
+	public function registration_old()
 	{
 		$data['page_title'] = $this->lang->line('title_registration') . ' | ' . $this->lang->line('site_title');
 		// if($this->input->post('submit_page') == "Register"){

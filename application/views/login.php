@@ -130,16 +130,7 @@ if (isset($_GET['scope'])) {
 <!--					</div>-->
 <!--					<h3>--><?php //echo $this->lang->line('lets_get_started') ?><!--</h3>-->
 
-					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
-						<div class="alert alert-danger">
-							<?php echo $this->session->flashdata('error_MSG'); ?>
-						</div>
-					<?php } ?>
-					<?php if (validation_errors()) { ?>
-						<div class="alert alert-danger">
-							<?php echo validation_errors(); ?>
-						</div>
-					<?php } ?>
+
 					<div class="container" style="display: contents">
 						<br />
 						<?php
@@ -179,7 +170,16 @@ if (isset($_GET['scope'])) {
 						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
 					<?php } ?>
 					<br>
-
+					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
+						<div class="alert alert-danger">
+							<?php echo $this->session->flashdata('error_MSG'); ?>
+						</div>
+					<?php } ?>
+					<?php if (validation_errors()) { ?>
+						<div class="alert alert-danger">
+							<?php echo validation_errors(); ?>
+						</div>
+					<?php } ?>
 					<form action="<?php echo base_url() . 'home/login'; ?>" id="form_front_login" name="form_front_login" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 
