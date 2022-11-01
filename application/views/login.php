@@ -180,6 +180,8 @@ if (isset($_GET['scope'])) {
 							<?php echo validation_errors(); ?>
 						</div>
 					<?php } ?>
+					<div class="alert alert-success display-no" id="forgot_success"></div>
+
 					<form action="<?php echo base_url() . 'home/login'; ?>" id="form_front_login" name="form_front_login" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 
@@ -310,6 +312,7 @@ if (isset($_GET['scope'])) {
 		</div>
 	</div>
 </div>
+
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
 	<div class="modal-dialog modal-dialog-centered" role="document">
 		<div class="modal-content">
@@ -321,8 +324,7 @@ if (isset($_GET['scope'])) {
 			</div>
 			<div class="modal-body">
 				<form action="" class="form-horizontal float-form">
-					<div class="alert alert-success display-no" id="forgot_success"></div>
-					<div class="form-body">
+					<div class="form-body verify">
 
 						<h1>Enter Verification code</h1>
 
@@ -436,12 +438,17 @@ if (isset($_GET['scope'])) {
 						$('#forgot_error').show();
 					}
 					if (response.forgot_success != '') {
-						$('#forgot_success').html(response.forgot_success);
-						$('#forgot_error').hide();
-
-						// $('#forgot_password_section').hide();
-
+						$("#forgot_success").html(response.forgot_success);
+						$("#forgot_error").hide();
+						$("#forgot_success").hide();
+						$("#forgot_password_section").hide();
+						 // $('#forgot_password_section').hide();
 						$('#exampleModal').modal('show');
+
+						forgot_verify();
+
+
+
 
 					}
 				}
@@ -485,10 +492,14 @@ if (isset($_GET['scope'])) {
 		render();
 	};
 
-	function render() {
-		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
 
-	}
+		function render() {
+			window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+				'size':'invisible'
+			});
+			recaptchaVerifier.render();
+		}
+
 
 	function forgot_verify() {
 
@@ -510,8 +521,11 @@ if (isset($_GET['scope'])) {
 			// alert("Successfully verified");
 			// $('#exampleModal').modal('hide')
 
-
+			 $('#forgot-pass-modal').hide();
+			$('.modal-backdrop').hide();
 			$('#forgot_success').show();
+
+			$('.verify').addClass('display-no');
 
 			// $('#forgot-pass-modal').modal('hide');
 

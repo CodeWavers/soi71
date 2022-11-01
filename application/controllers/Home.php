@@ -434,7 +434,7 @@ class Home extends CI_Controller
 		$this->home_model->updateuser($number);
 	}
 	// frontend user registration
-	public function registration()
+	public function registration_gjc()
 	{
 		$data['page_title'] = $this->lang->line('title_registration') . ' | ' . $this->lang->line('site_title');
 		// if($this->input->post('submit_page') == "Register"){
@@ -516,7 +516,7 @@ class Home extends CI_Controller
 		$this->load->view('registration', $data);
 	}
 	// frontend user registration
-	public function registration_old()
+	public function registration()
 	{
 		$data['page_title'] = $this->lang->line('title_registration') . ' | ' . $this->lang->line('site_title');
 		// if($this->input->post('submit_page') == "Register"){
@@ -638,10 +638,10 @@ class Home extends CI_Controller
 		$this->load->view('registration', $data);
 	}
 
-	
+
 
 	// user forgot password
-	public function forgot_password_old()
+	public function forgot_password()
 	{
 		if ($this->input->post('forgot_submit_page') == "Submit") {
 			//$this->form_validation->set_rules('number_forgot', 'Phone Number', 'trim|required');

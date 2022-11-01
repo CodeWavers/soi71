@@ -379,7 +379,9 @@ if (isset($_GET['scope'])) {
 	};
 
 	function render() {
-		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+			'size':'invisible'
+		});
 		recaptchaVerifier.render();
 	}
 	//Check if all fields are filled up
