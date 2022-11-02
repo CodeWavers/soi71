@@ -326,7 +326,7 @@ class Home extends CI_Controller
 					if ($this->session->userdata('previous_url')) {
 						redirect($this->session->userdata('previous_url'));
 					} else {
-						redirect(base_url() . 'myprofile');
+						redirect(base_url() . 'home/login');
 					}
 				} else if ($val->active == '0' || $val->active == '' || $val->status == '0') {
 					$data['loginError'] = $this->lang->line('front_login_deactivate');

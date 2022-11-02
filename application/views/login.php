@@ -171,12 +171,12 @@ if (isset($_GET['scope'])) {
 					<?php } ?>
 					<br>
 					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
-						<div class="alert alert-danger">
+						<div class="alert alert-danger xy">
 							<?php echo $this->session->flashdata('error_MSG'); ?>
 						</div>
 					<?php } ?>
 					<?php if (validation_errors()) { ?>
-						<div class="alert alert-danger">
+						<div class="alert alert-danger xy">
 							<?php echo validation_errors(); ?>
 						</div>
 					<?php } ?>
@@ -525,6 +525,7 @@ if (isset($_GET['scope'])) {
 			$('.modal-backdrop').hide();
 			$('#forgot_success').show();
 
+			$('.xy').addClass('display-no');
 			$('.verify').addClass('display-no');
 
 			// $('#forgot-pass-modal').modal('hide');
