@@ -170,6 +170,11 @@ if (isset($_GET['scope'])) {
 						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
 					<?php } ?>
 					<br>
+					<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
+						<div class="alert alert-success xy">
+							<?php echo $this->session->flashdata('success_MSG'); ?>
+						</div>
+					<?php } ?>
 					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
 						<div class="alert alert-danger xy">
 							<?php echo $this->session->flashdata('error_MSG'); ?>
@@ -215,7 +220,7 @@ if (isset($_GET['scope'])) {
 											<span><?php echo $this->lang->line('remember') ?></span>
 										</label>
 									</div>
-									<a href="" class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
+									<a href=""  class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
 								</div>
 
 							<?php } ?>
@@ -314,7 +319,7 @@ if (isset($_GET['scope'])) {
 </div>
 
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -332,10 +337,21 @@ if (isset($_GET['scope'])) {
 							<input type="text" id="verificationCode" class="form-control" placeholder="">
 							<label><?php echo $this->lang->line('otp') ?></label>
 						</div>
+						<b><p id="otp_time">
+							The OTP will expire in
+							<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
+
+						</p></b>
+						<b><p id="r_otp_time" class="d-none">
+							The OTP will expire in
+							<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
+
+						</p></b>
 						<div id="recaptcha-container"></div>
 
 						<div class="action-button">
 							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
+							<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
 
 						</div>
 					</div>
@@ -377,6 +393,26 @@ if (isset($_GET['scope'])) {
 	firebase.initializeApp(firebaseConfig);
 </script>
 <script>
+
+
+	function showClock(target) {
+		const distance = target - new Date().getTime();
+		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+
+		// Output the results
+		document.getElementById("minutes").innerHTML = mins;
+		document.getElementById("seconds").innerHTML = secs;
+	}
+	function showClock_r(target) {
+		const distance = target - new Date().getTime();
+		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+
+		// Output the results
+		document.getElementById("r_minutes").innerHTML = mins;
+		document.getElementById("r_seconds").innerHTML = secs;
+	}
 
 	$(".mobile-icon  button").on("click", function(e) {
 		$("#example-one").toggleClass("open");
@@ -446,8 +482,6 @@ if (isset($_GET['scope'])) {
 						forgot_verify();
 
 
-
-
 					}
 				}
 			},
@@ -500,8 +534,17 @@ if (isset($_GET['scope'])) {
 
 
 	function forgot_verify() {
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		//	showClock(countDownTarget);
+		var x = setInterval(function() {
+			showClock(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+			}
+		}, 1000);
 
 		var countrycode = "+88";
+		var main_number = document.getElementById('number_forgot').value;
 		var number = document.getElementById('number_forgot').value;
 		var number = countrycode.concat(number);
 		//phone number authentication function of firebase
@@ -516,12 +559,68 @@ if (isset($_GET['scope'])) {
 		});
 		var code = document.getElementById('verificationCode').value;
 		coderesult.confirm(code).then(function(result) {
-			// alert("Successfully verified");
+			 alert("Successfully verified");
 			// $('#exampleModal').modal('hide')
-
+			window.location.href = 'forgot_page/'+main_number;
 			 $('#forgot-pass-modal').hide();
 			$('.modal-backdrop').hide();
-			$('#forgot_success').show();
+			//$('#forgot_success').show();
+
+			$('.xy').addClass('display-no');
+			$('.verify').addClass('display-no');
+
+			// $('#forgot-pass-modal').modal('hide');
+
+
+
+			//var number = $('#number_forgot').val();
+			//
+			////alert(number)
+			//ajaxCall(number);
+			//// window.location.href = 'home';
+
+			//var user = result.user;
+			//console.log(user);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+	}
+	function forgot_verify_Resend() {
+
+			$('#otp_time').addClass('d-none');
+			$('#r_otp_time').removeClass('d-none');
+
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		showClock_r(countDownTarget);
+		var x = setInterval(function() {
+			showClock_r(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+			}
+		}, 1000);
+
+		var countrycode = "+88";
+		var main_number = document.getElementById('number_forgot').value;
+		var number = document.getElementById('number_forgot').value;
+		var number = countrycode.concat(number);
+		//phone number authentication function of firebase
+		//it takes two parameter first one is number,,,second one is recaptcha
+		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+			//s is in lowercase
+			window.confirmationResult = confirmationResult;
+			coderesult = confirmationResult;
+			console.log(coderesult);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+		var code = document.getElementById('verificationCode').value;
+		coderesult.confirm(code).then(function(result) {
+			alert("Successfully verified");
+			// $('#exampleModal').modal('hide')
+			window.location.href = 'forgot_page/'+main_number;
+			 $('#forgot-pass-modal').hide();
+			$('.modal-backdrop').hide();
+			//$('#forgot_success').show();
 
 			$('.xy').addClass('display-no');
 			$('.verify').addClass('display-no');

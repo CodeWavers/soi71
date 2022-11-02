@@ -24,6 +24,11 @@
 						<div id="login_form">
 							<form action="<?php echo base_url() . 'checkout'; ?>" id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
 								<div class="form-body">
+									<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
+										<div class="alert alert-success xy">
+											<?php echo $this->session->flashdata('success_MSG'); ?>
+										</div>
+									<?php } ?>
 									<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
 										<div class="alert alert-danger xy">
 											<?php echo $this->session->flashdata('error_MSG'); ?>
@@ -439,9 +444,8 @@
 		</div>
 	</div>
 </div>
-
 <div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog modal-dialog-centered" role="document">
+	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<div class="modal-header">
 				<h5 class="modal-title" id="exampleModalLabel"></h5>
@@ -459,10 +463,21 @@
 							<input type="text" id="verificationCode" class="form-control" placeholder="">
 							<label><?php echo $this->lang->line('otp') ?></label>
 						</div>
+						<b><p id="otp_time">
+								The OTP will expire in
+								<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
+
+							</p></b>
+						<b><p id="r_otp_time" class="d-none">
+								The OTP will expire in
+								<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
+
+							</p></b>
 						<div id="recaptcha-container"></div>
 
 						<div class="action-button">
 							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
+							<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
 
 						</div>
 					</div>
@@ -475,7 +490,6 @@
 		</div>
 	</div>
 </div>
-
 
 <!-- Order Confirmation -->
 <div class="modal modal-main" id="order-confirmation">
@@ -556,29 +570,65 @@
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 </script>
-<script type="text/javascript">
-	$(document).ready(function() {
-		// document.getElementById("submit_order").disabled = true;
 
-		jQuery("#payment_option").prop('required', true);
-		$('#signup_form').hide();
-		var page = '<?php echo $page; ?>';
-		if (page == "login") {
-			$('#login_form').show();
-			$('#signup_form').hide();
-		}
-		if (page == "register") {
-			$('#login_form').hide();
-			$('#signup_form').show();
-		}
-		$(window).keydown(function(event) {
-			if (event.keyCode == 13) {
-				event.preventDefault();
-				return false;
+<script>
+
+
+	function showClock(target) {
+		const distance = target - new Date().getTime();
+		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+
+		// Output the results
+		document.getElementById("minutes").innerHTML = mins;
+		document.getElementById("seconds").innerHTML = secs;
+	}
+	function showClock_r(target) {
+		const distance = target - new Date().getTime();
+		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+
+		// Output the results
+		document.getElementById("r_minutes").innerHTML = mins;
+		document.getElementById("r_seconds").innerHTML = secs;
+	}
+
+	$(".mobile-icon  button").on("click", function(e) {
+		$("#example-one").toggleClass("open");
+		$(this).toggleClass('open');
+		//	$("#example-one").fadeToggle();
+		e.stopPropagation()
+	});
+	function checkExist(mobile_number) {
+		// var entity_id = $('#entity_id').val();
+		$.ajax({
+			type: "POST",
+			url: "<?php echo base_url(); ?>home/checkPhone",
+			data: 'mobile_number=' + mobile_number,
+			cache: false,
+			success: function(html) {
+				console.log(html);
+				if (html == 0) {
+					$('#phoneExist').show();
+					$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
+					$('#phoneExist').css({
+						'color': 'red',
+						'font-size': '20px',
+						'font-weight': 'bold'
+					});
+					$(':input[type="submit"]').prop("disabled", true);
+				} else {
+					$('#phoneExist').html("");
+					$('#phoneExist').hide();
+					$(':input[type="submit"]').prop("disabled", false);
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				$('#phoneExist').show();
+				$('#phoneExist').html(errorThrown);
 			}
 		});
-	});
-
+	}
 	$("#form_front_forgotpass").on("submit", function(event) {
 		event.preventDefault();
 		jQuery.ajax({
@@ -609,8 +659,6 @@
 						$('#exampleModal').modal('show');
 
 						forgot_verify();
-
-
 
 
 					}
@@ -665,8 +713,17 @@
 
 
 	function forgot_verify() {
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		//	showClock(countDownTarget);
+		var x = setInterval(function() {
+			showClock(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+			}
+		}, 1000);
 
 		var countrycode = "+88";
+		var main_number = document.getElementById('number_forgot').value;
 		var number = document.getElementById('number_forgot').value;
 		var number = countrycode.concat(number);
 		//phone number authentication function of firebase
@@ -681,12 +738,12 @@
 		});
 		var code = document.getElementById('verificationCode').value;
 		coderesult.confirm(code).then(function(result) {
-			// alert("Successfully verified");
+			alert("Successfully verified");
 			// $('#exampleModal').modal('hide')
-
+			window.location.href = 'home/forgot_page/'+main_number;
 			$('#forgot-pass-modal').hide();
 			$('.modal-backdrop').hide();
-			$('#forgot_success').show();
+			//$('#forgot_success').show();
 
 			$('.xy').addClass('display-no');
 			$('.verify').addClass('display-no');
@@ -707,6 +764,87 @@
 			alert(error.message);
 		});
 	}
+	function forgot_verify_Resend() {
+
+		$('#otp_time').addClass('d-none');
+		$('#r_otp_time').removeClass('d-none');
+
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		showClock_r(countDownTarget);
+		var x = setInterval(function() {
+			showClock_r(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+			}
+		}, 1000);
+
+		var countrycode = "+88";
+		var main_number = document.getElementById('number_forgot').value;
+		var number = document.getElementById('number_forgot').value;
+		var number = countrycode.concat(number);
+		//phone number authentication function of firebase
+		//it takes two parameter first one is number,,,second one is recaptcha
+		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+			//s is in lowercase
+			window.confirmationResult = confirmationResult;
+			coderesult = confirmationResult;
+			console.log(coderesult);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+		var code = document.getElementById('verificationCode').value;
+		coderesult.confirm(code).then(function(result) {
+			alert("Successfully verified");
+			// $('#exampleModal').modal('hide')
+			window.location.href = 'home/forgot_page/'+main_number;
+			$('#forgot-pass-modal').hide();
+			$('.modal-backdrop').hide();
+		//	$('#forgot_success').show();
+
+			$('.xy').addClass('display-no');
+			$('.verify').addClass('display-no');
+
+			// $('#forgot-pass-modal').modal('hide');
+
+
+
+			//var number = $('#number_forgot').val();
+			//
+			////alert(number)
+			//ajaxCall(number);
+			//// window.location.href = 'home';
+
+			//var user = result.user;
+			//console.log(user);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+	}
+</script>
+<script type="text/javascript">
+	$(document).ready(function() {
+		// document.getElementById("submit_order").disabled = true;
+
+		jQuery("#payment_option").prop('required', true);
+		$('#signup_form').hide();
+		var page = '<?php echo $page; ?>';
+		if (page == "login") {
+			$('#login_form').show();
+			$('#signup_form').hide();
+		}
+		if (page == "register") {
+			$('#login_form').hide();
+			$('#signup_form').show();
+		}
+		$(window).keydown(function(event) {
+			if (event.keyCode == 13) {
+				event.preventDefault();
+				return false;
+			}
+		});
+	});
+
+
 	function delievry_charge(value) {
 
 

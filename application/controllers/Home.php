@@ -182,6 +182,58 @@ class Home extends CI_Controller
 		);
 		return $cart_details;
 	}
+
+	public function forgot_page($number)
+	{
+
+
+
+		$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
+
+		$data['number'] =$number;
+		$data['current_page'] = 'forgot_password';
+		$this->load->view('forgot_password', $data);
+	}
+
+	public function change_password()
+	{
+		$number = $this->input->post('phone_number');
+		$pass = $this->input->post('password');
+		$c_pass = $this->input->post('confirm_password');
+
+		if ($pass == $c_pass) {
+
+			$password = ($this->input->post('password')) ? md5(SALT . $this->input->post('password')) : '';
+
+			$this->db->set('password', $password);
+			$this->db->where('mobile_number', $number);
+			$result = $this->db->update('users');
+			$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
+			$data['current_page'] = 'forgot_password';
+			if ($result == 1) {
+				$data['success'] = 'Password has been changed Successfully!';
+				$this->session->set_flashdata('success_MSG', $data['success']);
+				$this->load->view('login', $data);
+			} else {
+				$data['number'] = $number;
+				$data['loginError'] = 'Something went wrong!';
+				$this->session->set_flashdata('error_MSG', $data['loginError']);
+				$this->load->view('forgot_password', $data);
+			}
+		}else{
+			$data['number'] = $number;
+			$data['loginError'] = 'Password do not match!!';
+			$this->session->set_flashdata('error_MSG', $data['loginError']);
+			$this->load->view('forgot_password', $data);
+		}
+
+
+
+
+
+
+
+	}
 	// frontend user login
 	public function login_gjc()
 	{
@@ -326,7 +378,7 @@ class Home extends CI_Controller
 					if ($this->session->userdata('previous_url')) {
 						redirect($this->session->userdata('previous_url'));
 					} else {
-						redirect(base_url() . 'home/login');
+						redirect(base_url() . 'restaurant/restaurant-detail/soi71');
 					}
 				} else if ($val->active == '0' || $val->active == '' || $val->status == '0') {
 					$data['loginError'] = $this->lang->line('front_login_deactivate');
@@ -365,6 +417,8 @@ class Home extends CI_Controller
 	/*
     * Server side validation check phone exist
     */
+
+
 	// public function checkPhone($str){
 	// 	$checkPhone = $this->home_model->checkPhone($str);
 	// 	if($checkPhone>0){
