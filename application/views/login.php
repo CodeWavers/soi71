@@ -358,8 +358,6 @@ if (isset($_GET['scope'])) {
 
 <script src="https://www.gstatic.com/firebasejs/6.0.2/firebase.js"></script>
 
-
-
 <!-- TODO: Add SDKs for Firebase products that you want to use
      https://firebase.google.com/docs/web/setup#config-web-app -->
 
