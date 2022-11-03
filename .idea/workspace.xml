@@ -23,11 +23,11 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
-      <change afterPath="$PROJECT_DIR$/application/views/forgot_password.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/ajax_order_summary.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_order_summary.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -210,7 +210,8 @@
       <workItem from="1667277663470" duration="16677000" />
       <workItem from="1667364443517" duration="654000" />
       <workItem from="1667367104190" duration="7469000" />
-      <workItem from="1667376478028" duration="11658000" />
+      <workItem from="1667376478028" duration="16176000" />
+      <workItem from="1667451368282" duration="5495000" />
     </task>
     <servers />
   </component>
@@ -231,16 +232,20 @@
     </option>
   </component>
   <component name="WindowStateProjectService">
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1667376592659">
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog" timestamp="1667451457679">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667376592659" />
+    <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667451457679" />
     <state x="391" y="191" key="com.intellij.ide.util.TipDialog/0.0.1366.728@0.0.1366.728" timestamp="1667224933703" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667385984722">
+    <state x="0" y="182" width="710" height="546" key="find.popup" timestamp="1667452346767">
+      <screen x="0" y="0" width="1366" height="728" />
+    </state>
+    <state x="0" y="182" width="710" height="546" key="find.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667452346767" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667407772188">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667385984722" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1667222524111" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1667407772188" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -249,6 +254,11 @@
           <url>file://$PROJECT_DIR$/application/views/myprofile.php</url>
           <line>615</line>
           <option name="timeStamp" value="1" />
+        </line-breakpoint>
+        <line-breakpoint enabled="true" type="php">
+          <url>file://$PROJECT_DIR$/application/views/login.php</url>
+          <line>325</line>
+          <option name="timeStamp" value="3" />
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
