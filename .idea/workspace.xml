@@ -24,10 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/ajax_order_summary.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/ajax_order_summary.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Home.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Home.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/forgot_password.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/forgot_password.php" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/application/views/login.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/login.php" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" beforeDir="false" afterPath="$PROJECT_DIR$/assets/front/js/scripts/front-validations.js" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -211,7 +211,7 @@
       <workItem from="1667364443517" duration="654000" />
       <workItem from="1667367104190" duration="7469000" />
       <workItem from="1667376478028" duration="16176000" />
-      <workItem from="1667451368282" duration="5495000" />
+      <workItem from="1667451368282" duration="8117000" />
     </task>
     <servers />
   </component>

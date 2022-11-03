@@ -183,13 +183,13 @@ class Home extends CI_Controller
 		return $cart_details;
 	}
 
-	public function forgot_page($number)
+	public function forgot_page($last_segment,$number)
 	{
 
-
-
+		//echo $this->session->userdata('previous_url');exit();
 		$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
 
+		$data['last_segment'] =$last_segment;
 		$data['number'] =$number;
 		$data['current_page'] = 'forgot_password';
 		$this->load->view('forgot_password', $data);
@@ -197,6 +197,7 @@ class Home extends CI_Controller
 
 	public function change_password()
 	{
+		$last_segment = $this->input->post('last_segment');
 		$number = $this->input->post('phone_number');
 		$pass = $this->input->post('password');
 		$c_pass = $this->input->post('confirm_password');
@@ -211,9 +212,19 @@ class Home extends CI_Controller
 			$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
 			$data['current_page'] = 'forgot_password';
 			if ($result == 1) {
-				$data['success'] = 'Password has been changed Successfully!';
-				$this->session->set_flashdata('success_MSG', $data['success']);
-				$this->load->view('login', $data);
+
+				if ($last_segment == 'login'){
+					$data['success'] = 'Password has been changed Successfully!';
+					$this->session->set_flashdata('success_MSG', $data['success']);
+					$this->load->view('login', $data);
+				}
+
+				if ($last_segment == 'checkout'){
+					$data['success'] = 'Password has been changed Successfully!';
+					$this->session->set_flashdata('success_MSG', $data['success']);
+					$this->load->view('checkout', $data);
+				}
+
 			} else {
 				$data['number'] = $number;
 				$data['loginError'] = 'Something went wrong!';

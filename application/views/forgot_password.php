@@ -37,6 +37,7 @@ if (!session_id()) {
 
 
 								<div class="form-group">
+									<input type="hidden" name="last_segment" id="last_segment" class="form-control" placeholder=" " value="<?php echo $last_segment ?>" readonly>
 									<input type="number" name="phone_number" id="phone_number" class="form-control" placeholder=" " value="<?php echo $number ?>" readonly>
 									<label><?php echo $this->lang->line('phone_number') ?></label>
 								</div>

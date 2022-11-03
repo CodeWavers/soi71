@@ -800,6 +800,8 @@
 
 
 	function forgot_verify() {
+		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
 		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
 		//	showClock(countDownTarget);
 		var x = setInterval(function() {
@@ -831,7 +833,8 @@
 			alert("Successfully verified");
 			$('#exampleModal').modal('hide');
 
-			window.location.href = 'home/forgot_page/'+main_number;
+			window.location.href = 'home/forgot_page/'+url_segment+'/'+main_number;
+
 
 			$('.modal-backdrop').hide();
 			//$('#forgot_success').show();
@@ -844,6 +847,7 @@
 		});
 	}
 	function forgot_verify_Resend() {
+		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
 		var otp=$('#verificationCode').val();
 		if (otp.length > 0){
@@ -883,7 +887,8 @@
 
 				alert("Successfully verified");
 				$('#exampleModal').modal('hide');
-				window.location.href = 'home/forgot_page/'+main_number;
+				window.location.href = 'home/forgot_page/'+url_segment+'/'+main_number;
+
 				$('#forgot-pass-modal').hide();
 				$('.modal-backdrop').hide();
 				//$('#forgot_success').show();
