@@ -225,7 +225,7 @@ if (isset($_GET['scope'])) {
 								<div id="phoneExist"></div>
 							</div>
 							<div class="form-group" id="name_container">
-								<input type="text"  onchange="checking()" onkeypress="checking()" onkeyup="checking()" name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
+								<input type="text"  onchange="checking()"  onkeypress="checking()" onkeyup="checking()"  name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
 								<label><?php echo $this->lang->line('name') ?></label>
 							</div>
 							<input type="hidden" name='fb_id' id='fb_id' onchange="checkExistProviderId(this.value)" value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
@@ -246,7 +246,7 @@ if (isset($_GET['scope'])) {
 							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
 							<!--</div>-->
 							<div class="form-group" id="number_container">
-								<input type="number"  onkeypress="checking()" onkeyup="checking()" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
+								<input type="number"  onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
 							</div>
 
@@ -515,35 +515,38 @@ if (isset($_GET['scope'])) {
 
 	function checkExistNum(mobile_number) {
 		// var entity_id = $('#entity_id').val();
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>home/checkPhone",
-			data: 'mobile_number=' + mobile_number,
-			cache: false,
-			success: function(html) {
-				console.log(html);
-				if (html > 0) {
-					$('#phnE').val(html);
-					$(':input[type="submit"]').prop("disabled", true);
-					$('#phoneExist').show();
-					$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
-					$('#phoneExist').css({
-						'color': 'red',
-						'font-size': '20px',
-						'font-weight': 'bold'
-					});
 
-				} else {
-					$('#phoneExist').html("");
-					$('#phoneExist').hide();
-					$(':input[type="submit"]').prop("disabled", false);
+		if (mobile_number != '') {
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>home/checkPhone",
+				data: 'mobile_number=' + mobile_number,
+				cache: false,
+				success: function (html) {
+					console.log(html);
+					if (html > 0) {
+						$('#phnE').val(html);
+						$(':input[type="submit"]').prop("disabled", true);
+						$('#phoneExist').show();
+						$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
+						$('#phoneExist').css({
+							'color': 'red',
+							'font-size': '20px',
+							'font-weight': 'bold'
+						});
+
+					} else {
+						$('#phoneExist').html("");
+						$('#phoneExist').hide();
+						$(':input[type="submit"]').prop("disabled", false);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
+					$('#phoneExist').show();
+					$('#phoneExist').html(errorThrown);
 				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#phoneExist').show();
-				$('#phoneExist').html(errorThrown);
-			}
-		});
+			});
+		}
 	}
 
 	function checkExistProviderId(login_provide_id) {
