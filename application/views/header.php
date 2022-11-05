@@ -315,6 +315,7 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 								</ul>
 							</div>
 						</div>
+
 					<?php } else {?>
 						<div class=" signin-btn">
 							<a href="<?php echo base_url() . 'home/login'; ?>" class="common "><i class="iicon-icon-32 "></i> <?php echo $this->lang->line('sign_in') ?></a>

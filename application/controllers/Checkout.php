@@ -574,17 +574,6 @@ class Checkout extends CI_Controller
 			}
 
 
-
-
-			//			$check_user_address=$this->db->select('*')->from('user_address')->where('user_entity_id',$this->session->userdata('UserID'))->get()->num_rows();
-			//
-			//			if($check_user_address > 0){
-			//				$this->db->where('user_entity_id',$this->session->userdata('UserID'));
-			//				$this->db->update('user_address',$add_address);
-			//			}else{
-			//
-			//			}
-
 			$inserted_address = $this->db->select('*')->from('user_address')->where('user_entity_id', $this->session->userdata('UserID'))->get()->first_row();
 
 			$add_data = array(
@@ -663,7 +652,7 @@ class Checkout extends CI_Controller
 						'city' => $this->input->post('city'),
 						'user_entity_id' => $this->session->userdata('UserID')
 					);
-					$this->common_model->addData('user_address', $add_address);
+				//	$this->common_model->addData('user_address', $add_address);
 					$user_detail = array(
 						'first_name' => $this->session->userdata('userFirstname'),
 						'last_name' => ($this->session->userdata('userLastname')) ? $this->session->userdata('userLastname') : '',

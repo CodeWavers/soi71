@@ -24,7 +24,10 @@
   <component name="ChangeListManager">
     <list default="true" id="79278dba-5810-44cf-92ca-f4283c9d119f" name="Default Changelist" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/application/views/registration.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/registration.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Checkout.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Checkout.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/controllers/Myprofile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/controllers/Myprofile.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/header.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/header.php" afterDir="false" />
+      <change beforePath="$PROJECT_DIR$/application/views/myprofile.php" beforeDir="false" afterPath="$PROJECT_DIR$/application/views/myprofile.php" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -209,7 +212,7 @@
       <workItem from="1667367104190" duration="7469000" />
       <workItem from="1667376478028" duration="16176000" />
       <workItem from="1667451368282" duration="9489000" />
-      <workItem from="1667639813579" duration="1625000" />
+      <workItem from="1667639813579" duration="5570000" />
     </task>
     <servers />
   </component>
@@ -239,10 +242,10 @@
       <screen x="0" y="0" width="1366" height="728" />
     </state>
     <state x="0" y="182" width="710" height="546" key="find.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667452346767" />
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667460257686">
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup" timestamp="1667645667331">
       <screen x="0" y="0" width="1366" height="728" />
     </state>
-    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667460257686" />
+    <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728/1366.0.1920.1040@0.0.1366.728" timestamp="1667645667331" />
     <state x="346" y="49" width="672" height="678" key="search.everywhere.popup/0.0.1366.728@0.0.1366.728" timestamp="1667407772188" />
   </component>
   <component name="XDebuggerManager">
@@ -250,7 +253,7 @@
       <breakpoints>
         <line-breakpoint enabled="true" type="php">
           <url>file://$PROJECT_DIR$/application/views/myprofile.php</url>
-          <line>615</line>
+          <line>672</line>
           <option name="timeStamp" value="1" />
         </line-breakpoint>
         <line-breakpoint enabled="true" type="php">
