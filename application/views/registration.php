@@ -246,6 +246,7 @@ if (isset($_GET['scope'])) {
 							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
 							<!--</div>-->
 							<div class="form-group" id="number_container">
+								<input type="hidden"  id="verify" class="form-control" placeholder=" " value="">
 								<input type="number"  onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
 							</div>
@@ -257,12 +258,49 @@ if (isset($_GET['scope'])) {
 								</div>
 
 							<?php } ?>
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel"></h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+
+												<div class="form-body">
+
+													<h1>Enter Verification code</h1>
+
+													<div class="form-group">
+														<input type="text" id="verificationCode" class="form-control" placeholder="">
+														<label><?php echo $this->lang->line('otp') ?></label>
+													</div>
+													<div id="recaptcha-container"></div>
+
+													<div class="action-button">
+														<button type="submit" name ="submit_page" id="submit_page"  class="btn btn-primary"><?php echo "Verify Code" ?></button>
+
+													</div>
+
+												</div>
+
+										</div>
+										<div class="modal-footer">
+											<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button> -->
+										</div>
+									</div>
+								</div>
+							</div>
 
 							<div id="recaptcha-container"></div>
 							<div class="action-button" style="margin-top:10px;">
 								<a href="<?php echo base_url() . 'home/login'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('title_login') ?></a>
 								<!-- <button type="submit" name="submit_page" id="submit_page" value="Register" onclick="phoneAuth();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button> -->
-								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal" disabled> <?php echo $this->lang->line('sign_up') ?></button>
+								<button type="button" name="" id="" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  > <?php echo $this->lang->line('sign_up') ?></button>
 
 							</div>
 							<!-- <button type="button" onclick="phoneAuth();">SendCode</button> -->
@@ -279,43 +317,6 @@ if (isset($_GET['scope'])) {
 
 <!-- modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form action="" class="form-horizontal float-form">
-
-					<div class="form-body">
-
-						<h1>Enter Verification code</h1>
-
-						<div class="form-group">
-							<input type="text" id="verificationCode" class="form-control" placeholder="">
-							<label><?php echo $this->lang->line('otp') ?></label>
-						</div>
-						<div id="recaptcha-container"></div>
-
-						<div class="action-button">
-							<button type="button" onclick="codeverify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
-
-						</div>
-
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>
-		</div>
-	</div>
-</div>
 <!-- end modal -->
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -344,19 +345,50 @@ if (isset($_GET['scope'])) {
 </script>
 
 <script>
+
+	function codeverify() {
+
+	}
+
 	$('#form_front_registration').submit(function(e) {
 		e.preventDefault();
+
 		dataString = $("#form_front_registration").serialize();
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>home/registration",
-			data: dataString,
 
-			success: function(data) {
+		var code = document.getElementById('verificationCode').value;
+		coderesult.confirm(code).then(function(result) {
 
-			}
+			//	console.log(result)
+			alert("Successfully verified");
+			$('#verify').val('verified');
 
+			var number = $('#number').val();
+			ajaxCall(number);
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>home/registration",
+				data: dataString,
+
+				success: function(data) {
+					window.location.href = "<?php echo base_url(); ?>home/login";
+
+					console.log(data)
+				}
+
+			});
+			// window.location.href = 'home';
+			var user = result.user;
+			//console.log(user);
+		}).catch(function(error) {
+			alert(error.message);
 		});
+	//	codeverify();
+
+		// var verify=$('#verify').val();
+		// if (verify === 'verified'){
+
+		// }
+
 
 		return false;
 	});
@@ -453,22 +485,6 @@ if (isset($_GET['scope'])) {
 		});
 	}
 
-	function codeverify() {
-		var code = document.getElementById('verificationCode').value;
-		coderesult.confirm(code).then(function(result) {
-
-			console.log(result)
-			alert("Successfully verified");
-			var number = $('#number').val();
-			ajaxCall(number);
-			// window.location.href = 'home';
-			window.location.href = "<?php echo base_url(); ?>home/login";
-			var user = result.user;
-			console.log(user);
-		}).catch(function(error) {
-			 //alert(error.message);
-		});
-	}
 
 	function ajaxCall(number) {
 		$.ajax({
