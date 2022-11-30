@@ -100,6 +100,7 @@ if (isset($_GET['scope'])) {
 	//Set the access token used for requests
 	$google_client->setAccessToken($token['access_token']);
 
+
 	//Store "access_token" value in $_SESSION variable for future use.
 	$_SESSION['google_access_token'] = $token['access_token'];
 
@@ -192,39 +193,39 @@ if (isset($_GET['scope'])) {
 					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
 						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
 					<?php } ?>
-
+					<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
+						<div class="alert alert-danger">
+							<?php echo $this->session->flashdata('error_MSG'); ?>
+						</div>
+					<?php } ?>
+					<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
+						<div class="alert alert-success">
+							<?php echo $this->session->flashdata('success_MSG'); ?>
+						</div>
+					<?php } ?>
+					<?php if (!empty($success)) { ?>
+						<div class="alert alert-success"><?php echo $success; ?></div>
+					<?php } ?>
+					<?php if (!empty($error)) { ?>
+						<div class="alert alert-danger"><?php echo $error; ?></div>
+					<?php } ?>
+					<?php if (validation_errors()) { ?>
+						<div class="alert alert-danger">
+							<?php echo validation_errors(); ?>
+						</div>
+					<?php } ?>
 
 					<form action="" id="form_front_registration" name="form_front_registration" method="post" class="form-horizontal float-form ">
 						<div class="form-body">
 
-							<?php if (!empty($this->session->flashdata('error_MSG'))) { ?>
-								<div class="alert alert-danger">
-									<?php echo $this->session->flashdata('error_MSG'); ?>
-								</div>
-							<?php } ?>
-							<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
-								<div class="alert alert-success">
-									<?php echo $this->session->flashdata('success_MSG'); ?>
-								</div>
-							<?php } ?>
-							<?php if (!empty($success)) { ?>
-								<div class="alert alert-success"><?php echo $success; ?></div>
-							<?php } ?>
-							<?php if (!empty($error)) { ?>
-								<div class="alert alert-danger"><?php echo $error; ?></div>
-							<?php } ?>
-							<?php if (validation_errors()) { ?>
-								<div class="alert alert-danger">
-									<?php echo validation_errors(); ?>
-								</div>
-							<?php } ?>
+
 
 
 							<div class="form-group">
 								<div id="phoneExist"></div>
 							</div>
 							<div class="form-group" id="name_container">
-								<input type="text" name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
+								<input type="text"  onchange="checking()"  onkeypress="checking()" onkeyup="checking()"  name="name" id="name" class="form-control" placeholder="" value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : '' ?>">
 								<label><?php echo $this->lang->line('name') ?></label>
 							</div>
 							<input type="hidden" name='fb_id' id='fb_id' onchange="checkExistProviderId(this.value)" value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
@@ -237,29 +238,69 @@ if (isset($_GET['scope'])) {
 							<input type="hidden" name='g_name' value="<?php echo ($_SESSION['google_name']) ? $_SESSION['google_name'] : ''; ?>" />
 							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" />
 
+							<input type="hidden" id="phnE" name='phnE' value="" />
+
 
 							<!--<div class="form-group">-->
 							<!--    <input type="email" name="email" id="email" class="form-control" placeholder=" " >-->
 							<!--    <label><?php echo $this->lang->line('email') ?></label>-->
 							<!--</div>-->
 							<div class="form-group" id="number_container">
-								<input type="number" onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
+								<input type="hidden"  id="verify" class="form-control" placeholder=" " value="">
+								<input type="number"  onchange="checkExistNum(this.value)" name="phone_number" id="number" class="form-control" placeholder=" ">
 								<label><?php echo $this->lang->line('phone_number') ?></label>
 							</div>
 
 							<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
 								<div class="form-group">
-									<input type="password" name="password" id="password" class="form-control" placeholder=" " onkeyup="checkAllFields();">
+									<input type="password" onchange="checking()"  onkeypress="checking()" onkeyup="checking()" name="password" id="password" class="form-control" placeholder=" " onkeyup="checkAllFields();">
 									<label><?php echo $this->lang->line('password') ?></label>
 								</div>
 
 							<?php } ?>
+							<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
+								<div class="modal-dialog" role="document">
+									<div class="modal-content">
+										<div class="modal-header">
+											<h5 class="modal-title" id="exampleModalLabel"></h5>
+											<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+												<span aria-hidden="true">&times;</span>
+											</button>
+										</div>
+										<div class="modal-body">
+
+
+												<div class="form-body">
+
+													<h1>Enter Verification code</h1>
+
+													<div class="form-group">
+														<input type="text" id="verificationCode" class="form-control" placeholder="">
+														<label><?php echo $this->lang->line('otp') ?></label>
+													</div>
+													<div id="recaptcha-container"></div>
+
+													<div class="action-button">
+														<button type="submit" name ="submit_page" id="submit_page"  class="btn btn-primary"><?php echo "Verify Code" ?></button>
+
+													</div>
+
+												</div>
+
+										</div>
+										<div class="modal-footer">
+											<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+									<button type="button" class="btn btn-primary">Save changes</button> -->
+										</div>
+									</div>
+								</div>
+							</div>
 
 							<div id="recaptcha-container"></div>
 							<div class="action-button" style="margin-top:10px;">
 								<a href="<?php echo base_url() . 'home/login'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('title_login') ?></a>
 								<!-- <button type="submit" name="submit_page" id="submit_page" value="Register" onclick="phoneAuth();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button> -->
-								<button type="submit" name="submit_page" id="submit_page" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"> <?php echo $this->lang->line('sign_up') ?></button>
+								<button type="button" name="" id="" value="Register" onclick="checkFields();" class="btn btn-primary" data-toggle="modal" data-target="#exampleModal"  > <?php echo $this->lang->line('sign_up') ?></button>
 
 							</div>
 							<!-- <button type="button" onclick="phoneAuth();">SendCode</button> -->
@@ -276,43 +317,6 @@ if (isset($_GET['scope'])) {
 
 <!-- modal -->
 <!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog" aria-labelledby="exampleModalLabel" aria-hidden="true">
-	<div class="modal-dialog" role="document">
-		<div class="modal-content">
-			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel"></h5>
-				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
-					<span aria-hidden="true">&times;</span>
-				</button>
-			</div>
-			<div class="modal-body">
-				<form action="" class="form-horizontal float-form">
-
-					<div class="form-body">
-
-						<h1>Enter Verification code</h1>
-
-						<div class="form-group">
-							<input type="text" id="verificationCode" class="form-control" placeholder="">
-							<label><?php echo $this->lang->line('otp') ?></label>
-						</div>
-						<div id="recaptcha-container"></div>
-
-						<div class="action-button">
-							<button type="button" onclick="codeverify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
-
-						</div>
-
-					</div>
-				</form>
-			</div>
-			<div class="modal-footer">
-				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
-		<button type="button" class="btn btn-primary">Save changes</button> -->
-			</div>
-		</div>
-	</div>
-</div>
 <!-- end modal -->
 
 <!-- The core Firebase JS SDK is always required and must be listed first -->
@@ -330,6 +334,7 @@ if (isset($_GET['scope'])) {
 		apiKey: "AIzaSyDcXe6AacheUcFHeV8jtanJT21nyS9e3kM",
 		authDomain: "soi71-62621.firebaseapp.com",
 		projectId: "soi71-62621",
+		databaseURL: "https://soi71-62621.firebaseio.com",
 		storageBucket: "soi71-62621.appspot.com",
 		messagingSenderId: "1022686565372",
 		appId: "1:1022686565372:web:cd995980b1497401b65879",
@@ -340,19 +345,50 @@ if (isset($_GET['scope'])) {
 </script>
 
 <script>
+
+	function codeverify() {
+
+	}
+
 	$('#form_front_registration').submit(function(e) {
 		e.preventDefault();
+
 		dataString = $("#form_front_registration").serialize();
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>home/registration",
-			data: dataString,
 
-			success: function(data) {
+		var code = document.getElementById('verificationCode').value;
+		coderesult.confirm(code).then(function(result) {
 
-			}
+			//	console.log(result)
+			alert("Successfully verified");
+			$('#verify').val('verified');
 
+			var number = $('#number').val();
+			ajaxCall(number);
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>home/registration",
+				data: dataString,
+
+				success: function(data) {
+					window.location.href = "<?php echo base_url(); ?>home/login";
+
+					console.log(data)
+				}
+
+			});
+			// window.location.href = 'home';
+			var user = result.user;
+			//console.log(user);
+		}).catch(function(error) {
+			alert(error.message);
 		});
+	//	codeverify();
+
+		// var verify=$('#verify').val();
+		// if (verify === 'verified'){
+
+		// }
+
 
 		return false;
 	});
@@ -377,7 +413,9 @@ if (isset($_GET['scope'])) {
 	};
 
 	function render() {
-		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container');
+		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
+			'size':'invisible'
+		});
 		recaptchaVerifier.render();
 	}
 	//Check if all fields are filled up
@@ -406,7 +444,12 @@ if (isset($_GET['scope'])) {
 		var name = $('#name').val();
 		var number = $('#number').val();
 		var pass = $('#password').val();
-
+		var phnE=$('#phnE').val();
+		// if (phnE > 0){
+		// 	$(':input[type="submit"]').prop("disabled", true);
+		// }else{
+		// 	$(':input[type="submit"]').prop("disabled", false);
+		// }
 		if (name == "" || number == "" || pass == "") {
 
 			$(':input[name="submit_page"]').prop("disabled", true);
@@ -442,20 +485,6 @@ if (isset($_GET['scope'])) {
 		});
 	}
 
-	function codeverify() {
-		var code = document.getElementById('verificationCode').value;
-		coderesult.confirm(code).then(function(result) {
-			alert("Successfully verified");
-			var number = $('#number').val();
-			ajaxCall(number);
-			// window.location.href = 'home';
-			window.location.href = "<?php echo base_url(); ?>home/login";
-			var user = result.user;
-			console.log(user);
-		}).catch(function(error) {
-			 //alert(error.message);
-		});
-	}
 
 	function ajaxCall(number) {
 		$.ajax({
@@ -465,7 +494,7 @@ if (isset($_GET['scope'])) {
 			cache: false,
 			success: function(html) {
 				console.log('bla', html);
-				window.location.replace("<?php echo base_url(); ?>home/login");
+				window.location("<?php echo base_url(); ?>home/login");
 
 				//   if(html > 0){
 				//     $('#phoneExist').show();
@@ -490,36 +519,50 @@ if (isset($_GET['scope'])) {
 		$('.container').css('display', 'none');
 	}
 
+	function checking() {
+
+		var mobile_number=$('#number').val();
+
+
+		checkExistNum(mobile_number);
+
+	}
+
 
 	function checkExistNum(mobile_number) {
 		// var entity_id = $('#entity_id').val();
-		$.ajax({
-			type: "POST",
-			url: "<?php echo base_url(); ?>home/checkPhone",
-			data: 'mobile_number=' + mobile_number,
-			cache: false,
-			success: function(html) {
-				console.log(html);
-				if (html > 0) {
+
+		if (mobile_number != '') {
+			$.ajax({
+				type: "POST",
+				url: "<?php echo base_url(); ?>home/checkPhone",
+				data: 'mobile_number=' + mobile_number,
+				cache: false,
+				success: function (html) {
+					console.log(html);
+					if (html > 0) {
+						$('#phnE').val(html);
+						$(':input[type="submit"]').prop("disabled", true);
+						$('#phoneExist').show();
+						$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
+						$('#phoneExist').css({
+							'color': 'red',
+							'font-size': '20px',
+							'font-weight': 'bold'
+						});
+
+					} else {
+						$('#phoneExist').html("");
+						$('#phoneExist').hide();
+						$(':input[type="submit"]').prop("disabled", false);
+					}
+				},
+				error: function (XMLHttpRequest, textStatus, errorThrown) {
 					$('#phoneExist').show();
-					$('#phoneExist').html("<?php echo $this->lang->line('phone_exist'); ?>");
-					$('#phoneExist').css({
-						'color': 'red',
-						'font-size': '20px',
-						'font-weight': 'bold'
-					});
-					$(':input[type="submit"]').prop("disabled", true);
-				} else {
-					$('#phoneExist').html("");
-					$('#phoneExist').hide();
-					$(':input[type="submit"]').prop("disabled", false);
+					$('#phoneExist').html(errorThrown);
 				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				$('#phoneExist').show();
-				$('#phoneExist').html(errorThrown);
-			}
-		});
+			});
+		}
 	}
 
 	function checkExistProviderId(login_provide_id) {

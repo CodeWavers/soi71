@@ -307,14 +307,15 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 
 
 							?>
-							<span class="user-menu-btn"><?php echo $first_new_words.$last_new_words; ?></span>
-							<div class="header-user-menu">
+							<span class="user-menu-btn" id="ex_us"><?php echo $first_new_words.$last_new_words; ?></span>
+							<div class="header-user-menu" id="us_menu">
 								<ul>
 									<li class="active"><a href="<?php echo base_url() . 'myprofile'; ?>"><i class="iicon-icon-31"></i><?php echo $this->lang->line('my_profile') ?></a></li>
 									<li onclick="logout();"><a href="javascript:void(0)"><i class="iicon-icon-32"></i><?php echo $this->lang->line('logout') ?></a></li>
 								</ul>
 							</div>
 						</div>
+
 					<?php } else {?>
 						<div class=" signin-btn">
 							<a href="<?php echo base_url() . 'home/login'; ?>" class="common "><i class="iicon-icon-32 "></i> <?php echo $this->lang->line('sign_in') ?></a>

@@ -176,4 +176,13 @@ class Home_model extends CI_Model {
 		$this->db->where($whereArray);
 		return $this->db->get($table)->first_row();
 	}
+
+	//update user status after successful verification
+	public function updateuser($num)
+	{
+		$data = array('status' => 1, 'active' => 1);
+		$this->db->where('mobile_number',$num);
+		$this->db->update('users',$data);
+		return $this->db->affected_rows();
+	}
 }

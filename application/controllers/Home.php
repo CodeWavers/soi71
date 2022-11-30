@@ -182,7 +182,130 @@ class Home extends CI_Controller
 		);
 		return $cart_details;
 	}
+
+	public function forgot_page($last_segment,$number)
+	{
+
+		//echo $this->session->userdata('previous_url');exit();
+		$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
+
+		$data['last_segment'] =$last_segment;
+		$data['number'] =$number;
+		$data['current_page'] = 'forgot_password';
+		$this->load->view('forgot_password', $data);
+	}
+
+	public function change_password()
+	{
+		$last_segment = $this->input->post('last_segment');
+		$number = $this->input->post('phone_number');
+		$pass = $this->input->post('password');
+		$c_pass = $this->input->post('confirm_password');
+
+		if ($pass == $c_pass) {
+
+			$password = ($this->input->post('password')) ? md5(SALT . $this->input->post('password')) : '';
+
+			$this->db->set('password', $password);
+			$this->db->where('mobile_number', $number);
+			$result = $this->db->update('users');
+			$data['page_title'] = $this->lang->line('forgot_password') . ' | ' . $this->lang->line('site_title');
+			$data['current_page'] = 'forgot_password';
+			if ($result == 1) {
+
+				if ($last_segment == 'login'){
+					$data['success'] = 'Password has been changed Successfully!';
+					$this->session->set_flashdata('success_MSG', $data['success']);
+					$this->load->view('login', $data);
+				}
+
+				if ($last_segment == 'checkout'){
+					$data['success'] = 'Password has been changed Successfully!';
+					$this->session->set_flashdata('success_MSG', $data['success']);
+					$this->load->view('checkout', $data);
+				}
+
+			} else {
+				$data['number'] = $number;
+				$data['loginError'] = 'Something went wrong!';
+				$this->session->set_flashdata('error_MSG', $data['loginError']);
+				$this->load->view('forgot_password', $data);
+			}
+		}else{
+			$data['number'] = $number;
+			$data['loginError'] = 'Password do not match!!';
+			$this->session->set_flashdata('error_MSG', $data['loginError']);
+			$this->load->view('forgot_password', $data);
+		}
+
+
+
+
+
+
+
+	}
 	// frontend user login
+	public function login_gjc()
+	{
+		$data['page_title'] = $this->lang->line('title_login') . ' | ' . $this->lang->line('site_title');
+		if ($this->input->post('submit_page') == "Login") {
+			$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required');
+			$this->form_validation->set_rules('password', 'Password', 'trim|required');
+			if ($this->form_validation->run()) {
+				$phone_number = trim($this->input->post('phone_number'));
+				$this->deleteMatchingNonActiveUsers($phone_number);
+				$enc_pass = md5(SALT . trim($this->input->post('password')));
+
+				$this->db->where('mobile_number', $phone_number);
+				$this->db->where('password', $enc_pass);
+				$this->db->where("(user_type='User')");
+				$val = $this->db->get('users')->first_row();
+				if (!empty($val)) {
+					if ($val->active == '1' && $val->status == '1') {
+						$this->session->set_userdata(
+							array(
+								'UserID' => $val->entity_id,
+								'userFirstname' => $val->first_name,
+								'userLastname' => $val->last_name,
+								'userEmail' => $val->email,
+								'userPhone' => $val->mobile_number,
+								//   'userImage' => $val->image,
+								'userImage' => $val->image ? (image_url . $val->image) : default_user_img,
+								'is_admin_login' => 0,
+								'is_user_login' => 1,
+								'UserType' => $val->user_type,
+								'package_id' => array(),
+							)
+						);
+						// remember ME
+						$cookie_name = "adminAuth";
+						if ($this->input->post('rememberMe') == 1) {
+							$this->input->set_cookie($cookie_name, 'usr=' . $phone_number . '&hash=' . trim($this->input->post('password')), 60 * 60 * 24 * 5); // 5 days
+						} else {
+							delete_cookie($cookie_name);
+						}
+						if ($this->session->userdata('previous_url')) {
+							redirect($this->session->userdata('previous_url'));
+						} else {
+							redirect(base_url() . 'restaurant/restaurant-detail/soi71');
+						}
+					} else if ($val->active == '0' || $val->active == '' || $val->status == '0') {
+						$data['loginError'] = $this->lang->line('front_login_deactivate');
+					} else {
+						$data['loginError'] = $this->lang->line('front_login_error');
+					}
+				} else {
+					$data['loginError'] = $this->lang->line('front_login_error');
+				}
+				$this->session->set_flashdata('error_MSG', $data['loginError']);
+				redirect(base_url() . 'home/login');
+				exit;
+			}
+		}
+		$data['current_page'] = 'Login';
+		$this->load->view('login', $data);
+	}
 	// frontend user login
 	public function login()
 	{
@@ -266,7 +389,7 @@ class Home extends CI_Controller
 					if ($this->session->userdata('previous_url')) {
 						redirect($this->session->userdata('previous_url'));
 					} else {
-						redirect(base_url() . 'myprofile');
+						redirect(base_url() . 'restaurant/restaurant-detail/soi71');
 					}
 				} else if ($val->active == '0' || $val->active == '' || $val->status == '0') {
 					$data['loginError'] = $this->lang->line('front_login_deactivate');
@@ -305,6 +428,8 @@ class Home extends CI_Controller
 	/*
     * Server side validation check phone exist
     */
+
+
 	// public function checkPhone($str){
 	// 	$checkPhone = $this->home_model->checkPhone($str);
 	// 	if($checkPhone>0){
@@ -373,7 +498,88 @@ class Home extends CI_Controller
 		$number = $this->input->post('mobile_number');
 		$this->home_model->updateuser($number);
 	}
+	// frontend user registration
+	public function registration_gjc()
+	{
+		$data['page_title'] = $this->lang->line('title_registration') . ' | ' . $this->lang->line('site_title');
+		// if($this->input->post('submit_page') == "Register"){
+		$this->form_validation->set_rules('name', 'Name', 'trim|required');
+		$this->form_validation->set_rules('phone_number', 'Phone Number', 'trim|required');
+		// $this->form_validation->set_rules('email', 'Email', 'trim|required|callback_checkEmail');
+		$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
+		if ($this->form_validation->run()) {
 
+			$checkRecords = $this->home_model->mobileCheck(trim($this->input->post('phone_number')));
+			if ($checkRecords == 0) {
+				$name = trim($this->input->post('name'));
+				$namearr = explode(" ", $name);
+				if (!empty($namearr)) {
+					foreach ($namearr as $key => $value) {
+						if ($key != 0) {
+							$last_name[] = $value;
+						}
+					}
+				}
+				//$code="+88";
+				$userData = array(
+					"first_name" => (!empty($namearr[0])) ? $namearr[0] : '',
+					"last_name" => (!empty($last_name)) ? implode(" ", $last_name) : '',
+					"password" => md5(SALT . $this->input->post('password')),
+					// "email"=>trim($this->input->post('email')),
+					"mobile_number" => trim($this->input->post('phone_number')),
+					"user_type" => "User",
+					"status" => 1,
+					"active" => 1
+				);
+				$entity_id = $this->common_model->addData('users', $userData);
+				if ($entity_id) {
+					$data['success'] = $this->lang->line('registration_success');
+					$this->session->set_flashdata('success_MSG', $data['success']);
+				}
+				if ($this->input->post('email')) {
+					// confirmation link
+					$language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
+					$verificationCode = random_string('alnum', 20) . $UserID . random_string('alnum', 5);
+					$confirmationLink = '<a href=' . base_url() . 'user/verify_account/' . $verificationCode . '>here</a>';
+					$email_template = $this->db->get_where('email_template', array('email_slug' => 'verify-account', 'language_slug' => $language_slug))->first_row();
+					$arrayData = array('FirstName' => $namearr[0], 'ForgotPasswordLink' => $confirmationLink);
+					$EmailBody = generateEmailBody($email_template->message, $arrayData);
+					//get System Option Data
+					$this->db->select('OptionValue');
+					$FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
+
+					$this->db->select('OptionValue');
+					$FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
+
+					$this->load->library('email');
+					$config['charset'] = "utf-8";
+					$config['mailtype'] = "html";
+					$config['newline'] = "\r\n";
+					$this->email->initialize($config);
+					$this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
+					$this->email->to($this->input->post('email'));
+					$this->email->subject($email_template->subject);
+					$this->email->message($EmailBody);
+					$this->email->send();
+
+					// update verification code
+					$addata = array('email_verification_code' => $verificationCode);
+					$this->common_model->updateData('users', $addata, 'entity_id', $entity_id);
+				}
+			} else {
+				$data['error'] = $this->lang->line('front_registration_fail');
+				$this->session->set_flashdata('error_MSG', $data['error']);
+			}
+			// redirect(base_url().'home/verify');
+			exit;
+		}
+		// }
+		//$this->session->set_flashdata('');
+		$_SESSION['error_MSG'] = "";
+		$_SESSION['success_MSG'] = "";
+		$data['current_page'] = 'Registration';
+		$this->load->view('registration', $data);
+	}
 	// frontend user registration
 	public function registration()
 	{
@@ -385,117 +591,110 @@ class Home extends CI_Controller
 		//$this->form_validation->set_rules('password', 'Password', 'trim|required|min_length[6]');
 		//if ($this->form_validation->run()) {
 
-		// $checkRecords = $this->home_model->mobileCheck(trim($this->input->post('phone_number')));
-		// if ($checkRecords == 0) {
-		// $name = trim($this->input->post('name'));
-		// $namearr = explode(" ", $name);
-		// if (!empty($namearr)) {
-		// 	foreach ($namearr as $key => $value) {
-		// 		if ($key != 0) {
-		// 			$last_name[] = $value;
-		// 		}
-		// 	}
+		 $checkRecords = $this->home_model->mobileCheck(trim($this->input->post('phone_number')));
+		 if ($checkRecords == 0) {
+
+			 if ($this->input->post('name')) {
+
+				 if ($this->input->post('fb_id')) {
+					 $provider = 2;
+					 $provider_id = $this->input->post('fb_id');
+					 $user_details = array(
+						 'id' => $this->input->post('fb_id'),
+						 'name' => $this->input->post('fb_name'),
+						 'photo' => $this->input->post('fb_image'),
+
+					 );
+					 $user_info = array(
+						 'user_details' => $user_details
+					 );
+					 //$image = $this->input->post('fb_image');
+				 }
+
+				 //for google
+				 if ($this->input->post('gmail')) {
+					 $provider = 3;
+					 $provider_id = $this->input->post('gmail');
+					 $user_details = array(
+						 'id' => $this->input->post('gmail'),
+						 'name' => $this->input->post('g_name'),
+						 'photo' => $this->input->post('g_image'),
+					 );
+					 $user_info = array(
+						 'user_details' => $user_details
+					 );
+
+					 //$image = $this->input->post('g_image');
+				 }
+
+				 $userData = array(
+					 "first_name" => $this->input->post('name'),
+					 //"last_name" => (!empty($last_name)) ? implode(" ", $last_name) : '',
+					 "password" => ($this->input->post('password')) ? md5(SALT . $this->input->post('password')) : '',
+					 // "email"=>trim($this->input->post('email')),
+					 "mobile_number" => trim($this->input->post('phone_number')),
+					 "login_provider" => ($provider) ? $provider : 1,
+					 "login_provider_id" => ($provider_id) ? $provider_id : '',
+					 "login_provider_detail" => serialize($user_info),
+					 "user_type" => "User",
+					 //"image" => ($image) ? $image : '',
+					 "status" => 1,
+					 "active" => 1
+				 );
+				 // $this->deleteMatchingNonActiveUsers($userData);
+
+				 $entity_id = $this->common_model->addData('users', $userData);
+				 if ($entity_id) {
+					 $data['success'] = $this->lang->line('registration_success');
+					 $this->session->set_flashdata('success_MSG', $data['success']);
+				 }
+				 if ($this->input->post('email')) {
+					 // confirmation link
+					 $language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
+					 $verificationCode = random_string('alnum', 20) . $UserID . random_string('alnum', 5);
+					 $confirmationLink = '<a href=' . base_url() . 'user/verify_account/' . $verificationCode . '>here</a>';
+					 $email_template = $this->db->get_where('email_template', array('email_slug' => 'verify-account', 'language_slug' => $language_slug))->first_row();
+					 $arrayData = array('FirstName' => $namearr[0], 'ForgotPasswordLink' => $confirmationLink);
+					 $EmailBody = generateEmailBody($email_template->message, $arrayData);
+					 //get System Option Data
+					 $this->db->select('OptionValue');
+					 $FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
+
+					 $this->db->select('OptionValue');
+					 $FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
+
+					 $this->load->library('email');
+					 $config['charset'] = "utf-8";
+					 $config['mailtype'] = "html";
+					 $config['newline'] = "\r\n";
+					 $this->email->initialize($config);
+					 $this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
+					 $this->email->to($this->input->post('email'));
+					 $this->email->subject($email_template->subject);
+					 $this->email->message($EmailBody);
+					 $this->email->send();
+
+					 // update verification code
+					 $addata = array('email_verification_code' => $verificationCode);
+					 $this->common_model->updateData('users', $addata, 'entity_id', $entity_id);
+				 }
+
+			 }
+		 } else {
+		 	$data['error_MSG'] = $this->lang->line('front_registration_fail');
+		 	$this->session->set_flashdata('error_MSG', $data['error']);
+		 }
+
+
 		// }
-		//$code="+88";
-		if ($this->input->post('name')) {
-
-			if ($this->input->post('fb_id')) {
-				$provider = 2;
-				$provider_id = $this->input->post('fb_id');
-				$user_details = array(
-					'id' => $this->input->post('fb_id'),
-					'name' => $this->input->post('fb_name'),
-					'photo' => $this->input->post('fb_image'),
-
-				);
-				$user_info = array(
-					'user_details' => $user_details
-				);
-				//$image = $this->input->post('fb_image');
-			}
-
-			//for google
-			if ($this->input->post('gmail')) {
-				$provider = 3;
-				$provider_id = $this->input->post('gmail');
-				$user_details = array(
-					'id' => $this->input->post('gmail'),
-					'name' => $this->input->post('g_name'),
-					'photo' => $this->input->post('g_image'),
-				);
-				$user_info = array(
-					'user_details' => $user_details
-				);
-
-				//$image = $this->input->post('g_image');
-			}
-
-			$userData = array(
-				"first_name" => $this->input->post('name'),
-				//"last_name" => (!empty($last_name)) ? implode(" ", $last_name) : '',
-				"password" => ($this->input->post('password')) ? md5(SALT . $this->input->post('password')) : '',
-				// "email"=>trim($this->input->post('email')),
-				"mobile_number" => trim($this->input->post('phone_number')),
-				"login_provider" => ($provider) ? $provider : 1,
-				"login_provider_id" => ($provider_id) ? $provider_id : '',
-				"login_provider_detail" => serialize($user_info),
-				"user_type" => "User",
-				//"image" => ($image) ? $image : '',
-				"status" => 1,
-				"active" => 1
-			);
-			// $this->deleteMatchingNonActiveUsers($userData);
-
-			$entity_id = $this->common_model->addData('users', $userData);
-			if ($entity_id) {
-				$data['success'] = $this->lang->line('registration_success');
-				$this->session->set_flashdata('success_MSG', $data['success']);
-			}
-			if ($this->input->post('email')) {
-				// confirmation link
-				$language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en';
-				$verificationCode = random_string('alnum', 20) . $UserID . random_string('alnum', 5);
-				$confirmationLink = '<a href=' . base_url() . 'user/verify_account/' . $verificationCode . '>here</a>';
-				$email_template = $this->db->get_where('email_template', array('email_slug' => 'verify-account', 'language_slug' => $language_slug))->first_row();
-				$arrayData = array('FirstName' => $namearr[0], 'ForgotPasswordLink' => $confirmationLink);
-				$EmailBody = generateEmailBody($email_template->message, $arrayData);
-				//get System Option Data
-				$this->db->select('OptionValue');
-				$FromEmailID = $this->db->get_where('system_option', array('OptionSlug' => 'From_Email_Address'))->first_row();
-
-				$this->db->select('OptionValue');
-				$FromEmailName = $this->db->get_where('system_option', array('OptionSlug' => 'Email_From_Name'))->first_row();
-
-				$this->load->library('email');
-				$config['charset'] = "utf-8";
-				$config['mailtype'] = "html";
-				$config['newline'] = "\r\n";
-				$this->email->initialize($config);
-				$this->email->from($FromEmailID->OptionValue, $FromEmailName->OptionValue);
-				$this->email->to($this->input->post('email'));
-				$this->email->subject($email_template->subject);
-				$this->email->message($EmailBody);
-				$this->email->send();
-
-				// update verification code
-				$addata = array('email_verification_code' => $verificationCode);
-				$this->common_model->updateData('users', $addata, 'entity_id', $entity_id);
-			}
-			// } else {
-			// 	$data['error'] = $this->lang->line('front_registration_fail');
-			// 	$this->session->set_flashdata('error_MSG', $data['error']);
-			// }
-			// redirect(base_url().'home/verify');
-			//exit;
-			//}
-			// }
-			//$this->session->set_flashdata('');
-		}
-		$_SESSION['error_MSG'] = "";
+		//$this->session->set_flashdata('');
+		$_SESSION['error_MSG'] = $data['error_MSG'] ;
 		$_SESSION['success_MSG'] = "";
 		$data['current_page'] = 'Registration';
 		$this->load->view('registration', $data);
 	}
+
+
 
 	// user forgot password
 	public function forgot_password()

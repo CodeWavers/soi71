@@ -61,7 +61,7 @@ class Myprofile extends CI_Controller {
 
 	public function edit_profile(){
 		if($this->input->post('submit_profile') == "Save") {
-//			echo '<pre>';print_r($_POST);
+			//echo '<pre>';print_r($_POST);exit();
 //			echo '<pre>';print_r($_FILES);
 //			exit();
 
@@ -106,23 +106,23 @@ class Myprofile extends CI_Controller {
 						@unlink(FCPATH . 'uploads/' . $this->input->post('uploaded_image'));
 					}
 				}
-
+				$updateUserData['image'] =base_url('uploads/'.$updateUserData['image']);
 
 
 				}else{
 
 				$updateUserData['image'] = $this->input->post('uploaded_image') ;
 			}
-			//echo '<pre>';print_r($updateUserData);exit();
+		//	echo '<pre>';print_r($updateUserData['image'] );exit();
 				if(empty($data['Error'])){
 
 
 
 					$affected_rows = $this->common_model->updateData('users',$updateUserData,'entity_id',$this->input->post('entity_id'));
 
-
-					//echo '<pre>';print_r($session);exit();
-//					if ($affected_rows) {
+						//$image=base_url('uploads/'.$updateUserData['image']);
+					//echo '<pre>';print_r($affected_rows);exit();
+					if ($affected_rows == 1) {
 						$this->session->set_userdata(
 							array(
 								'UserID' => $this->input->post('entity_id'),
@@ -130,13 +130,19 @@ class Myprofile extends CI_Controller {
 								'userLastname' => $this->input->post('last_name'),
 								'userEmail' => $this->input->post('email'),
 								'userPhone' => $this->input->post('phone_number'),
-								'userImage' => base_url('uploads/'.$updateUserData['image']),
-								'social_image' => base_url('uploads/'.$updateUserData['image'])
+//								'userImage' => !empty($image) ? $image : base_url('uploads/assets/front/images/user-login.jpg'),
+								'userImage' => $updateUserData['image'],
+								'social_image' =>  $updateUserData['image'],
+//								'social_image' =>!empty($image) ? $image : base_url('uploads/assets/front/images/user-login.jpg')
 							)
 						);
-//					}
+
 					$this->session->set_flashdata('myProfileMSG', $this->lang->line('success_update'));
 					redirect('myprofile');
+					}else{
+						$this->session->set_flashdata('myProfileMSGerror','Something Went Wrong!!');
+						redirect('myprofile');
+					}
 
 				}
 			}

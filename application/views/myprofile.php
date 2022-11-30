@@ -12,7 +12,64 @@
 	?>
 
     <section class="inner-pages-section">
-        <div class="container">
+		<div class="modal modal-main delete-address_" id="delete-address">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title"><?php echo $this->lang->line('delete_address') ?>?</h4>
+						<button type="button" class="close" data-dismiss="modal"><i class="iicon-icon-23"></i></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+						<p><?php echo $this->lang->line('delete_module'); ?><p>
+							<input type="hidden" name="delete_address_id" id="delete_address_id" value="">
+						<div class="action-btn">
+							<input type="button" name="delete_address" id="delete_address" value="Delete" class="btn btn-primary" onclick="deleteAddress()">
+							<input type="button" name="cancel" id="cancel" value="Cancel" class="btn btn-primary" data-dismiss="modal">
+						</div>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="modal modal-main add-address_" id="add-address">
+			<div class="modal-dialog modal-dialog-centered">
+				<div class="modal-content">
+					<!-- Modal Header -->
+					<div class="modal-header">
+						<h4 class="modal-title"><span id="address-form-title"><?php echo $this->lang->line('add') ?></span> <?php echo $this->lang->line('address') ?></h4>
+						<button type="button" class="close" data-dismiss="modal"><i class="iicon-icon-23"></i></button>
+					</div>
+
+					<!-- Modal body -->
+					<div class="modal-body">
+
+						<form id="form_add_address" name="form_add_address" method="post" class="form-horizontal float-form" enctype="multipart/form-data" >
+							<div id="error-msg" class="alert alert-danger display-no"></div>
+
+							<div class="form-group">
+								<input type="hidden" name="user_entity_id" id="user_entity_id" value="<?php echo $this->session->userdata('UserID'); ?>">
+								<input type="hidden" name="add_entity_id" id="add_entity_id" value="">
+								<input type="hidden" name="latitude" id="latitude" value="">
+								<input type="hidden" name="longitude" id="longitude" value="">
+								<input type="text" name="address_field" id="address_field" class="form-control" placeholder=" " onchange="getMarker(this.value)">
+								<label><?php echo $this->lang->line('your_location') ?></label>
+							</div>
+
+
+							<div class="address-add-btn">
+								<input type="hidden" name="submit_address" id="submit_address" value="Add" class="btn btn-primary">
+								<button type="submit" name="save_address" id="save_address" value="Save" class="btn btn-primary"><?php echo $this->lang->line('save') ?></button>
+							</div>
+						</form>
+					</div>
+				</div>
+			</div>
+		</div>
+
+		<div class="container">
 			<!-- Booking Details -->
 			<div class="modal modal-main  order-detail-popup" id="booking-details" ></div>
 			<!-- Order Details -->
@@ -624,8 +681,8 @@
                     <span class="error display-no" id="errormsg"></span>
                 </div>
                 <div class="form-group">
-                    <input type="hidden" name="entity_id" id="entity_id" value="<?php echo $profile->eid; ?>">
-                    <input type="hidden" name="uploaded_image" id="uploaded_image" value="<?php echo isset($profile->image) ? $profile->image : ''; ?>" />
+                    <input type="hidden" name="entity_id" id="entity_id" value="<?php echo $profile->entity_id; ?>">
+                    <input type="hidden" name="uploaded_image" id="uploaded_image" value="<?php echo $profile->image ? $profile->image : default_user_img; ?>" />
                     <input type="text" name="first_name" id="first_name" class="form-control" placeholder=" " value="<?php echo $profile->first_name; ?>" required>
                     <label><?php echo $this->lang->line('first_name') ?></label>
                 </div>
@@ -662,62 +719,7 @@
     </div>
 
     <!-- Add Address -->
-    <div class="modal modal-main add-address_" id="add-address">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title"><span id="address-form-title"><?php echo $this->lang->line('add') ?></span> <?php echo $this->lang->line('address') ?></h4>
-                    <button type="button" class="close" data-dismiss="modal"><i class="iicon-icon-23"></i></button>
-                </div>
 
-                <!-- Modal body -->
-                <div class="modal-body">
-
-                    <form id="form_add_address" name="form_add_address" method="post" class="form-horizontal float-form" enctype="multipart/form-data" >
-                        <div id="error-msg" class="alert alert-danger display-no"></div>
-
-                        <div class="form-group">
-                            <input type="hidden" name="user_entity_id" id="user_entity_id" value="<?php echo $this->session->userdata('UserID'); ?>">
-                            <input type="hidden" name="add_entity_id" id="add_entity_id" value="">
-                            <input type="hidden" name="latitude" id="latitude" value="">
-                            <input type="hidden" name="longitude" id="longitude" value="">
-                            <input type="text" name="address_field" id="address_field" class="form-control" placeholder=" " onchange="getMarker(this.value)">
-                            <label><?php echo $this->lang->line('your_location') ?></label>
-                        </div>
-
-
-                        <div class="address-add-btn">
-                            <input type="hidden" name="submit_address" id="submit_address" value="Add" class="btn btn-primary">
-                            <button type="submit" name="save_address" id="save_address" value="Save" class="btn btn-primary"><?php echo $this->lang->line('save') ?></button>
-                        </div>
-                    </form>
-                </div>
-            </div>
-        </div>
-    </div>
-
-    <div class="modal modal-main delete-address_" id="delete-address">
-        <div class="modal-dialog modal-dialog-centered">
-            <div class="modal-content">
-                <!-- Modal Header -->
-                <div class="modal-header">
-                    <h4 class="modal-title"><?php echo $this->lang->line('delete_address') ?>?</h4>
-                    <button type="button" class="close" data-dismiss="modal"><i class="iicon-icon-23"></i></button>
-                </div>
-
-                <!-- Modal body -->
-                <div class="modal-body">
-                    <p><?php echo $this->lang->line('delete_module'); ?><p>
-                    <input type="hidden" name="delete_address_id" id="delete_address_id" value="">
-                    <div class="action-btn">
-                        <input type="button" name="delete_address" id="delete_address" value="Delete" class="btn btn-primary" onclick="deleteAddress()">
-                        <input type="button" name="cancel" id="cancel" value="Cancel" class="btn btn-primary" data-dismiss="modal">
-                    </div>
-                </div>
-            </div>
-        </div>
-    </div>
 
 
     <div class="modal modal-main main-address_" id="main-address">
@@ -757,7 +759,23 @@
     <script type="text/javascript" src="<?php echo base_url(); ?>assets/admin/plugins/jquery-validation/js/additional-methods.min.js"></script>
     <script src="<?php echo base_url(); ?>assets/front/js/scripts/admin-management-front.js"></script>
     <script type="text/javascript">
-    var map, marker;
+
+
+		var map, marker;
+
+		$("#ex_us").on("click", function(e) {
+			$('#us_menu').addClass(' open');
+			//	$("#example-one").fadeToggle();
+			e.stopPropagation()
+		});
+
+		$(".mobile-icon  button").on("click", function(e) {
+			$("#example-one").toggleClass("open");
+			$(this).toggleClass('open');
+			//	$("#example-one").fadeToggle();
+			e.stopPropagation()
+		});
+
 	$('#nav-icon2').click(function () {
 
 		$('#nav-icon2').addClass('open');
@@ -856,6 +874,8 @@
             $("#old").show();
         }
     }
+
+
 
     </script>
     <?php $this->load->view('footer');?>

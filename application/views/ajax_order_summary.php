@@ -37,20 +37,7 @@
 							<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $total_vat = $cart_details['total_vat']; ?></strong>
 						</td>
 					</tr>
-					<!--					<tr>-->
-					<!--						<td>--><?php //echo $this->lang->line('delivery_charges') 
-														?>
-					<!--</td>-->
-					<!--						--><?php //$delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; 
-													?>
-					<!--						<td><span id="delivery_charges"><strong>--><?php //echo ($delivery_charges > 0)?'+':''; 
-																							?>
-					<!-- --><?php //echo $currency_symbol->currency_symbol; 
-							?>
-					<!-- --><?php //echo $delivery_charges; 
-							?>
-					<!--</strong></span></td>-->
-					<!--					</tr>-->
+
 					<?php if ($order_mode != 'pickup') { ?>
 						<tr class="dc d-none">
 
@@ -60,24 +47,7 @@
 						</tr>
 					<?php } ?>
 
-					<!--					--><?php //if ($order_mode != 'pickup' && $this->session->userdata('deliveryCharge') > 0) { 
-												?>
-					<!--						<tr>-->
-					<!--							<td>--><?php //echo $this->lang->line('delivery_charges') 
-															?>
-					<!--</td>-->
-					<!--							--><?php //$delivery_charges = ($this->session->userdata('deliveryCharge'))?$this->session->userdata('deliveryCharge'):0; 
-														?>
-					<!--							<td><span id="delivery_charges"><strong>--><?php //echo ($delivery_charges > 0)?'+':''; 
-																								?>
-					<!-- --><?php //echo $currency_symbol->currency_symbol; 
-							?>
-					<!-- --><?php //echo $delivery_charges; 
-							?>
-					<!--</strong></span></td>-->
-					<!--						</tr>-->
-					<!--					--><?php //} 
-												?>
+
 					<?php if ($this->session->userdata('coupon_applied') == "yes") {  ?>
 						<tr>
 							<td><?php echo $this->lang->line('coupon_applied') ?></td>
@@ -99,7 +69,7 @@
 					<tr>
 						<td><?php echo $this->lang->line('to_pay') ?></td>
 						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges + $total_vat + $cart_details['cart_items'][0]['service_charge']) - $coupon_discount;
-						$this->session->set_userdata(array('total_price' => $to_pay)); ?>)
+						$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 						<td><span id="to_pay" class="text-success"><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></span></td>
 					</tr>
 				</tfoot>
