@@ -984,6 +984,21 @@ class Home extends CI_Controller
 			"active" => 1
 		);
 		$entity_id = $this->common_model->addData('users', $userData);
+		$this->session->set_userdata(
+			array(
+				'UserID' => $entity_id,
+				'userFirstname' => '',
+				'userLastname' => '',
+				'userEmail' => '',
+				'userPhone' => $this->input->post('login_phone_number'),
+				'userImage' => default_user_img,
+				'social_image' => default_user_img,
+				'is_admin_login' => 0,
+				'is_user_login' => 1,
+				'UserType' => 'User',
+				'package_id' => array(),
+			)
+		);
 
 		echo $entity_id;
 	}
@@ -1003,6 +1018,7 @@ class Home extends CI_Controller
 				"user_entity_id" => $checkRecord->entity_id,
 			);
 			$address_entity_id = $this->common_model->addData('user_address', $userDetails);
+			$social_image = unserialize($checkRecord->login_provider_detail);
 			$this->session->set_userdata(
 				array(
 					'UserID' => $checkRecord->entity_id,
@@ -1010,6 +1026,8 @@ class Home extends CI_Controller
 					'userLastname' => $this->input->post('last_name'),
 					'userEmail' => $checkRecord->email,
 					'userPhone' => $checkRecord->mobile_number,
+					'userImage' => $checkRecord->image ? (image_url . $checkRecord->image) : default_user_img,
+					'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
 					'is_admin_login' => 0,
 					'is_user_login' => 1,
 					'UserType' => $checkRecord->user_type,

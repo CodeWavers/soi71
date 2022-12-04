@@ -1,6 +1,30 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php $this->load->view('header'); ?>
 
+<!-- Order Confirmation -->
+<div class="modal modal-main order-confirmation" id="order-confirmation">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title"><?php echo $this->lang->line('order_confirmation') ?></h4>
+				<button type="button" class="close" data-dismiss="modal" onclick="document.location.href='<?php echo base_url(); ?>restaurant';"><i class="iicon-icon-23"></i></button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="availability-popup">
+					<div class="availability-images">
+						<img src="<?php echo base_url(); ?>assets/front/images/order-confirmation.svg" alt="Booking availability">
+					</div>
+					<h2><?php echo $this->lang->line('thankyou_for_order') ?></h2>
+					<p><?php echo $this->lang->line('order_placed') ?></p>
+					<span id="track_order"><a href="<?php echo base_url(); ?>myprofile" class="btn"><?php echo $this->lang->line("track_order"); ?></a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <section class="inner-pages-section cart-section">
 
 	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
@@ -543,30 +567,6 @@
 	</div>
 </div>
 
-<!-- Order Confirmation -->
-<div class="modal modal-main order-confirmation" id="order-confirmation">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<!-- Modal Header -->
-			<div class="modal-header">
-				<h4 class="modal-title"><?php echo $this->lang->line('order_confirmation') ?></h4>
-				<button type="button" class="close" data-dismiss="modal" onclick="document.location.href='<?php echo base_url(); ?>restaurant';"><i class="iicon-icon-23"></i></button>
-			</div>
-
-			<!-- Modal body -->
-			<div class="modal-body">
-				<div class="availability-popup">
-					<div class="availability-images">
-						<img src="<?php echo base_url(); ?>assets/front/images/order-confirmation.svg" alt="Booking availability">
-					</div>
-					<h2><?php echo $this->lang->line('thankyou_for_order') ?></h2>
-					<p><?php echo $this->lang->line('order_placed') ?></p>
-					<span id="track_order"><a href="<?php echo base_url(); ?>myprofile" class="btn"><?php echo $this->lang->line("track_order"); ?></a></span>
-				</div>
-			</div>
-		</div>
-	</div>
-</div>
 
 
 <!-- order delivery not available -->

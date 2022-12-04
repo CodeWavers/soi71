@@ -196,17 +196,21 @@ if (isset($_GET['scope'])) {
 					<form id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 
-
+							<div class="row">
+								
+										<h2><?php echo "Login" ?></h2>
+									
+							</div>
 							<!-- for fb -->
-							<input type="hidden" name='fb_id' value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
+							<!-- <input type="hidden" name='fb_id' value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
 							<input type="hidden" name='fb_name' value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''; ?>" />
-							<input type="hidden" name='fb_image' value="<?php echo ($_SESSION["user_image"]) ? $_SESSION["user_image"] : ''; ?>" />
+							<input type="hidden" name='fb_image' value="<?php echo ($_SESSION["user_image"]) ? $_SESSION["user_image"] : ''; ?>" /> -->
 
 							<!-- for gmail -->
 
-							<input type="hidden" name='gmail' value="<?php echo ($_SESSION['google_email_address']) ? $_SESSION['google_email_address'] : ''; ?>" />
+							<!-- <input type="hidden" name='gmail' value="<?php echo ($_SESSION['google_email_address']) ? $_SESSION['google_email_address'] : ''; ?>" />
 							<input type="hidden" name='g_name' value="<?php echo ($_SESSION['google_name']) ? $_SESSION['google_name'] : ''; ?>" />
-							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" />
+							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" /> -->
 
 
 							<?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
