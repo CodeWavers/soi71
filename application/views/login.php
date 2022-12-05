@@ -313,7 +313,7 @@ if (isset($_GET['scope'])) {
 								</p>
 							</b>
 							<div id="recaptcha-container"></div>
-
+                            <input type="hidden" name="count_number" id="count_number" class="form-control" placeholder="" value="0">
 							<div class="action-button">
 								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
 								<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
@@ -378,6 +378,7 @@ if (isset($_GET['scope'])) {
 <input type="hidden" value="" id="new_user" class="form-control" placeholder="">
 <!--/ end content-area section -->
 <!-- Modal -->
+
 
 
 <div class="modal fade" id="forgot-pass-modal" tabindex="-1" role="dialog">
@@ -746,6 +747,7 @@ if (isset($_GET['scope'])) {
 						$('#forgot_password_section').hide();
 						$('#exampleModal').modal('show');
 
+
 						checkout_forgot_verify();
 
 
@@ -760,6 +762,10 @@ if (isset($_GET['scope'])) {
 	});
 
 	function checkout_forgot_verify() {
+
+	    var latest_count=$('#count_number').val();
+        // $('#count_number').val('')
+	   // var latest_count= $('#count_number').val(parseInt(count_number)+1);
 		// alert("test");
 		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
@@ -779,70 +785,78 @@ if (isset($_GET['scope'])) {
 		var number = countrycode.concat(number);
 		//phone number authentication function of firebase
 		//it takes two parameter first one is number,,,second one is recaptcha
-		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
-			//s is in lowercase
-			window.confirmationResult = confirmationResult;
-			coderesult = confirmationResult;
-			console.log(coderesult);
-		}).catch(function(error) {
-			alert(error.message);
-		});
-		var code = document.getElementById('verificationCode').value;
 
-		coderesult.confirm(code).then(function(result) {
-			$('#quotes-main-loader').hide();
-			$('#user_mobile').val(main_number);
-			$('#chk_mobile_number').val(main_number);
+        if (latest_count == 0){
+            firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+                //s is in lowercase
+                $('#count_number').val(1);
+                window.confirmationResult = confirmationResult;
+                coderesult = confirmationResult;
+                console.log(coderesult);
+            }).catch(function(error) {
+                alert(error.message);
+            });
+
+        }
+        var code = document.getElementById('verificationCode').value;
+
+        coderesult.confirm(code).then(function(result) {
+            $('#quotes-main-loader').hide();
+            $('#user_mobile').val(main_number);
+            $('#chk_mobile_number').val(main_number);
 
 
-			alert("Successfully verified");
-			$('#exampleModal').modal('hide');
-			var user_exist = $("#existing_user").val();
-			var first_name = $("#chk_first_name").val();
-			if (user_exist == 1 && first_name != '') {
-				// alert("test case 1");
-				window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
-			} else if (user_exist == 1 && first_name == '') {
-				// alert("test case 2");
+            alert("Successfully verified");
+            $('#exampleModal').modal('hide');
+            var user_exist = $("#existing_user").val();
+            var first_name = $("#chk_first_name").val();
+            if (user_exist == 1 && first_name != '') {
+                // alert("test case 1");
+                window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+            } else if (user_exist == 1 && first_name == '') {
+                // alert("test case 2");
 
-				$('#Checkout_user_reg').modal('show');
-			} else {
-				//alert("test case 3");
+                $('#Checkout_user_reg').modal('show');
+            } else {
+                //alert("test case 3");
 
-				jQuery.ajax({
-					type: "POST",
-					dataType: "json",
-					url: BASEURL + 'home/UserReg',
-					data: {
-						'login_phone_number': main_number,
-					},
-					beforeSend: function() {
-						$('#quotes-main-loader').show();
-					},
-					success: function(response) {
-						console.log(response);
-						if (response) {
-							$('#quotes-main-loader').hide();
-							//console.log("success");
-							$('#Checkout_user_reg').modal('show');
-						}
-						//alert("test");
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(errorThrown);
-					}
-				});
-			}
-			// $('.modal-backdrop').hide();
-			//$('#forgot_success').show();
+                jQuery.ajax({
+                    type: "POST",
+                    dataType: "json",
+                    url: BASEURL + 'home/UserReg',
+                    data: {
+                        'login_phone_number': main_number,
+                    },
+                    beforeSend: function() {
+                        $('#quotes-main-loader').show();
+                    },
+                    success: function(response) {
+                        console.log(response);
+                        if (response) {
+                            $('#quotes-main-loader').hide();
+                            //console.log("success");
+                            $('#Checkout_user_reg').modal('show');
+                        }
+                        //alert("test");
+                    },
+                    error: function(XMLHttpRequest, textStatus, errorThrown) {
+                        alert(errorThrown);
+                    }
+                });
+            }
+            // $('.modal-backdrop').hide();
+            //$('#forgot_success').show();
 
-			// $('.xy').addClass('display-no');
-			// $('.verify').addClass('display-no');
+            // $('.xy').addClass('display-no');
+            // $('.verify').addClass('display-no');
 
-		}).catch(function(error) {
-			alert(error.message);
-		});
-	}
+        }).catch(function(error) {
+            alert(error.message);
+        });
+
+    }
+
+
 	$("#new_user_registration").on("submit", function(event) {
 		// alert("test");
 		event.preventDefault();
