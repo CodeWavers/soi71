@@ -9,10 +9,36 @@ class Contact_us extends CI_Controller {
 		$this->load->model(ADMIN_URL.'/common_model');  
 		$this->load->model('/home_model');    
 	}
+
+	public function send_mail_two() {
+
+
+
+	}
 	// contact us page
 	public function index()
 	{
 
+		$to_email ="arman.cikatech@gmail.com";
+		$from_email ='rayanahm2020@gmail.com';
+		//Load email library
+		$this->load->library('email');
+		$config['charset'] = "utf-8";
+		$config['mailtype'] = "html";
+		$config['newline'] = "\r\n";
+		$this->email->initialize($config);
+		$this->email->from($from_email, 'Arman');
+		$this->email->to('mdarmancse@gmail.com','amd55077@gmail.com');
+		$this->email->subject('Send Email Codeigniter');
+		$this->email->message('The email send using codeigniter library');
+        $result=$this->email->send();
+		//Send mail
+		if($result == true) {
+			echo $result;
+		}else{
+			echo $result;
+		}
+		exit();
 		$type = $this->uri->segment(2);
 
 
@@ -53,7 +79,9 @@ class Contact_us extends CI_Controller {
 				// admin email 
 				$this->db->select('OptionValue');
 				$AdminEmailAddress = $this->db->get_where('system_option',array('OptionSlug'=>'Admin_Email_Address'))->first_row();
-				
+
+
+
                 $arrayData = array('FirstName'=>trim($this->input->post('name')),'Email'=>trim($this->input->post('email')),'Message'=>trim($this->input->post('message')));
                 $EmailBody = generateEmailBody($Emaildata->message,$arrayData);  
 	        	
@@ -62,19 +90,31 @@ class Contact_us extends CI_Controller {
                 $config['mailtype'] = "html";
                 $config['newline'] = "\r\n";      
                 $this->email->initialize($config);
-                $this->email->from($FromEmailID->OptionValue,$FromEmailName->OptionValue);  
-                $this->email->to($AdminEmailAddress->OptionValue);  
-                $this->email->subject($Emaildata->subject);  
-                $this->email->message($EmailBody);            
-                $this->email->send();
-                $data['success_msg'] = $this->lang->line('message_sent');
-                $this->session->set_flashdata('contactUsMSG', $this->lang->line('message_sent')); 
-                redirect(base_url().'contact_us');
+                $this->email->from('mdarmancse@gmail.com','Arman');
+                $this->email->to('amd55077@gmail.com');
+                $this->email->subject('Hello');
+                $this->email->message('jdskdksdksmdks');
+
+                $result=$this->email->send();
+              //  echo $result;exit();
+				if($this->email->send()){
+					$data['success_msg'] = $this->lang->line('message_sent');
+					$this->session->set_flashdata('contactUsMSG', $this->lang->line('message_sent'));
+					redirect(base_url().'contact_us');
+				}else{
+                    $data['error_msg'] = $this->lang->line('message_sent');
+                    $this->session->set_flashdata('contactUsMSG', $this->lang->line('message_sent'));
+                    redirect(base_url().'contact_us');
+                }
+
+
 	        }
 	    }
 		$language_slug = ($this->session->userdata('language_slug')) ? $this->session->userdata('language_slug') : 'en' ;
 		$data['contact_us'] = $this->common_model->getCmsPages($language_slug,'contact-us');
 		$this->load->view('contact_us',$data);
 	}
+
+
 }
 ?>

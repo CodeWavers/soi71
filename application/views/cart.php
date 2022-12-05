@@ -137,11 +137,12 @@ $slug=$this->db->select('restaurant_slug')->from('restaurant')->order_by('entity
 </section>
 
 <script type="text/javascript">
-$(document).ready(function(){ 
-	var count = '<?php echo count($cart_details['cart_items']); ?>'; 
+$(document).ready(function(){
+	var count = '<?php echo count($cart_details['cart_items']); ?>';
 	$('#cart_count').html(count);
+	//alert(count)
 });
-function customCartItemCount(entity_id,restaurant_id,action,cart_key){ 
+function customCartItemCount(entity_id,restaurant_id,action,cart_key){
 	jQuery.ajax({
 		type : "POST",
 		dataType : "json",
@@ -150,7 +151,7 @@ function customCartItemCount(entity_id,restaurant_id,action,cart_key){
 		success: function(response) {
 			$('#your_main_cart').html(response.cart);
 		},
-		error: function(XMLHttpRequest, textStatus, errorThrown) {           
+		error: function(XMLHttpRequest, textStatus, errorThrown) {
 			alert(errorThrown);
 		}
     });

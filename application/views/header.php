@@ -461,8 +461,8 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 	});
 	$(document).on('ready', function() {
 
-		var count = '<?php echo count($cart_details['cart_items']); ?>';
-		$('#cart_count').html(count);
+		//var count = '<?php //echo count($cart_details['cart_items']); ?>//';
+		//$('#cart_count').html(count);
 
 		$(window).keydown(function(event){
 			if(event.keyCode == 13) {

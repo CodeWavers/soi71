@@ -261,13 +261,13 @@
 																<label>
 
 
-																	<input type="radio" name="choose_order" id="pickup" value="pickup" onclick="showPickup(<?php echo $cart_details['cart_total_price']; ?>);">
+																	<input type="radio" name="choose_order" id="pickup" value="pickup" required onclick="showPickup(<?php echo $cart_details['cart_total_price']; ?>);">
 																	<span><?php echo $this->lang->line('pickup') ?></span>
 																</label>
 																<!-- </div>
 																<div class="radio-btn-list"> -->
 																<label>
-																	<input type="radio" name="choose_order" id="delivery" value="delivery" onclick="showDelivery(<?php echo $cart_details['cart_total_price']; ?>);">
+																	<input type="radio" name="choose_order" id="delivery" value="delivery" required onclick="showDelivery(<?php echo $cart_details['cart_total_price']; ?>);">
 																	<span><?php echo $this->lang->line('delivery') ?></span>
 																</label>
 															</div>
@@ -430,7 +430,7 @@
 											<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $cart_details['cart_total_price']; ?></strong>
 										</td>
 									</tr>
-									<tr>
+									<tr hidden>
 										<td><?php echo "Service Charge" ?></td>
 										<td>
 											<strong><?php
@@ -450,7 +450,7 @@
 								<tfoot>
 									<tr>
 										<td><?php echo $this->lang->line('to_pay') ?></td>
-										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat + ceil($cart_details['cart_total_price'] * $service_charge) / 100;
+										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat ;
 										$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 										<td>
 

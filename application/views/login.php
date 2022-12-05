@@ -446,6 +446,15 @@ if (isset($_GET['scope'])) {
 		appId: "1:1022686565372:web:cd995980b1497401b65879",
 		measurementId: "G-7804JDEEXG"
 	};
+	// var firebaseConfig = {
+	// 	apiKey: "AIzaSyDcXe6AacheUcFHeV8jtanJT21nyS9e3kM",
+	// 	authDomain: "soi71-62621.firebaseapp.com",
+	// 	projectId: "soi71-62621",
+	// 	storageBucket: "soi71-62621.appspot.com",
+	// 	messagingSenderId: "1022686565372",
+	// 	appId: "1:1022686565372:web:cd995980b1497401b65879",
+	// 	measurementId: "G-7804JDEEXG"
+	// };
 	// Initialize Firebase
 	firebase.initializeApp(firebaseConfig);
 </script>

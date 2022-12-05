@@ -701,14 +701,7 @@
 <!--					<input type="text" name="address" id="address" class="form-control   "  placeholder=" " value="--><?php //echo $profile->address; ?><!--">-->
 <!--					<label>--><?php //echo $this->lang->line('address') ?><!--</label>-->
 <!--				</div>-->
-                <div class="form-group">
-                    <input type="password" name="password" id="password" class="form-control"  placeholder=" " value="" >
-                    <label><?php echo $this->lang->line('password') ?></label>
-                </div>
-                <div class="form-group">
-                    <input type="password" name="confirm_password" id="confirm_password" class="form-control"  value="" placeholder=" " >
-                    <label><?php echo $this->lang->line('confirm_pass') ?></label>
-                </div>
+
                 <div class="save-btn">
                     <button type="submit" name="submit_profile" id="" value="Save" class="btn btn-primary" ><?php echo $this->lang->line('save') ?></button>
                 </div>
