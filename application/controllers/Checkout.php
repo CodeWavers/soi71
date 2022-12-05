@@ -578,7 +578,7 @@ class Checkout extends CI_Controller
 
 
 			$inserted_address = $this->db->select('*')->from('user_address')->where('user_entity_id', $this->session->userdata('UserID'))->get()->first_row();
-
+			$service_charge = ($this->input->post('choose_order') == 'delivery') ? $this->input->post('service_charge') : 0;
 			$add_data = array(
 				'user_id' => $this->session->userdata('UserID'),
 				'restaurant_id' => $cart_restaurant,
@@ -586,8 +586,8 @@ class Checkout extends CI_Controller
 				'order_status' => 'placed',
 				'order_date' => date('Y-m-d H:i:s'),
 				'subtotal' => ($this->input->post('subtotal')) ? $this->input->post('subtotal') : 0,
-				'service_charge' => ($this->input->post('service_charge')) ? $this->input->post('service_charge') : 0,
-				'total_rate' => ($this->input->post('subtotal') + $this->input->post('dc')) ? $this->input->post('subtotal') + $this->input->post('dc') + $this->input->post('vat') + $this->input->post('service_charge') : '',
+				'service_charge' => $service_charge,
+				'total_rate' => ($this->input->post('subtotal') + $this->input->post('dc')) ? $this->input->post('subtotal') + $this->input->post('dc') + $this->input->post('vat') + $service_charge : '',
 				'status' => 0,
 				'delivery_charge' => ($this->input->post('dc')) ? $this->input->post('dc') : 0,
 				'vat' => ($this->input->post('vat')) ? $this->input->post('vat') : 0,

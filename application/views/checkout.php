@@ -231,7 +231,7 @@
 					<div id="order_mode_method">
 						<form id="checkout_form" name="checkout_form" method="post" class="form-horizontal float-form">
 							<input type="hidden" name="subtotal" id="subtotal" value="<?php echo $cart_details['cart_total_price']; ?>">
-							<input type="hidden" name="service_charge" id="service_charge" value="<?php echo ceil($cart_details['cart_total_price'] * $service_charge) / 100; ?>">
+							<input type="hidden" name="service_charge" id="service_charge" value="<?php echo "0" ?>">
 							<input type="hidden" id="vat" name="vat" value="<?php echo $cart_details['total_vat']; ?>">
 
 							<input type="hidden" name="sd" id="sd" value="<?php echo $cart_details['sd']; ?>">
@@ -430,7 +430,7 @@
 											<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $cart_details['cart_total_price']; ?></strong>
 										</td>
 									</tr>
-									<tr hidden>
+									<tr>
 										<td><?php echo "Service Charge" ?></td>
 										<td>
 											<strong><?php
@@ -450,7 +450,7 @@
 								<tfoot>
 									<tr>
 										<td><?php echo $this->lang->line('to_pay') ?></td>
-										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat;
+										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat + ceil($cart_details['cart_total_price'] * $service_charge) / 100;
 										$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 										<td>
 
@@ -1050,6 +1050,8 @@
 					$('#new_user').val(response.new_user);
 					$('#chk_first_name').val(response.first_name);
 					$('#chk_last_name').val(response.last_name);
+					$('#chk_address').val(response.address);
+
 					if (response) {
 						// $("#forgot_success").html(response.forgot_success);
 						$("#forgot_error").hide();
