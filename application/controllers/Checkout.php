@@ -222,6 +222,9 @@ class Checkout extends CI_Controller
 		$cartItems = array();
 		$cartTotalPrice = 0;
 		$service_charge = $this->systemoption_model->getValue('service_charge');
+		// echo "<pre>";
+		// print_r($service_charge);
+		// exit();
 		$item_vat = $this->systemoption_model->getValue('vat');
 		if (!empty($cart_details)) {
 			foreach (json_decode($cart_details) as $key => $value) {

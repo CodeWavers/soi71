@@ -944,6 +944,8 @@ class Home extends CI_Controller
 			$arr['last_name'] = '';
 			if ($this->input->post('login_phone_number')) {
 				$checkRecord = $this->home_model->getRecordMultipleWhere('users', array('mobile_number' => $this->input->post('login_phone_number'), 'status' => 1, 'login_provider' => 1));
+				$checkAddress = $this->home_model->getRecordMultipleWhere('user_address', array('user_entity_id' => $checkRecord->entity_id));
+
 				if (!empty($checkRecord)) {
 					$activecode = substr(md5(uniqid(mt_rand(), true)), 0, 8);
 					// $password = random_string('alnum', 8);
@@ -952,6 +954,7 @@ class Home extends CI_Controller
 					$arr['existing_user'] = 1;
 					$arr['first_name'] = $checkRecord->first_name;
 					$arr['last_name'] = $checkRecord->last_name;
+					$arr['address'] = $checkAddress->address;
 					$arr['new_user'] = 0;
 					$this->session->set_userdata(
 						array(
