@@ -17,15 +17,17 @@
 							<strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $cart_details['cart_total_price']; ?></strong>
 						</td>
 					</tr>
-					<tr>
-						<td><?php echo "Service Charge" ?></td>
-						<td>
-							<strong><?php
-									echo $currency_symbol->currency_symbol; ?><?php
+					<?php if ($order_mode != 'pickup') { ?>
+						<tr>
+							<td><?php echo "Service Charge" ?></td>
+							<td>
+								<strong><?php
+										echo $currency_symbol->currency_symbol; ?><?php
 
 																				echo $cart_details['service_charge']; ?></strong>
-						</td>
-					</tr>
+							</td>
+						</tr>
+					<?php } ?>
 
 					<tr>
 						<td>Vat</td>
@@ -67,9 +69,16 @@
 				</tbody>
 				<tfoot>
 					<tr>
+						<?php if ($order_mode == 'pickup') {
+							$service = 0;
+						} else {
+							$service = ($cart_details['cart_items'][0]['service_charge'] * $cart_details['cart_total_price']) /100 ;
+						} ?>
 						<td><?php echo $this->lang->line('to_pay') ?></td>
-						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges + $total_vat + $cart_details['cart_items'][0]['service_charge']) - $coupon_discount;
+						<?php $to_pay = ($cart_details['cart_total_price'] + $delivery_charges + $total_vat + $service) - $coupon_discount;
 						$this->session->set_userdata(array('total_price' => $to_pay)); ?>
+
+
 						<td><span id="to_pay" class="text-success"><strong><?php echo $currency_symbol->currency_symbol; ?> <?php echo $to_pay; ?></strong></span></td>
 					</tr>
 				</tfoot>

@@ -1,8 +1,80 @@
 <?php defined('BASEPATH') or exit('No direct script access allowed'); ?>
 <?php $this->load->view('header'); ?>
 
+<!-- Order Confirmation -->
+<div class="modal modal-main order-confirmation" id="order-confirmation">
+	<div class="modal-dialog modal-dialog-centered">
+		<div class="modal-content">
+			<!-- Modal Header -->
+			<div class="modal-header">
+				<h4 class="modal-title"><?php echo $this->lang->line('order_confirmation') ?></h4>
+				<button type="button" class="close" data-dismiss="modal" onclick="document.location.href='<?php echo base_url(); ?>restaurant';"><i class="iicon-icon-23"></i></button>
+			</div>
+
+			<!-- Modal body -->
+			<div class="modal-body">
+				<div class="availability-popup">
+					<div class="availability-images">
+						<img src="<?php echo base_url(); ?>assets/front/images/order-confirmation.svg" alt="Booking availability">
+					</div>
+					<h2><?php echo $this->lang->line('thankyou_for_order') ?></h2>
+					<p><?php echo $this->lang->line('order_placed') ?></p>
+					<span id="track_order"><a href="<?php echo base_url(); ?>myprofile" class="btn"><?php echo $this->lang->line("track_order"); ?></a></span>
+				</div>
+			</div>
+		</div>
+	</div>
+</div>
 <section class="inner-pages-section cart-section">
 
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<!-- Modal Header -->
+				<!-- <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div> -->
+				<div class="modal-body">
+					<form action="" class="form-horizontal float-form">
+						<div class="form-body verify">
+
+							<h1>Enter OTP</h1>
+
+							<div class="form-group">
+								<input type="text" id="verificationCode" class="form-control" placeholder="">
+								<label><?php echo $this->lang->line('otp') ?></label>
+							</div>
+							<b>
+								<p id="otp_time">
+									The OTP will expire in
+									<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
+
+								</p>
+							</b>
+							<b>
+								<p id="r_otp_time" class="d-none">
+									The OTP will expire in
+									<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
+
+								</p>
+							</b>
+							<div id="recaptcha-container"></div>
+
+							<div class="action-button">
+								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
+								<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
+
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
 	<div class="container" id="ajax_checkout">
 		<div class="row">
 			<div class="col-lg-12">
@@ -23,7 +95,7 @@
 							<p><?php echo $this->lang->line('acc_tag_line') ?></p>
 						</div>
 						<div id="login_form">
-							<form action="<?php echo base_url() . 'checkout'; ?>" id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
+							<form id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
 								<div class="form-body">
 									<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
 										<div class="alert alert-success xy">
@@ -51,17 +123,17 @@
 											<input type="number" name="login_phone_number" id="login_phone_number" class="form-control" placeholder=" ">
 											<label><?php echo $this->lang->line('phone_number') ?></label>
 										</div>
-										<div class="form-group mb-0">
+										<!-- <div class="form-group mb-0">
 											<input type="password" name="login_password" id="login_password" class="form-control" placeholder=" ">
 											<label><?php echo $this->lang->line('password') ?></label>
 											<a href="" class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
 
-										</div>
+										</div> -->
 									</div>
 									<div class="action-button account-btn">
-										<button type="submit" name="submit_login_page" id="submit_login_page" value="Login" class="btn btn-primary"><?php echo $this->lang->line('title_login') ?></button>
+										<button type="submit" name="submit_login_page" id="submit_login_page" value="Login" class="btn btn-primary"><?php echo "Submit" ?></button>
 
-										<a href="<?php echo base_url() . 'home/registration'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('sign_up') ?></a>
+										<!-- <a href="<?php echo base_url() . 'home/registration'; ?>" class="btn btn-secondary"><?php echo $this->lang->line('sign_up') ?></a> -->
 
 									</div>
 								</div>
@@ -358,7 +430,7 @@
 											<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $cart_details['cart_total_price']; ?></strong>
 										</td>
 									</tr>
-									<tr>
+									<tr hidden>
 										<td><?php echo "Service Charge" ?></td>
 										<td>
 											<strong><?php
@@ -378,7 +450,7 @@
 								<tfoot>
 									<tr>
 										<td><?php echo $this->lang->line('to_pay') ?></td>
-										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat + ceil($cart_details['cart_total_price'] * $service_charge) / 100;
+										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat;
 										$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 										<td>
 
@@ -409,7 +481,7 @@
 					<div id="forgot_password_section">
 						<h2 class="text-left">Enter Your Mobile Number</h2>
 						<!-- action="<?php //echo base_url().'home/forgot_password';
-						?>" -->
+										?>" -->
 						<form id="form_front_forgotpass" name="form_front_forgotpass" method="post" class="form-horizontal float-form">
 							<div class="form-body">
 								<div class="alert alert-danger display-no" id="forgot_error"></div>
@@ -424,7 +496,7 @@
 									<label>Mobile Number</label>
 								</div>
 								<div class="action-button">
-									<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red"><?php echo $this->lang->line('submit') ?></button>
+									<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit" class="btn red"><?php echo $this->lang->line('submit') ?></button>
 								</div>
 						</form>
 					</div>
@@ -437,79 +509,66 @@
 		</div>
 	</div>
 
+
 </section>
+
+<input type="hidden" value="" id="existing_user" class="form-control" placeholder="">
+<input type="hidden" value="" id="new_user" class="form-control" placeholder="">
+<!-- <input type="hidden" value="" id="chk_first_name" class="form-control" placeholder="">
+<input type="hidden" value="" id="chk_last_name" class="form-control" placeholder=""> -->
 <!--/ end content-area section -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+
+
+<div class="modal fade" id="Checkout_user_reg" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
 			<!-- Modal Header -->
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Enter Your Information</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+
 			<div class="modal-body">
-				<form action="" class="form-horizontal float-form">
-					<div class="form-body verify">
+				<div id="new_user_reg">
+					<form id="new_user_registration" name="new_user_registration" method="post" class="form-horizontal float-form">
+						<div class="form-body">
 
-						<h1>Enter Verification code</h1>
+							<div class="form-group" style="display: none;">
+								<input type="text" name="chk_mobile_number" id="chk_mobile_number" class="form-control" placeholder="">
+								<input type="text" name="user_mobile" id="user_mobile" class="form-control" placeholder="">
 
-						<div class="form-group">
-							<input type="text" id="verificationCode" class="form-control" placeholder="">
-							<label><?php echo $this->lang->line('otp') ?></label>
-						</div>
-						<b><p id="otp_time">
-								The OTP will expire in
-								<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
-
-							</p></b>
-						<b><p id="r_otp_time" class="d-none">
-								The OTP will expire in
-								<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
-
-							</p></b>
-						<div id="recaptcha-container"></div>
-
-						<div class="action-button">
-							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
-							<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
-
-						</div>
-					</div>
-				</form>
-			</div>
-
-		</div>
-	</div>
-</div>
-
-
-
-<!-- Order Confirmation -->
-<div class="modal modal-main order-confirmation" id="order-confirmation">
-	<div class="modal-dialog modal-dialog-centered">
-		<div class="modal-content">
-			<!-- Modal Header -->
-			<div class="modal-header">
-				<h4 class="modal-title"><?php echo $this->lang->line('order_confirmation') ?></h4>
-				<button type="button" class="close" data-dismiss="modal" onclick="document.location.href='<?php echo base_url(); ?>restaurant';"><i class="iicon-icon-23"></i></button>
-			</div>
-
-			<!-- Modal body -->
-			<div class="modal-body">
-				<div class="availability-popup">
-					<div class="availability-images">
-						<img src="<?php echo base_url(); ?>assets/front/images/order-confirmation.svg" alt="Booking availability">
-					</div>
-					<h2><?php echo $this->lang->line('thankyou_for_order') ?></h2>
-					<p><?php echo $this->lang->line('order_placed') ?></p>
-					<span id="track_order"><a href="<?php echo base_url(); ?>myprofile" class="btn"><?php echo $this->lang->line("track_order"); ?></a></span>
+								<!-- <label>Mobile Number</label> -->
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_first_name" id="chk_first_name" value="" class="form-control" placeholder="">
+								<label>Your First Name</label>
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_last_name" id="chk_last_name" value="" class="form-control" placeholder="">
+								<label>Your Last Name</label>
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_address" id="chk_address" value="" class="form-control" placeholder="">
+								<label>Your Adrress</label>
+							</div>
+							<div class="action-button">
+								<button type="submit" name="signup_submit_page" id="signup_submit_page" value="Registration" class="btn red"><?php echo $this->lang->line('submit') ?></button>
+							</div>
+					</form>
 				</div>
 			</div>
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button> -->
+			</div>
 		</div>
 	</div>
 </div>
+
+
+
 <!-- order delivery not available -->
 <div class="modal modal-main" id="delivery-not-avaliable">
 	<div class="modal-dialog modal-dialog-centered">
@@ -588,6 +647,52 @@
 		});
 	});
 
+	$("#form_front_forgotpass").on("submit", function(event) {
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/forgot_password',
+			data: {
+				'number_forgot': $('#number_forgot').val(),
+				'forgot_submit_page': $('#forgot_submit_page').val()
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+
+				$('#forgot_error').hide();
+				$('#forgot_success').hide();
+				$('#quotes-main-loader').hide();
+				if (response) {
+					if (response.forgot_error != '') {
+						$('#forgot_error').html(response.forgot_error);
+						$('#forgot_success').hide();
+						$('#forgot_error').show();
+					}
+					if (response.forgot_success != '') {
+						$("#forgot_success").html(response.forgot_success);
+						$("#forgot_error").hide();
+						$("#forgot_success").hide();
+						$("#forgot_password_section").hide();
+						$('#forgot-pass-modal').modal('hide');
+						$('.modal-backdrop').hide();
+						// $('#forgot_password_section').hide();
+						$('#exampleModal').modal('show');
+
+						forgot_verify();
+
+
+					}
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+	});
 
 	function delievry_charge(value) {
 
@@ -622,7 +727,7 @@
 					var coupon_discount = 0;
 				}
 
-				if (dc >= 0 ) {
+				if (dc >= 0) {
 					$('.dc').removeClass('d-none');
 					$('#delivery_charges').html('৳ ' + dc);
 					$('#delivery_charges_val').val(dc);
@@ -656,21 +761,20 @@
 
 
 <script>
-
-
 	function showClock(target) {
 		const distance = target - new Date().getTime();
-		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+		const mins = distance < 0 ? 0 : Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0 : Math.floor((distance % (1000 * 60)) / 1000);
 
 		// Output the results
 		document.getElementById("minutes").innerHTML = mins;
 		document.getElementById("seconds").innerHTML = secs;
 	}
+
 	function showClock_r(target) {
 		const distance = target - new Date().getTime();
-		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+		const mins = distance < 0 ? 0 : Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0 : Math.floor((distance % (1000 * 60)) / 1000);
 
 		// Output the results
 		document.getElementById("r_minutes").innerHTML = mins;
@@ -683,6 +787,7 @@
 		//	$("#example-one").fadeToggle();
 		e.stopPropagation()
 	});
+
 	function checkExist(mobile_number) {
 		// var entity_id = $('#entity_id').val();
 		$.ajax({
@@ -716,11 +821,14 @@
 	$("#form_front_forgotpass").on("submit", function(event) {
 		event.preventDefault();
 		jQuery.ajax({
-			type : "POST",
-			dataType :"json",
-			url : BASEURL+'home/forgot_password',
-			data : {'number_forgot':$('#number_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
-			beforeSend: function(){
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/forgot_password',
+			data: {
+				'number_forgot': $('#number_forgot').val(),
+				'forgot_submit_page': $('#forgot_submit_page').val()
+			},
+			beforeSend: function() {
 				$('#quotes-main-loader').show();
 			},
 			success: function(response) {
@@ -757,6 +865,7 @@
 		});
 
 	});
+
 	function ajaxCall(number) {
 		$.ajax({
 			type: "POST",
@@ -792,8 +901,8 @@
 
 
 	function render() {
-		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-			'size':'invisible'
+		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+			'size': 'invisible'
 		});
 		recaptchaVerifier.render();
 	}
@@ -833,7 +942,7 @@
 			alert("Successfully verified");
 			$('#exampleModal').modal('hide');
 
-			window.location.href = 'home/forgot_page/'+url_segment+'/'+main_number;
+			window.location.href = 'home/forgot_page/' + url_segment + '/' + main_number;
 
 
 			$('.modal-backdrop').hide();
@@ -846,14 +955,15 @@
 			alert(error.message);
 		});
 	}
+
 	function forgot_verify_Resend() {
 		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
-		var otp=$('#verificationCode').val();
-		if (otp.length > 0){
+		var otp = $('#verificationCode').val();
+		if (otp.length > 0) {
 			return
 
-		}else{
+		} else {
 			$('#verificationCode').prop("readonly", false);
 			$('#otp_time').addClass('d-none');
 			$('#r_otp_time').removeClass('d-none');
@@ -887,7 +997,7 @@
 
 				alert("Successfully verified");
 				$('#exampleModal').modal('hide');
-				window.location.href = 'home/forgot_page/'+url_segment+'/'+main_number;
+				window.location.href = 'home/forgot_page/' + url_segment + '/' + main_number;
 
 				$('#forgot-pass-modal').hide();
 				$('.modal-backdrop').hide();
@@ -915,6 +1025,164 @@
 		}
 
 	}
+	//newly added
+	$("#form_front_login_checkout").on("submit", function(event) {
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/checkUser',
+			data: {
+				'login_phone_number': $('#login_phone_number').val(),
+				'submit_login_page': $('#submit_login_page').val()
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+
+				$('#forgot_error').hide();
+				$('#forgot_success').hide();
+				$('#quotes-main-loader').hide();
+				if (response) {
+					console.log(response);
+					$('#existing_user').val(response.existing_user);
+					$('#new_user').val(response.new_user);
+					$('#chk_first_name').val(response.first_name);
+					$('#chk_last_name').val(response.last_name);
+					if (response) {
+						// $("#forgot_success").html(response.forgot_success);
+						$("#forgot_error").hide();
+						$("#forgot_success").hide();
+						$("#forgot_password_section").hide();
+						$('#forgot-pass-modal').modal('hide');
+						$('.modal-backdrop').hide();
+						$('#forgot_password_section').hide();
+						$('#exampleModal').modal('show');
+
+						checkout_forgot_verify();
+
+
+					}
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+	});
+
+	function checkout_forgot_verify() {
+		// alert("test");
+		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		//	showClock(countDownTarget);
+		var x = setInterval(function() {
+			showClock(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+				$('#verificationCode').prop("readonly", true);
+			}
+		}, 1000);
+
+		var countrycode = "+88";
+		var main_number = document.getElementById('login_phone_number').value;
+		var number = document.getElementById('login_phone_number').value;
+		var number = countrycode.concat(number);
+		//phone number authentication function of firebase
+		//it takes two parameter first one is number,,,second one is recaptcha
+		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+			//s is in lowercase
+			window.confirmationResult = confirmationResult;
+			coderesult = confirmationResult;
+			console.log(coderesult);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+		var code = document.getElementById('verificationCode').value;
+
+		coderesult.confirm(code).then(function(result) {
+			$('#quotes-main-loader').hide();
+			$('#user_mobile').val(main_number);
+			$('#chk_mobile_number').val(main_number);
+
+
+			alert("Successfully verified");
+			$('#exampleModal').modal('hide');
+			var user_exist = $("#existing_user").val();
+			var first_name = $("#chk_first_name").val();
+			if (user_exist == 1 && first_name != '') {
+				// alert("test case 1");
+				window.location.href = BASEURL + 'checkout/';
+			} else if (user_exist == 1 && first_name == '') {
+				// alert("test case 2");
+
+				$('#Checkout_user_reg').modal('show');
+			} else {
+				//alert("test case 3");
+
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/UserReg',
+					data: {
+						'login_phone_number': main_number,
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						console.log(response);
+						if (response) {
+							$('#quotes-main-loader').hide();
+							//console.log("success");
+							$('#Checkout_user_reg').modal('show');
+						}
+						//alert("test");
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			}
+			// $('.modal-backdrop').hide();
+			//$('#forgot_success').show();
+
+			// $('.xy').addClass('display-no');
+			// $('.verify').addClass('display-no');
+
+		}).catch(function(error) {
+			alert(error.message);
+		});
+	}
+	$("#new_user_registration").on("submit", function(event) {
+		// alert("test");
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/CheckoutUserReg',
+			data: {
+				'chk_mobile_number': $('#chk_mobile_number').val(),
+				'signup_submit_page': $('#signup_submit_page').val(),
+				'first_name': $('#chk_first_name').val(),
+				'last_name': $('#chk_last_name').val(),
+				'address': $('#chk_address').val(),
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				//alert("test");
+				location.reload();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	});
 </script>
 
 <?php $this->load->view('footer'); ?>

@@ -1317,8 +1317,9 @@ function showDelivery(cart_total_price) {
 }
 // show pickup options
 function showPickup(cart_total_price) {
+	// alert(cart_total_price);
 	document.getElementById('delivery-form').style.display = 'none';
-	getCoupons(cart_total_price, 'pickup');
+	getCoupons(parseInt(cart_total_price), 'pickup');
 	$('#checkout_form').validate().resetForm();
 	$('#checkout_form')[0].reset();
 	$("#submit_order").attr("disabled", false);

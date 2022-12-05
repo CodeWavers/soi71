@@ -32,9 +32,9 @@ $google_client->addScope('profile');
 
 
 $facebook = new Facebook\Facebook(array(
-		'app_id' => '669076557593120', // Replace with your app id
-		'app_secret' => '44e8025774f1027ed82f9351e3789d02',  // Replace with your app secret
-		'default_graph_version' => 'v3.2',
+	'app_id' => '669076557593120', // Replace with your app id
+	'app_secret' => '44e8025774f1027ed82f9351e3789d02',  // Replace with your app secret
+	'default_graph_version' => 'v3.2',
 ));
 
 $facebook_helper = $facebook->getRedirectLoginHelper();
@@ -73,12 +73,12 @@ if (isset($_GET['state'])) {
 	}
 } else {
 	// Get login url
-	$facebook_permissions = ['email']; // Optional permissions
+	//$facebook_permissions = ['email']; // Optional permissions
 
 	//$facebook_login_url = $facebook_helper->getLoginUrl('https://localhost/takeway/home/login/', $facebook_permissions);
-	$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
+	//$facebook_login_url = $facebook_helper->getLoginUrl(base_url() . 'home/login', $facebook_permissions);
 	// Render Facebook login button
-	$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2; border:none !important" onclick="fbCheck()" href="' . $facebook_login_url . '" ><nobr>LogIn with Facebook</nobr></a>';
+	//$facebook_login_url = '<a class="common_with_login fb btn " style="background-color:#4267B2; border:none !important" onclick="fbCheck()" href="' . $facebook_login_url . '" ><nobr>LogIn with Facebook</nobr></a>';
 	// }
 }
 
@@ -116,22 +116,28 @@ if (isset($_GET['scope'])) {
 	}
 } else {
 
-	$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39; border:none !important" href="' . $google_client->createAuthUrl() . '"><nobr>LogIn with Google </nobr> </a>';
+	//$gmail_button = '<a onclick="gmailCheck()" class="common_with_login google btn" style="background-color:#DB4A39; border:none !important" href="' . $google_client->createAuthUrl() . '"><nobr>LogIn with Google </nobr> </a>';
 }
 ?>
 
 <?php $this->load->view('header'); ?>
-<section class="content-area user-page quick-searches" >
+<section class="content-area user-page quick-searches">
 	<div class="container-fluid">
-		<div class="row"  style="height: calc(100vh - 92px)">
+		<div class="row" style="height: calc(100vh - 92px)">
 			<div class="col-md-6 user-form">
 				<div class="content-wrapper">
-<!--					<div class="logo"> <a href="--><?php //echo base_url(); ?><!--"><img src="--><?php //echo base_url(); ?><!--assets/front/images/logo.png" alt="Logo"></a>-->
-<!--					</div>-->
-<!--					<h3>--><?php //echo $this->lang->line('lets_get_started') ?><!--</h3>-->
+					<!--					<div class="logo"> <a href="--><?php //echo base_url(); 
+																			?>
+					<!--"><img src="--><?php //echo base_url(); 
+										?>
+					<!--assets/front/images/logo.png" alt="Logo"></a>-->
+					<!--					</div>-->
+					<!--					<h3>--><?php //echo $this->lang->line('lets_get_started') 
+													?>
+					<!--</h3>-->
 
 
-					<div class="container" style="display: contents">
+					<!-- <div class="container" style="display: contents">
 						<br />
 						<?php
 						//session_destroy();
@@ -139,7 +145,7 @@ if (isset($_GET['scope'])) {
 
 							// if google is selected than not to show fb button
 							if (!isset($_GET['scope'])) {
-							echo $facebook_login_url;
+								echo $facebook_login_url;
 							}
 						} else {
 							echo '<img src="' . $_SESSION["user_image"] . '" class="img-responsive img-circle img-thumbnail" />';
@@ -162,13 +168,13 @@ if (isset($_GET['scope'])) {
 						?>
 
 
-					</div>
+					</div> -->
 
 					<br></br>
 
-					<?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
+					<!-- <?php if (!isset($_GET['state']) && !isset($_GET['scope'])) { ?>
 						<h5 class="" style=" color:dimgrey;margin-left:27% ">OR</h5>
-					<?php } ?>
+					<?php } ?> -->
 					<br>
 					<?php if (!empty($this->session->flashdata('success_MSG'))) { ?>
 						<div class="alert alert-success xy">
@@ -187,76 +193,85 @@ if (isset($_GET['scope'])) {
 					<?php } ?>
 					<div class="alert alert-success display-no" id="forgot_success"></div>
 
-					<form action="<?php echo base_url() . 'home/login'; ?>" id="form_front_login" name="form_front_login" method="post" class="form-horizontal float-form">
+					<form id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 
-
+							<div class="row">
+								
+										<h2><?php echo "Login" ?></h2>
+									
+							</div>
 							<!-- for fb -->
-							<input type="hidden" name='fb_id' value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
+							<!-- <input type="hidden" name='fb_id' value="<?php echo ($_SESSION['fb_id']) ? $_SESSION['fb_id'] : ''; ?>" />
 							<input type="hidden" name='fb_name' value="<?php echo ($_SESSION["user_name"]) ? $_SESSION["user_name"] : ''; ?>" />
-							<input type="hidden" name='fb_image' value="<?php echo ($_SESSION["user_image"]) ? $_SESSION["user_image"] : ''; ?>" />
+							<input type="hidden" name='fb_image' value="<?php echo ($_SESSION["user_image"]) ? $_SESSION["user_image"] : ''; ?>" /> -->
 
 							<!-- for gmail -->
 
-							<input type="hidden" name='gmail' value="<?php echo ($_SESSION['google_email_address']) ? $_SESSION['google_email_address'] : ''; ?>" />
+							<!-- <input type="hidden" name='gmail' value="<?php echo ($_SESSION['google_email_address']) ? $_SESSION['google_email_address'] : ''; ?>" />
 							<input type="hidden" name='g_name' value="<?php echo ($_SESSION['google_name']) ? $_SESSION['google_name'] : ''; ?>" />
-							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" />
+							<input type="hidden" name='g_image' value="<?php echo ($_SESSION["google_image"]) ? $_SESSION["google_image"] : ''; ?>" /> -->
 
 
 							<?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
 								<div class="form-group">
-									<input type="number" name="phone_number" id="phone_number" class="form-control" placeholder=" " value="<?php echo $adminCook['usr']; ?>">
+									<input type="number" name="login_phone_number" id="login_phone_number" class="form-control" placeholder=" " value="<?php echo $adminCook['usr']; ?>">
 									<label><?php echo $this->lang->line('phone_number') ?></label>
 								</div>
-								<div class="form-group mb-0">
+								<!-- <div class="form-group mb-0">
 									<input type="password" name="password" id="password" class="form-control" placeholder=" " value="<?php echo $adminCook['hash']; ?>">
 									<label><?php echo $this->lang->line('password') ?></label>
-								</div>
+								</div> -->
 								<br>
-								<div class="links text-right">
+								<!-- <div class="links text-right">
 									<div class="check-box">
 										<label>
 											<input type="checkbox" name="rememberMe" id="rememberMe" value="1" <?php echo ($adminCook) ? "checked" : "" ?> />
 											<span><?php echo $this->lang->line('remember') ?></span>
 										</label>
 									</div>
-									<a href=""  class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
-								</div>
+									<a href="" class="link" data-toggle="modal" data-target="#forgot-pass-modal"><?php echo $this->lang->line('forgot_pass') ?></a>
+								</div> -->
 
 							<?php } ?>
 
 							<div class="action-button">
-								<button type="submit" name="submit_page" id="submit_page" value="Login" class=" common_login btn btn-primary"><?php echo $this->lang->line('title_login') ?></button>
+								<button type="submit" name="submit_login_page" id="submit_login_page" value="Login" class=" common_login btn btn-primary"><?php echo 'Submit' ?></button>
 								<!-- <input type="submit" name="submit_page" id="submit_page" value="Login" class="btn btn-primary"> -->
-								<?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
+								<!-- <?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
 									<a href="<?php echo base_url() . 'home/registration'; ?>" class="common_login btn btn-secondary"><?php echo $this->lang->line('sign_up') ?></a>
-								<?php } ?>
+								<?php } ?> -->
 								<!-- title_login -->
 							</div>
 						</div>
 					</form>
 
-<!--					<form id="form_front_forgotpass" name="form_front_forgotpass" method="post" class="form-horizontal float-form mt-5">-->
-<!--						<h2 class="text-left">Enter Your Mobile Number</h2>-->
-<!--						<div class="alert alert-success display-no" id="forgot_success"></div>-->
-<!--						<div class="form-body " id="forgot_password_section">-->
-<!--							<div class="alert alert-danger display-no" id="forgot_error"></div>-->
-<!--							--><?php //if (validation_errors()) { ?>
-<!--								<div class="alert alert-danger">-->
-<!--									--><?php //echo validation_errors(); ?>
-<!--								</div>-->
-<!--							--><?php //} ?>
-<!---->
-<!--							<div id="phoneExist"></div>-->
-<!--							<div class="form-group">-->
-<!--								<input type="text" name="number_forgot" id="number_forgot" class="form-control" placeholder="">-->
-<!--								<label>Mobile Number</label>-->
-<!--							</div>-->
-<!--							<div class="action-button">-->
-<!--								<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red">--><?php //echo $this->lang->line('submit') ?><!--</button>-->
-<!--							</div>-->
-<!--						</div>-->
-<!--					</form>-->
+					<!--					<form id="form_front_forgotpass" name="form_front_forgotpass" method="post" class="form-horizontal float-form mt-5">-->
+					<!--						<h2 class="text-left">Enter Your Mobile Number</h2>-->
+					<!--						<div class="alert alert-success display-no" id="forgot_success"></div>-->
+					<!--						<div class="form-body " id="forgot_password_section">-->
+					<!--							<div class="alert alert-danger display-no" id="forgot_error"></div>-->
+					<!--							--><?php //if (validation_errors()) { 
+														?>
+					<!--								<div class="alert alert-danger">-->
+					<!--									--><?php //echo validation_errors(); 
+																?>
+					<!--								</div>-->
+					<!--							--><?php //} 
+														?>
+					<!---->
+					<!--							<div id="phoneExist"></div>-->
+					<!--							<div class="form-group">-->
+					<!--								<input type="text" name="number_forgot" id="number_forgot" class="form-control" placeholder="">-->
+					<!--								<label>Mobile Number</label>-->
+					<!--							</div>-->
+					<!--							<div class="action-button">-->
+					<!--								<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red">--><?php //echo $this->lang->line('submit') 
+																																									?>
+					<!--</button>-->
+					<!--							</div>-->
+					<!--						</div>-->
+					<!--					</form>-->
 
 
 				</div>
@@ -264,52 +279,106 @@ if (isset($_GET['scope'])) {
 			<div class="col-md-6 login-bg h-100"></div>
 		</div>
 	</div>
+	<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+		<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
+			<div class="modal-content">
+				<!-- <div class="modal-header">
+					<h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+					<button type="button" class="close" data-dismiss="modal" aria-label="Close">
+						<span aria-hidden="true">&times;</span>
+					</button>
+				</div> -->
+				<div class="modal-body">
+					<form action="" class="form-horizontal float-form">
+						<div class="form-body verify">
+
+							<h1>Enter OTP</h1>
+
+							<div class="form-group">
+								<input type="text" id="verificationCode" class="form-control" placeholder="">
+								<label><?php echo $this->lang->line('otp') ?></label>
+							</div>
+							<b>
+								<p id="otp_time">
+									The OTP will expire in
+									<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
+
+								</p>
+							</b>
+							<b>
+								<p id="r_otp_time" class="d-none">
+									The OTP will expire in
+									<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
+
+								</p>
+							</b>
+							<div id="recaptcha-container"></div>
+
+							<div class="action-button">
+								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
+								<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
+
+							</div>
+						</div>
+					</form>
+				</div>
+
+			</div>
+		</div>
+	</div>
 </section>
-<!--/ end content-area section -->
-<!-- Modal -->
-<div class="modal fade" id="exampleModal" tabindex="-1" role="dialog">
+<div class="modal fade" id="Checkout_user_reg" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
 		<div class="modal-content">
+			<!-- Modal Header -->
 			<div class="modal-header">
-				<h5 class="modal-title" id="exampleModalLabel">Forgot Password</h5>
+				<h5 class="modal-title" id="exampleModalLabel">Enter Your Information</h5>
 				<button type="button" class="close" data-dismiss="modal" aria-label="Close">
 					<span aria-hidden="true">&times;</span>
 				</button>
 			</div>
+
 			<div class="modal-body">
-				<form action="" class="form-horizontal float-form">
-					<div class="form-body verify">
+				<div id="new_user_reg">
+					<form id="new_user_registration" name="new_user_registration" method="post" class="form-horizontal float-form">
+						<div class="form-body">
 
-						<h1>Enter Verification code</h1>
+							<div class="form-group" style="display: none;">
+								<input type="text" name="chk_mobile_number" id="chk_mobile_number" class="form-control" placeholder="">
+								<input type="text" name="user_mobile" id="user_mobile" class="form-control" placeholder="">
 
-						<div class="form-group">
-							<input type="text" id="verificationCode" class="form-control" placeholder="">
-							<label><?php echo $this->lang->line('otp') ?></label>
-						</div>
-						<b><p id="otp_time">
-								The OTP will expire in
-								<span id="minutes" class="expire text-dark "></span>m: <span id="seconds" class="expire text-dark "></span>s
-
-							</p></b>
-						<b><p id="r_otp_time" class="d-none">
-								The OTP will expire in
-								<span id="r_minutes" class="expire text-dark "></span>m: <span id="r_seconds" class="expire text-dark "></span>s
-
-							</p></b>
-						<div id="recaptcha-container"></div>
-
-						<div class="action-button">
-							<button type="button" onclick="forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
-							<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
-
-						</div>
-					</div>
-				</form>
+								<label>Mobile Number</label>
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_first_name" id="chk_first_name" value="" class="form-control" placeholder="">
+								<label>Your First Name</label>
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_last_name" id="chk_last_name" value="" class="form-control" placeholder="">
+								<label>Your Last Name</label>
+							</div>
+							<div class="form-group">
+								<input type="text" name="chk_address" id="chk_address" value="" class="form-control" placeholder="">
+								<label>Your Adrress</label>
+							</div>
+							<div class="action-button">
+								<button type="submit" name="signup_submit_page" id="signup_submit_page" value="Registration" class="btn red"><?php echo $this->lang->line('submit') ?></button>
+							</div>
+					</form>
+				</div>
 			</div>
-
+			<div class="modal-footer">
+				<!-- <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+			<button type="button" class="btn btn-primary">Save changes</button> -->
+			</div>
 		</div>
 	</div>
 </div>
+<input type="hidden" value="" id="existing_user" class="form-control" placeholder="">
+<input type="hidden" value="" id="new_user" class="form-control" placeholder="">
+<!--/ end content-area section -->
+<!-- Modal -->
+
 
 <div class="modal fade" id="forgot-pass-modal" tabindex="-1" role="dialog">
 	<div class="modal-dialog modal-lg modal-dialog-centered" role="document">
@@ -324,7 +393,7 @@ if (isset($_GET['scope'])) {
 				<div id="forgot_password_section">
 					<h2 class="text-left">Enter Your Mobile Number</h2>
 					<!-- action="<?php //echo base_url().'home/forgot_password';
-					?>" -->
+									?>" -->
 					<form id="form_front_forgotpass" name="form_front_forgotpass" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 							<div class="alert alert-danger display-no" id="forgot_error"></div>
@@ -339,7 +408,7 @@ if (isset($_GET['scope'])) {
 								<label>Mobile Number</label>
 							</div>
 							<div class="action-button">
-								<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit"  class="btn red"><?php echo $this->lang->line('submit') ?></button>
+								<button type="submit" name="forgot_submit_page" id="forgot_submit_page" value="Submit" class="btn red"><?php echo $this->lang->line('submit') ?></button>
 							</div>
 					</form>
 				</div>
@@ -380,21 +449,20 @@ if (isset($_GET['scope'])) {
 	firebase.initializeApp(firebaseConfig);
 </script>
 <script>
-
-
 	function showClock(target) {
 		const distance = target - new Date().getTime();
-		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+		const mins = distance < 0 ? 0 : Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0 : Math.floor((distance % (1000 * 60)) / 1000);
 
 		// Output the results
 		document.getElementById("minutes").innerHTML = mins;
 		document.getElementById("seconds").innerHTML = secs;
 	}
+
 	function showClock_r(target) {
 		const distance = target - new Date().getTime();
-		const mins = distance < 0 ? 0: Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
-		const secs = distance < 0 ? 0: Math.floor((distance % (1000 * 60)) / 1000);
+		const mins = distance < 0 ? 0 : Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
+		const secs = distance < 0 ? 0 : Math.floor((distance % (1000 * 60)) / 1000);
 
 		// Output the results
 		document.getElementById("r_minutes").innerHTML = mins;
@@ -407,6 +475,7 @@ if (isset($_GET['scope'])) {
 		//	$("#example-one").fadeToggle();
 		e.stopPropagation()
 	});
+
 	function checkExist(mobile_number) {
 		// var entity_id = $('#entity_id').val();
 		$.ajax({
@@ -440,11 +509,14 @@ if (isset($_GET['scope'])) {
 	$("#form_front_forgotpass").on("submit", function(event) {
 		event.preventDefault();
 		jQuery.ajax({
-			type : "POST",
-			dataType :"json",
-			url : BASEURL+'home/forgot_password',
-			data : {'number_forgot':$('#number_forgot').val(), 'forgot_submit_page':$('#forgot_submit_page').val() },
-			beforeSend: function(){
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/forgot_password',
+			data: {
+				'number_forgot': $('#number_forgot').val(),
+				'forgot_submit_page': $('#forgot_submit_page').val()
+			},
+			beforeSend: function() {
 				$('#quotes-main-loader').show();
 			},
 			success: function(response) {
@@ -465,7 +537,7 @@ if (isset($_GET['scope'])) {
 						$("#forgot_password_section").hide();
 						$('#forgot-pass-modal').modal('hide');
 						$('.modal-backdrop').hide();
-						 // $('#forgot_password_section').hide();
+						// $('#forgot_password_section').hide();
 						$('#exampleModal').modal('show');
 
 						forgot_verify();
@@ -480,6 +552,7 @@ if (isset($_GET['scope'])) {
 		});
 
 	});
+
 	function ajaxCall(number) {
 		$.ajax({
 			type: "POST",
@@ -514,12 +587,12 @@ if (isset($_GET['scope'])) {
 	};
 
 
-		function render() {
-			window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container',{
-				'size':'invisible'
-			});
-			recaptchaVerifier.render();
-		}
+	function render() {
+		window.recaptchaVerifier = new firebase.auth.RecaptchaVerifier('recaptcha-container', {
+			'size': 'invisible'
+		});
+		recaptchaVerifier.render();
+	}
 
 
 	function forgot_verify() {
@@ -555,7 +628,7 @@ if (isset($_GET['scope'])) {
 			alert("Successfully verified");
 			// $('#exampleModal').modal('hide')
 
-			window.location.href = 'forgot_page/'+url_segment+'/'+main_number;
+			window.location.href = 'forgot_page/' + url_segment + '/' + main_number;
 
 			$('.modal-backdrop').hide();
 			//$('#forgot_success').show();
@@ -567,14 +640,15 @@ if (isset($_GET['scope'])) {
 			alert(error.message);
 		});
 	}
+
 	function forgot_verify_Resend() {
 		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
-		var otp=$('#verificationCode').val();
-		if (otp.length > 0){
+		var otp = $('#verificationCode').val();
+		if (otp.length > 0) {
 			return
 
-		}else{
+		} else {
 			$('#verificationCode').prop("readonly", false);
 			$('#otp_time').addClass('d-none');
 			$('#r_otp_time').removeClass('d-none');
@@ -608,7 +682,7 @@ if (isset($_GET['scope'])) {
 				$('#exampleModal').modal('hide');
 				alert("Successfully verified");
 				// $('#exampleModal').modal('hide')
-				window.location.href = 'forgot_page/'+url_segment+'/'+main_number;
+				window.location.href = 'forgot_page/' + url_segment + '/' + main_number;
 
 				$('#forgot-pass-modal').hide();
 				$('.modal-backdrop').hide();
@@ -636,6 +710,166 @@ if (isset($_GET['scope'])) {
 		}
 
 	}
+
+	//newly added
+	$("#form_front_login_checkout").on("submit", function(event) {
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/checkUser',
+			data: {
+				'login_phone_number': $('#login_phone_number').val(),
+				'submit_login_page': $('#submit_login_page').val()
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+
+				$('#forgot_error').hide();
+				$('#forgot_success').hide();
+				$('#quotes-main-loader').hide();
+				if (response) {
+					console.log(response);
+					$('#existing_user').val(response.existing_user);
+					$('#new_user').val(response.new_user);
+					$('#chk_first_name').val(response.first_name);
+					$('#chk_last_name').val(response.last_name);
+					if (response) {
+						// $("#forgot_success").html(response.forgot_success);
+						$("#forgot_error").hide();
+						$("#forgot_success").hide();
+						$("#forgot_password_section").hide();
+						$('#forgot-pass-modal').modal('hide');
+						$('.modal-backdrop').hide();
+						$('#forgot_password_section').hide();
+						$('#exampleModal').modal('show');
+
+						checkout_forgot_verify();
+
+
+					}
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+
+	});
+
+	function checkout_forgot_verify() {
+		// alert("test");
+		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		//	showClock(countDownTarget);
+		var x = setInterval(function() {
+			showClock(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+				$('#verificationCode').prop("readonly", true);
+			}
+		}, 1000);
+
+		var countrycode = "+88";
+		var main_number = document.getElementById('login_phone_number').value;
+		var number = document.getElementById('login_phone_number').value;
+		var number = countrycode.concat(number);
+		//phone number authentication function of firebase
+		//it takes two parameter first one is number,,,second one is recaptcha
+		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+			//s is in lowercase
+			window.confirmationResult = confirmationResult;
+			coderesult = confirmationResult;
+			console.log(coderesult);
+		}).catch(function(error) {
+			alert(error.message);
+		});
+		var code = document.getElementById('verificationCode').value;
+
+		coderesult.confirm(code).then(function(result) {
+			$('#quotes-main-loader').hide();
+			$('#user_mobile').val(main_number);
+			$('#chk_mobile_number').val(main_number);
+
+
+			alert("Successfully verified");
+			$('#exampleModal').modal('hide');
+			var user_exist = $("#existing_user").val();
+			var first_name = $("#chk_first_name").val();
+			if (user_exist == 1 && first_name != '') {
+				// alert("test case 1");
+				window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+			} else if (user_exist == 1 && first_name == '') {
+				// alert("test case 2");
+
+				$('#Checkout_user_reg').modal('show');
+			} else {
+				//alert("test case 3");
+
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/UserReg',
+					data: {
+						'login_phone_number': main_number,
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						console.log(response);
+						if (response) {
+							$('#quotes-main-loader').hide();
+							//console.log("success");
+							$('#Checkout_user_reg').modal('show');
+						}
+						//alert("test");
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			}
+			// $('.modal-backdrop').hide();
+			//$('#forgot_success').show();
+
+			// $('.xy').addClass('display-no');
+			// $('.verify').addClass('display-no');
+
+		}).catch(function(error) {
+			alert(error.message);
+		});
+	}
+	$("#new_user_registration").on("submit", function(event) {
+		// alert("test");
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/CheckoutUserReg',
+			data: {
+				'chk_mobile_number': $('#chk_mobile_number').val(),
+				'signup_submit_page': $('#signup_submit_page').val(),
+				'first_name': $('#chk_first_name').val(),
+				'last_name': $('#chk_last_name').val(),
+				'address': $('#chk_address').val(),
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				//alert("test");
+				// location.reload();
+				window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	});
 </script>
 </body>
 
