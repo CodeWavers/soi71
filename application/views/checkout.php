@@ -62,7 +62,7 @@
 								</p>
 							</b>
 							<div id="recaptcha-container"></div>
-
+							<input type="hidden" name="count_number" id="count_number" class="form-control" placeholder="" value="0">
 							<div class="action-button">
 								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
 								<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
@@ -430,7 +430,7 @@
 											<strong><?php echo $currency_symbol->currency_symbol; ?><?php echo $cart_details['cart_total_price']; ?></strong>
 										</td>
 									</tr>
-									<tr>
+									<tr hidden>
 										<td><?php echo "Service Charge" ?></td>
 										<td>
 											<strong><?php
@@ -1077,6 +1077,7 @@
 
 	function checkout_forgot_verify() {
 		// alert("test");
+		var latest_count = $('#count_number').val();
 		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
 		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
@@ -1095,96 +1096,98 @@
 		var number = countrycode.concat(number);
 		//phone number authentication function of firebase
 		//it takes two parameter first one is number,,,second one is recaptcha
-		firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
-			//s is in lowercase
-			window.confirmationResult = confirmationResult;
-			coderesult = confirmationResult;
-			console.log(coderesult);
-		}).catch(function(error) {
-			alert(error.message);
-		});
-		var code = document.getElementById('verificationCode').value;
+		if (latest_count == 0) {
+			firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+				//s is in lowercase
+				window.confirmationResult = confirmationResult;
+				coderesult = confirmationResult;
+				console.log(coderesult);
+			}).catch(function(error) {
+				alert(error.message);
+			});
+		}
+			var code = document.getElementById('verificationCode').value;
 
-		coderesult.confirm(code).then(function(result) {
-			$('#quotes-main-loader').hide();
-			$('#user_mobile').val(main_number);
-			$('#chk_mobile_number').val(main_number);
+			coderesult.confirm(code).then(function(result) {
+				$('#quotes-main-loader').hide();
+				$('#user_mobile').val(main_number);
+				$('#chk_mobile_number').val(main_number);
 
 
-			alert("Successfully verified");
-			$('#exampleModal').modal('hide');
-			var user_exist = $("#existing_user").val();
-			var first_name = $("#chk_first_name").val();
-			if (user_exist == 1 && first_name != '') {
-				// alert("test case 1");
-				window.location.href = BASEURL + 'checkout/';
-			} else if (user_exist == 1 && first_name == '') {
-				// alert("test case 2");
+				alert("Successfully verified");
+				$('#exampleModal').modal('hide');
+				var user_exist = $("#existing_user").val();
+				var first_name = $("#chk_first_name").val();
+				if (user_exist == 1 && first_name != '') {
+					// alert("test case 1");
+					window.location.href = BASEURL + 'checkout/';
+				} else if (user_exist == 1 && first_name == '') {
+					// alert("test case 2");
 
-				$('#Checkout_user_reg').modal('show');
-			} else {
-				//alert("test case 3");
+					$('#Checkout_user_reg').modal('show');
+				} else {
+					//alert("test case 3");
 
-				jQuery.ajax({
-					type: "POST",
-					dataType: "json",
-					url: BASEURL + 'home/UserReg',
-					data: {
-						'login_phone_number': main_number,
-					},
-					beforeSend: function() {
-						$('#quotes-main-loader').show();
-					},
-					success: function(response) {
-						console.log(response);
-						if (response) {
-							$('#quotes-main-loader').hide();
-							//console.log("success");
-							$('#Checkout_user_reg').modal('show');
+					jQuery.ajax({
+						type: "POST",
+						dataType: "json",
+						url: BASEURL + 'home/UserReg',
+						data: {
+							'login_phone_number': main_number,
+						},
+						beforeSend: function() {
+							$('#quotes-main-loader').show();
+						},
+						success: function(response) {
+							console.log(response);
+							if (response) {
+								$('#quotes-main-loader').hide();
+								//console.log("success");
+								$('#Checkout_user_reg').modal('show');
+							}
+							//alert("test");
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(errorThrown);
 						}
-						//alert("test");
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(errorThrown);
-					}
-				});
-			}
-			// $('.modal-backdrop').hide();
-			//$('#forgot_success').show();
+					});
+				}
+				// $('.modal-backdrop').hide();
+				//$('#forgot_success').show();
 
-			// $('.xy').addClass('display-no');
-			// $('.verify').addClass('display-no');
+				// $('.xy').addClass('display-no');
+				// $('.verify').addClass('display-no');
 
-		}).catch(function(error) {
-			alert(error.message);
+			}).catch(function(error) {
+				alert(error.message);
+			});
+		}
+		$("#new_user_registration").on("submit", function(event) {
+			// alert("test");
+			event.preventDefault();
+			jQuery.ajax({
+				type: "POST",
+				dataType: "json",
+				url: BASEURL + 'home/CheckoutUserReg',
+				data: {
+					'chk_mobile_number': $('#chk_mobile_number').val(),
+					'signup_submit_page': $('#signup_submit_page').val(),
+					'first_name': $('#chk_first_name').val(),
+					'last_name': $('#chk_last_name').val(),
+					'address': $('#chk_address').val(),
+				},
+				beforeSend: function() {
+					$('#quotes-main-loader').show();
+				},
+				success: function(response) {
+					//alert("test");
+					location.reload();
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
 		});
-	}
-	$("#new_user_registration").on("submit", function(event) {
-		// alert("test");
-		event.preventDefault();
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/CheckoutUserReg',
-			data: {
-				'chk_mobile_number': $('#chk_mobile_number').val(),
-				'signup_submit_page': $('#signup_submit_page').val(),
-				'first_name': $('#chk_first_name').val(),
-				'last_name': $('#chk_last_name').val(),
-				'address': $('#chk_address').val(),
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-				//alert("test");
-				location.reload();
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-	});
 </script>
 
 <?php $this->load->view('footer'); ?>
