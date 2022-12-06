@@ -956,19 +956,19 @@ class Home extends CI_Controller
 					$arr['last_name'] = $checkRecord->last_name;
 					$arr['address'] = $checkAddress->address;
 					$arr['new_user'] = 0;
-					$this->session->set_userdata(
-						array(
-							'UserID' => $checkRecord->entity_id,
-							'userFirstname' => $checkRecord->first_name,
-							'userLastname' => $checkRecord->last_name,
-							'userEmail' => $checkRecord->email,
-							'userPhone' => $checkRecord->mobile_number,
-							'is_admin_login' => 0,
-							'is_user_login' => 1,
-							'UserType' => $checkRecord->user_type,
-							'package_id' => array(),
-						)
-					);
+					// $this->session->set_userdata(
+					// 	array(
+					// 		'UserID' => $checkRecord->entity_id,
+					// 		'userFirstname' => $checkRecord->first_name,
+					// 		'userLastname' => $checkRecord->last_name,
+					// 		'userEmail' => $checkRecord->email,
+					// 		'userPhone' => $checkRecord->mobile_number,
+					// 		'is_admin_login' => 0,
+					// 		'is_user_login' => 1,
+					// 		'UserType' => $checkRecord->user_type,
+					// 		'package_id' => array(),
+					// 	)
+					// );
 				} else {
 					$arr['existing_user'] = 0;
 					$arr['new_user'] = 1;
@@ -1040,5 +1040,28 @@ class Home extends CI_Controller
 		}
 
 		echo json_encode($address_entity_id);
+	}
+	public function SetSessionData()
+	{
+		$checkRecord = $this->home_model->getRecordMultipleWhere('users', array('mobile_number' => $this->input->post('login_phone_number'), 'status' => 1, 'login_provider' => 1));
+		$social_image = unserialize($checkRecord->login_provider_detail);
+		$this->session->set_userdata(
+			array(
+				'UserID' => $checkRecord->entity_id,
+				'userFirstname' => $checkRecord->first_name,
+				'userLastname' => $checkRecord->email,
+				'userEmail' => $checkRecord->email,
+				'userPhone' => $checkRecord->mobile_number,
+				'userImage' => $checkRecord->image ? (image_url . $checkRecord->image) : default_user_img,
+				'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
+				'is_admin_login' => 0,
+				'is_user_login' => 1,
+				'UserType' => $checkRecord->user_type,
+				'package_id' => array(),
+			)
+		);
+
+
+		echo json_encode($checkRecord);
 	}
 }
