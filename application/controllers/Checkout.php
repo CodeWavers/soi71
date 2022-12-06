@@ -297,7 +297,7 @@ class Checkout extends CI_Controller
 		}
 
 		$total_service_charge =  ceil(($service_charge * $cartTotalPrice) / 100);
-		$vat = ($cartTotalPrice + $total_service_charge) * ($item_vat / 100);
+		$vat = ($cartTotalPrice ) * ($item_vat / 100);
 
 		$cart_details = array(
 			'cart_items' => $cartItems,

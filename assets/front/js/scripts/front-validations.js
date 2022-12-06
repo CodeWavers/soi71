@@ -298,6 +298,7 @@ function AddToCart(entity_id, restaurant_id, item_id) {
 				type: 'POST',
 				success: function (n) {
 					$('.cart_count').html(parseInt(n));
+					//alert(n)
 
 				}
 			})

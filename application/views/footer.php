@@ -146,7 +146,7 @@
 </div>
 
 <script>
-	$(document).ready(function () {
+
 		$(document).ready(function () {
 
 			//	console.log(sessionStorage)
@@ -158,7 +158,7 @@
 			}
 		});
 
-	});
+
 	function onBody() {
 		sessionStorage.Alert = "Confirmed";
 		$('#login_alert').addClass('d-none')

@@ -22,11 +22,13 @@ $this->load->view('header');
 
 			<div class="col-sm-12 col-md-6 col-lg-6">
 
-				<div class="map-responsive">
+<!--				<div class="map-responsive">-->
+<!---->
+<!--					<iframe src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>-->
+<!---->
+<!--				</div>-->
 
-					<iframe src="https://maps.google.com/maps?q=soi71&t=&z=19&ie=UTF8&iwloc=&output=embed" width="600" height="450" frameborder="0" style="border:0" allowfullscreen></iframe>
-
-				</div>
+                <div class="mapouter"><div class="gmap_canvas"><iframe class="gmap_iframe" width="100%" frameborder="0" scrolling="no" marginheight="0" marginwidth="0" src="https://maps.google.com/maps?width=600&amp;height=400&amp;hl=en&amp;q=soi71&amp;t=&amp;z=19&amp;ie=UTF8&amp;iwloc=B&amp;output=embed"></iframe><a href="https://piratebay-proxys.com/">Piratebay</a></div><style>.mapouter{position:relative;text-align:right;width:100%;height:400px;}.gmap_canvas {overflow:hidden;background:none!important;width:100%;height:400px;}.gmap_iframe {height:400px!important;}</style></div>
 				<?php if (!empty($contact_us)) { ?>
 					<div class="row widgets"><?php echo $contact_us[0]->description; ?></div>
 				<?php } ?>
