@@ -19,26 +19,6 @@ class Contact_us extends CI_Controller {
 	public function index()
 	{
 
-		$to_email ="arman.cikatech@gmail.com";
-		$from_email ='rayanahm2020@gmail.com';
-		//Load email library
-		$this->load->library('email');
-		$config['charset'] = "utf-8";
-		$config['mailtype'] = "html";
-		$config['newline'] = "\r\n";
-		$this->email->initialize($config);
-		$this->email->from($from_email, 'Arman');
-		$this->email->to('mdarmancse@gmail.com','amd55077@gmail.com');
-		$this->email->subject('Send Email Codeigniter');
-		$this->email->message('The email send using codeigniter library');
-        $result=$this->email->send();
-		//Send mail
-		if($result == true) {
-			echo $result;
-		}else{
-			echo $result;
-		}
-		exit();
 		$type = $this->uri->segment(2);
 
 
@@ -83,29 +63,31 @@ class Contact_us extends CI_Controller {
 
 
                 $arrayData = array('FirstName'=>trim($this->input->post('name')),'Email'=>trim($this->input->post('email')),'Message'=>trim($this->input->post('message')));
-                $EmailBody = generateEmailBody($Emaildata->message,$arrayData);  
-	        	
-                $this->load->library('email'); 
-                $config['charset'] = "utf-8";
-                $config['mailtype'] = "html";
-                $config['newline'] = "\r\n";      
-                $this->email->initialize($config);
-                $this->email->from('mdarmancse@gmail.com','Arman');
-                $this->email->to('amd55077@gmail.com');
-                $this->email->subject('Hello');
-                $this->email->message('jdskdksdksmdks');
+                $EmailBody = generateEmailBody($Emaildata->message,$arrayData);
 
-                $result=$this->email->send();
-              //  echo $result;exit();
-				if($this->email->send()){
+				$fromEmail = $FromEmailID->OptionValue;
+				$toEmail1 = 'care@devenport.co';
+				$toEmail2 = 'info@devenport.co';
+				$subject = $Emaildata->subject;
+				$name =$FromEmailName->OptionValue ;
+				$message =$Emaildata->message;
+
+				$to = $toEmail1.",".$toEmail2;
+				$headers = "MIME-Version: 1.0" . "\r\n";
+				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
+				$headers .= 'From: ' . $fromEmail . '<' . $name . '>' . "\r\n" . 'Reply-To: ' . $fromEmail . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+
+				$result=mail($to,$subject,$message,$headers);
+				//Send mail
+				if($result == true) {
 					$data['success_msg'] = $this->lang->line('message_sent');
 					$this->session->set_flashdata('contactUsMSG', $this->lang->line('message_sent'));
 					redirect(base_url().'contact_us');
 				}else{
-                    $data['error_msg'] = $this->lang->line('message_sent');
-                    $this->session->set_flashdata('contactUsMSG', $this->lang->line('message_sent'));
-                    redirect(base_url().'contact_us');
-                }
+					$data['error_msg'] = $this->lang->line('message_sent');
+					$this->session->set_flashdata('error_MSG', 'Something went wrong!!');
+					redirect(base_url().'contact_us');
+				}
 
 
 	        }
