@@ -357,6 +357,19 @@
 																</div>
 															</div>
 														</div>
+														<div class="card">
+															<div>
+																<div class="current-location">
+																	<h5><?php echo "Enter Your Email" ?></h5>
+																</div>
+																<div>
+																	<div class="form-group">
+																		<input type="email" name="email" id="email" class="form-control" placeholder=" ">
+																		<label><?php echo "Enter Your Email" ?></label>
+																	</div>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
@@ -450,7 +463,7 @@
 								<tfoot>
 									<tr>
 										<td><?php echo $this->lang->line('to_pay') ?></td>
-										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat ;
+										<?php $to_pay = $cart_details['cart_total_price'] + $delivery_charges + $total_vat;
 										$this->session->set_userdata(array('total_price' => $to_pay)); ?>
 										<td>
 
@@ -1054,88 +1067,103 @@
 				alert(error.message);
 			});
 		}
-			var code = document.getElementById('verificationCode').value;
+		var code = document.getElementById('verificationCode').value;
 
-			coderesult.confirm(code).then(function(result) {
-				$('#quotes-main-loader').hide();
-				$('#user_mobile').val(main_number);
-				$('#chk_mobile_number').val(main_number);
+		coderesult.confirm(code).then(function(result) {
+			$('#quotes-main-loader').hide();
+			$('#user_mobile').val(main_number);
+			$('#chk_mobile_number').val(main_number);
 
 
-				alert("Successfully verified");
-				$('#exampleModal').modal('hide');
-				var user_exist = $("#existing_user").val();
-				var first_name = $("#chk_first_name").val();
-				if (user_exist == 1 && first_name != '') {
-					// alert("test case 1");
-					window.location.href = BASEURL + 'checkout/';
-				} else if (user_exist == 1 && first_name == '') {
-					// alert("test case 2");
+			alert("Successfully verified");
+			$('#exampleModal').modal('hide');
+			var user_exist = $("#existing_user").val();
+			var first_name = $("#chk_first_name").val();
+			if (user_exist == 1 && first_name != '') {
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/SetSessionData',
+					data: {
+						'login_phone_number': main_number,
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			} else if (user_exist == 1 && first_name == '') {
+				// alert("test case 2");
 
-					$('#Checkout_user_reg').modal('show');
-				} else {
-					//alert("test case 3");
+				$('#Checkout_user_reg').modal('show');
+			} else {
+				//alert("test case 3");
 
-					jQuery.ajax({
-						type: "POST",
-						dataType: "json",
-						url: BASEURL + 'home/UserReg',
-						data: {
-							'login_phone_number': main_number,
-						},
-						beforeSend: function() {
-							$('#quotes-main-loader').show();
-						},
-						success: function(response) {
-							console.log(response);
-							if (response) {
-								$('#quotes-main-loader').hide();
-								//console.log("success");
-								$('#Checkout_user_reg').modal('show');
-							}
-							//alert("test");
-						},
-						error: function(XMLHttpRequest, textStatus, errorThrown) {
-							alert(errorThrown);
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/UserReg',
+					data: {
+						'login_phone_number': main_number,
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						console.log(response);
+						if (response) {
+							$('#quotes-main-loader').hide();
+							//console.log("success");
+							$('#Checkout_user_reg').modal('show');
 						}
-					});
-				}
-				// $('.modal-backdrop').hide();
-				//$('#forgot_success').show();
+						//alert("test");
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			}
+			// $('.modal-backdrop').hide();
+			//$('#forgot_success').show();
 
-				// $('.xy').addClass('display-no');
-				// $('.verify').addClass('display-no');
+			// $('.xy').addClass('display-no');
+			// $('.verify').addClass('display-no');
 
-			}).catch(function(error) {
-				alert(error.message);
-			});
-		}
-		$("#new_user_registration").on("submit", function(event) {
-			// alert("test");
-			event.preventDefault();
-			jQuery.ajax({
-				type: "POST",
-				dataType: "json",
-				url: BASEURL + 'home/CheckoutUserReg',
-				data: {
-					'chk_mobile_number': $('#chk_mobile_number').val(),
-					'signup_submit_page': $('#signup_submit_page').val(),
-					'first_name': $('#chk_first_name').val(),
-					'last_name': $('#chk_last_name').val(),
-					'address': $('#chk_address').val(),
-				},
-				beforeSend: function() {
-					$('#quotes-main-loader').show();
-				},
-				success: function(response) {
-					//alert("test");
-					location.reload();
-				},
-				error: function(XMLHttpRequest, textStatus, errorThrown) {
-					alert(errorThrown);
-				}
-			});
+		}).catch(function(error) {
+			alert(error.message);
 		});
+	}
+	$("#new_user_registration").on("submit", function(event) {
+		// alert("test");
+		event.preventDefault();
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/CheckoutUserReg',
+			data: {
+				'chk_mobile_number': $('#chk_mobile_number').val(),
+				'signup_submit_page': $('#signup_submit_page').val(),
+				'first_name': $('#chk_first_name').val(),
+				'last_name': $('#chk_last_name').val(),
+				'address': $('#chk_address').val(),
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				//alert("test");
+				location.reload();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	});
 </script>
 
 <?php $this->load->view('footer'); ?>
