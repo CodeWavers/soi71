@@ -297,7 +297,7 @@ class Checkout extends CI_Controller
 		}
 
 		$total_service_charge =  ceil(($service_charge * $cartTotalPrice) / 100);
-		$vat = ($cartTotalPrice ) * ($item_vat / 100);
+		$vat = ($cartTotalPrice) * ($item_vat / 100);
 
 		$cart_details = array(
 			'cart_items' => $cartItems,
@@ -595,6 +595,11 @@ class Checkout extends CI_Controller
 				'extra_comment' => ($this->input->post('extra_comment')) ? $this->input->post('extra_comment') : '',
 				'payment_option' => ($this->input->post('payment_option')) ? $this->input->post('payment_option') : '',
 			);
+			$update_data = array(
+				'email' => ($this->input->post('email')) ? $this->input->post('email') : ''
+			);
+			$this->common_model->updateUser('users', $update_data, 'mobile_number', $this->session->userdata('userPhone'));
+
 
 
 
@@ -655,7 +660,7 @@ class Checkout extends CI_Controller
 						'city' => $this->input->post('city'),
 						'user_entity_id' => $this->session->userdata('UserID')
 					);
-				//	$this->common_model->addData('user_address', $add_address);
+					//	$this->common_model->addData('user_address', $add_address);
 					$user_detail = array(
 						'first_name' => $this->session->userdata('userFirstname'),
 						'last_name' => ($this->session->userdata('userLastname')) ? $this->session->userdata('userLastname') : '',

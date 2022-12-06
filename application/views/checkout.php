@@ -357,6 +357,19 @@
 																</div>
 															</div>
 														</div>
+														<div class="card">
+															<div>
+																<div class="current-location">
+																	<h5><?php echo "Enter Your Email" ?></h5>
+																</div>
+																<div>
+																	<div class="form-group">
+																		<input type="email" name="email" id="email" class="form-control" placeholder=" ">
+																		<label><?php echo "Enter Your Email" ?></label>
+																	</div>
+																</div>
+															</div>
+														</div>
 													</div>
 												</div>
 											</div>
