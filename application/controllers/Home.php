@@ -1049,7 +1049,7 @@ class Home extends CI_Controller
 			array(
 				'UserID' => $checkRecord->entity_id,
 				'userFirstname' => $checkRecord->first_name,
-				'userLastname' => $checkRecord->email,
+				'userLastname' => $checkRecord->last_name,
 				'userEmail' => $checkRecord->email,
 				'userPhone' => $checkRecord->mobile_number,
 				'userImage' => $checkRecord->image ? (image_url . $checkRecord->image) : default_user_img,
