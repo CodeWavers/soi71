@@ -296,14 +296,17 @@ class Checkout extends CI_Controller
 			}
 		}
 
-		$total_service_charge =  ceil(($service_charge * $cartTotalPrice) / 100);
+		$total_service_charge =  round(($service_charge * $cartTotalPrice) / 100);
 		$vat = ($cartTotalPrice ) * ($item_vat / 100);
+
+        $delivery_vat=($cartTotalPrice+$total_service_charge ) * ($item_vat / 100);
 
 		$cart_details = array(
 			'cart_items' => $cartItems,
 			'cart_total_price' => $cartTotalPrice,
 			'total_vat' => $vat,
 			'service_charge' => $total_service_charge,
+			'delivery_vat' => $delivery_vat,
 		);
 		return $cart_details;
 	}

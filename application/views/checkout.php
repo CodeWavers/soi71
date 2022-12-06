@@ -694,58 +694,6 @@
 
 	});
 
-	function delievry_charge(value) {
-
-
-		var base_url = "<?= base_url() ?>";
-		var csrf_test_name = $('[name="csrf_test_name"]').val();
-
-
-		$.ajax({
-			url: base_url + "checkout/delivery_charge",
-			method: 'post',
-			data: {
-				area_id: value,
-				csrf_test_name: csrf_test_name
-			},
-
-			cache: false,
-			success: function(data) {
-				let obj = jQuery.parseJSON(data);
-
-
-				var dc = parseFloat(obj[0].delivery_charge);
-
-
-				var sub_total = parseFloat($('#sub_total').val());
-				var total_vat = parseFloat($('#total_vat').val());
-				var service_charge = parseFloat($('#service_charge').val());
-
-				if (coupon_discount) {
-					var coupon_discount = parseFloat($('#coupon_discount').val());
-				} else {
-					var coupon_discount = 0;
-				}
-
-				if (dc >= 0) {
-					$('.dc').removeClass('d-none');
-					$('#delivery_charges').html('৳ ' + dc);
-					$('#delivery_charges_val').val(dc);
-				}
-
-				// console.log(total_vat)
-				//
-				var to_pay = (sub_total + dc + total_vat + service_charge) - coupon_discount;
-
-
-				//console.log(to_pay)
-				$('#to_pay').html('৳ ' + to_pay);
-			}
-		})
-
-
-	}
-
 
 
 	function activateButton(element) {
