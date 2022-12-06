@@ -316,7 +316,7 @@ if (isset($_GET['scope'])) {
 							<input type="hidden" name="count_number" id="count_number" class="form-control" placeholder="" value="0">
 							<div class="action-button">
 								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
-								<button type="button" onclick="forgot_verify_Resend();" class="btn btn-warning">Resend Code</button>
+								<button type="button" onclick="checkout_verify_Resend();" class="btn btn-warning">Resend Code</button>
 
 							</div>
 						</div>
@@ -376,6 +376,7 @@ if (isset($_GET['scope'])) {
 </div>
 <input type="hidden" value="" id="existing_user" class="form-control" placeholder="">
 <input type="hidden" value="" id="new_user" class="form-control" placeholder="">
+<input type="hidden" value="" id="otp" class="form-control" placeholder="">
 <!--/ end content-area section -->
 <!-- Modal -->
 
@@ -721,6 +722,9 @@ if (isset($_GET['scope'])) {
 
 	}
 
+
+
+
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
 		event.preventDefault();
@@ -741,26 +745,30 @@ if (isset($_GET['scope'])) {
 				$('#forgot_success').hide();
 				$('#quotes-main-loader').hide();
 				if (response) {
-					console.log(response);
 					$('#existing_user').val(response.existing_user);
 					$('#new_user').val(response.new_user);
 					$('#chk_first_name').val(response.first_name);
 					$('#chk_last_name').val(response.last_name);
-					if (response) {
-						// $("#forgot_success").html(response.forgot_success);
-						$("#forgot_error").hide();
-						$("#forgot_success").hide();
-						$("#forgot_password_section").hide();
-						$('#forgot-pass-modal').modal('hide');
-						$('.modal-backdrop').hide();
-						$('#forgot_password_section').hide();
-						$('#exampleModal').modal('show');
+					$("#forgot_error").hide();
+					$("#forgot_success").hide();
+					$("#forgot_password_section").hide();
+					$('#forgot-pass-modal').modal('hide');
+					$('.modal-backdrop').hide();
+					$('#forgot_password_section').hide();
+					$('#exampleModal').modal('show');
+					$('#verificationCode').prop("readonly", false);
+					$('#otp_time').addClass('d-none');
+					$('#r_otp_time').removeClass('d-none');
 
-
-						checkout_forgot_verify();
-
-
-					}
+					var countDownTarget = new Date().getTime() + 1 * 60 * 1000;
+					showClock_r(countDownTarget);
+					var x = setInterval(function() {
+						showClock_r(countDownTarget);
+						if (countDownTarget - new Date().getTime() < 0) {
+							clearInterval(x);
+							$('#verificationCode').prop("readonly", true);
+						}
+					}, 1000);
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -770,108 +778,156 @@ if (isset($_GET['scope'])) {
 
 	});
 
-	function checkout_forgot_verify() {
+	function checkout_verify_Resend() {
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/ResendOTP',
+			data: {
+				'login_phone_number': $('#login_phone_number').val(),
+				'submit_login_page': $('#submit_login_page').val()
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				$('#verificationCode').prop("readonly", false);
+				var countDownTarget = new Date().getTime() + 1 * 60 * 1000;
+				showClock_r(countDownTarget);
+				var x = setInterval(function() {
+					showClock_r(countDownTarget);
+					if (countDownTarget - new Date().getTime() < 0) {
+						clearInterval(x);
+						$('#verificationCode').prop("readonly", true);
+					}
+				}, 1000);
 
-		var latest_count = $('#count_number').val();
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
+			}
+		});
+	}
+
+	function checkout_forgot_verify() {
+		// var otp = <?php echo $this->session->userdata('otp'); ?>
+		// console.log(localStorage.getItem('otp'))
+		//var latest_count = $('#count_number').val();
 		// $('#count_number').val('')
 		// var latest_count= $('#count_number').val(parseInt(count_number)+1);
 		// alert("test");
-		const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+		//const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
 
-		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
-		//	showClock(countDownTarget);
-		var x = setInterval(function() {
-			showClock(countDownTarget);
-			if (countDownTarget - new Date().getTime() < 0) {
-				clearInterval(x);
-				$('#verificationCode').prop("readonly", true);
-			}
-		}, 1000);
 
-		var countrycode = "+88";
+
+		// var countrycode = "+88";
 		var main_number = document.getElementById('login_phone_number').value;
 		var number = document.getElementById('login_phone_number').value;
-		var number = countrycode.concat(number);
+		// var number = countrycode.concat(number);
 		//phone number authentication function of firebase
 		//it takes two parameter first one is number,,,second one is recaptcha
 
-		if (latest_count == 0) {
-			firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
-				//s is in lowercase
-				$('#count_number').val(1);
-				window.confirmationResult = confirmationResult;
-				coderesult = confirmationResult;
-				console.log(coderesult);
-			}).catch(function(error) {
-				alert(error.message);
-			});
+		// if (latest_count == 0) {
+		// 	firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+		// 		//s is in lowercase
+		// 		$('#count_number').val(1);
+		// 		window.confirmationResult = confirmationResult;
+		// 		coderesult = confirmationResult;
+		// 		console.log(coderesult);
+		// 	}).catch(function(error) {
+		// 		alert(error.message);
+		// 	});
 
-		}
+		// }
 		var code = document.getElementById('verificationCode').value;
+		jQuery.ajax({
+			type: "POST",
+			dataType: "json",
+			url: BASEURL + 'home/VerifyOTP',
+			data: {
+				'verify_code': code,
+				'mobile_number': main_number
+			},
+			beforeSend: function() {
+				$('#quotes-main-loader').show();
+			},
+			success: function(response) {
+				if (response.result == true) {
+					$('#quotes-main-loader').hide();
+					$('#user_mobile').val(main_number);
+					$('#chk_mobile_number').val(main_number);
 
-		coderesult.confirm(code).then(function(result) {
-			$('#quotes-main-loader').hide();
-			$('#user_mobile').val(main_number);
-			$('#chk_mobile_number').val(main_number);
 
+					alert("Successfully verified");
+					$('#exampleModal').modal('hide');
+					var user_exist = $("#existing_user").val();
+					var first_name = $("#chk_first_name").val();
+					if (user_exist == 1 && first_name != '') {
+						jQuery.ajax({
+							type: "POST",
+							dataType: "json",
+							url: BASEURL + 'home/SetSessionData',
+							data: {
+								'login_phone_number': main_number,
+							},
+							beforeSend: function() {
+								$('#quotes-main-loader').show();
+							},
+							success: function(response) {
+								window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(errorThrown);
+							}
+						});
+					} else if (user_exist == 1 && first_name == '') {
+						$('#Checkout_user_reg').modal('show');
+					} else {
+						//alert("test case 3");
 
-			alert("Successfully verified");
-			$('#exampleModal').modal('hide');
-			var user_exist = $("#existing_user").val();
-			var first_name = $("#chk_first_name").val();
-			if (user_exist == 1 && first_name != '') {
-				jQuery.ajax({
-					type: "POST",
-					dataType: "json",
-					url: BASEURL + 'home/SetSessionData',
-					data: {
-						'login_phone_number': main_number,
-					},
-					beforeSend: function() {
-						$('#quotes-main-loader').show();
-					},
-					success: function(response) {
-						window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(errorThrown);
+						jQuery.ajax({
+							type: "POST",
+							dataType: "json",
+							url: BASEURL + 'home/UserReg',
+							data: {
+								'login_phone_number': main_number,
+							},
+							beforeSend: function() {
+								$('#quotes-main-loader').show();
+							},
+							success: function(response) {
+								console.log(response);
+								if (response) {
+									$('#quotes-main-loader').hide();
+									//console.log("success");
+									$('#Checkout_user_reg').modal('show');
+								}
+								//alert("test");
+							},
+							error: function(XMLHttpRequest, textStatus, errorThrown) {
+								alert(errorThrown);
+							}
+						});
 					}
-				});
-			} else if (user_exist == 1 && first_name == '') {
-				// alert("test case 2");
+				} else {
+					alert("Wrong Verification Code !")
+					$('#exampleModal').modal('show');
 
-				$('#Checkout_user_reg').modal('show');
-			} else {
-				//alert("test case 3");
-
-				jQuery.ajax({
-					type: "POST",
-					dataType: "json",
-					url: BASEURL + 'home/UserReg',
-					data: {
-						'login_phone_number': main_number,
-					},
-					beforeSend: function() {
-						$('#quotes-main-loader').show();
-					},
-					success: function(response) {
-						console.log(response);
-						if (response) {
-							$('#quotes-main-loader').hide();
-							//console.log("success");
-							$('#Checkout_user_reg').modal('show');
-						}
-						//alert("test");
-					},
-					error: function(XMLHttpRequest, textStatus, errorThrown) {
-						alert(errorThrown);
-					}
-				});
+					// window.location.href = BASEURL + 'home/login';
+				}
+			},
+			error: function(XMLHttpRequest, textStatus, errorThrown) {
+				alert(errorThrown);
 			}
-
-		}).catch(function(error) {
-			alert(error.message);
 		});
+		//var otp = document.getElementById('otp').value;
+
+		// coderesult.confirm(code).then(function(result) {
+
+
+		// }).catch(function(error) {
+		// 	alert(error.message);
+		// });
 
 	}
 
@@ -894,8 +950,6 @@ if (isset($_GET['scope'])) {
 				$('#quotes-main-loader').show();
 			},
 			success: function(response) {
-				//alert("test");
-				// location.reload();
 				window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {

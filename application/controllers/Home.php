@@ -974,8 +974,87 @@ class Home extends CI_Controller
 					$arr['new_user'] = 1;
 				}
 			}
-		}
+			$otp = mt_rand(100000, 999999);
+			$url = "https://bulksmsbd.net/api/smsapi";
+			$api_key = "Ez4D3wps4noSSXEolrYw";
+			$senderid = "8809617611096";
+			$number = "88" . $this->input->post('login_phone_number');
 
+			$message = "Your Verification Code is " . $otp;
+
+			$data = [
+				"api_key" => $api_key,
+				"senderid" => $senderid,
+				"number" => $number,
+				"message" => $message
+			];
+			$ch = curl_init();
+			curl_setopt($ch, CURLOPT_URL, $url);
+			curl_setopt($ch, CURLOPT_POST, 1);
+			curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+			curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+			curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+			$response = curl_exec($ch);
+			curl_close($ch);
+			//return $response;
+		}
+		$this->session->set_userdata('otp', $otp);
+		//$arr['otp'] = $otp;
+		echo json_encode($arr);
+	}
+	public function ResendOTP()
+	{
+		$otp = mt_rand(100000, 999999);
+		$url = "https://bulksmsbd.net/api/smsapi";
+		$api_key = "Ez4D3wps4noSSXEolrYw";
+		$senderid = "8809617611096";
+		$number = "88" . $this->input->post('login_phone_number');
+
+		$message = "Your Verification Code is " . $otp;
+
+		$data = [
+			"api_key" => $api_key,
+			"senderid" => $senderid,
+			"number" => $number,
+			"message" => $message
+		];
+		$ch = curl_init();
+		curl_setopt($ch, CURLOPT_URL, $url);
+		curl_setopt($ch, CURLOPT_POST, 1);
+		curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+		curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+		curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+		$response = curl_exec($ch);
+		curl_close($ch);
+		$this->session->set_userdata('otp', $otp);
+
+		echo json_encode($response);
+	}
+	public function VerifyOTP()
+	{
+		$verify_code = $this->input->post('verify_code');
+		$otp = $this->session->userdata('otp');
+		$arr['result'] = false;
+		if ($otp == $verify_code) {
+			$checkRecord = $this->home_model->getRecordMultipleWhere('users', array('mobile_number' => $this->input->post('main_number'), 'status' => 1, 'login_provider' => 1));
+			$social_image = unserialize($checkRecord->login_provider_detail);
+			$this->session->set_userdata(
+				array(
+					'UserID' => $checkRecord->entity_id,
+					'userFirstname' => $this->input->post('first_name'),
+					'userLastname' => $this->input->post('last_name'),
+					'userEmail' => $checkRecord->email,
+					'userPhone' => $checkRecord->mobile_number,
+					'userImage' => $checkRecord->image ? ($checkRecord->image) : default_user_img,
+					'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
+					'is_admin_login' => 0,
+					'is_user_login' => 1,
+					'UserType' => $checkRecord->user_type,
+					'package_id' => array(),
+				)
+			);
+			$arr['result'] = true;
+		}
 		echo json_encode($arr);
 	}
 	public function UserReg()
@@ -1029,7 +1108,7 @@ class Home extends CI_Controller
 					'userLastname' => $this->input->post('last_name'),
 					'userEmail' => $checkRecord->email,
 					'userPhone' => $checkRecord->mobile_number,
-					'userImage' => $checkRecord->image ? (image_url . $checkRecord->image) : default_user_img,
+					'userImage' => $checkRecord->image ? ($checkRecord->image) : default_user_img,
 					'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
 					'is_admin_login' => 0,
 					'is_user_login' => 1,
