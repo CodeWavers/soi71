@@ -353,7 +353,7 @@ class Home extends CI_Controller
 							'userLastname' => $val->last_name,
 							'userEmail' => $val->email,
 							'userPhone' => $val->mobile_number,
-							'userImage' => $val->image ? (image_url . $val->image) : default_user_img,
+							'userImage' => $val->image ? ($val->image) : default_user_img,
 							'social_image' => ($social_image['user_details']['photo']) ? $social_image['user_details']['photo'] : '',
 							'is_admin_login' => 0,
 							'is_user_login' => 1,
