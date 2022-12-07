@@ -198,7 +198,7 @@ if (isset($_GET['scope'])) {
 
 							<div class="row">
 
-								<h2><?php echo "Login" ?></h2>
+								<h2 style="margin-bottom: 30px;"><?php echo "Login" ?></h2>
 
 							</div>
 							<!-- for fb -->
@@ -312,7 +312,7 @@ if (isset($_GET['scope'])) {
 
 								</p>
 							</b>
-							<div id="recaptcha-container"></div>
+							<!-- <div id="recaptcha-container"></div> -->
 							<input type="hidden" name="count_number" id="count_number" class="form-control" placeholder="" value="0">
 							<div class="action-button">
 								<button type="button" onclick="checkout_forgot_verify();" class="btn btn-primary"><?php echo "Verify Code" ?></button>
@@ -360,6 +360,10 @@ if (isset($_GET['scope'])) {
 							<div class="form-group">
 								<input type="text" name="chk_address" id="chk_address" value="" class="form-control" placeholder="">
 								<label>Your Adrress</label>
+							</div>
+							<div class="form-group">
+								<input type="email" name="chk_email" id="chk_email" value="" class="form-control" placeholder="">
+								<label>Your Email</label>
 							</div>
 							<div class="action-button">
 								<button type="submit" name="signup_submit_page" id="signup_submit_page" value="Registration" class="btn red"><?php echo $this->lang->line('submit') ?></button>
@@ -727,6 +731,20 @@ if (isset($_GET['scope'])) {
 
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
+		$('#exampleModal').modal('show');
+		$('#verificationCode').prop("readonly", false);
+		$('#otp_time').addClass('d-none');
+		$('#r_otp_time').removeClass('d-none');
+
+		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+		showClock_r(countDownTarget);
+		var x = setInterval(function() {
+			showClock_r(countDownTarget);
+			if (countDownTarget - new Date().getTime() < 0) {
+				clearInterval(x);
+				$('#verificationCode').prop("readonly", true);
+			}
+		}, 1000);
 		event.preventDefault();
 		jQuery.ajax({
 			type: "POST",
@@ -755,20 +773,7 @@ if (isset($_GET['scope'])) {
 					$('#forgot-pass-modal').modal('hide');
 					$('.modal-backdrop').hide();
 					$('#forgot_password_section').hide();
-					$('#exampleModal').modal('show');
-					$('#verificationCode').prop("readonly", false);
-					$('#otp_time').addClass('d-none');
-					$('#r_otp_time').removeClass('d-none');
 
-					var countDownTarget = new Date().getTime() + 1 * 60 * 1000;
-					showClock_r(countDownTarget);
-					var x = setInterval(function() {
-						showClock_r(countDownTarget);
-						if (countDownTarget - new Date().getTime() < 0) {
-							clearInterval(x);
-							$('#verificationCode').prop("readonly", true);
-						}
-					}, 1000);
 				}
 			},
 			error: function(XMLHttpRequest, textStatus, errorThrown) {
@@ -945,6 +950,7 @@ if (isset($_GET['scope'])) {
 				'first_name': $('#chk_first_name').val(),
 				'last_name': $('#chk_last_name').val(),
 				'address': $('#chk_address').val(),
+				'email': $('#chk_email').val(),
 			},
 			beforeSend: function() {
 				$('#quotes-main-loader').show();

@@ -1092,6 +1092,7 @@ class Home extends CI_Controller
 			$userData = array(
 				"first_name" => $this->input->post('first_name') ? $this->input->post('first_name') : '',
 				"last_name" => $this->input->post('last_name') ? $this->input->post('last_name') : '',
+				"email" => $this->input->post('email') ? $this->input->post('email') : '',
 			);
 			$this->common_model->updateUser('users', $userData, 'mobile_number', $this->input->post('chk_mobile_number'));
 
