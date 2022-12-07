@@ -196,7 +196,7 @@ if (isset($_GET['scope'])) {
 					<form id="form_front_login_checkout" name="form_front_login_checkout" method="post" class="form-horizontal float-form">
 						<div class="form-body">
 
-							<div class="row">
+							<div class="row mb-3">
 
 								<h2 style="margin-bottom: 30px;"><?php echo "Login" ?></h2>
 
@@ -214,7 +214,7 @@ if (isset($_GET['scope'])) {
 
 
 							<?php if (!isset($_GET['scope']) && !isset($_GET['state'])) { ?>
-								<div class="form-group">
+								<div class="form-group ">
 									<input type="number" name="login_phone_number" id="login_phone_number" class="form-control" placeholder=" " value="<?php echo $adminCook['usr']; ?>">
 									<label><?php echo $this->lang->line('phone_number') ?></label>
 								</div>
@@ -731,6 +731,7 @@ if (isset($_GET['scope'])) {
 
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
+
 		$('#exampleModal').modal('show');
 		$('#verificationCode').prop("readonly", false);
 		$('#otp_time').addClass('d-none');
