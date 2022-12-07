@@ -297,10 +297,10 @@ class Checkout extends CI_Controller
 		}
 
 		$total_service_charge =  round(($service_charge * $cartTotalPrice) / 100);
-		$vat = ($cartTotalPrice ) * ($item_vat / 100);
+		$vat = ($cartTotalPrice) * ($item_vat / 100);
 
 
-        $delivery_vat=($cartTotalPrice+$total_service_charge ) * ($item_vat / 100);
+		$delivery_vat = ($cartTotalPrice + $total_service_charge) * ($item_vat / 100);
 
 		$cart_details = array(
 			'cart_items' => $cartItems,
@@ -563,14 +563,14 @@ class Checkout extends CI_Controller
 			$your_address = $this->input->post('ch_address');
 			$add_add = $this->input->post('add_address');
 
-			if (isset($your_address)) {
-				$add_address = array(
+			// if (isset($your_address)) {
+			// 	$add_address = array(
 
-					'address' => $this->input->post('ch_address'),
-					'user_entity_id' => $this->session->userdata('UserID')
-				);
-				$this->db->insert('user_address', $add_address);
-			}
+			// 		'address' => $this->input->post('ch_address'),
+			// 		'user_entity_id' => $this->session->userdata('UserID')
+			// 	);
+			// 	$this->db->insert('user_address', $add_address);
+			// }
 			if (isset($add_add)) {
 				$add_address = array(
 
