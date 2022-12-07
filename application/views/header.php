@@ -329,7 +329,7 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 						<div class="header-user open_closed  <?php echo $closed; ?>">
 
 							<div class="user-img" >
-								<img style="border-radius: 2% !important;" src="<?php echo base_url(); ?>assets/front/images/close.jpeg">
+								<img style="border-radius: 0% !important;" src="<?php echo base_url(); ?>assets/front/images/close.jpeg">
 							</div>
 
 
@@ -340,7 +340,7 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 					<?php }else{?>
 						<div class="header-user open_closed  <?php echo $closed; ?>">
 							<div class="user-img" >
-								<img style="border-radius: 2% !important;" src="<?php echo base_url(); ?>assets/front/images/open.jpeg">
+								<img style="border-radius: 0% !important;" src="<?php echo base_url(); ?>assets/front/images/open.jpeg">
 							</div>
 
 
