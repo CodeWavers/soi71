@@ -422,6 +422,7 @@ class Home extends CI_Controller
     */
 
 
+
     // public function checkPhone($str){
     // 	$checkPhone = $this->home_model->checkPhone($str);
     // 	if($checkPhone>0){
@@ -1143,4 +1144,5 @@ class Home extends CI_Controller
 
         echo json_encode($checkRecord);
     }
+
 }
