@@ -624,9 +624,9 @@
                                                             <div class="address-btn">
                                                                 <button class="btn" data-toggle="modal" onclick="editAddress(<?php echo $value->address_id; ?>);"><?php echo $this->lang->line('edit_address') ?></button>
                                                                 <button class="btn" data-toggle="modal" onclick="showDeleteAddress(<?php echo $value->address_id; ?>);"><?php echo $this->lang->line('delete_address') ?></button>
-                                                                <?php if ($value->is_main == 0) { ?>
+                                                                <!-- <?php if ($value->is_main == 0) { ?>
                                                                     <button class="btn" data-toggle="modal" onclick="showMainAddress(<?php echo $value->address_id; ?>);"><?php echo $this->lang->line('set_as_primary') ?></button>
-                                                                <?php } ?>
+                                                                <?php } ?> -->
                                                             </div>
                                                         </div>
                                                     </div>

@@ -571,22 +571,23 @@ class Checkout extends CI_Controller
 			// 	);
 			// 	$this->db->insert('user_address', $add_address);
 			// }
-			if (isset($add_add)) {
+			if (isset($add_add) && $add_add != '') {
 				$add_address = array(
 
 					'address' => $this->input->post('add_address'),
 					'user_entity_id' => $this->session->userdata('UserID')
 				);
-				$this->db->insert('user_address', $add_address);
+				$new_address_id = $this->common_model->addData('user_address', $add_address);
+				//$this->db->insert('user_address', $add_address);
 			}
 
 
-			$inserted_address = $this->db->select('*')->from('user_address')->where('user_entity_id', $this->session->userdata('UserID'))->get()->first_row();
+			//$inserted_address = $this->db->select('*')->from('user_address')->where('user_entity_id', $this->session->userdata('UserID'))->get()->first_row();
 			$service_charge = ($this->input->post('choose_order') == 'delivery') ? $this->input->post('service_charge') : 0;
 			$add_data = array(
 				'user_id' => $this->session->userdata('UserID'),
 				'restaurant_id' => $cart_restaurant,
-				'address_id' => ($inserted_address->entity_id) ? $inserted_address->entity_id : '',
+				'address_id' => $new_address_id ? $new_address_id : $your_address,
 				'order_status' => 'placed',
 				'order_date' => date('Y-m-d H:i:s'),
 				'subtotal' => ($this->input->post('subtotal')) ? $this->input->post('subtotal') : 0,
@@ -599,10 +600,7 @@ class Checkout extends CI_Controller
 				'extra_comment' => ($this->input->post('extra_comment')) ? $this->input->post('extra_comment') : '',
 				'payment_option' => ($this->input->post('payment_option')) ? $this->input->post('payment_option') : '',
 			);
-			$update_data = array(
-				'email' => ($this->input->post('email')) ? $this->input->post('email') : ''
-			);
-			$this->common_model->updateUser('users', $update_data, 'mobile_number', $this->session->userdata('userPhone'));
+
 
 
 
@@ -617,19 +615,19 @@ class Checkout extends CI_Controller
 				$add_data['coupon_discount'] = ($this->session->userdata('coupon_discount')) ? $this->session->userdata('coupon_discount') : '';
 				$add_data['coupon_name'] = ($this->session->userdata('coupon_name')) ? $this->session->userdata('coupon_name') : '';
 			}
-			$default_address = $this->common_model->getSingleRowMultipleWhere('user_address', array('user_entity_id' => $this->session->userdata('UserID')));
-			$add_data['address_id'] = $default_address->entity_id;
-			if ($this->input->post('choose_order') == 'delivery') {
-				$add_data['order_delivery'] = 'Delivery';
-				if (!empty($default_address)) {
-					$add_data['address_id'] = $default_address->entity_id;
-				}
-			} else {
-				$add_data['order_delivery'] = 'PickUp';
-				if (!empty($default_address)) {
-					$add_data['address_id'] = $default_address->entity_id;
-				}
-			}
+			// $default_address = $this->common_model->getSingleRowMultipleWhere('user_address', array('user_entity_id' => $this->session->userdata('UserID')));
+			// $add_data['address_id'] = $default_address->entity_id;
+			// if ($this->input->post('choose_order') == 'delivery') {
+			// 	$add_data['order_delivery'] = 'Delivery';
+			// 	if (!empty($default_address)) {
+			// 		$add_data['address_id'] = $default_address->entity_id;
+			// 	}
+			// } else {
+			// 	$add_data['order_delivery'] = 'PickUp';
+			// 	if (!empty($default_address)) {
+			// 		$add_data['address_id'] = $default_address->entity_id;
+			// 	}
+			// }
 			$order_id = $this->common_model->addData('order_master', $add_data);
 			// get user details array
 
