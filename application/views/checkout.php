@@ -996,240 +996,245 @@
 
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
-		$('#exampleModal').modal('show');
-		$('#verificationCode').prop("readonly", false);
-		$('#otp_time').addClass('d-none');
-		$('#r_otp_time').removeClass('d-none');
-
-		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
-		showClock_r(countDownTarget);
-		var x = setInterval(function() {
-			showClock_r(countDownTarget);
-			if (countDownTarget - new Date().getTime() < 0) {
-				clearInterval(x);
-				$('#verificationCode').prop("readonly", true);
-			}
-		}, 1000);
-		event.preventDefault();
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/checkUser',
-			data: {
-				'login_phone_number': $('#login_phone_number').val(),
-				'submit_login_page': $('#submit_login_page').val()
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-
-				$('#forgot_error').hide();
-				$('#forgot_success').hide();
-				$('#quotes-main-loader').hide();
-				if (response) {
-					$('#existing_user').val(response.existing_user);
-					$('#new_user').val(response.new_user);
-					$('#chk_first_name').val(response.first_name);
-					$('#chk_last_name').val(response.last_name);
-					$("#forgot_error").hide();
-					$("#forgot_success").hide();
-					$("#forgot_password_section").hide();
-					$('#forgot-pass-modal').modal('hide');
-					$('.modal-backdrop').hide();
-					$('#forgot_password_section').hide();
-
-				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-
-	});
-
-	function checkout_verify_Resend() {
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/ResendOTP',
-			data: {
-				'login_phone_number': $('#login_phone_number').val(),
-				'submit_login_page': $('#submit_login_page').val()
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-				$('#verificationCode').prop("readonly", false);
-				var countDownTarget = new Date().getTime() + 1 * 60 * 1000;
-				showClock_r(countDownTarget);
-				var x = setInterval(function() {
-					showClock_r(countDownTarget);
-					if (countDownTarget - new Date().getTime() < 0) {
-						clearInterval(x);
-						$('#verificationCode').prop("readonly", true);
-					}
-				}, 1000);
-
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-	}
-
-	function checkout_forgot_verify() {
-		// alert("test");
-		// var latest_count = $('#count_number').val();
-		// const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
-
-		// var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
-		// //	showClock(countDownTarget);
-		// var x = setInterval(function() {
-		// 	showClock(countDownTarget);
-		// 	if (countDownTarget - new Date().getTime() < 0) {
-		// 		clearInterval(x);
-		// 		$('#verificationCode').prop("readonly", true);
-		// 	}
-		// }, 1000);
-
-		// var countrycode = "+88";
-		var main_number = document.getElementById('login_phone_number').value;
-		var number = document.getElementById('login_phone_number').value;
-		// var number = countrycode.concat(number);
-		// //phone number authentication function of firebase
-		// //it takes two parameter first one is number,,,second one is recaptcha
-		// if (latest_count == 0) {
-		// 	firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
-		// 		//s is in lowercase
-		// 		window.confirmationResult = confirmationResult;
-		// 		coderesult = confirmationResult;
-		// 		console.log(coderesult);
-		// 	}).catch(function(error) {
-		// 		alert(error.message);
-		// 	});
-		// }
-		var code = document.getElementById('verificationCode').value;
-
-		// coderesult.confirm(code).then(function(result) {
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/VerifyOTP',
-			data: {
-				'verify_code': code,
-				'mobile_number': main_number
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-				if (response.result == true) {
-					$('#quotes-main-loader').hide();
-					$('#user_mobile').val(main_number);
-					$('#chk_mobile_number').val(main_number);
-
-
-					alert("Successfully verified");
-					$('#exampleModal').modal('hide');
-					var user_exist = $("#existing_user").val();
-					var first_name = $("#chk_first_name").val();
-					if (user_exist == 1 && first_name != '') {
-						jQuery.ajax({
-							type: "POST",
-							dataType: "json",
-							url: BASEURL + 'home/SetSessionData',
-							data: {
-								'login_phone_number': main_number,
-							},
-							beforeSend: function() {
-								$('#quotes-main-loader').show();
-							},
-							success: function(response) {
-								window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
-							},
-							error: function(XMLHttpRequest, textStatus, errorThrown) {
-								alert(errorThrown);
-							}
-						});
-					} else if (user_exist == 1 && first_name == '') {
-						$('#Checkout_user_reg').modal('show');
-					} else {
-						//alert("test case 3");
-
-						jQuery.ajax({
-							type: "POST",
-							dataType: "json",
-							url: BASEURL + 'home/UserReg',
-							data: {
-								'login_phone_number': main_number,
-							},
-							beforeSend: function() {
-								$('#quotes-main-loader').show();
-							},
-							success: function(response) {
-								console.log(response);
-								if (response) {
-									$('#quotes-main-loader').hide();
-									//console.log("success");
-									$('#Checkout_user_reg').modal('show');
-								}
-								//alert("test");
-							},
-							error: function(XMLHttpRequest, textStatus, errorThrown) {
-								alert(errorThrown);
-							}
-						});
-					}
+				var mobile = $('#login_phone_number').val();
+				if (mobile == '') {
+					alert("Number Can't be Empty !");
 				} else {
-					alert("Wrong Verification Code !")
 					$('#exampleModal').modal('show');
+					$('#verificationCode').prop("readonly", false);
+					$('#otp_time').addClass('d-none');
+					$('#r_otp_time').removeClass('d-none');
 
-					// window.location.href = BASEURL + 'home/login';
+					var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+					showClock_r(countDownTarget);
+					var x = setInterval(function() {
+						showClock_r(countDownTarget);
+						if (countDownTarget - new Date().getTime() < 0) {
+							clearInterval(x);
+							$('#verificationCode').prop("readonly", true);
+						}
+					}, 1000);
+					event.preventDefault();
+					jQuery.ajax({
+						type: "POST",
+						dataType: "json",
+						url: BASEURL + 'home/checkUser',
+						data: {
+							'login_phone_number': $('#login_phone_number').val(),
+							'submit_login_page': $('#submit_login_page').val()
+						},
+						beforeSend: function() {
+							$('#quotes-main-loader').show();
+						},
+						success: function(response) {
+
+							$('#forgot_error').hide();
+							$('#forgot_success').hide();
+							$('#quotes-main-loader').hide();
+							if (response) {
+								$('#existing_user').val(response.existing_user);
+								$('#new_user').val(response.new_user);
+								$('#chk_first_name').val(response.first_name);
+								$('#chk_last_name').val(response.last_name);
+								$("#forgot_error").hide();
+								$("#forgot_success").hide();
+								$("#forgot_password_section").hide();
+								$('#forgot-pass-modal').modal('hide');
+								$('.modal-backdrop').hide();
+								$('#forgot_password_section').hide();
+
+							}
+						},
+						error: function(XMLHttpRequest, textStatus, errorThrown) {
+							alert(errorThrown);
+						}
+					});
 				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
-		// $('.modal-backdrop').hide();
-		//$('#forgot_success').show();
 
-		// $('.xy').addClass('display-no');
-		// $('.verify').addClass('display-no');
-
-		// }).catch(function(error) {
-		// 	alert(error.message);
-		// });
-	}
-	$("#new_user_registration").on("submit", function(event) {
-		// alert("test");
-		event.preventDefault();
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/CheckoutUserReg',
-			data: {
-				'chk_mobile_number': $('#chk_mobile_number').val(),
-				'signup_submit_page': $('#signup_submit_page').val(),
-				'first_name': $('#chk_first_name').val(),
-				'last_name': $('#chk_last_name').val(),
-				'address': $('#chk_address').val(),
-				'email': $('#chk_email').val(),
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-				//alert("test");
-				location.reload();
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
 		});
-	});
+
+			function checkout_verify_Resend() {
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/ResendOTP',
+					data: {
+						'login_phone_number': $('#login_phone_number').val(),
+						'submit_login_page': $('#submit_login_page').val()
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						$('#verificationCode').prop("readonly", false);
+						var countDownTarget = new Date().getTime() + 1 * 60 * 1000;
+						showClock_r(countDownTarget);
+						var x = setInterval(function() {
+							showClock_r(countDownTarget);
+							if (countDownTarget - new Date().getTime() < 0) {
+								clearInterval(x);
+								$('#verificationCode').prop("readonly", true);
+							}
+						}, 1000);
+
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			}
+
+			function checkout_forgot_verify() {
+				// alert("test");
+				// var latest_count = $('#count_number').val();
+				// const url_segment = window.location.href.substring(window.location.href.lastIndexOf('/') + 1);
+
+				// var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
+				// //	showClock(countDownTarget);
+				// var x = setInterval(function() {
+				// 	showClock(countDownTarget);
+				// 	if (countDownTarget - new Date().getTime() < 0) {
+				// 		clearInterval(x);
+				// 		$('#verificationCode').prop("readonly", true);
+				// 	}
+				// }, 1000);
+
+				// var countrycode = "+88";
+				var main_number = document.getElementById('login_phone_number').value;
+				var number = document.getElementById('login_phone_number').value;
+				// var number = countrycode.concat(number);
+				// //phone number authentication function of firebase
+				// //it takes two parameter first one is number,,,second one is recaptcha
+				// if (latest_count == 0) {
+				// 	firebase.auth().signInWithPhoneNumber(number, window.recaptchaVerifier).then(function(confirmationResult) {
+				// 		//s is in lowercase
+				// 		window.confirmationResult = confirmationResult;
+				// 		coderesult = confirmationResult;
+				// 		console.log(coderesult);
+				// 	}).catch(function(error) {
+				// 		alert(error.message);
+				// 	});
+				// }
+				var code = document.getElementById('verificationCode').value;
+
+				// coderesult.confirm(code).then(function(result) {
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/VerifyOTP',
+					data: {
+						'verify_code': code,
+						'mobile_number': main_number
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						if (response.result == true) {
+							$('#quotes-main-loader').hide();
+							$('#user_mobile').val(main_number);
+							$('#chk_mobile_number').val(main_number);
+
+
+							alert("Successfully verified");
+							$('#exampleModal').modal('hide');
+							var user_exist = $("#existing_user").val();
+							var first_name = $("#chk_first_name").val();
+							if (user_exist == 1 && first_name != '') {
+								jQuery.ajax({
+									type: "POST",
+									dataType: "json",
+									url: BASEURL + 'home/SetSessionData',
+									data: {
+										'login_phone_number': main_number,
+									},
+									beforeSend: function() {
+										$('#quotes-main-loader').show();
+									},
+									success: function(response) {
+										window.location.href = BASEURL + 'checkout';
+									},
+									error: function(XMLHttpRequest, textStatus, errorThrown) {
+										alert(errorThrown);
+									}
+								});
+							} else if (user_exist == 1 && first_name == '') {
+								$('#Checkout_user_reg').modal('show');
+							} else {
+								//alert("test case 3");
+
+								jQuery.ajax({
+									type: "POST",
+									dataType: "json",
+									url: BASEURL + 'home/UserReg',
+									data: {
+										'login_phone_number': main_number,
+									},
+									beforeSend: function() {
+										$('#quotes-main-loader').show();
+									},
+									success: function(response) {
+										console.log(response);
+										if (response) {
+											$('#quotes-main-loader').hide();
+											//console.log("success");
+											$('#Checkout_user_reg').modal('show');
+										}
+										//alert("test");
+									},
+									error: function(XMLHttpRequest, textStatus, errorThrown) {
+										alert(errorThrown);
+									}
+								});
+							}
+						} else {
+							alert("Wrong Verification Code !")
+							$('#exampleModal').modal('show');
+
+							// window.location.href = BASEURL + 'home/login';
+						}
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+				// $('.modal-backdrop').hide();
+				//$('#forgot_success').show();
+
+				// $('.xy').addClass('display-no');
+				// $('.verify').addClass('display-no');
+
+				// }).catch(function(error) {
+				// 	alert(error.message);
+				// });
+			}
+			$("#new_user_registration").on("submit", function(event) {
+				// alert("test");
+				event.preventDefault();
+				jQuery.ajax({
+					type: "POST",
+					dataType: "json",
+					url: BASEURL + 'home/CheckoutUserReg',
+					data: {
+						'chk_mobile_number': $('#chk_mobile_number').val(),
+						'signup_submit_page': $('#signup_submit_page').val(),
+						'first_name': $('#chk_first_name').val(),
+						'last_name': $('#chk_last_name').val(),
+						'address': $('#chk_address').val(),
+						'email': $('#chk_email').val(),
+					},
+					beforeSend: function() {
+						$('#quotes-main-loader').show();
+					},
+					success: function(response) {
+						//alert("test");
+						location.reload();
+					},
+					error: function(XMLHttpRequest, textStatus, errorThrown) {
+						alert(errorThrown);
+					}
+				});
+			});
 </script>
 
 <?php $this->load->view('footer'); ?>

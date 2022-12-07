@@ -731,56 +731,64 @@ if (isset($_GET['scope'])) {
 
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
+		var mobile = $('#login_phone_number').val();
+		if (mobile == '') {
+			alert("Number Can't be Empty !");
+		} else {
 
-		$('#exampleModal').modal('show');
-		$('#verificationCode').prop("readonly", false);
-		$('#otp_time').addClass('d-none');
-		$('#r_otp_time').removeClass('d-none');
+			$('#exampleModal').modal('show');
+			$('#verificationCode').prop("readonly", false);
+			$('#otp_time').addClass('d-none');
+			$('#r_otp_time').removeClass('d-none');
 
-		var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
-		showClock_r(countDownTarget);
-		var x = setInterval(function() {
+			var countDownTarget = new Date().getTime() + 2 * 60 * 1000;
 			showClock_r(countDownTarget);
-			if (countDownTarget - new Date().getTime() < 0) {
-				clearInterval(x);
-				$('#verificationCode').prop("readonly", true);
-			}
-		}, 1000);
-		event.preventDefault();
-		jQuery.ajax({
-			type: "POST",
-			dataType: "json",
-			url: BASEURL + 'home/checkUser',
-			data: {
-				'login_phone_number': $('#login_phone_number').val(),
-				'submit_login_page': $('#submit_login_page').val()
-			},
-			beforeSend: function() {
-				$('#quotes-main-loader').show();
-			},
-			success: function(response) {
-
-				$('#forgot_error').hide();
-				$('#forgot_success').hide();
-				$('#quotes-main-loader').hide();
-				if (response) {
-					$('#existing_user').val(response.existing_user);
-					$('#new_user').val(response.new_user);
-					$('#chk_first_name').val(response.first_name);
-					$('#chk_last_name').val(response.last_name);
-					$("#forgot_error").hide();
-					$("#forgot_success").hide();
-					$("#forgot_password_section").hide();
-					$('#forgot-pass-modal').modal('hide');
-					$('.modal-backdrop').hide();
-					$('#forgot_password_section').hide();
-
+			var x = setInterval(function() {
+				showClock_r(countDownTarget);
+				if (countDownTarget - new Date().getTime() < 0) {
+					clearInterval(x);
+					$('#verificationCode').prop("readonly", true);
 				}
-			},
-			error: function(XMLHttpRequest, textStatus, errorThrown) {
-				alert(errorThrown);
-			}
-		});
+			}, 1000);
+			event.preventDefault();
+			jQuery.ajax({
+				type: "POST",
+				dataType: "json",
+				url: BASEURL + 'home/checkUser',
+				data: {
+					'login_phone_number': $('#login_phone_number').val(),
+					'submit_login_page': $('#submit_login_page').val()
+				},
+				beforeSend: function() {
+					$('#quotes-main-loader').show();
+				},
+				success: function(response) {
+
+					$('#forgot_error').hide();
+					$('#forgot_success').hide();
+					$('#quotes-main-loader').hide();
+					if (response) {
+						$('#existing_user').val(response.existing_user);
+						$('#new_user').val(response.new_user);
+						$('#chk_first_name').val(response.first_name);
+						$('#chk_last_name').val(response.last_name);
+						$("#forgot_error").hide();
+						$("#forgot_success").hide();
+						$("#forgot_password_section").hide();
+						$('#forgot-pass-modal').modal('hide');
+						$('.modal-backdrop').hide();
+						$('#forgot_password_section').hide();
+
+					}
+				},
+				error: function(XMLHttpRequest, textStatus, errorThrown) {
+					alert(errorThrown);
+				}
+			});
+		}
+
+
+
 
 	});
 
