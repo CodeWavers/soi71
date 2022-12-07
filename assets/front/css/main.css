@@ -1236,13 +1236,15 @@ body.fixed {
 	margin-right: 11px;
 }
 
-.header-user .user-img img {
+
+.header-user.user-img-open img {
 	width: 100%;
 	height: 100%;
 	object-fit: cover;
-	border-radius: 50%;
+	border-radius: 5%;
 	overflow: hidden;
 }
+
 .header-user .user-img img {
 	width: 100%;
 	height: 100%;

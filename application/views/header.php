@@ -328,8 +328,8 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 					<?php if ($closed == 'closed') {?>
 						<div class="header-user open_closed  <?php echo $closed; ?>">
 
-							<div class="user-img">
-								<img src="<?php echo base_url(); ?>assets/front/images/close.jpeg">
+							<div class="user-img" >
+								<img style="border-radius: 2% !important;" src="<?php echo base_url(); ?>assets/front/images/close.jpeg">
 							</div>
 
 
@@ -339,8 +339,8 @@ $slug_soi=$this->db->select('restaurant_slug')->from('restaurant')->order_by('en
 						</div>
 					<?php }else{?>
 						<div class="header-user open_closed  <?php echo $closed; ?>">
-							<div class="user-img">
-								<img src="<?php echo base_url(); ?>assets/front/images/open.jpeg">
+							<div class="user-img" >
+								<img style="border-radius: 2% !important;" src="<?php echo base_url(); ?>assets/front/images/open.jpeg">
 							</div>
 
 
