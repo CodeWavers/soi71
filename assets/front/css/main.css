@@ -16,6 +16,8 @@ html {
 body {
 	margin: 0;
 	height: 100%;
+	/*overflow-y: hidden; // hide vertical*/
+	overflow-x: hidden;
 }
 
 article,
@@ -8653,4 +8655,29 @@ button.btn.res-menu:hover:before, button.btn.res-menu:focus:before {
 
 
 	color:var(--main-color);
+}
+/* width */
+::-webkit-scrollbar {
+	width: 7px;
+
+}
+
+/* Track */
+::-webkit-scrollbar-track {
+	background:white;
+
+
+}
+
+/* Handle */
+::-webkit-scrollbar-thumb {
+	background: var(--main-color);
+	border-radius: 10px;
+
+}
+
+/* Handle on hover */
+::-webkit-scrollbar-thumb:hover {
+	background: var(--main-color);
+
 }

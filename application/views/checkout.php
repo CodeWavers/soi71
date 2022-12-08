@@ -41,7 +41,7 @@
 					<form action="" class="form-horizontal float-form">
 						<div class="form-body verify">
 
-							<h1>Enter OTP</h1>
+							<h1>Enter OTP</h1>C
 
 							<div class="form-group">
 								<input type="text" id="verificationCode" class="form-control" placeholder="">

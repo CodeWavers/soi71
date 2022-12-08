@@ -65,17 +65,17 @@ class Contact_us extends CI_Controller {
                 $arrayData = array('FirstName'=>trim($this->input->post('name')),'Email'=>trim($this->input->post('email')),'Message'=>trim($this->input->post('message')));
                 $EmailBody = generateEmailBody($Emaildata->message,$arrayData);
 
-				$fromEmail = $FromEmailID->OptionValue;
+				$fromEmail =$this->input->post('email');
 				$toEmail1 = 'care@devenport.co';
 				$toEmail2 = 'info@devenport.co';
-				$subject = $Emaildata->subject;
-				$name =$FromEmailName->OptionValue ;
-				$message =$Emaildata->message;
+				$subject = 'Contact from Website';
+				$name =$this->input->post('name') ;
+				$message =$this->input->post('message');
 
 				$to = $toEmail1.",".$toEmail2;
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
-				$headers .= 'From: ' . $fromEmail . '<' . $name . '>' . "\r\n" . 'Reply-To: ' . $fromEmail . "\r\n" . 'X-Mailer: PHP/' . phpversion();
+				$headers .= 'From: ' . $fromEmail . '<' . $fromEmail . '>' . "\r\n" . 'Reply-To: ' . $fromEmail . "\r\n" . 'X-Mailer: PHP/' . phpversion();
 
 				$result=mail($to,$subject,$message,$headers);
 				//Send mail
