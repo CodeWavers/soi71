@@ -231,7 +231,7 @@
 								</div>
 								<div class="home-menu-details-parent">
 									<div class="det-with-price">
-										<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+										<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : ''; ?></p>
 										<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
 									</div>
@@ -313,7 +313,7 @@
 										</div>
 										<div class="home-menu-details-parent">
 											<div class="det-with-price">
-												<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : 'Something you won\'t regret'; ?></p>
+												<p class="home-menu-details"><?php echo ($value['menu_detail']) ? $value['menu_detail'] : ''; ?></p>
 												<strong><?php echo ($value['check_add_ons'] != 1) ? $restaurant_details['restaurant'][0]['currency_symbol'] . ' ' . $value['price'] : ''; ?></strong>
 
 											</div>
