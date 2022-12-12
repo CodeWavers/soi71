@@ -48,8 +48,9 @@ class Contact_us extends CI_Controller {
 	        {   
 	        	//get System Option Data
 				$this->db->select('OptionValue');
-				$FromEmailID = $this->db->get_where('system_option',array('OptionSlug'=>'From_Email_Address'))->first_row();
+				$AdminEmail_1 = $this->db->get_where('system_option',array('OptionSlug'=>'Admin_Email_Address_1'))->first_row();
 
+				;
 				$this->db->select('OptionValue');
 				$FromEmailName = $this->db->get_where('system_option',array('OptionSlug'=>'Email_From_Name'))->first_row();
 
@@ -58,21 +59,20 @@ class Contact_us extends CI_Controller {
 
 				// admin email 
 				$this->db->select('OptionValue');
-				$AdminEmailAddress = $this->db->get_where('system_option',array('OptionSlug'=>'Admin_Email_Address'))->first_row();
+				$AdminEmail_2 = $this->db->get_where('system_option',array('OptionSlug'=>'Admin_Email_Address_2'))->first_row();
 
 
-
-                $arrayData = array('FirstName'=>trim($this->input->post('name')),'Email'=>trim($this->input->post('email')),'Message'=>trim($this->input->post('message')));
-                $EmailBody = generateEmailBody($Emaildata->message,$arrayData);
 
 				$fromEmail =$this->input->post('email');
-				$toEmail1 = 'care@devenport.co';
-				$toEmail2 = 'info@devenport.co';
+				$toEmail1 = $AdminEmail_1->OptionValue;
+				$toEmail2 = $AdminEmail_2->OptionValue;
 				$subject = 'Contact from Website';
 				$name =$this->input->post('name') ;
 				$message =$this->input->post('message');
 
 				$to = $toEmail1.",".$toEmail2;
+
+
 				$headers = "MIME-Version: 1.0" . "\r\n";
 				$headers .= "Content-type:text/html;charset=UTF-8" . "\r\n";
 				$headers .= 'From: ' . $fromEmail . '<' . $fromEmail . '>' . "\r\n" . 'Reply-To: ' . $fromEmail . "\r\n" . 'X-Mailer: PHP/' . phpversion();
