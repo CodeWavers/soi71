@@ -30,8 +30,8 @@
 							}
 						} ?> -->
 						<li><a href="https://www.facebook.com/soi71"><i class="iicon-icon-08"></i></a></li>
-						<!--						<li><a href="#"><i class="iicon-icon-09"></i></a></li>-->
-						<!--						<li><a href="#"><i class="iicon-icon-10"></i></a></li>-->
+<!--						<li><a href="#"><i class="iicon-icon-09"></i></a></li>-->
+<!--						<li><a href="#"><i class="iicon-icon-10"></i></a></li>-->
 					</ul>
 				</div>
 			</div>
@@ -86,28 +86,28 @@
 </style>
 
 <?php if (!$this->session->userdata('is_user_login') && $current_page == 'HomePage')  {?>
-	<!--	<div id="login_alert" class="footer display-none">-->
-	<!--		<p class="cjeKAy">Login to unlock awesome benefits</p>-->
-	<!--		<p class="hWYAwo">It hardly takes 10 seconds!</p>-->
-	<!---->
-	<!--		<div class="row" style="padding: 5px;justify-content: center;">-->
-	<!---->
-	<!--			<div class="p-2"><img style="width: 20px;height: auto;" src="--><?php //echo base_url(); ?><!--assets/front/images/address.svg"> <p>Easy Ordering</p></div>-->
-	<!---->
-	<!---->
-	<!---->
-	<!--			<div class="p-2"><img style="width: 20px;height: auto" src="--><?php //echo base_url(); ?><!--assets/front/images/order-mode.svg"> <p>Track Your Order</p></div>-->
-	<!---->
-	<!---->
-	<!--		</div>-->
-	<!---->
-	<!---->
-	<!---->
-	<!---->
-	<!--		<div class="signin-btn">-->
-	<!--			<a href="--><?php //echo base_url() . 'home/login'; ?><!--" class="btn">Login</a>-->
-	<!--		</div>-->
-	<!--	</div>-->
+<!--	<div id="login_alert" class="footer display-none">-->
+<!--		<p class="cjeKAy">Login to unlock awesome benefits</p>-->
+<!--		<p class="hWYAwo">It hardly takes 10 seconds!</p>-->
+<!---->
+<!--		<div class="row" style="padding: 5px;justify-content: center;">-->
+<!---->
+<!--			<div class="p-2"><img style="width: 20px;height: auto;" src="--><?php //echo base_url(); ?><!--assets/front/images/address.svg"> <p>Easy Ordering</p></div>-->
+<!---->
+<!---->
+<!---->
+<!--			<div class="p-2"><img style="width: 20px;height: auto" src="--><?php //echo base_url(); ?><!--assets/front/images/order-mode.svg"> <p>Track Your Order</p></div>-->
+<!---->
+<!---->
+<!--		</div>-->
+<!---->
+<!---->
+<!---->
+<!---->
+<!--		<div class="signin-btn">-->
+<!--			<a href="--><?php //echo base_url() . 'home/login'; ?><!--" class="btn">Login</a>-->
+<!--		</div>-->
+<!--	</div>-->
 
 
 <?php } ?>
@@ -144,12 +144,15 @@
 
 	</ul>
 </div>
-
+<div class="footer-logo">
+					<a href="<?php echo base_url(); ?>"><img src="<?php echo base_url(); ?>assets/front/images/ssl.png" alt=""></a>
+					<p>Trade Licence No. TRAD/DNCC/003026/2022</p>
+				</div>
 <script>
-
+	$(document).ready(function () {
 		$(document).ready(function () {
 
-			//	console.log(sessionStorage)
+		//	console.log(sessionStorage)
 			// If not 'Confirmed', show #myAlert
 			if (sessionStorage.Alert !== 'Confirmed') {
 				$('#login_alert').show();
@@ -158,19 +161,20 @@
 			}
 		});
 
-
+	});
 	function onBody() {
-		sessionStorage.Alert = "Confirmed";
+		 sessionStorage.Alert = "Confirmed";
 		$('#login_alert').addClass('d-none')
 
 	}
 </script>
 
 <?php if($this->session->userdata("language_slug")=='fr'){  ?>
-	<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/scripts/localization/messages_fr.js"> </script>
+<script type="text/javascript" src="<?php echo base_url()?>assets/admin/pages/scripts/localization/messages_fr.js"> </script>
 <?php } ?>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/custom_js.js"></script>
 <script type="text/javascript" src="<?php echo base_url(); ?>assets/front/js/scripts/front-validations.js"></script>
+<script type="text/javascript" src="<?php echo base_url(); ?>assets/front/images"></script>
 
 
 </div>

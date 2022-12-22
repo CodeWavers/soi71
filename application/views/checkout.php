@@ -41,7 +41,7 @@
 					<form action="" class="form-horizontal float-form">
 						<div class="form-body verify">
 
-							<h1>Enter OTP</h1>C
+							<h1>Enter OTP</h1>
 
 							<div class="form-group">
 								<input type="text" id="verificationCode" class="form-control" placeholder="">
@@ -399,7 +399,15 @@
 																</label>
 															</div>
 
+															<div class="filter-checkbox">
+    															<div class="checkbox-box">
+    																<label>
+    																	<input type="checkbox" name="agree_terms" id="agree_terms" value="1" onchange="agree_changed()"/>
 
+    																    <span>By ticking, you agree to the&nbsp; <a href="<?= base_url('cms/Terms-and-Conditions.html') ?>">Terms & Conditions</a>,&nbsp;   <a href="<?= base_url('cms/Privacy-Policy.html') ?>">Privacy Policy</a>,&nbsp;   <a href="<?= base_url('cms/Refund-and-Return-Policy.html') ?>">Refund & Return Policy</a></span>
+    																</label>
+    															</div>
+															</div>
 														</div>
 													</div>
 												</div>
@@ -412,7 +420,7 @@
 												<div class="proceed-btn">
 
 
-													<button type="submit" name="submit_order" id="submit_order" value="Proceed" class="btn btn-primary"><?php echo $this->lang->line('proceed') ?></button>
+													<button type="submit" name="submit_order" id="submit_order" value="Proceed" class="btn btn-primary" disabled><?php echo $this->lang->line('proceed') ?></button>
 												</div>
 											</div>
 										</div>
@@ -726,6 +734,14 @@
 
 
 <script>
+	function agree_changed(){
+	    if ($('#agree_terms').is(':checked')){
+	        $("#submit_order").removeAttr('disabled');
+	    }else{
+	        $("#submit_order").attr('disabled', 'disabled');
+	    }
+	}
+
 	function showClock(target) {
 		const distance = target - new Date().getTime();
 		const mins = distance < 0 ? 0 : Math.floor((distance % (1000 * 60 * 60)) / (1000 * 60));
@@ -996,6 +1012,10 @@
 
 	//newly added
 	$("#form_front_login_checkout").on("submit", function(event) {
+	var mobile = $('#login_phone_number').val();
+		if (mobile == '') {
+			alert("Number Can't be Empty !");
+		} else {
 		$('#exampleModal').modal('show');
 		$('#verificationCode').prop("readonly", false);
 		$('#otp_time').addClass('d-none');
@@ -1045,6 +1065,7 @@
 				alert(errorThrown);
 			}
 		});
+		}
 
 	});
 
@@ -1147,7 +1168,7 @@
 								$('#quotes-main-loader').show();
 							},
 							success: function(response) {
-								window.location.href = BASEURL + 'restaurant/restaurant-detail/soi71/';
+								window.location.href = BASEURL + 'checkout';
 							},
 							error: function(XMLHttpRequest, textStatus, errorThrown) {
 								alert(errorThrown);
