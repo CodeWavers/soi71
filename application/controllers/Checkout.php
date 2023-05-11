@@ -631,6 +631,7 @@ class Checkout extends CI_Controller
 				}
 			}
 			$order_id = $this->common_model->addData('order_master', $add_data);
+			$temp_order_id = $order_id;
 			// get user details array
 
 			//			$address_name=$this->db->select('*')->from('user_address')->where('enit',$this->input->post('address'))->get()->num_rows();
@@ -782,6 +783,29 @@ class Checkout extends CI_Controller
 		} else {
 			$arrdata = array('result' => 'fail', 'order_id' => '');
 		}
+		// Sms Sending to Panel For order Confirmation
+		$mobile_number = $this->db->get_where('system_option', array('OptionSlug' => 'mobile_number'))->first_row();
+		    $url = "https://bulksmsbd.net/api/smsapi";
+            $api_key = "Ez4D3wps4noSSXEolrYw";
+            $senderid = "8809617611096";
+            $number = "88".$mobile_number->OptionValue;
+
+            $message = "New order has been placed! Order Number - ".$temp_order_id;
+
+            $data = [
+                "api_key" => $api_key,
+                "senderid" => $senderid,
+                "number" => $number,
+                "message" => $message
+            ];
+            $ch = curl_init();
+            curl_setopt($ch, CURLOPT_URL, $url);
+            curl_setopt($ch, CURLOPT_POST, 1);
+            curl_setopt($ch, CURLOPT_POSTFIELDS, $data);
+            curl_setopt($ch, CURLOPT_RETURNTRANSFER, true);
+            curl_setopt($ch, CURLOPT_SSL_VERIFYPEER, false);
+            $response = curl_exec($ch);
+            curl_close($ch);
 		echo json_encode($arrdata);
 	}
 
