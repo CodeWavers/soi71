@@ -229,9 +229,9 @@ class Restaurant_model extends CI_Model {
             foreach ($dataCmsOnly as $key => $value) {
                 $content_general_id[] = $value->content_general_id;
             }
-            if($content_general_id){
-                $this->db->where_in('menu.content_id',$content_general_id);    
-            }            
+            // if($content_general_id){
+            //     $this->db->where_in('menu.content_id',$content_general_id);    
+            // }            
         }else{          
             if($this->input->post('page_title') != ''){
                 $this->db->like('menu.name', $this->input->post('page_title'));
